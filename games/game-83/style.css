@@ -1,0 +1,35 @@
+/* MEME SWEEPER -- Game-specific styles */
+
+[data-theme="minesweeper"] {
+  --color-bg: #1a1a2e;
+  --color-surface: #16213e;
+  --color-accent: #e94560;
+  --color-text: #eaeaea;
+}
+
+.difficulty-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.difficulty-selector button {
+  padding: 6px 14px;
+  border: 2px solid var(--color-accent, #e94560);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text, #eaeaea);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.difficulty-selector button.active,
+.difficulty-selector button:hover {
+  background: var(--color-accent, #e94560);
+  color: #fff;
+}

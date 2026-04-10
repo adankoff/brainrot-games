@@ -1,0 +1,39 @@
+/* ==========================================================================
+   LIGHTS OUT -- Game-specific styles
+   ========================================================================== */
+
+[data-theme="lightsout"] {
+  --color-bg: #0a0a12;
+  --color-surface: #12121e;
+  --color-accent: #00e5ff;
+  --color-accent-glow: rgba(0, 229, 255, 0.35);
+  --color-text: #e0e0e0;
+  --color-text-secondary: #888;
+}
+
+[data-theme="lightsout"] .menu-screen__title {
+  color: var(--color-accent);
+  text-shadow: 0 0 20px var(--color-accent-glow),
+               0 0 40px var(--color-accent-glow);
+}
+
+[data-theme="lightsout"] .btn-primary {
+  background: var(--color-accent);
+  color: #0a0a12;
+  border: none;
+  font-weight: 700;
+}
+
+[data-theme="lightsout"] .btn-primary:hover {
+  background: #33ecff;
+}
+
+[data-theme="lightsout"] .game-over-overlay__score {
+  color: var(--color-accent);
+  text-shadow: 0 0 12px var(--color-accent-glow);
+}
+
+[data-theme="lightsout"] .game-over-overlay__new-record {
+  color: #ffd600;
+  text-shadow: 0 0 8px rgba(255, 214, 0, 0.4);
+}

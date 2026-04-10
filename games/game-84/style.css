@@ -1,0 +1,8 @@
+/* MEME PICROSS -- Theme Overrides */
+
+[data-theme="picross"] {
+  --color-accent: #00e5ff;
+  --color-accent-dark: #00b8d4;
+  --color-bg: #0a0a1a;
+  --color-surface: #141428;
+}

@@ -1,0 +1,38 @@
+/* MEME SUDOKU -- game-specific overrides */
+
+[data-theme="sudoku"] {
+  --accent: #00e5ff;
+  --accent-dim: rgba(0, 229, 255, 0.15);
+}
+
+/* Difficulty selector in menu */
+.difficulty-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.difficulty-selector button {
+  padding: 6px 16px;
+  border: 2px solid var(--accent, #00e5ff);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text, #fff);
+  font-family: inherit;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.difficulty-selector button.active {
+  background: var(--accent, #00e5ff);
+  color: #000;
+  font-weight: 700;
+}
+
+.difficulty-selector button:hover:not(.active) {
+  background: var(--accent-dim, rgba(0, 229, 255, 0.15));
+}

@@ -1,0 +1,22 @@
+/* MEME WORD SEARCH -- Game-specific styles */
+
+[data-theme="wordsearch"] {
+  --accent: #00e5ff;
+  --accent-dim: #006b7a;
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #12122a;
+  --text-primary: #e0e0ff;
+}
+
+body[data-theme="wordsearch"] {
+  background: var(--bg-primary);
+}
+
+.game-container {
+  position: relative;
+}
+
+#game-canvas {
+  display: block;
+  cursor: crosshair;
+}

@@ -1,0 +1,18 @@
+/* MEME PIPES -- Game-specific styles */
+
+[data-theme="pipes"] {
+  --color-bg: #0a0e17;
+  --color-surface: #141b2a;
+  --color-accent: #00e5ff;
+  --color-accent-glow: rgba(0, 229, 255, 0.3);
+  --color-text: #e0e8f0;
+  --color-text-secondary: #6b7a8d;
+}
+
+body[data-theme="pipes"] {
+  background: var(--color-bg);
+}
+
+.game-container {
+  background: var(--color-bg);
+}
