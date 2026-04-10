@@ -1,0 +1,17 @@
+/* MEME LAUNCH -- Game-specific styles */
+
+[data-theme="meme-launch"] {
+  --color-bg: #87CEEB;
+  --color-surface: #1a1a2e;
+  --color-text: #ffffff;
+  --color-accent: #ff6b35;
+  --color-accent-alt: #ffd700;
+}
+
+.game-container {
+  background: #87CEEB;
+}
+
+#game-canvas {
+  background: #87CEEB;
+}

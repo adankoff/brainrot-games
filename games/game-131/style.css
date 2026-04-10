@@ -1,0 +1,18 @@
+/* MEME KENKEN -- Game-Specific Styles */
+
+body[data-theme="kenken"] {
+  --accent: #c8ff00;
+  --bg: #0a0a0a;
+  --surface: #1a1a2e;
+  background: var(--bg);
+}
+
+.game-container {
+  position: relative;
+}
+
+#game-canvas {
+  display: block;
+  margin: 0 auto;
+  image-rendering: pixelated;
+}

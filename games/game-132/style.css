@@ -1,0 +1,45 @@
+/* ==========================================================================
+   MEME LINKS -- Game-Specific Styles
+   Theme: data-theme="meme-links"
+   ========================================================================== */
+
+.game-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Difficulty selector in menu ---- */
+.difficulty-select {
+  display: flex;
+  gap: var(--space-xs, 8px);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--space-xs, 8px) 0;
+}
+
+.difficulty-select__btn {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: var(--text-sm, 14px);
+  padding: 6px 16px;
+  border-radius: var(--radius-md, 8px);
+  border: 2px solid var(--color-text-tertiary, #666);
+  background: var(--color-surface, #1a1a2e);
+  color: var(--color-text-primary, #f0f0f0);
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s, background 0.15s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.difficulty-select__btn:hover {
+  transform: scale(1.05);
+}
+
+.difficulty-select__btn--selected {
+  border-color: #00e5ff;
+  background: rgba(0, 229, 255, 0.15);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+  color: #00e5ff;
+}

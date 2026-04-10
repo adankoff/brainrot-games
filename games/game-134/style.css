@@ -1,0 +1,40 @@
+/* HEX MATCH -- Game-specific styles */
+
+[data-theme="hexmatch"] {
+  --accent: #00e5ff;
+  --bg: #0a0e1a;
+}
+
+.difficulty-select {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.difficulty-select__btn {
+  padding: 6px 16px;
+  border: 2px solid rgba(0, 229, 255, 0.4);
+  border-radius: 20px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.difficulty-select__btn:hover {
+  border-color: #00e5ff;
+  color: #fff;
+}
+
+.difficulty-select__btn--active {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: #00e5ff;
+  color: #00e5ff;
+}

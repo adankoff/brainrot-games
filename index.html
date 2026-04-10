@@ -65,7 +65,7 @@
     <section class="section" id="games">
       <div class="section__header">
         <h2 class="section__title">GAME CATALOG</h2>
-        <p class="section__subtitle">65 game mechanics, 129 playable games. all procedurally generated. filter, sort, play.</p>
+        <p class="section__subtitle">71 game mechanics, 135 playable games. all procedurally generated. filter, sort, play.</p>
       </div>
 
       <!-- Filters -->
@@ -750,11 +750,71 @@
               <td class="catalog-td catalog-td--versions"><a href="games/game-129/">Meme Rhythm</a></td>
               <td class="catalog-td catalog-td--play"><a href="games/game-129/" class="play-link">play</a></td>
             </tr>
+            <tr data-category="puzzle" data-input="keyboard / swipe" data-session="5m" data-difficulty="3" data-variants="1" data-mechanic="Sokoban">
+              <td class="catalog-td catalog-td--mechanic">Sokoban</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--puzzle">puzzle</span></td>
+              <td class="catalog-td">keyboard / swipe</td>
+              <td class="catalog-td">~5m</td>
+              <td class="catalog-td"><span class="diff diff--hard">hard</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-130/">Meme Sokoban</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-130/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="puzzle" data-input="tap + keyboard" data-session="5m" data-difficulty="3" data-variants="1" data-mechanic="KenKen">
+              <td class="catalog-td catalog-td--mechanic">KenKen</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--puzzle">puzzle</span></td>
+              <td class="catalog-td">tap + keyboard</td>
+              <td class="catalog-td">~5m</td>
+              <td class="catalog-td"><span class="diff diff--hard">hard</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-131/">Meme KenKen</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-131/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="puzzle" data-input="drag" data-session="3m" data-difficulty="2" data-variants="1" data-mechanic="Number Link">
+              <td class="catalog-td catalog-td--mechanic">Number Link</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--puzzle">puzzle</span></td>
+              <td class="catalog-td">drag</td>
+              <td class="catalog-td">~3m</td>
+              <td class="catalog-td"><span class="diff diff--med">medium</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-132/">Meme Links</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-132/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="action" data-input="drag" data-session="60s" data-difficulty="1" data-variants="1" data-mechanic="Angry Birds">
+              <td class="catalog-td catalog-td--mechanic">Angry Birds</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--action">action</span></td>
+              <td class="catalog-td">drag</td>
+              <td class="catalog-td">~60s</td>
+              <td class="catalog-td"><span class="diff diff--easy">easy</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-133/">Meme Launch</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-133/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="puzzle" data-input="tap" data-session="3m" data-difficulty="3" data-variants="1" data-mechanic="Hex Match">
+              <td class="catalog-td catalog-td--mechanic">Hex Match</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--puzzle">puzzle</span></td>
+              <td class="catalog-td">tap</td>
+              <td class="catalog-td">~3m</td>
+              <td class="catalog-td"><span class="diff diff--hard">hard</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-134/">Hex Match</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-134/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="word" data-input="drag" data-session="3m" data-difficulty="2" data-variants="1" data-mechanic="Boggle">
+              <td class="catalog-td catalog-td--mechanic">Boggle</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--word">word</span></td>
+              <td class="catalog-td">drag</td>
+              <td class="catalog-td">~3m</td>
+              <td class="catalog-td"><span class="diff diff--med">medium</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-135/">Meme Boggle</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-135/" class="play-link">play</a></td>
+            </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="catalog-count" id="catalog-count">showing 65 of 65 mechanics (129 total game variants)</p>
+      <p class="catalog-count" id="catalog-count">showing 71 of 71 mechanics (135 total game variants)</p>
     </section>
 
     <!-- Catalog interactivity: sort, filter, search -->
@@ -850,9 +910,9 @@
           }
         });
 
-        countEl.textContent = visible === 65
-          ? 'showing 65 of 65 mechanics (129 total game variants)'
-          : `showing ${visible} of 65 mechanics (${totalVariants} game variants)`;
+        countEl.textContent = visible === 71
+          ? 'showing 71 of 71 mechanics (135 total game variants)'
+          : `showing ${visible} of 71 mechanics (${totalVariants} game variants)`;
       }
     })();
     </script>
