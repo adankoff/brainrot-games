@@ -4,6 +4,18 @@
  */
 
 import { NUM_EDGES, getEdgeColor, getEdgeMatchStates, getHexVertices } from './hexmatch.js';
+import { loadThemeColors } from '../../shared/theme-utils.js';
+
+/** Color palette — grayscale defaults, themed via CSS custom properties */
+const COLORS = loadThemeColors({
+  bgTop:     { css: '--game-bg-top',     fallback: '#0a0a0a' },
+  bgMid:     { css: '--game-bg-mid',     fallback: '#0f0f0f' },
+  bgBottom:  { css: '--game-bg-bottom',  fallback: '#0a0a0a' },
+  progressA: { css: '--game-progress-a', fallback: '#aaaaaa' },
+  progressB: { css: '--game-progress-b', fallback: '#888888' },
+  winEffect: { css: '--game-win-effect', fallback: '#aaaaaa' },
+  hudText:   { css: '--game-hud-text',   fallback: 'rgba(255, 255, 255, 0.5)' },
+});
 
 // ---- Background ----
 
@@ -14,9 +26,9 @@ import { NUM_EDGES, getEdgeColor, getEdgeMatchStates, getHexVertices } from './h
  */
 export function drawBackground(ctx, w, h) {
   const grad = ctx.createLinearGradient(0, 0, 0, h);
-  grad.addColorStop(0, '#0a0e1a');
-  grad.addColorStop(0.5, '#0f1628');
-  grad.addColorStop(1, '#0a0e1a');
+  grad.addColorStop(0, COLORS.bgTop);
+  grad.addColorStop(0.5, COLORS.bgMid);
+  grad.addColorStop(1, COLORS.bgBottom);
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, w, h);
 
@@ -131,11 +143,11 @@ export function drawHexTile(ctx, tile, hexSize, allTiles, solved, pulsePhase) {
 export function drawHUD(ctx, w, moves, matched, total, level) {
   ctx.font = 'bold 14px monospace';
   ctx.textAlign = 'left';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+  ctx.fillStyle = COLORS.hudText;
   ctx.fillText(`LVL ${level}`, 15, 25);
 
   ctx.textAlign = 'right';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+  ctx.fillStyle = COLORS.hudText;
   ctx.fillText(`MOVES: ${moves}`, w - 15, 25);
 
   // Progress bar
@@ -149,8 +161,8 @@ export function drawHUD(ctx, w, moves, matched, total, level) {
   ctx.fillRect(barX, barY, barW, barH);
 
   const barGrad = ctx.createLinearGradient(barX, 0, barX + barW * progress, 0);
-  barGrad.addColorStop(0, '#00e5ff');
-  barGrad.addColorStop(1, '#23d160');
+  barGrad.addColorStop(0, COLORS.progressA);
+  barGrad.addColorStop(1, COLORS.progressB);
   ctx.fillStyle = barGrad;
   ctx.fillRect(barX, barY, barW * progress, barH);
 
@@ -171,7 +183,7 @@ export function drawHUD(ctx, w, moves, matched, total, level) {
 export function drawWinEffect(ctx, w, h, alpha) {
   if (alpha <= 0) return;
   ctx.globalAlpha = alpha * 0.3;
-  ctx.fillStyle = '#00e5ff';
+  ctx.fillStyle = COLORS.winEffect;
   ctx.fillRect(0, 0, w, h);
   ctx.globalAlpha = 1;
 }

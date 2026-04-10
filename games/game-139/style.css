@@ -1,17 +1,57 @@
-/* MEME CUT -- Game-specific styles */
+/* ==========================================================================
+   MEME CUT -- Game-Specific Styles
+   ========================================================================== */
 
-[data-theme="meme-cut"] {
-  --bg-primary: #1a2a1a;
-  --bg-secondary: #0d1a0d;
-  --accent: #44dd44;
-  --accent-glow: rgba(68, 221, 68, 0.3);
+/* ---------- Grayscale defaults (white-label base) ---------- */
+:root {
+  --game-bg:              #1a1a1a;
+  --game-grid-line:       rgba(255, 255, 255, 0.03);
+  --game-target:          #aaaaaa;
+  --game-target-outline:  #888888;
+  --game-target-mouth:    #666666;
+  --game-target-tongue:   #888888;
+  --game-star:            #cccccc;
+  --game-star-outline:    #999999;
+  --game-rope:            #999999;
+  --game-rope-texture:    rgba(80, 80, 80, 0.3);
+  --game-anchor:          #888888;
+  --game-anchor-inner:    #666666;
+  --game-candy-light:     #aaaaaa;
+  --game-candy:           #888888;
+  --game-candy-dark:      #666666;
+  --game-candy-wrapper:   #888888;
+  --game-loss-text:       #888888;
+  --game-hud-text:        #ffffff;
+  --game-banner-sub:      #aaaaaa;
+  --game-accent-glow:     rgba(170, 170, 170, 0.3);
 }
 
+/* ---------- Meme Cut themed overrides ---------- */
+[data-theme="meme-cut"] {
+  --game-bg:              #1a2a3a;
+  --game-target:          #44dd44;
+  --game-target-outline:  #22aa22;
+  --game-target-mouth:    #cc3333;
+  --game-target-tongue:   #ff6666;
+  --game-star:            #ffdd00;
+  --game-star-outline:    #cc9900;
+  --game-rope:            #c8a060;
+  --game-rope-texture:    rgba(100, 70, 30, 0.3);
+  --game-candy-light:     #ff6688;
+  --game-candy:           #ee3366;
+  --game-candy-dark:      #cc1144;
+  --game-candy-wrapper:   #ee3366;
+  --game-loss-text:       #ff4444;
+  --game-accent-glow:     rgba(68, 221, 68, 0.3);
+}
+
+/* ---------- DOM element styles using variables ---------- */
+
 body[data-theme="meme-cut"] {
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background: linear-gradient(135deg, var(--game-bg) 0%, #0d1a0d 100%);
 }
 
 #game-canvas {
   border-radius: 8px;
-  box-shadow: 0 0 30px var(--accent-glow);
+  box-shadow: 0 0 30px var(--game-accent-glow);
 }

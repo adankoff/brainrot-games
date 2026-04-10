@@ -1,21 +1,47 @@
-/* MEME ASTEROIDS -- Game-specific styles */
+/* ==========================================================================
+   MEME ASTEROIDS -- Game-Specific Styles
+   ========================================================================== */
 
-[data-theme="asteroids"] {
-  --color-bg: #000000;
-  --color-surface: #0a0a1a;
-  --color-text: #ffffff;
-  --color-accent: #00ff88;
-  --color-secondary: #888888;
+/* ---------- Grayscale defaults (white-label base) ---------- */
+:root {
+  --game-bg:            #0a0a0a;
+  --game-ship:          #cccccc;
+  --game-thrust:        #999999;
+  --game-asteroid-lg:   #aaaaaa;
+  --game-asteroid-md:   #cccccc;
+  --game-asteroid-sm:   #eeeeee;
+  --game-bullet:        #ffffff;
+  --game-particle:      200, 200, 200;
+  --game-hud-text:      #ffffff;
+  --game-hud-secondary: #888888;
+  --game-accent:        #cccccc;
 }
 
+/* ---------- Asteroids themed overrides ---------- */
+[data-theme="asteroids"] {
+  --game-bg:            #000000;
+  --game-ship:          #00ff88;
+  --game-thrust:        #ff8800;
+  --game-asteroid-lg:   #aaaaaa;
+  --game-asteroid-md:   #cccccc;
+  --game-asteroid-sm:   #eeeeee;
+  --game-bullet:        #ffffff;
+  --game-particle:      255, 200, 100;
+  --game-hud-text:      #ffffff;
+  --game-hud-secondary: #888888;
+  --game-accent:        #00ff88;
+}
+
+/* ---------- DOM element styles using variables ---------- */
+
 body[data-theme="asteroids"] {
-  background: #000000;
+  background: var(--game-bg);
 }
 
 .game-container {
-  background: #000000;
+  background: var(--game-bg);
 }
 
 #game-canvas {
-  background: #000000;
+  background: var(--game-bg);
 }

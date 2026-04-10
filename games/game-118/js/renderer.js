@@ -5,8 +5,21 @@
 
 import { W, H } from './galaga.js';
 import { formatScore } from '../../shared/utils.js';
+import { loadThemeColors } from '../../shared/theme-utils.js';
 
 export { W, H };
+
+/** Color palette -- grayscale defaults, themed via CSS custom properties */
+const COLORS = loadThemeColors({
+  bg:           { css: '--game-bg',           fallback: '#0a0a0a' },
+  ship:         { css: '--game-ship',         fallback: '#cccccc' },
+  shipGlow:     { css: '--game-ship-glow',    fallback: '#aaaaaa' },
+  bullet:       { css: '--game-bullet',       fallback: '#cccccc' },
+  alienBullet:  { css: '--game-alien-bullet', fallback: '#888888' },
+  hudText:      { css: '--game-hud-text',     fallback: '#ffffff' },
+  hudSecondary: { css: '--game-hud-secondary',fallback: '#888888' },
+  accent:       { css: '--game-accent',       fallback: '#cccccc' },
+});
 
 /**
  * Render the full game frame.
@@ -15,7 +28,7 @@ export { W, H };
  */
 export function render(ctx, state) {
   // Background
-  ctx.fillStyle = '#0a0a1a';
+  ctx.fillStyle = COLORS.bg;
   ctx.fillRect(0, 0, W, H);
 
   // Stars
@@ -33,14 +46,14 @@ export function render(ctx, state) {
   }
 
   // Player bullets
-  ctx.fillStyle = '#00ffcc';
+  ctx.fillStyle = COLORS.bullet;
   for (const b of state.playerBullets) {
     ctx.fillRect(b.x - b.width / 2, b.y - b.height / 2, b.width, b.height);
   }
 
   // Alien bullets
   for (const b of state.alienBullets) {
-    ctx.fillStyle = '#ff5555';
+    ctx.fillStyle = COLORS.alienBullet;
     ctx.beginPath();
     ctx.arc(b.x, b.y, 3, 0, Math.PI * 2);
     ctx.fill();
@@ -87,7 +100,7 @@ function drawPlayer(ctx, player) {
   ctx.translate(x, y);
 
   // Ship body (triangle pointing up)
-  ctx.fillStyle = '#00ffcc';
+  ctx.fillStyle = COLORS.ship;
   ctx.beginPath();
   ctx.moveTo(0, -14);
   ctx.lineTo(-12, 10);
@@ -108,7 +121,7 @@ function drawPlayer(ctx, player) {
   ctx.fill();
 
   // Engine glow
-  ctx.fillStyle = '#00ff88';
+  ctx.fillStyle = COLORS.shipGlow;
   ctx.globalAlpha = 0.6 + Math.random() * 0.4;
   ctx.beginPath();
   ctx.moveTo(-4, 8);
@@ -265,14 +278,14 @@ function drawExplosion(ctx, ex) {
  */
 function drawHUD(ctx, state) {
   // Score
-  ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = COLORS.hudText;
   ctx.font = 'bold 16px monospace';
   ctx.textAlign = 'left';
   ctx.fillText(formatScore(state.score), 10, 24);
 
   // Wave
   ctx.textAlign = 'right';
-  ctx.fillStyle = '#888888';
+  ctx.fillStyle = COLORS.hudSecondary;
   ctx.font = '12px monospace';
   ctx.fillText(`WAVE ${state.wave}`, W - 10, 24);
 
@@ -289,7 +302,7 @@ function drawHUD(ctx, state) {
 function drawMiniShip(ctx, x, y) {
   ctx.save();
   ctx.translate(x, y);
-  ctx.fillStyle = '#00ffcc';
+  ctx.fillStyle = COLORS.ship;
   ctx.beginPath();
   ctx.moveTo(0, -6);
   ctx.lineTo(-5, 4);
@@ -306,7 +319,7 @@ function drawWaveBanner(ctx, state) {
   const alpha = Math.min(state.waveBannerTimer / 30, 1);
   ctx.save();
   ctx.globalAlpha = alpha;
-  ctx.fillStyle = '#00ffcc';
+  ctx.fillStyle = COLORS.accent;
   ctx.font = 'bold 28px monospace';
   ctx.textAlign = 'center';
   ctx.fillText(`WAVE ${state.wave}`, W / 2, H / 2 - 10);

@@ -11,16 +11,18 @@
  *   0=NE, 1=E, 2=SE, 3=SW, 4=W, 5=NW
  */
 
+import { readThemeColor } from '../../shared/theme-utils.js';
+
 const NUM_EDGES = 6;
 const DEG60 = Math.PI / 3;
 
 const EDGE_COLORS = [
-  '#ff3860',  // red-pink
-  '#00e5ff',  // cyan
-  '#ffdd57',  // yellow
-  '#23d160',  // green
-  '#b86bff',  // purple
-  '#ff8c42',  // orange
+  readThemeColor('--game-edge-1', '#cccccc'),
+  readThemeColor('--game-edge-2', '#aaaaaa'),
+  readThemeColor('--game-edge-3', '#888888'),
+  readThemeColor('--game-edge-4', '#666666'),
+  readThemeColor('--game-edge-5', '#444444'),
+  readThemeColor('--game-edge-6', '#555555'),
 ];
 
 export const DIFFICULTIES = {

@@ -5,6 +5,7 @@
 
 import { GameShell } from '../../shared/game-shell.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import {
   createGameState, update,
   consumeDestroyedAliens, consumePlayerHit, consumeDiveEvent,
@@ -31,7 +32,7 @@ const shell = new GameShell({
   logicalWidth: W,
   logicalHeight: H,
   subtitle: 'blast aliens, dodge dives, stack points no cap',
-  accentColor: '#00ffcc',
+  accentColor: readThemeColor('--game-accent', '#cccccc'),
 });
 
 // -- Sound Registration --

@@ -3,6 +3,12 @@
  * All canvas drawing: background, bin, paper ball, wind indicator, HUD, trail, effects.
  */
 
+import { readThemeColor } from '../../shared/theme-utils.js';
+
+// Cached UI colors read once from CSS variables (not part of in-game theme switching)
+const UI_MISS_COLOR = readThemeColor('--game-miss', '#ff3838');
+const UI_MISS_EMPTY = readThemeColor('--game-miss-empty', 'rgba(255,255,255,0.15)');
+
 /**
  * Draw the room background with gradient and subtle details.
  *
@@ -379,10 +385,10 @@ export function drawMisses(ctx, w, misses, maxMisses) {
   for (let i = 0; i < maxMisses; i++) {
     const xPos = w - 14 - (maxMisses - 1 - i) * 24;
     if (i < misses) {
-      ctx.fillStyle = '#ff3838';
+      ctx.fillStyle = UI_MISS_COLOR;
       ctx.fillText('X', xPos, 12);
     } else {
-      ctx.fillStyle = 'rgba(255,255,255,0.15)';
+      ctx.fillStyle = UI_MISS_EMPTY;
       ctx.fillText('O', xPos, 12);
     }
   }

@@ -6,6 +6,7 @@
 import { GameShell } from '../../shared/game-shell.js';
 import { createInputManager } from '../../shared/input-manager.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import { RhythmState, NUM_LANES, SONG_DURATION_MS } from './rhythm.js';
 import { renderGame, renderReadyScreen } from './renderer.js';
 
@@ -38,7 +39,7 @@ const shell = new GameShell({
   maxDisplayWidth: 480,
   theme: 'meme-rhythm',
   subtitle: 'tap the beat. chase the combo.',
-  accentColor: '#ff00ff',
+  accentColor: readThemeColor('--game-hit-zone', '#888888'),
   shareUrl: 'https://brainrotgames.com/games/game-129/',
 });
 

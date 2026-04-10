@@ -8,6 +8,7 @@ import { GameShell } from '../../shared/game-shell.js';
 import { createInputManager } from '../../shared/input-manager.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
 import { getData, setData } from '../../shared/score-manager.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import {
   createBoard, layoutTiles, rotateTileEdges, findTileAt,
   countMatches, isSolved, DIFFICULTIES, DEG60,
@@ -22,6 +23,8 @@ const W = 400;
 const H = 700;
 const GAME_ID = 'hexmatch';
 const ROTATION_DURATION = 150; // ms for rotation animation
+const ACCENT = readThemeColor('--game-accent', '#aaaaaa');
+const WIN_EFFECT_COLOR = readThemeColor('--game-win-effect', '#aaaaaa');
 
 // ---- Game State ----
 
@@ -111,7 +114,7 @@ const shell = new GameShell({
   maxDisplayWidth: 480,
   theme: 'hexmatch',
   subtitle: 'rotate hexes until every edge matches. fewer moves = bigger brain.',
-  accentColor: '#00e5ff',
+  accentColor: readThemeColor('--game-accent', '#aaaaaa'),
   shareUrl: '',
 });
 
@@ -188,7 +191,7 @@ shell.onUpdate = (dt) => {
       // Play match sound if we gained matches
       if (newMatched > matched && audioReady) {
         playSound('match');
-        flashColor = '#00e5ff';
+        flashColor = ACCENT;
         flashAlpha = 0.1;
       }
 
@@ -251,7 +254,7 @@ shell.onRender = (ctx) => {
   if (totalScore > 0) {
     ctx.font = 'bold 16px monospace';
     ctx.textAlign = 'center';
-    ctx.fillStyle = '#00e5ff';
+    ctx.fillStyle = ACCENT;
     ctx.fillText(`SCORE: ${totalScore}`, W / 2, H - 20);
   }
 
@@ -273,8 +276,9 @@ shell.onRender = (ctx) => {
     ctx.font = 'bold 28px monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillStyle = `rgba(0, 229, 255, ${Math.min(winAlpha * 2.5, 1)})`;
-    ctx.shadowColor = '#00e5ff';
+    ctx.globalAlpha = Math.min(winAlpha * 2.5, 1);
+    ctx.fillStyle = WIN_EFFECT_COLOR;
+    ctx.shadowColor = WIN_EFFECT_COLOR;
     ctx.shadowBlur = 20;
     ctx.fillText('SOLVED!', W / 2, H / 2 + (H * 0.35));
     ctx.shadowBlur = 0;

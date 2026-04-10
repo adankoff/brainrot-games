@@ -5,30 +5,31 @@
 
 import { TILE, ENTITY } from './sokoban.js';
 import { lerp } from '../../shared/utils.js';
+import { loadThemeColors } from '../../shared/theme-utils.js';
 
-/** Color palette */
-const COLORS = {
-  bg: '#1a1a2e',
-  floor: '#2a2a3e',
-  wall: '#4a4a5e',
-  wallTop: '#5a5a6e',
-  wallDark: '#3a3a4e',
-  target: '#ff6b6b',
-  targetGlow: 'rgba(255, 107, 107, 0.25)',
-  crate: '#c8a45c',
-  crateLight: '#dab96e',
-  crateDark: '#a8843c',
-  crateOnTarget: '#6bcf6b',
-  crateOnTargetLight: '#8bef8b',
-  crateOnTargetDark: '#4baf4b',
-  player: '#4ecdc4',
-  playerDark: '#2eada4',
-  playerEye: '#fff',
-  playerPupil: '#1a1a2e',
-  hudBg: 'rgba(0, 0, 0, 0.7)',
-  hudText: '#fff',
-  solvedFlash: 'rgba(255, 255, 255, 0.3)',
-};
+/** Color palette — grayscale defaults, themed via CSS custom properties */
+const COLORS = loadThemeColors({
+  bg:                 { css: '--game-bg',                    fallback: '#1a1a1a' },
+  floor:              { css: '--game-floor',                 fallback: '#2a2a2a' },
+  wall:               { css: '--game-wall',                  fallback: '#4a4a4a' },
+  wallTop:            { css: '--game-wall-top',              fallback: '#5a5a5a' },
+  wallDark:           { css: '--game-wall-dark',             fallback: '#3a3a3a' },
+  target:             { css: '--game-target',                fallback: '#888888' },
+  targetGlow:         { css: '--game-target-glow',           fallback: 'rgba(136, 136, 136, 0.25)' },
+  crate:              { css: '--game-crate',                 fallback: '#666666' },
+  crateLight:         { css: '--game-crate-light',           fallback: '#777777' },
+  crateDark:          { css: '--game-crate-dark',            fallback: '#555555' },
+  crateOnTarget:      { css: '--game-crate-on-target',       fallback: '#999999' },
+  crateOnTargetLight: { css: '--game-crate-on-target-light', fallback: '#aaaaaa' },
+  crateOnTargetDark:  { css: '--game-crate-on-target-dark',  fallback: '#888888' },
+  player:             { css: '--game-player',                fallback: '#cccccc' },
+  playerDark:         { css: '--game-player-dark',           fallback: '#999999' },
+  playerEye:          { css: '--game-player-eye',            fallback: '#ffffff' },
+  playerPupil:        { css: '--game-player-pupil',          fallback: '#1a1a1a' },
+  hudBg:              { css: '--game-hud-bg',                fallback: 'rgba(0, 0, 0, 0.7)' },
+  hudText:            { css: '--game-hud-text',              fallback: '#ffffff' },
+  gridLine:           { css: '--game-grid-line',             fallback: 'rgba(255, 255, 255, 0.05)' },
+});
 
 /**
  * Calculate rendering metrics for the grid within the canvas.
@@ -98,7 +99,7 @@ export function renderGame(ctx, game, canvasWidth, canvasHeight, solvedFlash) {
         ctx.fillRect(x, y, cellSize, cellSize);
 
         // Subtle grid line
-        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+        ctx.strokeStyle = COLORS.gridLine;
         ctx.lineWidth = 0.5;
         ctx.strokeRect(x, y, cellSize, cellSize);
       }

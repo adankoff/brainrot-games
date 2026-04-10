@@ -3,11 +3,17 @@
  * Procedural beat generation, note management, timing/scoring logic.
  */
 
+import { readThemeColor } from '../../shared/theme-utils.js';
+
 // ---- Constants ----
 
 export const SONG_DURATION_MS = 60000;
 export const NUM_LANES = 3;
-export const LANE_COLORS = ['#ff3366', '#33ff66', '#3366ff'];
+export const LANE_COLORS = [
+  readThemeColor('--game-lane-1', '#cccccc'),
+  readThemeColor('--game-lane-2', '#999999'),
+  readThemeColor('--game-lane-3', '#666666'),
+];
 export const LANE_NAMES = ['left', 'center', 'right'];
 
 // BPM ramp: starts at 90, increases over time
@@ -268,10 +274,10 @@ export class RhythmState {
     // Feedback popup
     const laneX = this._laneX(note.lane);
     const colors = {
-      perfect: '#ffff00',
-      great: '#00ff88',
-      good: '#88aaff',
-      miss: '#ff3333',
+      perfect: readThemeColor('--game-feedback-perfect', '#dddddd'),
+      great: readThemeColor('--game-feedback-great', '#bbbbbb'),
+      good: readThemeColor('--game-feedback-good', '#999999'),
+      miss: readThemeColor('--game-feedback-miss', '#666666'),
     };
     const texts = {
       perfect: 'PERFECT!',
@@ -292,7 +298,7 @@ export class RhythmState {
     if (this.combo > 0 && this.combo % 10 === 0) {
       this.feedbacks.push({
         text: `${this.combo} COMBO!`,
-        color: '#ff00ff',
+        color: readThemeColor('--game-feedback-combo', '#888888'),
         x: 200, // center
         y: 300,
         timer: 800,

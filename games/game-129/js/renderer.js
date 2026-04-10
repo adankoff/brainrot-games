@@ -7,6 +7,23 @@ import {
   NUM_LANES, LANE_COLORS, HIT_ZONE_Y, TRAVEL_TIME_MS,
   GRADE_POINTS, SONG_DURATION_MS,
 } from './rhythm.js';
+import { loadThemeColors } from '../../shared/theme-utils.js';
+
+/** Color palette -- grayscale defaults, themed via CSS custom properties */
+const COLORS = loadThemeColors({
+  bgTop:       { css: '--game-bg-top',       fallback: '#060606' },
+  bgBottom:    { css: '--game-bg-bottom',    fallback: '#0a0a0a' },
+  gridLine:    { css: '--game-grid-line',    fallback: 'rgba(255, 255, 255, 0.04)' },
+  hitZoneGlow: { css: '--game-hit-zone',     fallback: '#888888' },
+  comboX4:     { css: '--game-combo-x4',     fallback: '#cccccc' },
+  comboX3:     { css: '--game-combo-x3',     fallback: '#aaaaaa' },
+  comboX2:     { css: '--game-combo-x2',     fallback: '#888888' },
+  healthGood:  { css: '--game-health-good',  fallback: '#cccccc' },
+  healthMid:   { css: '--game-health-mid',   fallback: '#999999' },
+  healthLow:   { css: '--game-health-low',   fallback: '#666666' },
+  progressBar: { css: '--game-progress',     fallback: 'rgba(200, 200, 200, 0.6)' },
+  hudText:     { css: '--game-hud-text',     fallback: '#ffffff' },
+});
 
 const W = 400;
 const H = 700;
@@ -57,13 +74,13 @@ export function renderGame(ctx, state, laneTapTimers) {
 function drawBackground(ctx, elapsed) {
   // Dark gradient
   const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, '#060616');
-  grad.addColorStop(1, '#0a0a2a');
+  grad.addColorStop(0, COLORS.bgTop);
+  grad.addColorStop(1, COLORS.bgBottom);
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 
   // Subtle grid lines scrolling down
-  ctx.strokeStyle = 'rgba(255, 0, 255, 0.04)';
+  ctx.strokeStyle = COLORS.gridLine;
   ctx.lineWidth = 1;
   const gridSpacing = 40;
   const offset = (elapsed * 0.03) % gridSpacing;
@@ -98,9 +115,10 @@ function drawHitZone(ctx, elapsed) {
 
   // Glow
   ctx.save();
-  ctx.shadowColor = '#ff00ff';
+  ctx.shadowColor = COLORS.hitZoneGlow;
   ctx.shadowBlur = 15 + pulse * 10;
-  ctx.strokeStyle = `rgba(255, 0, 255, ${0.5 + pulse * 0.3})`;
+  ctx.globalAlpha = 0.5 + pulse * 0.3;
+  ctx.strokeStyle = COLORS.hitZoneGlow;
   ctx.lineWidth = HIT_ZONE_THICKNESS;
   ctx.beginPath();
   ctx.moveTo(20, HIT_ZONE_Y);
@@ -243,13 +261,13 @@ function drawHUD(ctx, state) {
   ctx.font = 'bold 28px "Space Grotesk", monospace, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillStyle = '#fff';
+  ctx.fillStyle = COLORS.hudText;
   ctx.fillText(state.score.toLocaleString(), W / 2, 15);
 
   // Combo - below score
   if (state.combo > 1) {
     const multiplier = state.getMultiplier();
-    const comboColor = multiplier >= 4 ? '#ff00ff' : multiplier >= 3 ? '#ffaa00' : multiplier >= 2 ? '#00ffaa' : '#fff';
+    const comboColor = multiplier >= 4 ? COLORS.comboX4 : multiplier >= 3 ? COLORS.comboX3 : multiplier >= 2 ? COLORS.comboX2 : COLORS.hudText;
 
     ctx.font = 'bold 16px "Space Grotesk", sans-serif';
     ctx.fillStyle = comboColor;
@@ -269,7 +287,7 @@ function drawHUD(ctx, state) {
   ctx.fill();
 
   // Fill
-  const healthColor = healthPct > 0.5 ? '#33ff66' : healthPct > 0.25 ? '#ffaa00' : '#ff3333';
+  const healthColor = healthPct > 0.5 ? COLORS.healthGood : healthPct > 0.25 ? COLORS.healthMid : COLORS.healthLow;
   ctx.fillStyle = healthColor;
   roundRect(ctx, hbX, hbY, hbW * healthPct, hbH, 4);
   ctx.fill();
@@ -285,7 +303,7 @@ function drawHUD(ctx, state) {
   roundRect(ctx, pbX, pbY, pbW, pbH, 4);
   ctx.fill();
 
-  ctx.fillStyle = 'rgba(255, 0, 255, 0.6)';
+  ctx.fillStyle = COLORS.progressBar;
   roundRect(ctx, pbX, pbY, pbW * progressPct, pbH, 4);
   ctx.fill();
 
@@ -329,8 +347,8 @@ function roundRect(ctx, x, y, w, h, r) {
 export function renderReadyScreen(ctx, elapsed) {
   // Dark background
   const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, '#060616');
-  grad.addColorStop(1, '#0a0a2a');
+  grad.addColorStop(0, COLORS.bgTop);
+  grad.addColorStop(1, COLORS.bgBottom);
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 

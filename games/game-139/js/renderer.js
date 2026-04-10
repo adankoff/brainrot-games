@@ -3,8 +3,33 @@
  * All canvas drawing logic: ropes, candy, target, stars, HUD, particles.
  */
 
+import { loadThemeColors } from '../../shared/theme-utils.js';
+
 const W = 400;
 const H = 700;
+
+/** Color palette -- grayscale defaults, themed via CSS custom properties */
+const COLORS = loadThemeColors({
+  bg:             { css: '--game-bg',              fallback: '#1a1a1a' },
+  gridLine:       { css: '--game-grid-line',       fallback: 'rgba(255, 255, 255, 0.03)' },
+  target:         { css: '--game-target',          fallback: '#aaaaaa' },
+  targetOutline:  { css: '--game-target-outline',  fallback: '#888888' },
+  targetMouth:    { css: '--game-target-mouth',    fallback: '#666666' },
+  targetTongue:   { css: '--game-target-tongue',   fallback: '#888888' },
+  star:           { css: '--game-star',            fallback: '#cccccc' },
+  starOutline:    { css: '--game-star-outline',    fallback: '#999999' },
+  rope:           { css: '--game-rope',            fallback: '#999999' },
+  ropeTexture:    { css: '--game-rope-texture',    fallback: 'rgba(80, 80, 80, 0.3)' },
+  anchor:         { css: '--game-anchor',          fallback: '#888888' },
+  anchorInner:    { css: '--game-anchor-inner',    fallback: '#666666' },
+  candyLight:     { css: '--game-candy-light',     fallback: '#aaaaaa' },
+  candy:          { css: '--game-candy',           fallback: '#888888' },
+  candyDark:      { css: '--game-candy-dark',      fallback: '#666666' },
+  candyWrapper:   { css: '--game-candy-wrapper',   fallback: '#888888' },
+  lossText:       { css: '--game-loss-text',       fallback: '#888888' },
+  hudText:        { css: '--game-hud-text',        fallback: '#ffffff' },
+  bannerSub:      { css: '--game-banner-sub',      fallback: '#aaaaaa' },
+});
 
 /**
  * Draw a 5-pointed star shape at (cx, cy) with given radius.
@@ -29,11 +54,11 @@ export function render(ctx, game, frameCount) {
   const info = game.getInfo();
 
   // Background
-  ctx.fillStyle = '#1a2a3a';
+  ctx.fillStyle = COLORS.bg;
   ctx.fillRect(0, 0, W, H);
 
   // Background grid pattern
-  ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+  ctx.strokeStyle = COLORS.gridLine;
   ctx.lineWidth = 1;
   for (let x = 0; x < W; x += 40) {
     ctx.beginPath();
@@ -61,7 +86,7 @@ export function render(ctx, game, frameCount) {
         ctx.globalAlpha = alpha;
         ctx.translate(star.x, star.y);
         ctx.scale(scale, scale);
-        ctx.fillStyle = '#ffdd00';
+        ctx.fillStyle = COLORS.star;
         drawStar(ctx, 0, 0, 18, 8);
         ctx.fill();
         ctx.restore();
@@ -136,13 +161,13 @@ function _drawTarget(ctx, target, frameCount) {
   const { x, y } = target;
 
   // Body
-  ctx.fillStyle = '#44dd44';
+  ctx.fillStyle = COLORS.target;
   ctx.beginPath();
   ctx.arc(x, y, 28, 0, Math.PI * 2);
   ctx.fill();
 
   // Outline
-  ctx.strokeStyle = '#22aa22';
+  ctx.strokeStyle = COLORS.targetOutline;
   ctx.lineWidth = 3;
   ctx.stroke();
 
@@ -166,13 +191,13 @@ function _drawTarget(ctx, target, frameCount) {
 
   // Mouth (open, animated)
   const mouthOpen = 4 + Math.sin(frameCount * 0.08) * 2;
-  ctx.fillStyle = '#cc3333';
+  ctx.fillStyle = COLORS.targetMouth;
   ctx.beginPath();
   ctx.ellipse(x, y + 8, 10, mouthOpen + 4, 0, 0, Math.PI);
   ctx.fill();
 
   // Tongue
-  ctx.fillStyle = '#ff6666';
+  ctx.fillStyle = COLORS.targetTongue;
   ctx.beginPath();
   ctx.ellipse(x + 2, y + 12 + mouthOpen * 0.3, 5, 3, 0, 0, Math.PI);
   ctx.fill();
@@ -185,19 +210,19 @@ function _drawStarItem(ctx, star, frameCount) {
   // Glow
   ctx.save();
   ctx.globalAlpha = glow;
-  ctx.fillStyle = '#ffdd00';
+  ctx.fillStyle = COLORS.star;
   ctx.beginPath();
   ctx.arc(star.x, star.y + bob, 24, 0, Math.PI * 2);
   ctx.fill();
   ctx.restore();
 
   // Star shape
-  ctx.fillStyle = '#ffdd00';
+  ctx.fillStyle = COLORS.star;
   drawStar(ctx, star.x, star.y + bob, 18, 8);
   ctx.fill();
 
   // Star outline
-  ctx.strokeStyle = '#cc9900';
+  ctx.strokeStyle = COLORS.starOutline;
   ctx.lineWidth = 2;
   drawStar(ctx, star.x, star.y + bob, 18, 8);
   ctx.stroke();
@@ -217,11 +242,11 @@ function _drawRope(ctx, rope, candy) {
   const cy = candy.y;
 
   // Anchor pin
-  ctx.fillStyle = '#888';
+  ctx.fillStyle = COLORS.anchor;
   ctx.beginPath();
   ctx.arc(ax, ay, 6, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = '#666';
+  ctx.fillStyle = COLORS.anchorInner;
   ctx.beginPath();
   ctx.arc(ax, ay, 3, 0, Math.PI * 2);
   ctx.fill();
@@ -229,7 +254,7 @@ function _drawRope(ctx, rope, candy) {
   // Rope line (slight sag via quadratic bezier)
   const midX = (ax + cx) / 2;
   const midY = (ay + cy) / 2 + 8; // slight sag
-  ctx.strokeStyle = '#c8a060';
+  ctx.strokeStyle = COLORS.rope;
   ctx.lineWidth = 3;
   ctx.lineCap = 'round';
   ctx.beginPath();
@@ -238,7 +263,7 @@ function _drawRope(ctx, rope, candy) {
   ctx.stroke();
 
   // Rope texture (darker stripes)
-  ctx.strokeStyle = 'rgba(100, 70, 30, 0.3)';
+  ctx.strokeStyle = COLORS.ropeTexture;
   ctx.lineWidth = 1;
   const segments = 8;
   for (let i = 1; i < segments; i += 2) {
@@ -262,14 +287,14 @@ function _drawCutRope(ctx, rope, frameCount) {
   const ax = rope.anchorX;
   const ay = rope.anchorY;
 
-  ctx.fillStyle = '#888';
+  ctx.fillStyle = COLORS.anchor;
   ctx.beginPath();
   ctx.arc(ax, ay, 6, 0, Math.PI * 2);
   ctx.fill();
 
   // Gentle sway using sin for deterministic motion
   const sway = Math.sin(frameCount * 0.05 + rope.anchorX) * 4;
-  ctx.strokeStyle = '#c8a060';
+  ctx.strokeStyle = COLORS.rope;
   ctx.lineWidth = 3;
   ctx.lineCap = 'round';
   ctx.beginPath();
@@ -291,16 +316,16 @@ function _drawCandy(ctx, candy, frameCount) {
   // Candy body (wrapped candy shape)
   // Main circle
   const grad = ctx.createRadialGradient(x - 4, y - 4, 2, x, y, 18);
-  grad.addColorStop(0, '#ff6688');
-  grad.addColorStop(0.6, '#ee3366');
-  grad.addColorStop(1, '#cc1144');
+  grad.addColorStop(0, COLORS.candyLight);
+  grad.addColorStop(0.6, COLORS.candy);
+  grad.addColorStop(1, COLORS.candyDark);
   ctx.fillStyle = grad;
   ctx.beginPath();
   ctx.arc(x, y, 18, 0, Math.PI * 2);
   ctx.fill();
 
   // Candy wrapper ends (left)
-  ctx.fillStyle = '#ee3366';
+  ctx.fillStyle = COLORS.candyWrapper;
   ctx.beginPath();
   ctx.moveTo(x - 16, y - 4);
   ctx.lineTo(x - 28 + wobble, y - 10);
@@ -342,7 +367,7 @@ function _drawHUD(ctx, info) {
   ctx.fillStyle = 'rgba(0,0,0,0.5)';
   ctx.fillRect(0, 0, W, 36);
 
-  ctx.fillStyle = '#fff';
+  ctx.fillStyle = COLORS.hudText;
   ctx.font = 'bold 16px monospace';
   ctx.textAlign = 'left';
   ctx.fillText(`LVL ${info.level}/${info.totalLevels}`, 10, 24);
@@ -357,7 +382,7 @@ function _drawHUD(ctx, info) {
   for (let i = 0; i < info.starsTotal; i++) {
     starStr.push(i < info.starsCollected ? '\u2605' : '\u2606');
   }
-  ctx.fillStyle = '#ffdd00';
+  ctx.fillStyle = COLORS.star;
   ctx.font = 'bold 18px sans-serif';
   ctx.fillText(starStr.join(' '), W / 2, 26);
 }
@@ -373,13 +398,13 @@ function _drawLevelBanner(ctx, level, total, timer) {
   ctx.fillRect(0, 0, W, H);
 
   // Banner
-  ctx.fillStyle = '#fff';
+  ctx.fillStyle = COLORS.hudText;
   ctx.font = 'bold 36px monospace';
   ctx.textAlign = 'center';
   ctx.fillText(`LEVEL ${level}`, W / 2, H / 2 - 20);
 
   ctx.font = '18px monospace';
-  ctx.fillStyle = '#aaa';
+  ctx.fillStyle = COLORS.bannerSub;
   ctx.fillText('swipe to cut the ropes!', W / 2, H / 2 + 20);
 
   ctx.restore();
@@ -394,12 +419,12 @@ function _drawTransition(ctx, info, timer) {
   ctx.fillStyle = 'rgba(0,0,0,0.6)';
   ctx.fillRect(0, 0, W, H);
 
-  ctx.fillStyle = '#44dd44';
+  ctx.fillStyle = COLORS.target;
   ctx.font = 'bold 32px monospace';
   ctx.textAlign = 'center';
   ctx.fillText('NOM NOM!', W / 2, H / 2 - 30);
 
-  ctx.fillStyle = '#ffdd00';
+  ctx.fillStyle = COLORS.star;
   ctx.font = 'bold 20px monospace';
   const starDisplay = [];
   for (let i = 0; i < info.starsTotal; i++) {
@@ -407,7 +432,7 @@ function _drawTransition(ctx, info, timer) {
   }
   ctx.fillText(starDisplay.join(' '), W / 2, H / 2 + 10);
 
-  ctx.fillStyle = '#fff';
+  ctx.fillStyle = COLORS.hudText;
   ctx.font = '16px monospace';
   ctx.fillText(`+${100 + info.starsCollected * 50}`, W / 2, H / 2 + 40);
 
@@ -421,12 +446,12 @@ function _drawLossOverlay(ctx) {
   ctx.fillRect(0, 0, W, H);
   ctx.restore();
 
-  ctx.fillStyle = '#ff4444';
+  ctx.fillStyle = COLORS.lossText;
   ctx.font = 'bold 32px monospace';
   ctx.textAlign = 'center';
   ctx.fillText('MISSED!', W / 2, H / 2 - 10);
 
-  ctx.fillStyle = '#aaa';
+  ctx.fillStyle = COLORS.bannerSub;
   ctx.font = '16px monospace';
   ctx.fillText('the candy fell...', W / 2, H / 2 + 20);
 }

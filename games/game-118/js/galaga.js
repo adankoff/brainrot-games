@@ -4,6 +4,7 @@
  */
 
 import { clamp, randomBetween, randomInt } from '../../shared/utils.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 
 export const W = 400;
 export const H = 700;
@@ -29,9 +30,9 @@ const ALIEN_BULLET_SPEED = 3.5;
 
 // Alien types by row
 const ALIEN_TYPES = [
-  { name: 'commander', points: 40, color: '#ff3366', size: 18 },
-  { name: 'butterfly', points: 20, color: '#ffaa00', size: 16 },
-  { name: 'bee',       points: 10, color: '#00ccff', size: 14 },
+  { name: 'commander', points: 40, color: readThemeColor('--game-alien-commander', '#999999'), size: 18 },
+  { name: 'butterfly', points: 20, color: readThemeColor('--game-alien-butterfly', '#888888'), size: 16 },
+  { name: 'bee',       points: 10, color: readThemeColor('--game-alien-bee',       '#777777'), size: 14 },
 ];
 
 /**
@@ -569,7 +570,7 @@ function hitPlayer(state) {
   state.explosions.push({
     x: p.x,
     y: p.y,
-    color: '#00ffcc',
+    color: readThemeColor('--game-ship', '#cccccc'),
     t: 0,
     duration: 30,
     size: 20,

@@ -5,6 +5,7 @@
 
 import { GameShell } from '../../shared/game-shell.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import { createAsteroidsState, update, getEntities } from './asteroids.js';
 import { render } from './renderer.js';
 
@@ -199,7 +200,7 @@ const shell = new GameShell({
   maxDisplayWidth: 480,
   theme: 'asteroids',
   subtitle: 'blast the space rocks fr fr',
-  accentColor: '#00ff88',
+  accentColor: readThemeColor('--game-accent', '#cccccc'),
   shareUrl: '',
 });
 

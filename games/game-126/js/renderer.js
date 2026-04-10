@@ -9,6 +9,35 @@ import {
   PLAYER_PITS_START, PLAYER_PITS_END,
   AI_PITS_START, AI_PITS_END,
 } from './mancala.js';
+import { loadThemeColors } from '../../shared/theme-utils.js';
+
+// ---- Theme Colors ----
+
+const COLORS = loadThemeColors({
+  bgTop:          { css: '--game-bg-top',           fallback: '#1a1a1a' },
+  bgMid:          { css: '--game-bg-mid',           fallback: '#2a2a2a' },
+  bgGrain:        { css: '--game-bg-grain',         fallback: 'rgba(128, 128, 128, 0.08)' },
+  board:          { css: '--game-board',            fallback: '#444444' },
+  boardBorder:    { css: '--game-board-border',     fallback: '#666666' },
+  boardGrain1:    { css: '--game-board-grain-1',    fallback: 'rgba(128, 128, 128, 0.3)' },
+  boardGrain2:    { css: '--game-board-grain-2',    fallback: 'rgba(100, 100, 100, 0.1)' },
+  boardGrain3:    { css: '--game-board-grain-3',    fallback: 'rgba(128, 128, 128, 0.2)' },
+  boardGrain4:    { css: '--game-board-grain-4',    fallback: 'rgba(100, 100, 100, 0.3)' },
+  boardInnerRim:  { css: '--game-board-inner-rim',  fallback: 'rgba(128, 128, 128, 0.4)' },
+  boardDivider:   { css: '--game-board-divider',    fallback: 'rgba(128, 128, 128, 0.5)' },
+  pitDark:        { css: '--game-pit-dark',         fallback: '#222222' },
+  pitMid:         { css: '--game-pit-mid',          fallback: '#333333' },
+  pitHighlight:   { css: '--game-pit-highlight',    fallback: '#3a3a3a' },
+  storeDark:      { css: '--game-store-dark',       fallback: '#222222' },
+  storeMid:       { css: '--game-store-mid',        fallback: '#333333' },
+  storeBorder:    { css: '--game-store-border',     fallback: '#555555' },
+  accent:         { css: '--game-accent',           fallback: '#aaaaaa' },
+  accentGlow:     { css: '--game-accent-glow',      fallback: 'rgba(170, 170, 170, 0.6)' },
+  textPrimary:    { css: '--game-text',             fallback: '#e0e0e0' },
+  textSecondary:  { css: '--game-text-secondary',   fallback: 'rgba(220, 220, 220, 0.7)' },
+  textDim:        { css: '--game-text-dim',         fallback: 'rgba(220, 220, 220, 0.5)' },
+  textVeryDim:    { css: '--game-text-very-dim',    fallback: 'rgba(220, 220, 220, 0.4)' },
+});
 
 // ---- Layout Constants ----
 
@@ -154,16 +183,16 @@ export function render(ctx, game, state) {
 // ---- Drawing Helpers ----
 
 function drawBackground(ctx) {
-  // Dark wooden gradient
+  // Dark gradient
   const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, '#1a0f08');
-  grad.addColorStop(0.5, '#2a1810');
-  grad.addColorStop(1, '#1a0f08');
+  grad.addColorStop(0, COLORS.bgTop);
+  grad.addColorStop(0.5, COLORS.bgMid);
+  grad.addColorStop(1, COLORS.bgTop);
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 
-  // Subtle wood grain lines
-  ctx.strokeStyle = 'rgba(139, 90, 43, 0.08)';
+  // Subtle grain lines
+  ctx.strokeStyle = COLORS.bgGrain;
   ctx.lineWidth = 1;
   for (let y = 0; y < H; y += 12) {
     ctx.beginPath();
@@ -181,35 +210,35 @@ function drawBoard(ctx) {
   ctx.shadowOffsetY = 5;
 
   // Main board shape
-  ctx.fillStyle = '#5c3a1e';
+  ctx.fillStyle = COLORS.board;
   roundRect(ctx, BOARD_X, BOARD_Y, BOARD_W, BOARD_H, BOARD_RADIUS);
   ctx.fill();
   ctx.restore();
 
   // Wood grain overlay
   const woodGrad = ctx.createLinearGradient(BOARD_X, BOARD_Y, BOARD_X + BOARD_W, BOARD_Y + BOARD_H);
-  woodGrad.addColorStop(0, 'rgba(139, 90, 43, 0.3)');
-  woodGrad.addColorStop(0.3, 'rgba(101, 67, 33, 0.1)');
-  woodGrad.addColorStop(0.7, 'rgba(139, 90, 43, 0.2)');
-  woodGrad.addColorStop(1, 'rgba(101, 67, 33, 0.3)');
+  woodGrad.addColorStop(0, COLORS.boardGrain1);
+  woodGrad.addColorStop(0.3, COLORS.boardGrain2);
+  woodGrad.addColorStop(0.7, COLORS.boardGrain3);
+  woodGrad.addColorStop(1, COLORS.boardGrain4);
   ctx.fillStyle = woodGrad;
   roundRect(ctx, BOARD_X, BOARD_Y, BOARD_W, BOARD_H, BOARD_RADIUS);
   ctx.fill();
 
   // Board border
-  ctx.strokeStyle = '#8b5a2b';
+  ctx.strokeStyle = COLORS.boardBorder;
   ctx.lineWidth = 3;
   roundRect(ctx, BOARD_X, BOARD_Y, BOARD_W, BOARD_H, BOARD_RADIUS);
   ctx.stroke();
 
   // Inner rim
-  ctx.strokeStyle = 'rgba(139, 90, 43, 0.4)';
+  ctx.strokeStyle = COLORS.boardInnerRim;
   ctx.lineWidth = 1;
   roundRect(ctx, BOARD_X + 4, BOARD_Y + 4, BOARD_W - 8, BOARD_H - 8, BOARD_RADIUS - 2);
   ctx.stroke();
 
   // Center divider line
-  ctx.strokeStyle = 'rgba(139, 90, 43, 0.5)';
+  ctx.strokeStyle = COLORS.boardDivider;
   ctx.lineWidth = 2;
   ctx.setLineDash([8, 4]);
   ctx.beginPath();
@@ -227,16 +256,16 @@ function drawStore(ctx, x, y, count, colors, label) {
   ctx.shadowOffsetY = 3;
 
   const grad = ctx.createLinearGradient(x, y, x, y + STORE_H);
-  grad.addColorStop(0, '#3d2517');
-  grad.addColorStop(0.5, '#2a1810');
-  grad.addColorStop(1, '#3d2517');
+  grad.addColorStop(0, COLORS.storeMid);
+  grad.addColorStop(0.5, COLORS.storeDark);
+  grad.addColorStop(1, COLORS.storeMid);
   ctx.fillStyle = grad;
   roundRect(ctx, x, y, STORE_W, STORE_H, STORE_RADIUS);
   ctx.fill();
   ctx.restore();
 
   // Store border
-  ctx.strokeStyle = '#6b4226';
+  ctx.strokeStyle = COLORS.storeBorder;
   ctx.lineWidth = 2;
   roundRect(ctx, x, y, STORE_W, STORE_H, STORE_RADIUS);
   ctx.stroke();
@@ -257,14 +286,14 @@ function drawStore(ctx, x, y, count, colors, label) {
   }
 
   // Count
-  ctx.fillStyle = '#f0e6d2';
+  ctx.fillStyle = COLORS.textPrimary;
   ctx.font = 'bold 18px "Space Grotesk", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'bottom';
   ctx.fillText(String(count), x + STORE_W / 2, y + STORE_H - 6);
 
   // Label
-  ctx.fillStyle = 'rgba(240, 230, 210, 0.5)';
+  ctx.fillStyle = COLORS.textDim;
   ctx.font = '10px "Space Grotesk", sans-serif';
   ctx.textBaseline = 'top';
   ctx.fillText(label, x + STORE_W / 2, y + 4);
@@ -275,7 +304,7 @@ function drawPit(ctx, cx, cy, count, colors, highlight, hovered) {
   ctx.save();
 
   if (highlight) {
-    ctx.shadowColor = '#f4a623';
+    ctx.shadowColor = COLORS.accent;
     ctx.shadowBlur = 12;
   } else {
     ctx.shadowColor = 'rgba(0,0,0,0.3)';
@@ -284,8 +313,8 @@ function drawPit(ctx, cx, cy, count, colors, highlight, hovered) {
   }
 
   const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, PIT_RADIUS);
-  grad.addColorStop(0, '#2a1810');
-  grad.addColorStop(1, highlight ? '#4a2e18' : '#3d2517');
+  grad.addColorStop(0, COLORS.pitDark);
+  grad.addColorStop(1, highlight ? COLORS.pitHighlight : COLORS.pitMid);
   ctx.fillStyle = grad;
 
   ctx.beginPath();
@@ -294,7 +323,7 @@ function drawPit(ctx, cx, cy, count, colors, highlight, hovered) {
   ctx.restore();
 
   // Pit rim
-  ctx.strokeStyle = highlight ? '#f4a623' : '#6b4226';
+  ctx.strokeStyle = highlight ? COLORS.accent : COLORS.storeBorder;
   ctx.lineWidth = highlight ? 2.5 : 1.5;
   ctx.beginPath();
   ctx.arc(cx, cy, PIT_RADIUS, 0, Math.PI * 2);
@@ -302,7 +331,7 @@ function drawPit(ctx, cx, cy, count, colors, highlight, hovered) {
 
   // Hover glow
   if (hovered && count > 0) {
-    ctx.strokeStyle = 'rgba(244, 166, 35, 0.6)';
+    ctx.strokeStyle = COLORS.accentGlow;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(cx, cy, PIT_RADIUS + 3, 0, Math.PI * 2);
@@ -365,7 +394,7 @@ function drawPitCounts(ctx, game) {
   ctx.font = '11px "Space Grotesk", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillStyle = 'rgba(240, 230, 210, 0.7)';
+  ctx.fillStyle = COLORS.textSecondary;
 
   // Player pits (count below pit)
   for (let i = PLAYER_PITS_START; i <= PLAYER_PITS_END; i++) {
@@ -388,7 +417,7 @@ function drawCaptureEffect(ctx, captureAnim) {
 
   ctx.save();
   ctx.globalAlpha = alpha * 0.6;
-  ctx.strokeStyle = '#f4a623';
+  ctx.strokeStyle = COLORS.accent;
   ctx.lineWidth = 3;
   ctx.beginPath();
   ctx.arc(x, y, PIT_RADIUS * scale, 0, Math.PI * 2);
@@ -397,7 +426,7 @@ function drawCaptureEffect(ctx, captureAnim) {
   // "YOINK" text
   if (progress < 0.7) {
     ctx.globalAlpha = alpha;
-    ctx.fillStyle = '#f4a623';
+    ctx.fillStyle = COLORS.accent;
     ctx.font = 'bold 16px "Space Grotesk", sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -415,7 +444,7 @@ function drawStatusBar(ctx, game, state) {
 
   if (game.gameOver) {
     ctx.font = 'bold 22px "Space Grotesk", sans-serif';
-    ctx.fillStyle = '#f4a623';
+    ctx.fillStyle = COLORS.accent;
     if (game.winner === 'player') {
       ctx.fillText('YOU WIN', W / 2, y);
     } else if (game.winner === 'ai') {
@@ -425,19 +454,19 @@ function drawStatusBar(ctx, game, state) {
     }
   } else if (state.animating) {
     ctx.font = '16px "Space Grotesk", sans-serif';
-    ctx.fillStyle = 'rgba(240, 230, 210, 0.6)';
+    ctx.fillStyle = COLORS.textDim;
     ctx.fillText('...', W / 2, y);
   } else if (state.message) {
     ctx.font = 'bold 16px "Space Grotesk", sans-serif';
-    ctx.fillStyle = '#f4a623';
+    ctx.fillStyle = COLORS.accent;
     ctx.fillText(state.message, W / 2, y);
   } else if (game.currentPlayer === 'player') {
     ctx.font = '16px "Space Grotesk", sans-serif';
-    ctx.fillStyle = '#f0e6d2';
+    ctx.fillStyle = COLORS.textPrimary;
     ctx.fillText('your turn -- tap a pit', W / 2, y);
   } else {
     ctx.font = '16px "Space Grotesk", sans-serif';
-    ctx.fillStyle = 'rgba(240, 230, 210, 0.6)';
+    ctx.fillStyle = COLORS.textDim;
     ctx.fillText('AI is thinking...', W / 2, y);
   }
 
@@ -453,17 +482,17 @@ function drawScoreBar(ctx, game, state) {
 
   // Player score (right side)
   ctx.textAlign = 'right';
-  ctx.fillStyle = '#f0e6d2';
+  ctx.fillStyle = COLORS.textPrimary;
   ctx.fillText(`YOU: ${game.board[PLAYER_STORE]}`, W - 20, y);
 
   // AI score (left side)
   ctx.textAlign = 'left';
-  ctx.fillStyle = 'rgba(240, 230, 210, 0.7)';
+  ctx.fillStyle = COLORS.textSecondary;
   ctx.fillText(`AI: ${game.board[AI_STORE]}`, 20, y);
 
   // Difficulty indicator
   ctx.textAlign = 'center';
-  ctx.fillStyle = 'rgba(240, 230, 210, 0.4)';
+  ctx.fillStyle = COLORS.textVeryDim;
   ctx.font = '11px "Space Grotesk", sans-serif';
   if (state && state.difficulty) {
     ctx.fillText(state.difficulty.toUpperCase(), W / 2, y);

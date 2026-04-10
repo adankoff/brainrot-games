@@ -1,7 +1,61 @@
 /**
  * YEET -- Theme Definitions
  * Three swappable themes with distinct visuals, objects, and flavor text.
+ * A grayscale base theme reads from CSS custom properties for white-label use.
  */
+
+import { readThemeColor } from '../../shared/theme-utils.js';
+
+// ---- Theme: GRAYSCALE (CSS variable base for white-labeling) ----
+
+function createGrayscaleBase() {
+  return {
+    id: 'grayscale',
+    name: 'GRAYSCALE',
+    accentColor: readThemeColor('--game-accent', '#aaaaaa'),
+    bgGradientTop: readThemeColor('--game-bg-top', '#0a0a0a'),
+    bgGradientBottom: readThemeColor('--game-bg-bottom', '#1a1a1a'),
+    floorColor: readThemeColor('--game-floor', '#2a2a2a'),
+    floorHighlight: readThemeColor('--game-floor-highlight', '#333333'),
+    wallColor: readThemeColor('--game-wall', '#1a1a1a'),
+    wallAccent: readThemeColor('--game-wall-accent', 'rgba(170, 170, 170, 0.13)'),
+    scoreColor: readThemeColor('--game-score', '#aaaaaa'),
+    streakColor: readThemeColor('--game-streak', '#cccccc'),
+
+    projectileName: 'paper ball',
+    projectileColor: readThemeColor('--game-projectile', '#888888'),
+    projectileAccent: readThemeColor('--game-projectile-accent', '#777777'),
+    projectileDetailColor: readThemeColor('--game-projectile-detail', '#999999'),
+
+    binName: 'bin',
+    binColor: readThemeColor('--game-bin', '#666666'),
+    binAccent: readThemeColor('--game-bin-accent', '#777777'),
+    binRimColor: readThemeColor('--game-bin-rim', '#888888'),
+    binInnerColor: readThemeColor('--game-bin-inner', '#333333'),
+    binBaseColor: readThemeColor('--game-bin-base', '#555555'),
+
+    windArrowColor: readThemeColor('--game-wind-arrow', '#aaaaaa'),
+    trailColor: readThemeColor('--game-trail', 'rgba(170, 170, 170, 0.3)'),
+
+    deathMessages: [
+      'not even close',
+      'L throw tbh',
+      'skill issue fr fr',
+      'bruh momentum = zero',
+      'totally cooked',
+      'zero rizz on that toss',
+    ],
+    winMessages: [
+      'yeeted into the stratosphere',
+      'kobe from downtown',
+      'goat tier throw',
+      'absolute unit of a yeet',
+      'no cap that was clean',
+      'bussin throw fr fr',
+    ],
+    scoreLabel: 'yeets',
+  };
+}
 
 // ---- Theme: SKIBIDI YEET ----
 
@@ -155,7 +209,9 @@ const touchGrass = {
 
 // ---- Exports ----
 
-export const THEMES = [skibidiYeet, sigmaToss, touchGrass];
+const grayscale = createGrayscaleBase();
+
+export const THEMES = [skibidiYeet, sigmaToss, touchGrass, grayscale];
 
 /**
  * Get a theme by ID, or the first theme if not found.

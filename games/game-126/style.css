@@ -2,7 +2,71 @@
    MEME MANCALA -- Game-Specific Styles
    ========================================================================== */
 
+/* ---------- Grayscale defaults (white-label base) ---------- */
+:root {
+  --game-bg-top:                #1a1a1a;
+  --game-bg-mid:                #2a2a2a;
+  --game-bg-grain:              rgba(128, 128, 128, 0.08);
+  --game-board:                 #444444;
+  --game-board-border:          #666666;
+  --game-board-grain-1:         rgba(128, 128, 128, 0.3);
+  --game-board-grain-2:         rgba(100, 100, 100, 0.1);
+  --game-board-grain-3:         rgba(128, 128, 128, 0.2);
+  --game-board-grain-4:         rgba(100, 100, 100, 0.3);
+  --game-board-inner-rim:       rgba(128, 128, 128, 0.4);
+  --game-board-divider:         rgba(128, 128, 128, 0.5);
+  --game-pit-dark:              #222222;
+  --game-pit-mid:               #333333;
+  --game-pit-highlight:         #3a3a3a;
+  --game-store-dark:            #222222;
+  --game-store-mid:             #333333;
+  --game-store-border:          #555555;
+  --game-accent:                #aaaaaa;
+  --game-accent-glow:           rgba(170, 170, 170, 0.6);
+  --game-text:                  #e0e0e0;
+  --game-text-secondary:        rgba(220, 220, 220, 0.7);
+  --game-text-dim:              rgba(220, 220, 220, 0.5);
+  --game-text-very-dim:         rgba(220, 220, 220, 0.4);
+  --game-stone-1:               #cccccc;
+  --game-stone-2:               #aaaaaa;
+  --game-stone-3:               #888888;
+  --game-stone-4:               #bbbbbb;
+  --game-stone-5:               #777777;
+  --game-stone-6:               #999999;
+}
+
+/* ---------- Meme Mancala themed overrides ---------- */
 [data-theme="meme-mancala"] {
+  --game-bg-top:                #1a0f08;
+  --game-bg-mid:                #2a1810;
+  --game-bg-grain:              rgba(139, 90, 43, 0.08);
+  --game-board:                 #5c3a1e;
+  --game-board-border:          #8b5a2b;
+  --game-board-grain-1:         rgba(139, 90, 43, 0.3);
+  --game-board-grain-2:         rgba(101, 67, 33, 0.1);
+  --game-board-grain-3:         rgba(139, 90, 43, 0.2);
+  --game-board-grain-4:         rgba(101, 67, 33, 0.3);
+  --game-board-inner-rim:       rgba(139, 90, 43, 0.4);
+  --game-board-divider:         rgba(139, 90, 43, 0.5);
+  --game-pit-dark:              #2a1810;
+  --game-pit-mid:               #3d2517;
+  --game-pit-highlight:         #4a2e18;
+  --game-store-dark:            #2a1810;
+  --game-store-mid:             #3d2517;
+  --game-store-border:          #6b4226;
+  --game-accent:                #f4a623;
+  --game-accent-glow:           rgba(244, 166, 35, 0.6);
+  --game-text:                  #f0e6d2;
+  --game-text-secondary:        rgba(240, 230, 210, 0.7);
+  --game-text-dim:              rgba(240, 230, 210, 0.5);
+  --game-text-very-dim:         rgba(240, 230, 210, 0.4);
+  --game-stone-1:               #e74c3c;
+  --game-stone-2:               #3498db;
+  --game-stone-3:               #2ecc71;
+  --game-stone-4:               #f39c12;
+  --game-stone-5:               #9b59b6;
+  --game-stone-6:               #1abc9c;
+
   --color-bg: #2a1810;
   --color-surface: #3d2517;
   --color-accent: #f4a623;
@@ -13,7 +77,7 @@ body[data-theme="meme-mancala"] {
   background: linear-gradient(135deg, #2a1810 0%, #1a0f08 100%);
 }
 
-/* Difficulty selector in menu */
+/* ---------- Difficulty selector in menu ---------- */
 .difficulty-select {
   display: flex;
   gap: 8px;
@@ -23,10 +87,10 @@ body[data-theme="meme-mancala"] {
 
 .difficulty-select__btn {
   padding: 6px 14px;
-  border: 2px solid #f4a623;
+  border: 2px solid var(--game-accent, #aaaaaa);
   border-radius: 6px;
   background: transparent;
-  color: #f0e6d2;
+  color: var(--game-text, #e0e0e0);
   font-family: 'Space Grotesk', sans-serif;
   font-size: 13px;
   font-weight: 600;
@@ -36,14 +100,14 @@ body[data-theme="meme-mancala"] {
 }
 
 .difficulty-select__btn:hover {
-  background: rgba(244, 166, 35, 0.2);
+  background: var(--game-accent-glow, rgba(170, 170, 170, 0.2));
 }
 
 .difficulty-select__btn--active {
-  background: #f4a623;
-  color: #2a1810;
+  background: var(--game-accent, #aaaaaa);
+  color: var(--game-bg-mid, #2a2a2a);
 }
 
 .difficulty-select__btn--active:hover {
-  background: #f4a623;
+  background: var(--game-accent, #aaaaaa);
 }

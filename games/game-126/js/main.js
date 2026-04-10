@@ -7,6 +7,7 @@ import { GameShell } from '../../shared/game-shell.js';
 import { createInputManager } from '../../shared/input-manager.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
 import { lerp } from '../../shared/utils.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import {
   MancalaGame,
   PLAYER_STORE, AI_STORE,
@@ -61,7 +62,7 @@ const shell = new GameShell({
   maxDisplayWidth: 480,
   theme: 'meme-mancala',
   subtitle: 'ancient board game. modern brainrot.',
-  accentColor: '#f4a623',
+  accentColor: readThemeColor('--game-accent', '#aaaaaa'),
   shareUrl: 'https://brainrotgames.com/games/game-126/',
 });
 

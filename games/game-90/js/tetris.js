@@ -3,6 +3,8 @@
  * Pure game logic with no rendering or DOM dependencies.
  */
 
+import { readThemeColor } from '../../shared/theme-utils.js';
+
 // ---- Tetromino Definitions ----
 
 const COLS = 10;
@@ -11,7 +13,7 @@ const ROWS = 20;
 // Each piece: array of rotation states, each state is array of [row, col] offsets
 const PIECES = {
   I: {
-    color: '#00f0f0',
+    color: readThemeColor('--game-piece-i', '#cccccc'),
     states: [
       [[0,0],[0,1],[0,2],[0,3]],
       [[0,0],[1,0],[2,0],[3,0]],
@@ -20,7 +22,7 @@ const PIECES = {
     ],
   },
   O: {
-    color: '#f0f000',
+    color: readThemeColor('--game-piece-o', '#aaaaaa'),
     states: [
       [[0,0],[0,1],[1,0],[1,1]],
       [[0,0],[0,1],[1,0],[1,1]],
@@ -29,7 +31,7 @@ const PIECES = {
     ],
   },
   T: {
-    color: '#b030e0',
+    color: readThemeColor('--game-piece-t', '#888888'),
     states: [
       [[0,0],[0,1],[0,2],[1,1]],
       [[0,0],[1,0],[2,0],[1,1]],
@@ -38,7 +40,7 @@ const PIECES = {
     ],
   },
   S: {
-    color: '#30e030',
+    color: readThemeColor('--game-piece-s', '#999999'),
     states: [
       [[0,1],[0,2],[1,0],[1,1]],
       [[0,0],[1,0],[1,1],[2,1]],
@@ -47,7 +49,7 @@ const PIECES = {
     ],
   },
   Z: {
-    color: '#f03030',
+    color: readThemeColor('--game-piece-z', '#777777'),
     states: [
       [[0,0],[0,1],[1,1],[1,2]],
       [[0,1],[1,0],[1,1],[2,0]],
@@ -56,7 +58,7 @@ const PIECES = {
     ],
   },
   J: {
-    color: '#2040ff',
+    color: readThemeColor('--game-piece-j', '#666666'),
     states: [
       [[0,0],[1,0],[1,1],[1,2]],
       [[0,0],[0,1],[1,0],[2,0]],
@@ -65,7 +67,7 @@ const PIECES = {
     ],
   },
   L: {
-    color: '#f0a000',
+    color: readThemeColor('--game-piece-l', '#bbbbbb'),
     states: [
       [[0,2],[1,0],[1,1],[1,2]],
       [[0,0],[1,0],[2,0],[2,1]],

@@ -4,6 +4,7 @@
  */
 
 import { COLS, ROWS, PIECES, getPieceCells, getGhostRow } from './tetris.js';
+import { loadThemeColors } from '../../shared/theme-utils.js';
 
 // Layout constants
 const CELL_SIZE = 28;
@@ -16,18 +17,21 @@ const PANEL_W = 86;
 
 const MINI_CELL = 14;
 
-const BG_COLOR = '#0a0a0a';
-const GRID_BG = '#111118';
-const GRID_LINE_COLOR = 'rgba(255,255,255,0.04)';
-const BORDER_COLOR = 'rgba(255,255,255,0.12)';
+const COLORS = loadThemeColors({
+  bg:       { css: '--game-bg',        fallback: '#0a0a0a' },
+  gridBg:   { css: '--game-grid-bg',   fallback: '#111111' },
+  gridLine: { css: '--game-grid-line', fallback: 'rgba(255,255,255,0.04)' },
+  border:   { css: '--game-border',    fallback: 'rgba(255,255,255,0.12)' },
+  title:    { css: '--game-title',     fallback: '#cccccc' },
+});
 
 export function render(ctx, game, W, H) {
   // Clear
-  ctx.fillStyle = BG_COLOR;
+  ctx.fillStyle = COLORS.bg;
   ctx.fillRect(0, 0, W, H);
 
   // Title
-  ctx.fillStyle = '#00f0f0';
+  ctx.fillStyle = COLORS.title;
   ctx.font = 'bold 22px monospace';
   ctx.textAlign = 'left';
   ctx.fillText('MEME TETRIS', GRID_X, 32);
@@ -56,11 +60,11 @@ export function render(ctx, game, W, H) {
 
 function drawGrid(ctx, game) {
   // Background
-  ctx.fillStyle = GRID_BG;
+  ctx.fillStyle = COLORS.gridBg;
   ctx.fillRect(GRID_X, GRID_Y, GRID_W, GRID_H);
 
   // Grid lines
-  ctx.strokeStyle = GRID_LINE_COLOR;
+  ctx.strokeStyle = COLORS.gridLine;
   ctx.lineWidth = 0.5;
   for (let c = 1; c < COLS; c++) {
     const x = GRID_X + c * CELL_SIZE;
@@ -79,7 +83,7 @@ function drawGrid(ctx, game) {
 }
 
 function drawGridBorder(ctx) {
-  ctx.strokeStyle = BORDER_COLOR;
+  ctx.strokeStyle = COLORS.border;
   ctx.lineWidth = 2;
   ctx.strokeRect(GRID_X, GRID_Y, GRID_W, GRID_H);
 }

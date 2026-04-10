@@ -1,3 +1,32 @@
+/* ==========================================================================
+   YEET -- Game-Specific Styles
+   ========================================================================== */
+
+/* ---------- Grayscale defaults (white-label base) ---------- */
+:root {
+  --game-accent:            #aaaaaa;
+  --game-bg-top:            #0a0a0a;
+  --game-bg-bottom:         #1a1a1a;
+  --game-floor:             #2a2a2a;
+  --game-floor-highlight:   #333333;
+  --game-wall:              #1a1a1a;
+  --game-wall-accent:       rgba(170, 170, 170, 0.13);
+  --game-score:             #aaaaaa;
+  --game-streak:            #cccccc;
+  --game-projectile:        #888888;
+  --game-projectile-accent: #777777;
+  --game-projectile-detail: #999999;
+  --game-bin:               #666666;
+  --game-bin-accent:        #777777;
+  --game-bin-rim:           #888888;
+  --game-bin-inner:         #333333;
+  --game-bin-base:          #555555;
+  --game-wind-arrow:        #aaaaaa;
+  --game-trail:             rgba(170, 170, 170, 0.3);
+  --game-miss:              #ff3838;
+  --game-miss-empty:        rgba(255, 255, 255, 0.15);
+}
+
 .game-container {
   position: relative;
   display: flex;
@@ -31,12 +60,12 @@
 }
 
 .theme-select__btn:hover {
-  border-color: var(--color-primary, #c8ff00);
-  background: #15152a;
+  border-color: var(--game-accent);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .theme-select__btn--active {
-  border-color: var(--color-primary, #c8ff00);
-  background: #1a1a3e;
-  color: var(--color-primary, #c8ff00);
+  border-color: var(--game-accent);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--game-accent);
 }

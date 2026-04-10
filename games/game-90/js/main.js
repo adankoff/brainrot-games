@@ -5,6 +5,7 @@
 
 import { GameShell } from '../../shared/game-shell.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import { createGame, tick, moveLeft, moveRight, moveDown, rotate, hardDrop, hold } from './tetris.js';
 import { render } from './renderer.js';
 
@@ -35,7 +36,7 @@ const shell = new GameShell({
   maxDisplayWidth: 480,
   theme: 'tetris',
   subtitle: 'stack blocks. clear lines. embrace the brainrot.',
-  accentColor: '#00f0f0',
+  accentColor: readThemeColor('--game-title', '#cccccc'),
   shareUrl: '',
 });
 

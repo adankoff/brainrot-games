@@ -1,8 +1,49 @@
-/* MEME TETRIS -- Game-specific styles */
+/* ==========================================================================
+   MEME TETRIS -- Game-Specific Styles
+   ========================================================================== */
 
+/* ---------- Grayscale defaults (white-label base) ---------- */
+:root {
+  --game-bg:        #0a0a0a;
+  --game-grid-bg:   #111111;
+  --game-grid-line: rgba(255,255,255,0.04);
+  --game-border:    rgba(255,255,255,0.12);
+  --game-title:     #cccccc;
+  --game-piece-i:   #cccccc;
+  --game-piece-o:   #aaaaaa;
+  --game-piece-t:   #888888;
+  --game-piece-s:   #999999;
+  --game-piece-z:   #777777;
+  --game-piece-j:   #666666;
+  --game-piece-l:   #bbbbbb;
+  --game-btn-border:    rgba(255,255,255,0.25);
+  --game-btn-bg:        rgba(0,0,0,0.45);
+  --game-btn-text:      rgba(255,255,255,0.7);
+  --game-btn-active-bg:     rgba(255,255,255,0.15);
+  --game-btn-active-border: rgba(255,255,255,0.5);
+}
+
+/* ---------- Tetris themed overrides ---------- */
 [data-theme="tetris"] {
   --accent: #00f0f0;
   --accent-glow: rgba(0, 240, 240, 0.3);
+  --game-bg:        #0a0a0a;
+  --game-grid-bg:   #111118;
+  --game-grid-line: rgba(255,255,255,0.04);
+  --game-border:    rgba(255,255,255,0.12);
+  --game-title:     #00f0f0;
+  --game-piece-i:   #00f0f0;
+  --game-piece-o:   #f0f000;
+  --game-piece-t:   #b030e0;
+  --game-piece-s:   #30e030;
+  --game-piece-z:   #f03030;
+  --game-piece-j:   #2040ff;
+  --game-piece-l:   #f0a000;
+  --game-btn-border:    rgba(255,255,255,0.25);
+  --game-btn-bg:        rgba(0,0,0,0.45);
+  --game-btn-text:      rgba(255,255,255,0.7);
+  --game-btn-active-bg:     rgba(255,255,255,0.15);
+  --game-btn-active-border: rgba(255,255,255,0.5);
 }
 
 .game-container {
@@ -32,10 +73,10 @@
   pointer-events: auto;
   width: 52px;
   height: 52px;
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  border: 2px solid var(--game-btn-border);
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.45);
-  color: rgba(255, 255, 255, 0.7);
+  background: var(--game-btn-bg);
+  color: var(--game-btn-text);
   font-size: 22px;
   display: flex;
   align-items: center;
@@ -46,8 +87,8 @@
 }
 
 .touch-btn:active {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: var(--game-btn-active-bg);
+  border-color: var(--game-btn-active-border);
 }
 
 .touch-group {

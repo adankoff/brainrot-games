@@ -5,6 +5,7 @@
 
 import { GameShell } from '../../shared/game-shell.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import { SokobanGame } from './sokoban.js';
 import { renderGame, renderMenuBg } from './renderer.js';
 
@@ -70,7 +71,7 @@ const shell = new GameShell({
   maxDisplayWidth: 480,
   theme: 'sokoban',
   subtitle: 'push crates. solve puzzles. lose braincells.',
-  accentColor: '#4ecdc4',
+  accentColor: readThemeColor('--game-player', '#cccccc'),
   shareUrl: 'https://brainrotgames.com/games/game-130/',
   onMenuRender: (ctx) => {
     renderMenuBg(ctx, W, H, menuTime);
@@ -163,14 +164,14 @@ function _drawControlBar(ctx) {
     const bx = startX + i * (btnW + gap);
     const by = btnY;
 
-    ctx.fillStyle = '#333';
-    ctx.strokeStyle = '#555';
+    ctx.fillStyle = readThemeColor('--game-btn-bg', '#444444');
+    ctx.strokeStyle = readThemeColor('--game-btn-border', '#666666');
     ctx.lineWidth = 1;
     _roundRect(ctx, bx, by, btnW, btnH, 5);
     ctx.fill();
     ctx.stroke();
 
-    ctx.fillStyle = '#ccc';
+    ctx.fillStyle = readThemeColor('--game-hud-text', '#ffffff');
     ctx.fillText(buttons[i], bx + btnW / 2, by + btnH / 2);
   }
 }

@@ -3,10 +3,26 @@
  * Draws all game entities onto the canvas.
  */
 
+import { loadThemeColors } from '../../shared/theme-utils.js';
+
 const W = 400;
 const H = 700;
 
 const SHIP_RADIUS = 12;
+
+const COLORS = loadThemeColors({
+  bg:           { css: '--game-bg',            fallback: '#0a0a0a' },
+  ship:         { css: '--game-ship',          fallback: '#cccccc' },
+  thrust:       { css: '--game-thrust',        fallback: '#999999' },
+  asteroidLg:   { css: '--game-asteroid-lg',   fallback: '#aaaaaa' },
+  asteroidMd:   { css: '--game-asteroid-md',   fallback: '#cccccc' },
+  asteroidSm:   { css: '--game-asteroid-sm',   fallback: '#eeeeee' },
+  bullet:       { css: '--game-bullet',        fallback: '#ffffff' },
+  particle:     { css: '--game-particle',      fallback: '200, 200, 200' },
+  hudText:      { css: '--game-hud-text',      fallback: '#ffffff' },
+  hudSecondary: { css: '--game-hud-secondary', fallback: '#888888' },
+  accent:       { css: '--game-accent',        fallback: '#cccccc' },
+});
 
 /** @type {number} */
 let frameCount = 0;
@@ -21,7 +37,7 @@ export function render(ctx, entities) {
   frameCount++;
 
   // Clear
-  ctx.fillStyle = '#000';
+  ctx.fillStyle = COLORS.bg;
   ctx.fillRect(0, 0, W, H);
 
   // Stars background (static seed based on position)
@@ -89,7 +105,7 @@ function drawShip(ctx, ship) {
   ctx.lineTo(-SHIP_RADIUS * 0.4, 0);
   ctx.lineTo(-SHIP_RADIUS * 0.7, SHIP_RADIUS * 0.6);
   ctx.closePath();
-  ctx.strokeStyle = '#00ff88';
+  ctx.strokeStyle = COLORS.ship;
   ctx.lineWidth = 2;
   ctx.stroke();
 
@@ -100,7 +116,7 @@ function drawShip(ctx, ship) {
     ctx.moveTo(-SHIP_RADIUS * 0.4, -SHIP_RADIUS * 0.3);
     ctx.lineTo(-SHIP_RADIUS * 0.4 - flameLen, 0);
     ctx.lineTo(-SHIP_RADIUS * 0.4, SHIP_RADIUS * 0.3);
-    ctx.strokeStyle = '#ff8800';
+    ctx.strokeStyle = COLORS.thrust;
     ctx.lineWidth = 1.5;
     ctx.stroke();
   }
@@ -133,10 +149,10 @@ function drawAsteroid(ctx, asteroid) {
   // Color by size
   let color;
   switch (asteroid.size) {
-    case 'large':  color = '#aaaaaa'; break;
-    case 'medium': color = '#cccccc'; break;
-    case 'small':  color = '#eeeeee'; break;
-    default:       color = '#ffffff';
+    case 'large':  color = COLORS.asteroidLg; break;
+    case 'medium': color = COLORS.asteroidMd; break;
+    case 'small':  color = COLORS.asteroidSm; break;
+    default:       color = COLORS.bullet;
   }
 
   ctx.strokeStyle = color;
@@ -147,7 +163,7 @@ function drawAsteroid(ctx, asteroid) {
 }
 
 function drawBullet(ctx, bullet) {
-  ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = COLORS.bullet;
   ctx.beginPath();
   ctx.arc(bullet.x, bullet.y, 2, 0, Math.PI * 2);
   ctx.fill();
@@ -156,14 +172,14 @@ function drawBullet(ctx, bullet) {
 function drawParticles(ctx, particles) {
   for (const p of particles) {
     const alpha = Math.max(0, p.life / p.maxLife);
-    ctx.fillStyle = `rgba(255, 200, 100, ${alpha})`;
+    ctx.fillStyle = `rgba(${COLORS.particle}, ${alpha})`;
     ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
   }
 }
 
 function drawHUD(ctx, score, lives, wave) {
   // Score
-  ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = COLORS.hudText;
   ctx.font = 'bold 20px monospace';
   ctx.textAlign = 'left';
   ctx.fillText(score.toLocaleString(), 12, 30);
@@ -171,7 +187,7 @@ function drawHUD(ctx, score, lives, wave) {
   // Wave
   ctx.font = '12px monospace';
   ctx.textAlign = 'center';
-  ctx.fillStyle = '#888888';
+  ctx.fillStyle = COLORS.hudSecondary;
   ctx.fillText(`WAVE ${wave}`, W / 2, 24);
 
   // Lives (draw small ship icons)
@@ -187,7 +203,7 @@ function drawHUD(ctx, score, lives, wave) {
     ctx.lineTo(-3, 0);
     ctx.lineTo(-5, 5);
     ctx.closePath();
-    ctx.strokeStyle = '#00ff88';
+    ctx.strokeStyle = COLORS.ship;
     ctx.lineWidth = 1.5;
     ctx.stroke();
     ctx.restore();

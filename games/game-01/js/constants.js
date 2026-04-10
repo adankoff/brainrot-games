@@ -3,6 +3,8 @@
  * All tuning values, colors, text content.
  */
 
+import { readThemeColor } from '../../shared/theme-utils.js';
+
 // ---- Dimensions ----
 export const LOGICAL_WIDTH = 360;
 export const LOGICAL_HEIGHT = 640;
@@ -51,20 +53,25 @@ export const SHAKE_DURATION = 200;
 // ---- Death delay before game-over ----
 export const DEATH_DELAY = 600;
 
-// ---- Colors ----
-export const COLOR_SKY = '#0a0a0f';
-export const COLOR_FLOOR = '#1e1e2e';
-export const COLOR_FLOOR_LINE = '#2a2a3e';
-export const COLOR_SCORE = '#f0f0f0';
-export const COLOR_SCORE_FLASH = '#c8ff00';
-export const COLOR_SCORE_69 = '#ff2d78';
+// ---- Colors (read from CSS custom properties, grayscale fallbacks) ----
+export const COLOR_SKY         = readThemeColor('--game-sky',        '#0a0a0a');
+export const COLOR_FLOOR       = readThemeColor('--game-floor',      '#1a1a1a');
+export const COLOR_FLOOR_LINE  = readThemeColor('--game-floor-line', '#2a2a2a');
+export const COLOR_FLOOR_EDGE  = readThemeColor('--game-floor-edge', '#2e2e2e');
+export const COLOR_SCORE       = readThemeColor('--game-score',      '#f0f0f0');
+export const COLOR_SCORE_FLASH = readThemeColor('--game-score-flash','#cccccc');
+export const COLOR_SCORE_69    = readThemeColor('--game-score-69',   '#aaaaaa');
+export const COLOR_HUD_HINT    = readThemeColor('--game-hud-hint',   '#f0f0f0');
+export const COLOR_WINDOW_DOTS = readThemeColor('--game-window-dots','rgba(200, 200, 200, 0.1)');
+export const COLOR_FAR_FALLBACK = readThemeColor('--game-far-fallback','#111111');
+export const COLOR_MID_FALLBACK = readThemeColor('--game-mid-fallback','#1a1a1a');
 
-// ---- Biomes ----
+// ---- Biomes (themed via CSS) ----
 export const BIOMES = [
-  { name: 'Italian Piazza',      far: '#12121a', mid: '#1a1a28' },
-  { name: 'Ohio Wasteland',      far: '#121a12', mid: '#1a281a' },
-  { name: 'Sigma Gym',           far: '#1a1220', mid: '#281a30' },
-  { name: 'Skibidi Battlefield', far: '#121220', mid: '#1a1a38' },
+  { name: 'Italian Piazza',      far: readThemeColor('--game-biome0-far', '#111111'), mid: readThemeColor('--game-biome0-mid', '#1a1a1a') },
+  { name: 'Ohio Wasteland',      far: readThemeColor('--game-biome1-far', '#131313'), mid: readThemeColor('--game-biome1-mid', '#1c1c1c') },
+  { name: 'Sigma Gym',           far: readThemeColor('--game-biome2-far', '#151515'), mid: readThemeColor('--game-biome2-mid', '#1e1e1e') },
+  { name: 'Skibidi Battlefield', far: readThemeColor('--game-biome3-far', '#121212'), mid: readThemeColor('--game-biome3-mid', '#1b1b1b') },
   { name: 'Meme Void',           far: null,      mid: null      },
 ];
 

@@ -1,13 +1,38 @@
-/* MEME GALAGA -- Game-Specific Styles */
+/* ==========================================================================
+   MEME GALAGA -- Game-Specific Styles
+   ========================================================================== */
 
+/* ---------- Grayscale defaults (white-label base) ---------- */
+:root {
+  --game-bg:            #0a0a0a;
+  --game-ship:          #cccccc;
+  --game-ship-glow:     #aaaaaa;
+  --game-bullet:        #cccccc;
+  --game-alien-bullet:  #888888;
+  --game-hud-text:      #ffffff;
+  --game-hud-secondary: #888888;
+  --game-accent:        #cccccc;
+  --game-alien-commander: #999999;
+  --game-alien-butterfly: #888888;
+  --game-alien-bee:       #777777;
+}
+
+/* ---------- Meme Galaga themed overrides ---------- */
 [data-theme="memegalaga"] {
-  --color-bg: #0a0a1a;
-  --color-accent: #00ffcc;
+  --game-bg:            #0a0a1a;
+  --game-ship:          #00ffcc;
+  --game-ship-glow:     #00ff88;
+  --game-bullet:        #00ffcc;
+  --game-alien-bullet:  #ff5555;
+  --game-hud-text:      #ffffff;
+  --game-hud-secondary: #888888;
+  --game-accent:        #00ffcc;
+  --game-alien-commander: #ff3366;
+  --game-alien-butterfly: #ffaa00;
+  --game-alien-bee:       #00ccff;
 }
 
-body[data-theme="memegalaga"] {
-  background: #0a0a1a;
-}
+/* ---------- DOM element styles using variables ---------- */
 
 .difficulty-selector {
   display: flex;
@@ -30,7 +55,7 @@ body[data-theme="memegalaga"] {
 }
 
 .difficulty-btn.active {
-  border-color: #00ffcc;
-  color: #00ffcc;
+  border-color: var(--game-accent);
+  color: var(--game-accent);
   background: rgba(0, 255, 204, 0.08);
 }

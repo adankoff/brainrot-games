@@ -4,6 +4,280 @@
    Theme: data-theme="italian-brainrot" (set on body)
    ========================================================================== */
 
+/* ---- Grayscale defaults (white-label safe) ---- */
+:root {
+  /* Sky / background */
+  --game-sky:               #0a0a0a;
+  --game-floor:             #1a1a1a;
+  --game-floor-line:        #2a2a2a;
+  --game-floor-edge:        #2e2e2e;
+
+  /* Biome far / mid layers */
+  --game-biome0-far:        #111111;
+  --game-biome0-mid:        #1a1a1a;
+  --game-biome1-far:        #131313;
+  --game-biome1-mid:        #1c1c1c;
+  --game-biome2-far:        #151515;
+  --game-biome2-mid:        #1e1e1e;
+  --game-biome3-far:        #121212;
+  --game-biome3-mid:        #1b1b1b;
+
+  /* Background details */
+  --game-window-dots:       rgba(200, 200, 200, 0.1);
+  --game-far-fallback:      #111111;
+  --game-mid-fallback:      #1a1a1a;
+
+  /* Score / HUD */
+  --game-score:             #f0f0f0;
+  --game-score-flash:       #cccccc;
+  --game-score-69:          #aaaaaa;
+  --game-hud-hint:          #f0f0f0;
+
+  /* Accent */
+  --game-accent:            #cccccc;
+
+  /* Obstacle: bombardiro (crocodile jaws) */
+  --game-obs-bomb-fill:     #555555;
+  --game-obs-bomb-stroke:   #404040;
+  --game-obs-bomb-teeth:    #ffffff;
+
+  /* Obstacle: mewing (jawline) */
+  --game-obs-mew-fill:      #888888;
+  --game-obs-mew-stroke:    #6e6e6e;
+  --game-obs-mew-contour:   #555555;
+  --game-obs-mew-shadow:    rgba(100, 100, 100, 0.4);
+
+  /* Obstacle: skibidi (toilet) */
+  --game-obs-skib-fill:     #d0d0d0;
+  --game-obs-skib-stroke:   #b0b0b0;
+  --game-obs-skib-tank:     #999999;
+  --game-obs-skib-bowl:     #c0c0c0;
+  --game-obs-skib-lid:      #888888;
+
+  /* Obstacle: ohio (portal) */
+  --game-obs-ohio-fill:     #1a1a1a;
+  --game-obs-ohio-stroke:   #2a2a2a;
+  --game-obs-ohio-ring:     180, 180, 180;
+
+  /* Obstacle: fanum (hands) */
+  --game-obs-fan-fill:      #888888;
+  --game-obs-fan-stroke:    #707070;
+  --game-obs-fan-finger:    #777777;
+  --game-obs-fan-nail:      #aaaaaa;
+
+  /* Obstacle: default */
+  --game-obs-default:       #444444;
+
+  /* Pass effects */
+  --game-fx-bomb:           255, 200, 180;
+  --game-fx-mew:            180, 180, 180;
+  --game-fx-skib:           255, 255, 255;
+  --game-fx-ohio:           180, 180, 180;
+  --game-fx-fanum:          220, 220, 220;
+
+  /* Character: Tralalero (shark) -- light gray */
+  --game-char-tral-body:    #888888;
+  --game-char-tral-stroke:  #666666;
+  --game-char-tral-fin:     #777777;
+  --game-char-tral-eye-bg:  #ffffff;
+  --game-char-tral-eye-pupil: #0a0a0a;
+  --game-char-tral-mouth:   #0a0a0a;
+  --game-char-tral-shoe:    #ffffff;
+  --game-char-tral-swoosh:  #cccccc;
+
+  /* Character: Bombardiro (crocodile) -- medium gray */
+  --game-char-bomb-body:    #666666;
+  --game-char-bomb-stroke:  #4d4d4d;
+  --game-char-bomb-teeth:   #ffffff;
+  --game-char-bomb-eye-bg:  #ffffff;
+  --game-char-bomb-eye-pupil: #333333;
+  --game-char-bomb-wing:    #888888;
+  --game-char-bomb-prop:    #555555;
+
+  /* Character: Lirili (butterfly) -- lighter gray */
+  --game-char-liri-wing1:   #aaaaaa;
+  --game-char-liri-wing2:   #999999;
+  --game-char-liri-wing-stroke: #bbbbbb;
+  --game-char-liri-spot:    #cccccc;
+  --game-char-liri-body:    #444444;
+  --game-char-liri-eye-bg:  #ffffff;
+  --game-char-liri-eye-pupil: #0a0a0a;
+  --game-char-liri-antenna: #444444;
+  --game-char-liri-antenna-tip: #bbbbbb;
+
+  /* Character: Tungtung (cylinder) -- darkest gray */
+  --game-char-tung-body:    #1a1a1a;
+  --game-char-tung-stroke:  #333333;
+  --game-char-tung-eye-bg:  #ffffff;
+  --game-char-tung-eye-pupil: #0a0a0a;
+  --game-char-tung-mouth:   #ffffff;
+  --game-char-tung-stick:   #7a7a7a;
+  --game-char-tung-knob:    #aaaaaa;
+
+  /* Character: Cappuccino (coffee cup) -- warm mid gray */
+  --game-char-capp-body:    #6e6e6e;
+  --game-char-capp-stroke:  #4a4a4a;
+  --game-char-capp-rim:     #888888;
+  --game-char-capp-steam:   rgba(200, 200, 200, 0.5);
+  --game-char-capp-mask:    #0a0a0a;
+  --game-char-capp-eyes:    #cccccc;
+  --game-char-capp-drip:    #4a4a4a;
+
+  /* Character: Brrbrr (blob) -- cool gray */
+  --game-char-brr-body:     #777777;
+  --game-char-brr-stroke:   #5e5e5e;
+  --game-char-brr-icicle:   #aaaaaa;
+  --game-char-brr-eye-bg:   #ffffff;
+  --game-char-brr-eye-pupil: #0a0a0a;
+  --game-char-brr-teeth:    #ffffff;
+
+  /* Character: La Vaca (cow) -- near white */
+  --game-char-vaca-ring:    #999999;
+  --game-char-vaca-body:    #dddddd;
+  --game-char-vaca-stroke:  #bbbbbb;
+  --game-char-vaca-spots:   #777777;
+  --game-char-vaca-ear:     #bbbbbb;
+  --game-char-vaca-eye:     #0a0a0a;
+  --game-char-vaca-nostril: #bbbbbb;
+}
+
+/* ---- Themed overrides (current colorful look) ---- */
+[data-theme="italian-brainrot"] {
+  /* Sky / background */
+  --game-sky:               #0a0a0f;
+  --game-floor:             #1e1e2e;
+  --game-floor-line:        #2a2a3e;
+  --game-floor-edge:        #2a2a4e;
+
+  /* Biome far / mid layers */
+  --game-biome0-far:        #12121a;
+  --game-biome0-mid:        #1a1a28;
+  --game-biome1-far:        #121a12;
+  --game-biome1-mid:        #1a281a;
+  --game-biome2-far:        #1a1220;
+  --game-biome2-mid:        #281a30;
+  --game-biome3-far:        #121220;
+  --game-biome3-mid:        #1a1a38;
+
+  /* Background details */
+  --game-window-dots:       rgba(200, 200, 100, 0.1);
+  --game-far-fallback:      #12121a;
+  --game-mid-fallback:      #1a1a28;
+
+  /* Score / HUD */
+  --game-score:             #f0f0f0;
+  --game-score-flash:       #c8ff00;
+  --game-score-69:          #ff2d78;
+  --game-hud-hint:          #f0f0f0;
+
+  /* Accent */
+  --game-accent:            #ff3838;
+
+  /* Obstacle: bombardiro */
+  --game-obs-bomb-fill:     #3d8b37;
+  --game-obs-bomb-stroke:   #2d6b27;
+  --game-obs-bomb-teeth:    #ffffff;
+
+  /* Obstacle: mewing */
+  --game-obs-mew-fill:      #d4a574;
+  --game-obs-mew-stroke:    #b8896a;
+  --game-obs-mew-contour:   #8b6654;
+  --game-obs-mew-shadow:    rgba(100, 60, 40, 0.4);
+
+  /* Obstacle: skibidi */
+  --game-obs-skib-fill:     #e8e8e8;
+  --game-obs-skib-stroke:   #cccccc;
+  --game-obs-skib-tank:     #aaaaaa;
+  --game-obs-skib-bowl:     #dddddd;
+  --game-obs-skib-lid:      #999999;
+
+  /* Obstacle: ohio */
+  --game-obs-ohio-fill:     #1a0a2e;
+  --game-obs-ohio-stroke:   #2a1a3e;
+  --game-obs-ohio-ring:     180, 77, 255;
+
+  /* Obstacle: fanum */
+  --game-obs-fan-fill:      #d4a574;
+  --game-obs-fan-stroke:    #b8896a;
+  --game-obs-fan-finger:    #c89a6a;
+  --game-obs-fan-nail:      #eec8a0;
+
+  /* Obstacle: default */
+  --game-obs-default:       #444466;
+
+  /* Pass effects */
+  --game-fx-bomb:           255, 140, 40;
+  --game-fx-mew:            180, 77, 255;
+  --game-fx-skib:           255, 255, 255;
+  --game-fx-ohio:           180, 77, 255;
+  --game-fx-fanum:          255, 208, 0;
+
+  /* Character: Tralalero (shark) */
+  --game-char-tral-body:    #6B7B8D;
+  --game-char-tral-stroke:  #4A5568;
+  --game-char-tral-fin:     #5A6A7D;
+  --game-char-tral-eye-bg:  #ffffff;
+  --game-char-tral-eye-pupil: #0a0a0f;
+  --game-char-tral-mouth:   #0a0a0f;
+  --game-char-tral-shoe:    #ffffff;
+  --game-char-tral-swoosh:  #ff3838;
+
+  /* Character: Bombardiro (crocodile) */
+  --game-char-bomb-body:    #3d8b37;
+  --game-char-bomb-stroke:  #2d6b27;
+  --game-char-bomb-teeth:   #ffffff;
+  --game-char-bomb-eye-bg:  #ffffff;
+  --game-char-bomb-eye-pupil: #ff0000;
+  --game-char-bomb-wing:    #888888;
+  --game-char-bomb-prop:    #555555;
+
+  /* Character: Lirili (butterfly) */
+  --game-char-liri-wing1:   #cc44cc;
+  --game-char-liri-wing2:   #bb33bb;
+  --game-char-liri-wing-stroke: #ff88ff;
+  --game-char-liri-spot:    #ff66ff;
+  --game-char-liri-body:    #4a2050;
+  --game-char-liri-eye-bg:  #ffffff;
+  --game-char-liri-eye-pupil: #0a0a0f;
+  --game-char-liri-antenna: #4a2050;
+  --game-char-liri-antenna-tip: #ff88ff;
+
+  /* Character: Tungtung (cylinder) */
+  --game-char-tung-body:    #1a1a1a;
+  --game-char-tung-stroke:  #333333;
+  --game-char-tung-eye-bg:  #ffffff;
+  --game-char-tung-eye-pupil: #0a0a0f;
+  --game-char-tung-mouth:   #ffffff;
+  --game-char-tung-stick:   #8B6914;
+  --game-char-tung-knob:    #C4A032;
+
+  /* Character: Cappuccino (coffee cup) */
+  --game-char-capp-body:    #8B5A2B;
+  --game-char-capp-stroke:  #5C3A1A;
+  --game-char-capp-rim:     #A0784C;
+  --game-char-capp-steam:   rgba(200, 200, 200, 0.5);
+  --game-char-capp-mask:    #0a0a0f;
+  --game-char-capp-eyes:    #ff3838;
+  --game-char-capp-drip:    #5C3A1A;
+
+  /* Character: Brrbrr (blob) */
+  --game-char-brr-body:     #4488cc;
+  --game-char-brr-stroke:   #3366aa;
+  --game-char-brr-icicle:   #88ccff;
+  --game-char-brr-eye-bg:   #ffffff;
+  --game-char-brr-eye-pupil: #0a0a0f;
+  --game-char-brr-teeth:    #ffffff;
+
+  /* Character: La Vaca (cow) */
+  --game-char-vaca-ring:    #cc9944;
+  --game-char-vaca-body:    #EEEEEE;
+  --game-char-vaca-stroke:  #BBBBBB;
+  --game-char-vaca-spots:   #9944cc;
+  --game-char-vaca-ear:     #ddaadd;
+  --game-char-vaca-eye:     #0a0a0f;
+  --game-char-vaca-nostril: #ddaaaa;
+}
+
 /* ---- Game container positions overlays relative to canvas ---- */
 .game-container {
   position: relative;

@@ -12,6 +12,8 @@
  * Indices 8-13 = AI pits (top, right to left as laid on board)
  */
 
+import { readThemeColor } from '../../shared/theme-utils.js';
+
 /** Total pits + stores */
 const BOARD_SIZE = 14;
 
@@ -30,15 +32,16 @@ export const AI_PITS_START = 8;
 export const AI_PITS_END = 13;
 
 /**
- * Stone colors -- randomly assigned at game start
+ * Stone colors -- randomly assigned at game start.
+ * Values are read from CSS custom properties with grayscale fallbacks.
  */
 export const STONE_COLORS = [
-  '#e74c3c', // red
-  '#3498db', // blue
-  '#2ecc71', // green
-  '#f39c12', // orange
-  '#9b59b6', // purple
-  '#1abc9c', // teal
+  readThemeColor('--game-stone-1', '#cccccc'),
+  readThemeColor('--game-stone-2', '#aaaaaa'),
+  readThemeColor('--game-stone-3', '#888888'),
+  readThemeColor('--game-stone-4', '#bbbbbb'),
+  readThemeColor('--game-stone-5', '#777777'),
+  readThemeColor('--game-stone-6', '#999999'),
 ];
 
 /**

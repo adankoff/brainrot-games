@@ -3,7 +3,10 @@
  * 3-layer parallax background with biome tinting.
  */
 
-import { BIOMES, COLOR_SKY, COLOR_FLOOR, COLOR_FLOOR_LINE, FLOOR_HEIGHT } from './constants.js';
+import {
+  BIOMES, COLOR_SKY, COLOR_FLOOR, COLOR_FLOOR_LINE, COLOR_FLOOR_EDGE,
+  COLOR_WINDOW_DOTS, COLOR_FAR_FALLBACK, COLOR_MID_FALLBACK, FLOOR_HEIGHT,
+} from './constants.js';
 import { lerp } from '../../shared/utils.js';
 
 const FAR_SPEED_RATIO = 0.15;
@@ -138,7 +141,7 @@ export class Background {
   }
 
   _drawFarLayer(ctx, logicalWidth, floorY, color) {
-    ctx.fillStyle = color || '#12121a';
+    ctx.fillStyle = color || COLOR_FAR_FALLBACK;
 
     for (let pass = 0; pass < 2; pass++) {
       const offsetX = pass * 720;
@@ -154,19 +157,19 @@ export class Background {
         }
 
         // Occasional window dots
-        ctx.fillStyle = 'rgba(200, 200, 100, 0.1)';
+        ctx.fillStyle = COLOR_WINDOW_DOTS;
         for (let wy = by + 10; wy < floorY - 10; wy += 20) {
           for (let wx = bx + 4; wx < bx + b.w - 4; wx += 8) {
             ctx.fillRect(wx, wy, 3, 3);
           }
         }
-        ctx.fillStyle = color || '#12121a';
+        ctx.fillStyle = color || COLOR_FAR_FALLBACK;
       }
     }
   }
 
   _drawMidLayer(ctx, logicalWidth, floorY, color) {
-    ctx.fillStyle = color || '#1a1a28';
+    ctx.fillStyle = color || COLOR_MID_FALLBACK;
 
     // Wavy hills
     for (let pass = 0; pass < 2; pass++) {
@@ -184,7 +187,7 @@ export class Background {
     }
 
     // Occasional character silhouettes on mid layer
-    ctx.fillStyle = this._darken(color || '#1a1a28', 0.7);
+    ctx.fillStyle = this._darken(color || COLOR_MID_FALLBACK, 0.7);
     for (let pass = 0; pass < 2; pass++) {
       const offsetX = pass * 720;
       // A few standing silhouettes
@@ -221,7 +224,7 @@ export class Background {
     ctx.setLineDash([]);
 
     // Floor top edge line
-    ctx.strokeStyle = '#2a2a4e';
+    ctx.strokeStyle = COLOR_FLOOR_EDGE;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(0, floorY);
@@ -252,7 +255,7 @@ export class Background {
 // ---- Hex color lerp helper ----
 
 function lerpHexColor(hex1, hex2, t) {
-  if (!hex1 || !hex2) return hex1 || hex2 || '#12121a';
+  if (!hex1 || !hex2) return hex1 || hex2 || COLOR_FAR_FALLBACK;
   const r1 = parseInt(hex1.slice(1, 3), 16);
   const g1 = parseInt(hex1.slice(3, 5), 16);
   const b1 = parseInt(hex1.slice(5, 7), 16);

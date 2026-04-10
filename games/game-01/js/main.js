@@ -8,6 +8,7 @@ import { createInputManager } from '../../shared/input-manager.js';
 import { initAudio, playSound } from '../../shared/sound-manager.js';
 import { getData, setData } from '../../shared/score-manager.js';
 import { checkCollisionAABB, clamp, randomBetween } from '../../shared/utils.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import { Player } from './player.js';
 import { Obstacle } from './obstacle.js';
 import { Background } from './background.js';
@@ -20,7 +21,7 @@ import {
   BASE_SPACING, MIN_SPACING, SPACING_SHRINK_PER_SCORE,
   GAP_BUFFER, OBSTACLE_TYPES, OBSTACLE_WIDTH,
   SHAKE_MAGNITUDE, SHAKE_DURATION, DEATH_DELAY,
-  DEATH_MESSAGES, CHARACTER_UNLOCKS,
+  DEATH_MESSAGES, CHARACTER_UNLOCKS, COLOR_HUD_HINT,
 } from './constants.js';
 
 // ---- Module-scoped game state ----
@@ -49,7 +50,7 @@ const shell = new GameShell({
   maxDisplayWidth: 480,
   theme: 'italian-brainrot',
   subtitle: 'tap. die. share. repeat.',
-  accentColor: '#ff3838',
+  accentColor: readThemeColor('--game-accent', '#cccccc'),
   shareUrl: 'https://brainrotgames.com/games/game-01/',
 });
 
@@ -385,7 +386,7 @@ function drawReadyHint(ctx) {
   ctx.globalAlpha = 0.4 + pulse * 0.6;
   ctx.font = '20px "Space Grotesk", sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillStyle = '#f0f0f0';
+  ctx.fillStyle = COLOR_HUD_HINT;
   ctx.fillText('tap to flap', LOGICAL_WIDTH / 2, LOGICAL_HEIGHT / 2 + 60);
   ctx.restore();
 }

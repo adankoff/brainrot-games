@@ -9,12 +9,16 @@ import { createInputManager } from '../../shared/input-manager.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
 import { getData, setData } from '../../shared/score-manager.js';
 import { randomBetween, clamp } from '../../shared/utils.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import { THEMES, getThemeById } from './themes.js';
 import {
   drawBackground, drawBin, drawThemedProjectile, drawWindIndicator,
   drawScore, drawMisses, drawStreak, drawTrail, drawFloatingTexts,
   drawSwipeGuide, drawFlash,
 } from './renderer.js';
+
+// UI colors from CSS variables (outside in-game theme system)
+const MISS_COLOR = readThemeColor('--game-miss', '#ff3838');
 
 // ---- Constants ----
 
@@ -106,7 +110,7 @@ const shell = new GameShell({
   maxDisplayWidth: 480,
   theme: 'yeet',
   subtitle: 'swipe to yeet. wind is mid. 3 misses and you\'re cooked.',
-  accentColor: currentTheme.accentColor,
+  accentColor: currentTheme.accentColor || readThemeColor('--game-accent', '#aaaaaa'),
   shareUrl: 'https://brainrotgames.com/games/game-29/',
 });
 
@@ -339,10 +343,10 @@ shell.onUpdate = (dt) => {
     streak = 0;
 
     // Visual feedback
-    spawnFloatingText('MISS', ballX, Math.min(ballY, H * 0.75), '#ff3838', 20);
+    spawnFloatingText('MISS', ballX, Math.min(ballY, H * 0.75), MISS_COLOR, 20);
     playSound('miss');
 
-    flashColor = '#ff3838';
+    flashColor = MISS_COLOR;
     flashAlpha = 0.2;
     return;
   }

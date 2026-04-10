@@ -3,6 +3,8 @@
  * Physics simulation for ropes (pendulums), candy, stars, and target.
  */
 
+import { readThemeColor } from '../../shared/theme-utils.js';
+
 const W = 400;
 const H = 700;
 const GRAVITY = 0.4;
@@ -312,7 +314,7 @@ export class CutGame {
       const angle = Math.random() * Math.PI * 2;
       const speed = 1 + Math.random() * 3;
       this.particles.push(
-        new Particle(mx, my, Math.cos(angle) * speed, Math.sin(angle) * speed, '#c8a060', 30)
+        new Particle(mx, my, Math.cos(angle) * speed, Math.sin(angle) * speed, readThemeColor('--game-rope', '#999999'), 30)
       );
     }
 
@@ -429,7 +431,7 @@ export class CutGame {
           const angle = Math.random() * Math.PI * 2;
           const speed = 1 + Math.random() * 2;
           this.particles.push(
-            new Particle(star.x, star.y, Math.cos(angle) * speed, Math.sin(angle) * speed, '#ffdd00', 25)
+            new Particle(star.x, star.y, Math.cos(angle) * speed, Math.sin(angle) * speed, readThemeColor('--game-star', '#cccccc'), 25)
           );
         }
       }
@@ -450,7 +452,7 @@ export class CutGame {
           const angle = Math.random() * Math.PI * 2;
           const speed = 1 + Math.random() * 3;
           this.particles.push(
-            new Particle(this.target.x, this.target.y, Math.cos(angle) * speed, Math.sin(angle) * speed, '#44dd44', 30)
+            new Particle(this.target.x, this.target.y, Math.cos(angle) * speed, Math.sin(angle) * speed, readThemeColor('--game-target', '#aaaaaa'), 30)
           );
         }
       }

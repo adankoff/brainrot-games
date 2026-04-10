@@ -5,6 +5,7 @@
 
 import { GameShell } from '../../shared/game-shell.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
+import { readThemeColor } from '../../shared/theme-utils.js';
 import { CutGame } from './cutgame.js';
 import { render } from './renderer.js';
 
@@ -72,7 +73,7 @@ const shell = new GameShell({
   logicalHeight: H,
   theme: 'meme-cut',
   subtitle: 'cut the ropes. feed the meme.',
-  accentColor: '#44dd44',
+  accentColor: readThemeColor('--game-target', '#aaaaaa'),
 });
 
 // ---- Swipe input handling (custom, beyond basic input-manager) ----

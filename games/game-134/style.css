@@ -1,8 +1,41 @@
 /* HEX MATCH -- Game-specific styles */
 
+:root {
+  --game-bg-top: #0a0a0a;
+  --game-bg-mid: #0f0f0f;
+  --game-bg-bottom: #0a0a0a;
+  --game-edge-1: #cccccc;
+  --game-edge-2: #aaaaaa;
+  --game-edge-3: #888888;
+  --game-edge-4: #666666;
+  --game-edge-5: #444444;
+  --game-edge-6: #555555;
+  --game-progress-a: #aaaaaa;
+  --game-progress-b: #888888;
+  --game-win-effect: #aaaaaa;
+  --game-hud-text: rgba(255, 255, 255, 0.5);
+  --game-accent: #aaaaaa;
+  --game-accent-border: rgba(170, 170, 170, 0.4);
+  --game-accent-bg: rgba(170, 170, 170, 0.15);
+}
+
 [data-theme="hexmatch"] {
-  --accent: #00e5ff;
-  --bg: #0a0e1a;
+  --game-bg-top: #0a0e1a;
+  --game-bg-mid: #0f1628;
+  --game-bg-bottom: #0a0e1a;
+  --game-edge-1: #ff3860;
+  --game-edge-2: #00e5ff;
+  --game-edge-3: #ffdd57;
+  --game-edge-4: #23d160;
+  --game-edge-5: #b86bff;
+  --game-edge-6: #ff8c42;
+  --game-progress-a: #00e5ff;
+  --game-progress-b: #23d160;
+  --game-win-effect: #00e5ff;
+  --game-hud-text: rgba(255, 255, 255, 0.5);
+  --game-accent: #00e5ff;
+  --game-accent-border: rgba(0, 229, 255, 0.4);
+  --game-accent-bg: rgba(0, 229, 255, 0.15);
 }
 
 .difficulty-select {
@@ -15,7 +48,7 @@
 
 .difficulty-select__btn {
   padding: 6px 16px;
-  border: 2px solid rgba(0, 229, 255, 0.4);
+  border: 2px solid var(--game-accent-border);
   border-radius: 20px;
   background: transparent;
   color: rgba(255, 255, 255, 0.7);
@@ -29,12 +62,12 @@
 }
 
 .difficulty-select__btn:hover {
-  border-color: #00e5ff;
+  border-color: var(--game-accent);
   color: #fff;
 }
 
 .difficulty-select__btn--active {
-  background: rgba(0, 229, 255, 0.15);
-  border-color: #00e5ff;
-  color: #00e5ff;
+  background: var(--game-accent-bg);
+  border-color: var(--game-accent);
+  color: var(--game-accent);
 }

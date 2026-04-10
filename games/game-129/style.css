@@ -2,23 +2,88 @@
    MEME RHYTHM -- Game-Specific Styles
    ========================================================================== */
 
-/* Theme overrides */
+/* ---------- Grayscale defaults (white-label base) ---------- */
+:root {
+  --game-bg:              #0a0a0a;
+  --game-bg-top:          #060606;
+  --game-bg-bottom:       #0a0a0a;
+  --game-surface:         #121212;
+  --game-text:            #f0f0f0;
+  --game-accent:          #888888;
+  --game-accent-secondary: #666666;
+  --game-grid-line:       rgba(255, 255, 255, 0.04);
+  --game-hit-zone:        #888888;
+  --game-lane-1:          #cccccc;
+  --game-lane-2:          #999999;
+  --game-lane-3:          #666666;
+  --game-combo-x4:        #cccccc;
+  --game-combo-x3:        #aaaaaa;
+  --game-combo-x2:        #888888;
+  --game-health-good:     #cccccc;
+  --game-health-mid:      #999999;
+  --game-health-low:      #666666;
+  --game-progress:        rgba(200, 200, 200, 0.6);
+  --game-hud-text:        #ffffff;
+  --game-title-from:      #cccccc;
+  --game-title-to:        #888888;
+  --game-btn-from:        #888888;
+  --game-btn-to:          #666666;
+  --game-btn-hover-from:  #999999;
+  --game-btn-hover-to:    #777777;
+  --game-btn-sec-border:  #888888;
+  --game-btn-sec-text:    #888888;
+  --game-feedback-perfect: #dddddd;
+  --game-feedback-great:  #bbbbbb;
+  --game-feedback-good:   #999999;
+  --game-feedback-miss:   #666666;
+  --game-feedback-combo:  #888888;
+}
+
+/* ---------- Meme Rhythm themed overrides ---------- */
 [data-theme="meme-rhythm"] {
-  --color-bg: #0a0a1a;
-  --color-surface: #12122a;
-  --color-text: #f0f0f0;
-  --color-accent: #ff00ff;
-  --color-accent-secondary: #00ffff;
+  --game-bg:              #0a0a1a;
+  --game-bg-top:          #060616;
+  --game-bg-bottom:       #0a0a2a;
+  --game-surface:         #12122a;
+  --game-text:            #f0f0f0;
+  --game-accent:          #ff00ff;
+  --game-accent-secondary: #00ffff;
+  --game-grid-line:       rgba(255, 0, 255, 0.04);
+  --game-hit-zone:        #ff00ff;
+  --game-lane-1:          #ff3366;
+  --game-lane-2:          #33ff66;
+  --game-lane-3:          #3366ff;
+  --game-combo-x4:        #ff00ff;
+  --game-combo-x3:        #ffaa00;
+  --game-combo-x2:        #00ffaa;
+  --game-health-good:     #33ff66;
+  --game-health-mid:      #ffaa00;
+  --game-health-low:      #ff3333;
+  --game-progress:        rgba(255, 0, 255, 0.6);
+  --game-hud-text:        #ffffff;
+  --game-title-from:      #ff00ff;
+  --game-title-to:        #00ffff;
+  --game-btn-from:        #ff00ff;
+  --game-btn-to:          #8800ff;
+  --game-btn-hover-from:  #ff33ff;
+  --game-btn-hover-to:    #aa22ff;
+  --game-btn-sec-border:  #ff00ff;
+  --game-btn-sec-text:    #ff00ff;
+  --game-feedback-perfect: #ffff00;
+  --game-feedback-great:  #00ff88;
+  --game-feedback-good:   #88aaff;
+  --game-feedback-miss:   #ff3333;
+  --game-feedback-combo:  #ff00ff;
 }
 
 /* Game container */
 .game-container {
-  background: #0a0a1a;
+  background: var(--game-bg);
 }
 
 /* Menu screen tweaks */
 .menu-screen__title {
-  background: linear-gradient(135deg, #ff00ff, #00ffff);
+  background: linear-gradient(135deg, var(--game-title-from), var(--game-title-to));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -26,19 +91,22 @@
 }
 
 /* Buttons */
-[data-theme="meme-rhythm"] .btn-primary {
-  background: linear-gradient(135deg, #ff00ff, #8800ff);
+[data-theme="meme-rhythm"] .btn-primary,
+:root .btn-primary {
+  background: linear-gradient(135deg, var(--game-btn-from), var(--game-btn-to));
   color: #fff;
   border: none;
 }
 
-[data-theme="meme-rhythm"] .btn-primary:hover {
-  background: linear-gradient(135deg, #ff33ff, #aa22ff);
+[data-theme="meme-rhythm"] .btn-primary:hover,
+:root .btn-primary:hover {
+  background: linear-gradient(135deg, var(--game-btn-hover-from), var(--game-btn-hover-to));
 }
 
-[data-theme="meme-rhythm"] .btn-secondary {
-  border-color: #ff00ff;
-  color: #ff00ff;
+[data-theme="meme-rhythm"] .btn-secondary,
+:root .btn-secondary {
+  border-color: var(--game-btn-sec-border);
+  color: var(--game-btn-sec-text);
 }
 
 /* Game-over extras */
