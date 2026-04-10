@@ -1,0 +1,18 @@
+/* AIM TRAINER -- Game-specific styles */
+
+[data-theme="aimtrainer"] {
+  --color-bg: #0a0a12;
+  --color-surface: #14141e;
+  --color-accent: #ff3355;
+  --color-accent-glow: rgba(255, 51, 85, 0.3);
+  --color-text: #e8e8f0;
+  --color-text-secondary: #7a7a8e;
+}
+
+body[data-theme="aimtrainer"] {
+  background: var(--color-bg);
+}
+
+#game-canvas {
+  cursor: none;
+}

@@ -1,0 +1,21 @@
+/* ==========================================================================
+   MEME CATCH -- Game-Specific Styles
+   ========================================================================== */
+
+[data-theme="meme-catch"] {
+  --color-bg: #1a0a2e;
+  --color-accent: #ff6bff;
+}
+
+body[data-theme="meme-catch"] {
+  background: linear-gradient(180deg, #1a0a2e 0%, #0d0221 100%);
+}
+
+.game-container {
+  position: relative;
+}
+
+#game-canvas {
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(255, 107, 255, 0.15);
+}

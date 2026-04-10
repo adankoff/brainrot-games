@@ -1,0 +1,8 @@
+/* STROOP TAP -- Game-specific styles */
+
+[data-theme="strooptap"] {
+  --color-bg: #1a1a2e;
+  --color-surface: #16213e;
+  --color-text: #eee;
+  --color-accent: #e94560;
+}

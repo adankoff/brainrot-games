@@ -1,0 +1,37 @@
+/* ==========================================================================
+   MEME SCRAMBLE -- Game-Specific Styles
+   ========================================================================== */
+
+[data-theme="memescramble"] {
+  --accent: #00e5ff;
+  --accent-glow: rgba(0, 229, 255, 0.3);
+  --bg-dark: #0a0a1a;
+  --bg-card: #12122a;
+  --text-primary: #ffffff;
+  --text-secondary: #8888aa;
+  --correct-green: #00ff88;
+  --hint-yellow: #ffd700;
+  --skip-orange: #ff6644;
+}
+
+[data-theme="memescramble"] body,
+body[data-theme="memescramble"] {
+  background: var(--bg-dark);
+}
+
+[data-theme="memescramble"] .menu-screen__title,
+body[data-theme="memescramble"] .menu-screen__title {
+  color: var(--accent);
+  text-shadow: 0 0 20px var(--accent-glow);
+}
+
+[data-theme="memescramble"] .btn-primary,
+body[data-theme="memescramble"] .btn-primary {
+  background: var(--accent);
+  color: #000;
+}
+
+[data-theme="memescramble"] .game-over-overlay__score,
+body[data-theme="memescramble"] .game-over-overlay__score {
+  color: var(--accent);
+}

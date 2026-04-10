@@ -1,0 +1,14 @@
+/* MEME BOUNCE -- Game-specific styles */
+
+body[data-theme="meme-bounce"] {
+  background: #0a0a1a;
+}
+
+.game-container {
+  background: #0a0a1a;
+}
+
+#game-canvas {
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0, 255, 180, 0.08);
+}
