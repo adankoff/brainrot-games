@@ -1,0 +1,18 @@
+/* MEME MATCH -- Game-specific styles */
+
+[data-theme="memematch"] {
+  --game-bg: #1a0a2e;
+  --game-accent: #ff6b9d;
+}
+
+body[data-theme="memematch"] {
+  background: var(--game-bg);
+}
+
+.game-container {
+  position: relative;
+}
+
+#game-canvas {
+  border-radius: 8px;
+}

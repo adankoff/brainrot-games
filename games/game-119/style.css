@@ -1,0 +1,36 @@
+/* MEME PAC -- Game-specific styles */
+
+body[data-theme="meme-pac"] {
+  background: #000;
+}
+
+.game-container {
+  position: relative;
+}
+
+#game-canvas {
+  background: #000;
+  border-radius: 4px;
+}
+
+/* Menu overlay styling */
+.menu-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10;
+}
+
+/* Game-over overlay */
+.game-over-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}

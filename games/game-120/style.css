@@ -1,0 +1,14 @@
+/* PEG SOLITAIRE -- Game-specific styles */
+
+[data-theme="pegsolitaire"] {
+  --color-accent: #e8a43a;
+  --color-bg: #1a1a2e;
+}
+
+.game-container {
+  background: #1a1a2e;
+}
+
+#game-canvas {
+  background: #1a1a2e;
+}
