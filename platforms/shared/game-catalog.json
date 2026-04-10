@@ -1,0 +1,697 @@
+[
+  {
+    "id": "game-01",
+    "title": "FLAPPY TRALALERO",
+    "path": "games/game-01/"
+  },
+  {
+    "id": "game-02",
+    "title": "WHACK-A-ROT",
+    "path": "games/game-02/"
+  },
+  {
+    "id": "game-03",
+    "title": "SIGMA GRINDSET",
+    "path": "games/game-03/"
+  },
+  {
+    "id": "game-04",
+    "title": "OHIO SURVIVAL RUN",
+    "path": "games/game-04/"
+  },
+  {
+    "id": "game-05",
+    "title": "SKIBIDI STACK",
+    "path": "games/game-05/"
+  },
+  {
+    "id": "game-06",
+    "title": "FANUM SNAKE",
+    "path": "games/game-06/"
+  },
+  {
+    "id": "game-07",
+    "title": "BRAINROT 2048",
+    "path": "games/game-07/"
+  },
+  {
+    "id": "game-08",
+    "title": "BRAINROT NINJA",
+    "path": "games/game-08/"
+  },
+  {
+    "id": "game-09",
+    "title": "SLICE THE BRAINROT",
+    "path": "games/game-09/"
+  },
+  {
+    "id": "game-10",
+    "title": "BRAINROT BREAKER",
+    "path": "games/game-10/"
+  },
+  {
+    "id": "game-11",
+    "title": "BRAINROT DASH",
+    "path": "games/game-11/"
+  },
+  {
+    "id": "game-12",
+    "title": "MEME CLICKER",
+    "path": "games/game-12/"
+  },
+  {
+    "id": "game-13",
+    "title": "ANIME DASH",
+    "path": "games/game-13/"
+  },
+  {
+    "id": "game-14",
+    "title": "YOU DIED",
+    "path": "games/game-14/"
+  },
+  {
+    "id": "game-15",
+    "title": "NYAN CAT RUN",
+    "path": "games/game-15/"
+  },
+  {
+    "id": "game-16",
+    "title": "MEME STACK",
+    "path": "games/game-16/"
+  },
+  {
+    "id": "game-17",
+    "title": "FLAPPY DOGE",
+    "path": "games/game-17/"
+  },
+  {
+    "id": "game-18",
+    "title": "ANIME CLICKER",
+    "path": "games/game-18/"
+  },
+  {
+    "id": "game-19",
+    "title": "BACKROOMS ESCAPE",
+    "path": "games/game-19/"
+  },
+  {
+    "id": "game-20",
+    "title": "MEME 2048",
+    "path": "games/game-20/"
+  },
+  {
+    "id": "game-21",
+    "title": "MEME NINJA",
+    "path": "games/game-21/"
+  },
+  {
+    "id": "game-22",
+    "title": "ANIME SNAKE",
+    "path": "games/game-22/"
+  },
+  {
+    "id": "game-23",
+    "title": "CLASSIC MEME WHACK",
+    "path": "games/game-23/"
+  },
+  {
+    "id": "game-24",
+    "title": "MEME PIANO",
+    "path": "games/game-24/"
+  },
+  {
+    "id": "game-25",
+    "title": "BRAINROT COLOR SWITCH",
+    "path": "games/game-25/"
+  },
+  {
+    "id": "game-26",
+    "title": "BRAINROTLE",
+    "path": "games/game-26/"
+  },
+  {
+    "id": "game-27",
+    "title": "MEME MEMORY",
+    "path": "games/game-27/"
+  },
+  {
+    "id": "game-28",
+    "title": "MEME HANGMAN",
+    "path": "games/game-28/"
+  },
+  {
+    "id": "game-29",
+    "title": "YEET",
+    "path": "games/game-29/"
+  },
+  {
+    "id": "game-30",
+    "title": "MEME IQ TEST",
+    "path": "games/game-30/"
+  },
+  {
+    "id": "game-31",
+    "title": "BRAINROT FLAPPY BIRD",
+    "path": "games/game-31/"
+  },
+  {
+    "id": "game-32",
+    "title": "BRAINROT WHACK-A-MOLE",
+    "path": "games/game-32/"
+  },
+  {
+    "id": "game-33",
+    "title": "BRAINROT IDLE CLICKER",
+    "path": "games/game-33/"
+  },
+  {
+    "id": "game-34",
+    "title": "BRAINROT ENDLESS RUNNER",
+    "path": "games/game-34/"
+  },
+  {
+    "id": "game-35",
+    "title": "BRAINROT STACK",
+    "path": "games/game-35/"
+  },
+  {
+    "id": "game-36",
+    "title": "BRAINROT SNAKE",
+    "path": "games/game-36/"
+  },
+  {
+    "id": "game-37",
+    "title": "BRAINROT 2048",
+    "path": "games/game-37/"
+  },
+  {
+    "id": "game-38",
+    "title": "BRAINROT FRUIT NINJA",
+    "path": "games/game-38/"
+  },
+  {
+    "id": "game-39",
+    "title": "BRAINROT BREAKOUT",
+    "path": "games/game-39/"
+  },
+  {
+    "id": "game-40",
+    "title": "BRAINROT GEOMETRY DASH",
+    "path": "games/game-40/"
+  },
+  {
+    "id": "game-41",
+    "title": "BRAINROT PIANO TILES",
+    "path": "games/game-41/"
+  },
+  {
+    "id": "game-42",
+    "title": "BRAINROT COLOR SWITCH",
+    "path": "games/game-42/"
+  },
+  {
+    "id": "game-43",
+    "title": "BRAINROT WORDLE",
+    "path": "games/game-43/"
+  },
+  {
+    "id": "game-44",
+    "title": "BRAINROT MEMORY MATCH",
+    "path": "games/game-44/"
+  },
+  {
+    "id": "game-45",
+    "title": "BRAINROT HANGMAN",
+    "path": "games/game-45/"
+  },
+  {
+    "id": "game-46",
+    "title": "BRAINROT PAPER TOSS",
+    "path": "games/game-46/"
+  },
+  {
+    "id": "game-47",
+    "title": "BRAINROT TRIVIA QUIZ",
+    "path": "games/game-47/"
+  },
+  {
+    "id": "game-48",
+    "title": "ANIME FLAPPY BIRD",
+    "path": "games/game-48/"
+  },
+  {
+    "id": "game-49",
+    "title": "ANIME WHACK-A-MOLE",
+    "path": "games/game-49/"
+  },
+  {
+    "id": "game-50",
+    "title": "ANIME IDLE CLICKER",
+    "path": "games/game-50/"
+  },
+  {
+    "id": "game-51",
+    "title": "ANIME ENDLESS RUNNER",
+    "path": "games/game-51/"
+  },
+  {
+    "id": "game-52",
+    "title": "ANIME STACK",
+    "path": "games/game-52/"
+  },
+  {
+    "id": "game-53",
+    "title": "ANIME SNAKE",
+    "path": "games/game-53/"
+  },
+  {
+    "id": "game-54",
+    "title": "ANIME 2048",
+    "path": "games/game-54/"
+  },
+  {
+    "id": "game-55",
+    "title": "ANIME FRUIT NINJA",
+    "path": "games/game-55/"
+  },
+  {
+    "id": "game-56",
+    "title": "ANIME BREAKOUT",
+    "path": "games/game-56/"
+  },
+  {
+    "id": "game-57",
+    "title": "ANIME GEOMETRY DASH",
+    "path": "games/game-57/"
+  },
+  {
+    "id": "game-58",
+    "title": "ANIME PIANO TILES",
+    "path": "games/game-58/"
+  },
+  {
+    "id": "game-59",
+    "title": "ANIME COLOR SWITCH",
+    "path": "games/game-59/"
+  },
+  {
+    "id": "game-60",
+    "title": "ANIME WORDLE",
+    "path": "games/game-60/"
+  },
+  {
+    "id": "game-61",
+    "title": "ANIME MEMORY MATCH",
+    "path": "games/game-61/"
+  },
+  {
+    "id": "game-62",
+    "title": "ANIME HANGMAN",
+    "path": "games/game-62/"
+  },
+  {
+    "id": "game-63",
+    "title": "ANIME PAPER TOSS",
+    "path": "games/game-63/"
+  },
+  {
+    "id": "game-64",
+    "title": "ANIME TRIVIA QUIZ",
+    "path": "games/game-64/"
+  },
+  {
+    "id": "game-65",
+    "title": "SPLATOON FLAPPY BIRD",
+    "path": "games/game-65/"
+  },
+  {
+    "id": "game-66",
+    "title": "SPLATOON WHACK-A-MOLE",
+    "path": "games/game-66/"
+  },
+  {
+    "id": "game-67",
+    "title": "SPLATOON IDLE CLICKER",
+    "path": "games/game-67/"
+  },
+  {
+    "id": "game-68",
+    "title": "SPLATOON ENDLESS RUNNER",
+    "path": "games/game-68/"
+  },
+  {
+    "id": "game-69",
+    "title": "SPLATOON STACK",
+    "path": "games/game-69/"
+  },
+  {
+    "id": "game-70",
+    "title": "SPLATOON SNAKE",
+    "path": "games/game-70/"
+  },
+  {
+    "id": "game-71",
+    "title": "SPLATOON 2048",
+    "path": "games/game-71/"
+  },
+  {
+    "id": "game-72",
+    "title": "SPLATOON FRUIT NINJA",
+    "path": "games/game-72/"
+  },
+  {
+    "id": "game-73",
+    "title": "SPLATOON BREAKOUT",
+    "path": "games/game-73/"
+  },
+  {
+    "id": "game-74",
+    "title": "SPLATOON GEOMETRY DASH",
+    "path": "games/game-74/"
+  },
+  {
+    "id": "game-75",
+    "title": "SPLATOON PIANO TILES",
+    "path": "games/game-75/"
+  },
+  {
+    "id": "game-76",
+    "title": "SPLATOON COLOR SWITCH",
+    "path": "games/game-76/"
+  },
+  {
+    "id": "game-77",
+    "title": "SPLATOON WORDLE",
+    "path": "games/game-77/"
+  },
+  {
+    "id": "game-78",
+    "title": "SPLATOON MEMORY MATCH",
+    "path": "games/game-78/"
+  },
+  {
+    "id": "game-79",
+    "title": "SPLATOON HANGMAN",
+    "path": "games/game-79/"
+  },
+  {
+    "id": "game-80",
+    "title": "SPLATOON PAPER TOSS",
+    "path": "games/game-80/"
+  },
+  {
+    "id": "game-81",
+    "title": "SPLATOON TRIVIA QUIZ",
+    "path": "games/game-81/"
+  },
+  {
+    "id": "game-82",
+    "title": "MEME SUDOKU",
+    "path": "games/game-82/"
+  },
+  {
+    "id": "game-83",
+    "title": "MEME SWEEPER",
+    "path": "games/game-83/"
+  },
+  {
+    "id": "game-84",
+    "title": "MEME PICROSS",
+    "path": "games/game-84/"
+  },
+  {
+    "id": "game-85",
+    "title": "MEME SLIDE",
+    "path": "games/game-85/"
+  },
+  {
+    "id": "game-86",
+    "title": "MEME MAZE",
+    "path": "games/game-86/"
+  },
+  {
+    "id": "game-87",
+    "title": "MEME WORD SEARCH",
+    "path": "games/game-87/"
+  },
+  {
+    "id": "game-88",
+    "title": "LIGHTS OUT",
+    "path": "games/game-88/"
+  },
+  {
+    "id": "game-89",
+    "title": "MEME PIPES",
+    "path": "games/game-89/"
+  },
+  {
+    "id": "game-90",
+    "title": "MEME TETRIS",
+    "path": "games/game-90/"
+  },
+  {
+    "id": "game-91",
+    "title": "MEME PONG",
+    "path": "games/game-91/"
+  },
+  {
+    "id": "game-92",
+    "title": "MEME INVADERS",
+    "path": "games/game-92/"
+  },
+  {
+    "id": "game-93",
+    "title": "MEME SIMON",
+    "path": "games/game-93/"
+  },
+  {
+    "id": "game-94",
+    "title": "MEME JUMP",
+    "path": "games/game-94/"
+  },
+  {
+    "id": "game-95",
+    "title": "MEME CROSS",
+    "path": "games/game-95/"
+  },
+  {
+    "id": "game-96",
+    "title": "MEME ASTEROIDS",
+    "path": "games/game-96/"
+  },
+  {
+    "id": "game-97",
+    "title": "MEME BLACKJACK",
+    "path": "games/game-97/"
+  },
+  {
+    "id": "game-98",
+    "title": "HIGHER LOWER",
+    "path": "games/game-98/"
+  },
+  {
+    "id": "game-99",
+    "title": "CONNECT FOUR",
+    "path": "games/game-99/"
+  },
+  {
+    "id": "game-100",
+    "title": "MEME REVERSI",
+    "path": "games/game-100/"
+  },
+  {
+    "id": "game-101",
+    "title": "MEME TAC TOE",
+    "path": "games/game-101/"
+  },
+  {
+    "id": "game-102",
+    "title": "MEME MIND",
+    "path": "games/game-102/"
+  },
+  {
+    "id": "game-103",
+    "title": "BALL SORT",
+    "path": "games/game-103/"
+  },
+  {
+    "id": "game-104",
+    "title": "FLOOD FILL",
+    "path": "games/game-104/"
+  },
+  {
+    "id": "game-105",
+    "title": "MEME TYPE",
+    "path": "games/game-105/"
+  },
+  {
+    "id": "game-106",
+    "title": "MEME BUBBLES",
+    "path": "games/game-106/"
+  },
+  {
+    "id": "game-107",
+    "title": "MEME DEFENSE",
+    "path": "games/game-107/"
+  },
+  {
+    "id": "game-108",
+    "title": "MEME FROGGER",
+    "path": "games/game-108/"
+  },
+  {
+    "id": "game-109",
+    "title": "MEME COPTER",
+    "path": "games/game-109/"
+  },
+  {
+    "id": "game-110",
+    "title": "MEME REACT",
+    "path": "games/game-110/"
+  },
+  {
+    "id": "game-111",
+    "title": "KNIFE HIT",
+    "path": "games/game-111/"
+  },
+  {
+    "id": "game-112",
+    "title": "STROOP TAP",
+    "path": "games/game-112/"
+  },
+  {
+    "id": "game-113",
+    "title": "AIM TRAINER",
+    "path": "games/game-113/"
+  },
+  {
+    "id": "game-114",
+    "title": "MEME CATCH",
+    "path": "games/game-114/"
+  },
+  {
+    "id": "game-115",
+    "title": "MEME BOUNCE",
+    "path": "games/game-115/"
+  },
+  {
+    "id": "game-116",
+    "title": "MEME BEE",
+    "path": "games/game-116/"
+  },
+  {
+    "id": "game-117",
+    "title": "MEME SCRAMBLE",
+    "path": "games/game-117/"
+  },
+  {
+    "id": "game-118",
+    "title": "MEME GALAGA",
+    "path": "games/game-118/"
+  },
+  {
+    "id": "game-119",
+    "title": "MEME PAC",
+    "path": "games/game-119/"
+  },
+  {
+    "id": "game-120",
+    "title": "PEG SOLITAIRE",
+    "path": "games/game-120/"
+  },
+  {
+    "id": "game-121",
+    "title": "TOWER OF HANOI",
+    "path": "games/game-121/"
+  },
+  {
+    "id": "game-122",
+    "title": "MEME MATCH",
+    "path": "games/game-122/"
+  },
+  {
+    "id": "game-123",
+    "title": "MEME SOLITAIRE",
+    "path": "games/game-123/"
+  },
+  {
+    "id": "game-124",
+    "title": "MEME THREES",
+    "path": "games/game-124/"
+  },
+  {
+    "id": "game-125",
+    "title": "MEME CHECKERS",
+    "path": "games/game-125/"
+  },
+  {
+    "id": "game-126",
+    "title": "MEME MANCALA",
+    "path": "games/game-126/"
+  },
+  {
+    "id": "game-127",
+    "title": "MEME FLOW",
+    "path": "games/game-127/"
+  },
+  {
+    "id": "game-128",
+    "title": "MEME TOWER",
+    "path": "games/game-128/"
+  },
+  {
+    "id": "game-129",
+    "title": "MEME RHYTHM",
+    "path": "games/game-129/"
+  },
+  {
+    "id": "game-130",
+    "title": "MEME SOKOBAN",
+    "path": "games/game-130/"
+  },
+  {
+    "id": "game-131",
+    "title": "MEME KENKEN",
+    "path": "games/game-131/"
+  },
+  {
+    "id": "game-132",
+    "title": "MEME LINKS",
+    "path": "games/game-132/"
+  },
+  {
+    "id": "game-133",
+    "title": "MEME LAUNCH",
+    "path": "games/game-133/"
+  },
+  {
+    "id": "game-134",
+    "title": "HEX MATCH",
+    "path": "games/game-134/"
+  },
+  {
+    "id": "game-135",
+    "title": "MEME BOGGLE",
+    "path": "games/game-135/"
+  },
+  {
+    "id": "game-136",
+    "title": "MEME CROSSWORD",
+    "path": "games/game-136/"
+  },
+  {
+    "id": "game-137",
+    "title": "MEME TANGRAM",
+    "path": "games/game-137/"
+  },
+  {
+    "id": "game-138",
+    "title": "MEME KAKURO",
+    "path": "games/game-138/"
+  },
+  {
+    "id": "game-139",
+    "title": "MEME CUT",
+    "path": "games/game-139/"
+  }
+]

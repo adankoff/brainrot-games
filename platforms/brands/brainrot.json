@@ -1,0 +1,33 @@
+{
+  "brandId": "brainrot",
+  "appName": "Brainrot Games",
+  "shortName": "BRG",
+  "bundleId": "com.brainrotgames.app",
+  "domain": "brainrotgames.com",
+  "colors": {
+    "primary": "#c8ff00",
+    "secondary": "#ff2d78",
+    "accent": "#00e5ff",
+    "background": "#0a0a0f",
+    "surface": "#16161f",
+    "text": "#f0f0f0"
+  },
+  "assets": {
+    "iconDir": "platforms/assets/brainrot"
+  },
+  "games": { "include": "all", "exclude": [] },
+  "watermark": "BRAINROT GAMES",
+  "monetization": {
+    "ads": {
+      "enabled": true,
+      "provider": "admob",
+      "interstitialId": { "android": "", "ios": "" },
+      "interstitialFrequency": 3
+    },
+    "iap": { "enabled": false, "removeAdsProductId": "remove_ads" }
+  },
+  "analytics": {
+    "provider": "firebase",
+    "measurementId": ""
+  }
+}

@@ -7,6 +7,7 @@
 import { getHighScore, setHighScore, setLastScore } from './score-manager.js';
 import { shareScore } from './share.js';
 import { formatScore } from './utils.js';
+import { initSkinSwitcher, getCurrentSkin, onSkinChange } from './skin-switcher.js';
 
 /**
  * @typedef {'menu'|'playing'|'game-over'} GameState
@@ -191,6 +192,9 @@ export class GameShell {
     this._buildMenuDOM();
     this._buildGameOverDOM();
 
+    // Initialize skin switcher (non-blocking — UI appears when ready)
+    initSkinSwitcher().catch(() => { /* skin system optional */ });
+
     // Transition to menu
     this.setState('menu');
   }
@@ -223,6 +227,25 @@ export class GameShell {
       logicalWidth: this._config.logicalWidth,
       logicalHeight: this._config.logicalHeight,
     };
+  }
+
+  /**
+   * Returns the currently active skin pack, or null if using default canvas rendering.
+   *
+   * @returns {import('./skin-manager.js').SkinPack|null}
+   */
+  getSkin() {
+    return getCurrentSkin();
+  }
+
+  /**
+   * Subscribe to skin change events.
+   *
+   * @param {Function} fn - Called with (SkinPack|null) when skin changes
+   * @returns {Function} unsubscribe
+   */
+  onSkinChange(fn) {
+    return onSkinChange(fn);
   }
 
   /**
@@ -304,6 +327,7 @@ export class GameShell {
     this._hideOverlay(this._menuOverlay);
     this._hideOverlay(this._gameoverOverlay);
     this.onStart();
+    window.dispatchEvent(new CustomEvent('brg:gamestart', { detail: { gameId: this._config.gameId } }));
     this._startLoop();
   }
 
@@ -340,6 +364,8 @@ export class GameShell {
     if (scoreLabelEl) scoreLabelEl.textContent = scoreLabel;
     if (hsEl) hsEl.textContent = `best: ${formatScore(this._highScore)}`;
     if (newRecordEl) newRecordEl.style.display = isNewHigh ? '' : 'none';
+
+    window.dispatchEvent(new CustomEvent('brg:gameover', { detail: { gameId: this._config.gameId, score, message, scoreLabel } }));
 
     // Animate score count-up
     if (scoreEl) {

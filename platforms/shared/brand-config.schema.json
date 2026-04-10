@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Brand Configuration",
+  "description": "Schema for Brainrot Games multi-platform brand configuration files",
+  "type": "object",
+  "required": [
+    "brandId",
+    "appName",
+    "bundleId",
+    "domain",
+    "colors",
+    "assets",
+    "games",
+    "watermark",
+    "monetization",
+    "analytics"
+  ],
+  "properties": {
+    "brandId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Unique lowercase identifier for the brand"
+    },
+    "appName": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display name of the application"
+    },
+    "shortName": {
+      "type": "string",
+      "maxLength": 12,
+      "description": "Short display name for home screen icons"
+    },
+    "bundleId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(\\.[a-z][a-z0-9]*)+$",
+      "description": "Reverse-domain bundle identifier"
+    },
+    "domain": {
+      "type": "string",
+      "description": "Primary domain for the brand"
+    },
+    "colors": {
+      "type": "object",
+      "required": ["primary", "background"],
+      "properties": {
+        "primary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "secondary": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "accent": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "background": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "surface": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "text": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+      },
+      "additionalProperties": false
+    },
+    "assets": {
+      "type": "object",
+      "required": ["iconDir"],
+      "properties": {
+        "iconDir": {
+          "type": "string",
+          "description": "Path to brand icon assets directory"
+        }
+      },
+      "additionalProperties": false
+    },
+    "games": {
+      "type": "object",
+      "required": ["include", "exclude"],
+      "properties": {
+        "include": {
+          "oneOf": [
+            { "type": "string", "const": "all" },
+            { "type": "array", "items": { "type": "string" } }
+          ],
+          "description": "Game IDs to include, or 'all'"
+        },
+        "exclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Game IDs to exclude"
+        }
+      },
+      "additionalProperties": false
+    },
+    "watermark": {
+      "type": "string",
+      "description": "Watermark text displayed in games"
+    },
+    "monetization": {
+      "type": "object",
+      "required": ["ads", "iap"],
+      "properties": {
+        "ads": {
+          "type": "object",
+          "required": ["enabled", "provider", "interstitialFrequency"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "provider": { "type": "string", "enum": ["admob", "unity", "none"] },
+            "interstitialId": {
+              "type": "object",
+              "properties": {
+                "android": { "type": "string" },
+                "ios": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "interstitialFrequency": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Show interstitial ad every N game completions"
+            }
+          },
+          "additionalProperties": false
+        },
+        "iap": {
+          "type": "object",
+          "required": ["enabled"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "removeAdsProductId": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "analytics": {
+      "type": "object",
+      "required": ["provider", "measurementId"],
+      "properties": {
+        "provider": { "type": "string", "enum": ["firebase", "plausible", "none"] },
+        "measurementId": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

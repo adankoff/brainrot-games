@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Meme-themed HTML5 browser games",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "npx live-server . --port=3000 --no-browser",
     "start": "npx live-server . --port=3000"
