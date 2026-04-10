@@ -1,0 +1,58 @@
+/* ==========================================================================
+   MEME CHECKERS -- Game-Specific Styles
+   ========================================================================== */
+
+/* Difficulty selector in menu */
+.difficulty-select {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.difficulty-select__btn {
+  padding: 6px 14px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.difficulty-select__btn:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.difficulty-select__btn--active {
+  border-color: #c8ff00;
+  color: #c8ff00;
+  background: rgba(200, 255, 0, 0.08);
+}
+
+/* HUD elements */
+.hud-btn {
+  position: absolute;
+  border: none;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  touch-action: manipulation;
+}
+
+.hud-btn:active {
+  background: rgba(0, 0, 0, 0.6);
+}

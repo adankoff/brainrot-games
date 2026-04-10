@@ -1,0 +1,20 @@
+/* MEME TOWER -- Game-specific styles */
+
+[data-theme="memetower"] {
+  --color-bg: #1a1a2e;
+  --color-accent: #ff6b35;
+  --color-text: #ffffff;
+}
+
+body[data-theme="memetower"] {
+  background: linear-gradient(180deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+.game-container {
+  position: relative;
+}
+
+#game-canvas {
+  border-radius: 4px;
+  box-shadow: 0 0 40px rgba(255, 107, 53, 0.15);
+}

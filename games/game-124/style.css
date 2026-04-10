@@ -1,0 +1,13 @@
+/* MEME THREES -- Game-specific styles */
+
+[data-theme="memethrees"] {
+  --color-bg: #1a1a2e;
+  --color-surface: #16213e;
+  --color-accent: #e94560;
+  --color-text: #eaeaea;
+  --color-text-secondary: #a0a0b0;
+}
+
+body[data-theme="memethrees"] {
+  background: #1a1a2e;
+}

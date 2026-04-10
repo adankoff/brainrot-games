@@ -1,0 +1,64 @@
+/* ==========================================================================
+   MEME RHYTHM -- Game-Specific Styles
+   ========================================================================== */
+
+/* Theme overrides */
+[data-theme="meme-rhythm"] {
+  --color-bg: #0a0a1a;
+  --color-surface: #12122a;
+  --color-text: #f0f0f0;
+  --color-accent: #ff00ff;
+  --color-accent-secondary: #00ffff;
+}
+
+/* Game container */
+.game-container {
+  background: #0a0a1a;
+}
+
+/* Menu screen tweaks */
+.menu-screen__title {
+  background: linear-gradient(135deg, #ff00ff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+/* Buttons */
+[data-theme="meme-rhythm"] .btn-primary {
+  background: linear-gradient(135deg, #ff00ff, #8800ff);
+  color: #fff;
+  border: none;
+}
+
+[data-theme="meme-rhythm"] .btn-primary:hover {
+  background: linear-gradient(135deg, #ff33ff, #aa22ff);
+}
+
+[data-theme="meme-rhythm"] .btn-secondary {
+  border-color: #ff00ff;
+  color: #ff00ff;
+}
+
+/* Game-over extras */
+.gameover-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.gameover-stat {
+  font-size: 0.75rem;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gameover-stat strong {
+  color: #fff;
+  display: block;
+  font-size: 1rem;
+}

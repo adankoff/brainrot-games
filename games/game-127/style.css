@@ -1,0 +1,48 @@
+/* MEME FLOW -- Game-specific styles */
+
+[data-theme="flow"] {
+  --accent: #00ffcc;
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #111133;
+}
+
+body[data-theme="flow"] {
+  background: var(--bg-primary);
+}
+
+.game-container {
+  position: relative;
+}
+
+/* Difficulty selector in menu */
+.difficulty-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.difficulty-btn {
+  padding: 6px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.difficulty-btn:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+
+.difficulty-btn.active {
+  border-color: var(--accent, #00ffcc);
+  color: var(--accent, #00ffcc);
+  background: rgba(0, 255, 204, 0.1);
+}
