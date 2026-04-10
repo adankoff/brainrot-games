@@ -1,1 +1,0 @@
-- [Brainrot Games Revenue Model Context](project_brainrot_games.md) — 2-game HTML5 browser game company, revenue model built Apr 2026, weighted EV ~$23.7K yr-1

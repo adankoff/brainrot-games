@@ -1,1 +1,0 @@
-- [Fresh Memes Research](project_fresh_memes_research.md) — 28 non-brainrot themes identified for game expansion, top 10 ranked, IP warnings flagged

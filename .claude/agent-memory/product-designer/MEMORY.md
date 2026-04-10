@@ -1,5 +1,0 @@
-- [Project context](project_brainrot_games.md) -- Brainrot Games project: casual HTML5 web games with meme themes, dark visual identity, mobile-first
-- [GDD-01 Flappy Tralalero](project_gdd01_flappy_tralalero.md) -- Game 01 design doc completed 2026-04-10, covers full spec for Italian brainrot Flappy Bird clone
-- [GDD-02 WHACK-A-ROT](project_gdd02_whackarot.md) -- Game 02 design doc completed 2026-04-10, 6 characters, Canvas primitives, 60s timer, combo system
-- [Architecture docs](project_architecture_complete.md) -- Three arch docs produced 2026-04-10: shared infra, game-01, game-02
-- [Batch 2 plan](project_batch2_plan.md) -- Games 06-08: Snake, 2048, Fruit Ninja with 3 theme variants each, covers all underused memes

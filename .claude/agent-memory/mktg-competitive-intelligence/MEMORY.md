@@ -1,1 +1,0 @@
-- [Brainrot Games Business Concept](project_brainrot_games_concept.md) — New HTML5 browser game studio reskinning casual mechanics with brainrot/meme themes; targeting Gen Z/Alpha via Poki, CrazyGames, TikTok
