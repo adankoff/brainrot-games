@@ -1,0 +1,45 @@
+/* ==========================================================================
+   FLOOD FILL -- Game-Specific Styles
+   ========================================================================== */
+
+/* Theme colors */
+[data-theme="flood-fill"] {
+  --accent: #00e5ff;
+  --accent-dim: #007a8a;
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+}
+
+/* Difficulty selector in menu */
+.difficulty-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.difficulty-btn {
+  padding: 8px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.difficulty-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.difficulty-btn.active {
+  border-color: var(--accent, #00e5ff);
+  color: var(--accent, #00e5ff);
+  background: rgba(0, 229, 255, 0.1);
+}

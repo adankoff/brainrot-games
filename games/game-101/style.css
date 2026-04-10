@@ -1,0 +1,54 @@
+/* ==========================================================================
+   MEME TAC TOE -- Game-Specific Styles
+   Minimal overrides on top of shared/styles.css + design-system.css.
+   ========================================================================== */
+
+/* ---- Game container positions overlays relative to canvas ---- */
+.game-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Difficulty Selector ---- */
+.difficulty-select {
+  display: flex;
+  gap: var(--space-xs);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--space-xs) 0;
+}
+
+.difficulty-select__btn {
+  padding: 6px 16px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-text-tertiary);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
+  text-transform: lowercase;
+}
+
+.difficulty-select__btn:hover {
+  transform: scale(1.05);
+}
+
+.difficulty-select__btn--selected {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary-glow);
+}
+
+/* ---- Round tally on game-over ---- */
+.round-tally {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: var(--space-xs) 0;
+  line-height: 1.6;
+}

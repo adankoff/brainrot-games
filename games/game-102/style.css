@@ -1,0 +1,47 @@
+/* ==========================================================================
+   MEME MIND -- Game-specific styles
+   ========================================================================== */
+
+[data-theme="mememind"] {
+  --accent: #c8ff00;
+  --accent-dim: #6b8700;
+  --bg-dark: #0a0a12;
+  --bg-card: #141422;
+}
+
+body[data-theme="mememind"] {
+  background: var(--bg-dark);
+}
+
+/* Difficulty selector in menu */
+.difficulty-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.difficulty-btn {
+  padding: 6px 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.difficulty-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.difficulty-btn.active {
+  border-color: var(--accent, #c8ff00);
+  color: var(--accent, #c8ff00);
+  background: rgba(200, 255, 0, 0.08);
+}
