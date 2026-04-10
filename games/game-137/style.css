@@ -1,0 +1,20 @@
+/* ==========================================================================
+   MEME TANGRAM -- Game-specific styles
+   ========================================================================== */
+
+[data-theme="tangram"] {
+  --accent: #ff6b35;
+  --accent-glow: rgba(255, 107, 53, 0.3);
+}
+
+.game-container {
+  position: relative;
+}
+
+#game-canvas {
+  cursor: grab;
+}
+
+#game-canvas:active {
+  cursor: grabbing;
+}

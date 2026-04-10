@@ -1,0 +1,19 @@
+/* MEME CROSSWORD -- Game-specific styles */
+
+[data-theme="meme-crossword"] {
+  --color-bg: #1a1a2e;
+  --color-surface: #16213e;
+  --color-accent: #e94560;
+  --color-accent-alt: #0f3460;
+  --color-text: #eee;
+  --color-text-secondary: #aaa;
+}
+
+/* Override body overflow for keyboard area */
+html, body {
+  overflow: hidden !important;
+}
+
+.game-container {
+  position: relative;
+}

@@ -1,0 +1,17 @@
+/* MEME CUT -- Game-specific styles */
+
+[data-theme="meme-cut"] {
+  --bg-primary: #1a2a1a;
+  --bg-secondary: #0d1a0d;
+  --accent: #44dd44;
+  --accent-glow: rgba(68, 221, 68, 0.3);
+}
+
+body[data-theme="meme-cut"] {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+#game-canvas {
+  border-radius: 8px;
+  box-shadow: 0 0 30px var(--accent-glow);
+}
