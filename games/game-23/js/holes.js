@@ -8,6 +8,7 @@ import {
   RISE_DURATION, SINK_DURATION, HIT_ANIM_DURATION,
 } from './constants.js';
 import { lerp } from '../../shared/utils.js';
+import { getCurrentSkin } from '../../shared/skin-switcher.js';
 
 export class Hole {
   /**
@@ -173,7 +174,18 @@ export class Hole {
       }
 
       // Draw character centered at (x, y - 40)
-      this.character.draw(ctx, x, y - 40, time);
+      const skin = getCurrentSkin();
+      const charY = y - 40;
+      if (skin) {
+        const charId = this.character.id;
+        const roleMap = { tralalero: 'protagonist', bombardiro: 'antagonist' };
+        const role = roleMap[charId] || `supporting-${String(Object.keys(roleMap).length + 1).padStart(2, '0')}`;
+        if (!skin.drawCentered(ctx, role, x, charY, 70, 70)) {
+          this.character.draw(ctx, x, charY, time);
+        }
+      } else {
+        this.character.draw(ctx, x, charY, time);
+      }
 
       // Hit flash overlay
       if (this.hitFlashAlpha > 0) {

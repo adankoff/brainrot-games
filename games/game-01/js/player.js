@@ -4,6 +4,7 @@
  */
 
 import { CHARACTERS } from './characters.js';
+import { getCurrentSkin } from '../../shared/skin-switcher.js';
 import {
   GRAVITY, TAP_IMPULSE, TERMINAL_VELOCITY,
   PLAYER_X, PLAYER_HITBOX_WIDTH, PLAYER_HITBOX_HEIGHT,
@@ -78,13 +79,21 @@ export class Player {
    * @param {CanvasRenderingContext2D} ctx
    */
   draw(ctx) {
-    const charDef = CHARACTERS[this.characterId];
-    if (!charDef) return;
-
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate(this.rotation);
-    charDef.draw(ctx, this.animFrame, this.flapTimer > 0);
+
+    // Try skin image first, fall back to canvas draw
+    const skin = getCurrentSkin();
+    if (skin && skin.drawAtOrigin(ctx, 'protagonist', 40, 40)) {
+      // Skin image drawn successfully
+    } else {
+      const charDef = CHARACTERS[this.characterId];
+      if (charDef) {
+        charDef.draw(ctx, this.animFrame, this.flapTimer > 0);
+      }
+    }
+
     ctx.restore();
   }
 

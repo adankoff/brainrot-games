@@ -1,0 +1,57 @@
+{
+  "id": "skibidi",
+  "name": "SKIBIDI",
+  "description": "Skibidi Toilet, Cameraman, and the Skibidi universe",
+
+  "characters": {
+    "protagonist": {
+      "file": "protagonist.png",
+      "name": "Cameraman",
+      "shortName": "Camera",
+      "emoji": "📷"
+    },
+    "antagonist": {
+      "file": "antagonist.png",
+      "name": "Skibidi Toilet",
+      "shortName": "Skibidi",
+      "emoji": "🚽"
+    },
+    "supporting": [
+      { "file": "supporting-01.png", "name": "Speaker Man", "shortName": "Speaker", "emoji": "🔊" },
+      { "file": "supporting-02.png", "name": "TV Man", "shortName": "TV", "emoji": "📺" },
+      { "file": "supporting-03.png", "name": "G-Man Toilet", "shortName": "G-Man", "emoji": "💀" },
+      { "file": "supporting-04.png", "name": "Scientist Toilet", "shortName": "Scientist", "emoji": "🔬" },
+      { "file": "supporting-05.png", "name": "Titan Cameraman", "shortName": "Titan Cam", "emoji": "🤖" },
+      { "file": "supporting-06.png", "name": "Titan Speaker", "shortName": "Titan Spk", "emoji": "📡" },
+      { "file": "supporting-07.png", "name": "Plunger Man", "shortName": "Plunger", "emoji": "🪠" },
+      { "file": "supporting-08.png", "name": "Laser Cameraman", "shortName": "Laser", "emoji": "🔴" },
+      { "file": "supporting-09.png", "name": "Clock Man", "shortName": "Clock", "emoji": "🕐" },
+      { "file": "supporting-10.png", "name": "Astro Toilet", "shortName": "Astro", "emoji": "🚀" }
+    ]
+  },
+
+  "items": {
+    "collectible": { "file": "collectible.png", "name": "Camera Lens", "emoji": "📸" },
+    "collectibles": [
+      { "file": "collectible-01.png", "name": "Antenna", "emoji": "📡" },
+      { "file": "collectible-02.png", "name": "Plunger", "emoji": "🪠" },
+      { "file": "collectible-03.png", "name": "Battery", "emoji": "🔋" },
+      { "file": "collectible-04.png", "name": "Circuit Board", "emoji": "💾" },
+      { "file": "collectible-05.png", "name": "Upgrade Core", "emoji": "💎" }
+    ],
+    "obstacles": [
+      { "file": "obstacle-01.png", "name": "Toilet Barricade", "emoji": "🚽" },
+      { "file": "obstacle-02.png", "name": "Flying Toilet", "emoji": "🪽" },
+      { "file": "obstacle-03.png", "name": "Toilet Tower", "emoji": "🏗️" }
+    ],
+    "projectile": { "file": "projectile.png", "name": "Camera Flash", "emoji": "📸" },
+    "target": { "file": "target.png", "name": "Toilet Bowl", "emoji": "🚽" }
+  },
+
+  "palette": {
+    "primary": "#4d7dff",
+    "secondary": "#ff4d4d",
+    "bgTop": "#0a0a1a",
+    "bgBottom": "#050510"
+  }
+}

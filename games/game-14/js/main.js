@@ -8,6 +8,7 @@ import { createInputManager } from '../../shared/input-manager.js';
 import { initAudio, playSound, registerSound } from '../../shared/sound-manager.js';
 import { getData, setData } from '../../shared/score-manager.js';
 import { clamp } from '../../shared/utils.js';
+import { getCurrentSkin } from '../../shared/skin-switcher.js';
 import { THEMES, getThemeById } from './themes.js';
 import {
   generateLevel,
@@ -179,7 +180,20 @@ shell.onRender = (ctx) => {
   // ---- Player ----
   if (!deathTriggered || deathFreezeTimer > DEATH_FREEZE_FRAMES - 3) {
     const pos = getPlayerWorldPos(player);
-    currentTheme.drawPlayer(ctx, pos.x, pos.y, pos.size, pos.rotation, progress);
+    const skin = getCurrentSkin();
+    if (skin) {
+      ctx.save();
+      ctx.translate(pos.x, pos.y);
+      ctx.rotate(pos.rotation);
+      if (!skin.drawAtOrigin(ctx, 'protagonist', pos.size, pos.size)) {
+        ctx.restore();
+        currentTheme.drawPlayer(ctx, pos.x, pos.y, pos.size, pos.rotation, progress);
+      } else {
+        ctx.restore();
+      }
+    } else {
+      currentTheme.drawPlayer(ctx, pos.x, pos.y, pos.size, pos.rotation, progress);
+    }
   }
 
   // ---- Death particles ----

@@ -4,6 +4,8 @@
  * Cloned from game-04 with theme-aware gravity support.
  */
 
+import { getCurrentSkin } from '../../shared/skin-switcher.js';
+
 // ---- Constants ----
 
 const DEFAULT_GRAVITY = 0.6;
@@ -104,6 +106,10 @@ export class Player {
   }
 
   draw(ctx, theme) {
+    const skin = getCurrentSkin();
+    if (skin && skin.drawAt(ctx, 'protagonist', this.x, this.y, this.w, this.h)) {
+      return;
+    }
     theme.drawPlayer(ctx, this.x, this.y, this.w, this.h, this.frame);
   }
 }
@@ -165,6 +171,13 @@ export class Obstacle {
   }
 
   draw(ctx, theme) {
+    const skin = getCurrentSkin();
+    if (skin) {
+      const roleMap = { ground: 'obstacle-01', flying: 'obstacle-02', tall: 'obstacle-03' };
+      const role = roleMap[this.type] || 'antagonist';
+      if (skin.drawAt(ctx, role, this.x, this.y, this.w, this.h)) return;
+      if (skin.drawAt(ctx, 'antagonist', this.x, this.y, this.w, this.h)) return;
+    }
     switch (this.type) {
       case 'ground':
         theme.drawObstacleGround(ctx, this.x, this.y, this.w, this.h);
@@ -222,6 +235,10 @@ export class Coin {
 
   draw(ctx, theme) {
     if (this.collected) return;
+    const skin = getCurrentSkin();
+    if (skin && skin.drawCentered(ctx, 'collectible', this.x, this.y, this.r * 2.5, this.r * 2.5)) {
+      return;
+    }
     theme.drawCoin(ctx, this.x, this.y, this.r, this.frame);
   }
 }

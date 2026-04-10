@@ -1,0 +1,57 @@
+{
+  "id": "sigma",
+  "name": "SIGMA",
+  "description": "Sigma males, mewing, and the grindset lifestyle",
+
+  "characters": {
+    "protagonist": {
+      "file": "protagonist.png",
+      "name": "Sigma Male",
+      "shortName": "Sigma",
+      "emoji": "🗿"
+    },
+    "antagonist": {
+      "file": "antagonist.png",
+      "name": "NPC",
+      "shortName": "NPC",
+      "emoji": "🧍"
+    },
+    "supporting": [
+      { "file": "supporting-01.png", "name": "Mewer", "shortName": "Mewer", "emoji": "🤫" },
+      { "file": "supporting-02.png", "name": "Looksmaxxer", "shortName": "Maxxer", "emoji": "💪" },
+      { "file": "supporting-03.png", "name": "Rizz God", "shortName": "Rizz", "emoji": "😏" },
+      { "file": "supporting-04.png", "name": "Alpha Male", "shortName": "Alpha", "emoji": "🦁" },
+      { "file": "supporting-05.png", "name": "Gym Bro", "shortName": "Gym", "emoji": "🏋️" },
+      { "file": "supporting-06.png", "name": "Grindset CEO", "shortName": "CEO", "emoji": "💼" },
+      { "file": "supporting-07.png", "name": "Stoic King", "shortName": "Stoic", "emoji": "👑" },
+      { "file": "supporting-08.png", "name": "Jawline Chad", "shortName": "Chad", "emoji": "🗿" },
+      { "file": "supporting-09.png", "name": "Cold Shower Guy", "shortName": "Cold", "emoji": "🥶" },
+      { "file": "supporting-10.png", "name": "Dopamine Detoxer", "shortName": "Detox", "emoji": "🧘" }
+    ]
+  },
+
+  "items": {
+    "collectible": { "file": "collectible.png", "name": "Aura Point", "emoji": "✨" },
+    "collectibles": [
+      { "file": "collectible-01.png", "name": "Rizz Crystal", "emoji": "💎" },
+      { "file": "collectible-02.png", "name": "Sigma Coin", "emoji": "🪙" },
+      { "file": "collectible-03.png", "name": "W Token", "emoji": "🏆" },
+      { "file": "collectible-04.png", "name": "Protein Shake", "emoji": "🥤" },
+      { "file": "collectible-05.png", "name": "Aura Orb", "emoji": "🔮" }
+    ],
+    "obstacles": [
+      { "file": "obstacle-01.png", "name": "L Wall", "emoji": "🧱" },
+      { "file": "obstacle-02.png", "name": "Cap Detector", "emoji": "🧢" },
+      { "file": "obstacle-03.png", "name": "Cringe Zone", "emoji": "☠️" }
+    ],
+    "projectile": { "file": "projectile.png", "name": "Ratio Ball", "emoji": "💬" },
+    "target": { "file": "target.png", "name": "NPC Crowd", "emoji": "🎯" }
+  },
+
+  "palette": {
+    "primary": "#b44dff",
+    "secondary": "#c8ff00",
+    "bgTop": "#1a0a2e",
+    "bgBottom": "#0d0015"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "italian-brainrot",
+  "name": "ITALIAN BRAINROT",
+  "description": "Tralalero, Bombardiro, and the Italian brainrot crew",
+
+  "characters": {
+    "protagonist": {
+      "file": "protagonist.png",
+      "name": "Tralalero Tralala",
+      "shortName": "Tralalero",
+      "emoji": "🦈"
+    },
+    "antagonist": {
+      "file": "antagonist.png",
+      "name": "Bombardiro Crocodilo",
+      "shortName": "Bombardiro",
+      "emoji": "🐊"
+    },
+    "supporting": [
+      { "file": "supporting-01.png", "name": "Lirili Larila", "shortName": "Lirili", "emoji": "🦋" },
+      { "file": "supporting-02.png", "name": "Tung Tung Sahur", "shortName": "TungTung", "emoji": "🥁" },
+      { "file": "supporting-03.png", "name": "Cappuccino Assassino", "shortName": "Cappuccino", "emoji": "☕" },
+      { "file": "supporting-04.png", "name": "Brr Brr Patapim", "shortName": "Patapim", "emoji": "🎵" },
+      { "file": "supporting-05.png", "name": "Bombombini Gusini", "shortName": "Bombombini", "emoji": "🪿" },
+      { "file": "supporting-06.png", "name": "Chimpanzini Bananini", "shortName": "Chimpanzini", "emoji": "🐒" },
+      { "file": "supporting-07.png", "name": "Glorbo Fruttodrillo", "shortName": "Glorbo", "emoji": "🍉" },
+      { "file": "supporting-08.png", "name": "Spaghettini Macaronini", "shortName": "Spaghettini", "emoji": "🍝" },
+      { "file": "supporting-09.png", "name": "La Vaca Saturno Saturnita", "shortName": "Saturno", "emoji": "🪐" },
+      { "file": "supporting-10.png", "name": "Cocofanto Elefanto", "shortName": "Cocofanto", "emoji": "🐘" }
+    ]
+  },
+
+  "items": {
+    "collectible": { "file": "collectible.png", "name": "Brainrot Token", "emoji": "🧠" },
+    "collectibles": [
+      { "file": "collectible-01.png", "name": "Pasta", "emoji": "🍝" },
+      { "file": "collectible-02.png", "name": "Pizza", "emoji": "🍕" },
+      { "file": "collectible-03.png", "name": "Gelato", "emoji": "🍨" },
+      { "file": "collectible-04.png", "name": "Espresso", "emoji": "☕" },
+      { "file": "collectible-05.png", "name": "Mozzarella", "emoji": "🧀" }
+    ],
+    "obstacles": [
+      { "file": "obstacle-01.png", "name": "Cursed Colosseum", "emoji": "🏛️" },
+      { "file": "obstacle-02.png", "name": "Flying Gondola", "emoji": "🛶" },
+      { "file": "obstacle-03.png", "name": "Leaning Tower", "emoji": "🗼" }
+    ],
+    "projectile": { "file": "projectile.png", "name": "Meatball", "emoji": "🧆" },
+    "target": { "file": "target.png", "name": "Pasta Bowl", "emoji": "🍝" }
+  },
+
+  "palette": {
+    "primary": "#ff3838",
+    "secondary": "#2ecc71",
+    "bgTop": "#1a0a0a",
+    "bgBottom": "#0a0505"
+  }
+}

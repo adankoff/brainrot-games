@@ -1,0 +1,57 @@
+{
+  "id": "anime",
+  "name": "ANIME",
+  "description": "Anime-styled characters and items",
+
+  "characters": {
+    "protagonist": {
+      "file": "protagonist.png",
+      "name": "Hero-kun",
+      "shortName": "Hero",
+      "emoji": "⚔️"
+    },
+    "antagonist": {
+      "file": "antagonist.png",
+      "name": "Dark Lord",
+      "shortName": "Dark",
+      "emoji": "😈"
+    },
+    "supporting": [
+      { "file": "supporting-01.png", "name": "Cat Girl", "shortName": "Neko", "emoji": "🐱" },
+      { "file": "supporting-02.png", "name": "Mecha Pilot", "shortName": "Pilot", "emoji": "🤖" },
+      { "file": "supporting-03.png", "name": "Shrine Maiden", "shortName": "Miko", "emoji": "⛩️" },
+      { "file": "supporting-04.png", "name": "Samurai", "shortName": "Samurai", "emoji": "🗡️" },
+      { "file": "supporting-05.png", "name": "Magical Girl", "shortName": "Mahou", "emoji": "🌟" },
+      { "file": "supporting-06.png", "name": "Ninja", "shortName": "Ninja", "emoji": "🥷" },
+      { "file": "supporting-07.png", "name": "School President", "shortName": "Prez", "emoji": "📋" },
+      { "file": "supporting-08.png", "name": "Rival", "shortName": "Rival", "emoji": "🔥" },
+      { "file": "supporting-09.png", "name": "Spirit Fox", "shortName": "Kitsune", "emoji": "🦊" },
+      { "file": "supporting-10.png", "name": "Dragon Sage", "shortName": "Sage", "emoji": "🐉" }
+    ]
+  },
+
+  "items": {
+    "collectible": { "file": "collectible.png", "name": "Power Crystal", "emoji": "💎" },
+    "collectibles": [
+      { "file": "collectible-01.png", "name": "Onigiri", "emoji": "🍙" },
+      { "file": "collectible-02.png", "name": "Ramen", "emoji": "🍜" },
+      { "file": "collectible-03.png", "name": "Sakura Petal", "emoji": "🌸" },
+      { "file": "collectible-04.png", "name": "Shuriken", "emoji": "🌟" },
+      { "file": "collectible-05.png", "name": "Scroll", "emoji": "📜" }
+    ],
+    "obstacles": [
+      { "file": "obstacle-01.png", "name": "Dark Energy Wall", "emoji": "🖤" },
+      { "file": "obstacle-02.png", "name": "Cursed Spirit", "emoji": "👻" },
+      { "file": "obstacle-03.png", "name": "Demon Gate", "emoji": "⛩️" }
+    ],
+    "projectile": { "file": "projectile.png", "name": "Energy Blast", "emoji": "💥" },
+    "target": { "file": "target.png", "name": "Training Dummy", "emoji": "🎯" }
+  },
+
+  "palette": {
+    "primary": "#ff69b4",
+    "secondary": "#00bfff",
+    "bgTop": "#1a0a20",
+    "bgBottom": "#0a0510"
+  }
+}

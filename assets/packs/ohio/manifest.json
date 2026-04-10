@@ -1,0 +1,57 @@
+{
+  "id": "ohio",
+  "name": "OHIO",
+  "description": "Only in Ohio - the cursed state and its creatures",
+
+  "characters": {
+    "protagonist": {
+      "file": "protagonist.png",
+      "name": "Ohio Survivor",
+      "shortName": "Survivor",
+      "emoji": "🏃"
+    },
+    "antagonist": {
+      "file": "antagonist.png",
+      "name": "Ohio Final Boss",
+      "shortName": "Boss",
+      "emoji": "👹"
+    },
+    "supporting": [
+      { "file": "supporting-01.png", "name": "Cursed Corn", "shortName": "Corn", "emoji": "🌽" },
+      { "file": "supporting-02.png", "name": "Ohio Portal", "shortName": "Portal", "emoji": "🌀" },
+      { "file": "supporting-03.png", "name": "Buckeye Beast", "shortName": "Buckeye", "emoji": "🌰" },
+      { "file": "supporting-04.png", "name": "Flatland Phantom", "shortName": "Phantom", "emoji": "👻" },
+      { "file": "supporting-05.png", "name": "Cornfield Crawler", "shortName": "Crawler", "emoji": "🕷️" },
+      { "file": "supporting-06.png", "name": "Rust Belt Rogue", "shortName": "Rogue", "emoji": "🦾" },
+      { "file": "supporting-07.png", "name": "Lake Erie Monster", "shortName": "Lake Mon", "emoji": "🐉" },
+      { "file": "supporting-08.png", "name": "Cleveland Cryptid", "shortName": "Cryptid", "emoji": "🦇" },
+      { "file": "supporting-09.png", "name": "Akron Anomaly", "shortName": "Anomaly", "emoji": "👽" },
+      { "file": "supporting-10.png", "name": "Columbus Chimera", "shortName": "Chimera", "emoji": "🐲" }
+    ]
+  },
+
+  "items": {
+    "collectible": { "file": "collectible.png", "name": "Buckeye", "emoji": "🌰" },
+    "collectibles": [
+      { "file": "collectible-01.png", "name": "Corn Kernel", "emoji": "🌽" },
+      { "file": "collectible-02.png", "name": "Portal Shard", "emoji": "🔮" },
+      { "file": "collectible-03.png", "name": "Ohio Essence", "emoji": "⭐" },
+      { "file": "collectible-04.png", "name": "Survival Kit", "emoji": "🎒" },
+      { "file": "collectible-05.png", "name": "Escape Route Map", "emoji": "🗺️" }
+    ],
+    "obstacles": [
+      { "file": "obstacle-01.png", "name": "Cursed Corn Stalk", "emoji": "🌽" },
+      { "file": "obstacle-02.png", "name": "Ohio Portal", "emoji": "🌀" },
+      { "file": "obstacle-03.png", "name": "Welcome to Ohio Sign", "emoji": "🪧" }
+    ],
+    "projectile": { "file": "projectile.png", "name": "Corn Cob", "emoji": "🌽" },
+    "target": { "file": "target.png", "name": "Portal", "emoji": "🌀" }
+  },
+
+  "palette": {
+    "primary": "#ff6b2b",
+    "secondary": "#b44dff",
+    "bgTop": "#2a1a3a",
+    "bgBottom": "#1a0a2a"
+  }
+}

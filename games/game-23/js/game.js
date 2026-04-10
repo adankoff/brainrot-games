@@ -4,6 +4,7 @@
  */
 
 import { CHARACTER_TYPES } from './characters.js';
+import { getCurrentSkin } from '../../shared/skin-switcher.js';
 import {
   getDisplayTime, getSpawnInterval, getMaxActive, getPenaltyWeight,
   ROUND_DURATION,

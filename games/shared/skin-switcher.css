@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Brainrot Games -- Skin Switcher UI
+   Floating button + pack picker overlay.
+   ========================================================================== */
+
+/* ---- Floating toggle button ---- */
+
+.skin-switcher-btn {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 9000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  background: rgba(20, 20, 30, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #f0f0f0;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, border-color 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.skin-switcher-btn:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.skin-switcher-btn:active {
+  transform: scale(0.95);
+}
+
+.skin-switcher-btn--active {
+  border-color: var(--color-primary, #c8ff00);
+  box-shadow: 0 0 12px rgba(200, 255, 0, 0.3);
+}
+
+/* ---- Picker overlay ---- */
+
+.skin-picker-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9001;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  touch-action: manipulation;
+}
+
+.skin-picker-overlay--open {
+  display: flex;
+}
+
+/* ---- Picker panel ---- */
+
+.skin-picker {
+  width: 100%;
+  max-width: 480px;
+  max-height: 70vh;
+  background: rgba(18, 18, 28, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: skin-picker-slide-up 0.2s ease-out;
+}
+
+@keyframes skin-picker-slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* ---- Header ---- */
+
+.skin-picker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.skin-picker__title {
+  font-family: var(--font-display, 'Space Grotesk', system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #f0f0f0;
+  margin: 0;
+}
+
+.skin-picker__close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: #a0a0a0;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.skin-picker__close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #f0f0f0;
+}
+
+/* ---- Pack list ---- */
+
+.skin-picker__list {
+  overflow-y: auto;
+  padding: 12px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---- Default (no skin) option ---- */
+
+.skin-picker__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.skin-picker__item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.skin-picker__item--active {
+  border-color: var(--color-primary, #c8ff00);
+  background: rgba(200, 255, 0, 0.06);
+}
+
+.skin-picker__item--active:hover {
+  background: rgba(200, 255, 0, 0.08);
+}
+
+/* ---- Pack thumbnail ---- */
+
+.skin-picker__thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+}
+
+.skin-picker__thumb--default {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #606060;
+}
+
+/* ---- Pack info ---- */
+
+.skin-picker__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.skin-picker__name {
+  font-family: var(--font-display, 'Space Grotesk', system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #f0f0f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skin-picker__desc {
+  font-size: 11px;
+  color: #808090;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Active indicator ---- */
+
+.skin-picker__check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.skin-picker__item--active .skin-picker__check {
+  border-color: var(--color-primary, #c8ff00);
+  background: var(--color-primary, #c8ff00);
+  color: #0a0a0f;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ---- Empty state ---- */
+
+.skin-picker__empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: #606070;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---- Safe area for bottom-nav phones ---- */
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .skin-picker {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .skin-switcher-btn {
+    bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+}

@@ -516,6 +516,143 @@
 }
 
 
+/* --- Skinnable Games Section ---------------------------------------------- */
+
+.skin-games-grid {
+  max-width: 1100px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.skin-game-card {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.skin-game-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.skin-game-card__preview {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(200, 255, 0, 0.04) 0%, rgba(0, 229, 255, 0.04) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.skin-game-card__icon {
+  font-size: 48px;
+  line-height: 1;
+  filter: grayscale(0.2);
+}
+
+.skin-game-card__body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.skin-game-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.skin-game-card__meta {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  margin: 0;
+}
+
+.skin-game-card__skins {
+  margin-top: var(--space-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skin-game-card__label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: var(--weight-semibold);
+}
+
+.skin-game-card__select {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-md);
+  padding-right: var(--space-xl);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23808090' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 12px;
+}
+
+.skin-game-card__select:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.skin-game-card__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(200, 255, 0, 0.15);
+}
+
+.skin-game-card__select option {
+  background: #1a1a2e;
+  color: #f0f0f0;
+}
+
+.skin-game-card__play {
+  margin-top: var(--space-sm);
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+.skin-games-note {
+  max-width: 1100px;
+  margin-inline: auto;
+  margin-top: var(--space-xl);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  text-align: center;
+}
+
+.skin-games-note code {
+  font-family: var(--font-mono, 'SF Mono', 'Fira Code', monospace);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+}
+
+
 /* --- About Section ------------------------------------------------------- */
 .about {
   position: relative;
@@ -679,6 +816,11 @@
 
   .about__mission {
     font-size: var(--text-xl);
+  }
+
+  .skin-games-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
   }
 }
 

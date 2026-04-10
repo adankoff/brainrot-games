@@ -1,0 +1,57 @@
+{
+  "id": "splatoon",
+  "name": "SPLATOON",
+  "description": "Inklings, Octolings, and splat-themed visuals",
+
+  "characters": {
+    "protagonist": {
+      "file": "protagonist.png",
+      "name": "Inkling",
+      "shortName": "Inkling",
+      "emoji": "🦑"
+    },
+    "antagonist": {
+      "file": "antagonist.png",
+      "name": "Octoling",
+      "shortName": "Octoling",
+      "emoji": "🐙"
+    },
+    "supporting": [
+      { "file": "supporting-01.png", "name": "Judd", "shortName": "Judd", "emoji": "🐱" },
+      { "file": "supporting-02.png", "name": "Li'l Judd", "shortName": "Lil Judd", "emoji": "🐈" },
+      { "file": "supporting-03.png", "name": "DJ Octavio", "shortName": "Octavio", "emoji": "🎧" },
+      { "file": "supporting-04.png", "name": "Callie", "shortName": "Callie", "emoji": "🎤" },
+      { "file": "supporting-05.png", "name": "Marie", "shortName": "Marie", "emoji": "🎶" },
+      { "file": "supporting-06.png", "name": "Pearl", "shortName": "Pearl", "emoji": "👑" },
+      { "file": "supporting-07.png", "name": "Marina", "shortName": "Marina", "emoji": "🎹" },
+      { "file": "supporting-08.png", "name": "Shiver", "shortName": "Shiver", "emoji": "❄️" },
+      { "file": "supporting-09.png", "name": "Frye", "shortName": "Frye", "emoji": "🌶️" },
+      { "file": "supporting-10.png", "name": "Big Man", "shortName": "Big Man", "emoji": "🐡" }
+    ]
+  },
+
+  "items": {
+    "collectible": { "file": "collectible.png", "name": "Power Egg", "emoji": "🥚" },
+    "collectibles": [
+      { "file": "collectible-01.png", "name": "Ink Tank", "emoji": "🧴" },
+      { "file": "collectible-02.png", "name": "Sardinium", "emoji": "🐟" },
+      { "file": "collectible-03.png", "name": "Zapfish", "emoji": "⚡" },
+      { "file": "collectible-04.png", "name": "Golden Egg", "emoji": "🥇" },
+      { "file": "collectible-05.png", "name": "Scroll", "emoji": "📜" }
+    ],
+    "obstacles": [
+      { "file": "obstacle-01.png", "name": "Ink Wall", "emoji": "🎨" },
+      { "file": "obstacle-02.png", "name": "Octo Drone", "emoji": "🤖" },
+      { "file": "obstacle-03.png", "name": "Ink Mine", "emoji": "💣" }
+    ],
+    "projectile": { "file": "projectile.png", "name": "Ink Blob", "emoji": "🎨" },
+    "target": { "file": "target.png", "name": "Splat Target", "emoji": "🎯" }
+  },
+
+  "palette": {
+    "primary": "#ff5500",
+    "secondary": "#00cc66",
+    "bgTop": "#1a0a15",
+    "bgBottom": "#0a0508"
+  }
+}
