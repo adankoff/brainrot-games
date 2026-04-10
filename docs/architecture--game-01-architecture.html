@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game 01 Architecture — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">architecture/game-01-architecture.md</div>
+    <div class="doc-content"><h1>Game 01: FLAPPY TRALALERO -- Implementation Architecture</h1>
+<p><strong>Source GDD:</strong> <code>/design-docs/GDD-01.md</code>
+<strong>Shared infrastructure:</strong> <code>/architecture/ARCHITECTURE.md</code></p>
+<hr>
+<h2>1. File Listing</h2>
+<pre><code>games/game-01/
+  index.html            Entry point. Canvas, overlay containers, module script tag.
+                        Body: data-theme=&quot;italian-brainrot&quot;
+                        Loads: ../shared/styles.css, style.css, js/main.js (type=module)
+
+  style.css             Game-specific overrides. Positions character select row,
+                        HUD canvas overlay, ready-state &quot;tap to flap&quot; hint text.
+                        Minimal -- most styling from shared/styles.css + design-system.css.
+
+  js/
+    main.js             Entry point. Creates GameShell, InputManager, registers sounds.
+                        Wires onStart/onUpdate/onRender/onGameOver callbacks.
+                        Manages character select UI in menu. Initializes audio on first gesture.
+
+    player.js           Player entity class. Gravity, velocity, position, rotation,
+                        flap animation, hitbox, draw delegation to characters.js.
+
+    obstacle.js         Obstacle pair class. Horizontal scrolling, gap generation,
+                        type assignment, themed draw methods, hitbox getters.
+
+    background.js       3-layer parallax background. Scrolling offsets, biome tinting,
+                        floor rendering, skyline silhouettes, decorative shapes.
+
+    characters.js       7 character definitions. Each: draw(ctx, x, y, animState),
+                        flapSound config, deathSound config, unlock condition.
+                        Exported as a keyed object for lookup by character ID.
+
+    constants.js        All tuning values, colors, text content. Grouped by category:
+                        PHYSICS, SCORING, DIFFICULTY, OBSTACLES, CHARACTERS, COLORS,
+                        MESSAGES, DIMENSIONS, TIMING.
+
+    ui.js               Game-specific UI beyond what GameShell provides:
+                        character select row in menu, &quot;tap to flap&quot; ready hint,
+                        score pop/flash effects (on-canvas), unlock notifications.
+</code></pre>
+<hr>
+<h2>2. Game State Machine</h2>
+<p>Flappy Tralalero has 4 internal states. The GameShell provides 3 states (menu, playing, game-over). The game splits the shell&#39;s <code>playing</code> state into two sub-states internally: <code>ready</code> and <code>active</code>.</p>
+<pre><code>                        +-----------+
+              +--------&gt;|   MENU    |&lt;-----------+
+              |         +-----+-----+            |
+              |               |                  |
+              |         tap &quot;start game&quot;         |
+              |               |                  |
+              |         +-----v-----+            |
+              |         |   READY   |            |
+              |         | (sub-state|            |
+              |         |  of shell |            |
+              |         | &#39;playing&#39;)|            |
+              |         +-----+-----+            |
+              |               |                  |
+              |          first tap               |
+              |               |                  |
+              |         +-----v-----+            |
+              |         |  ACTIVE   |            |
+              |         | (sub-state|            |
+              |         |  of shell |            |
+              |         | &#39;playing&#39;)|            |
+              |         +-----+-----+            |
+              |               |                  |
+              |          collision                |
+              |               |                  |
+              |         +-----v-----+            |
+              +---------| GAME OVER |------------+
+               &quot;menu&quot;   +-----------+   &quot;retry&quot;
+</code></pre>
+<h3>State Behaviors</h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Shell State</th>
+<th>What Happens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MENU</strong></td>
+<td><code>&#39;menu&#39;</code></td>
+<td>Shell shows menu overlay. Background drawn on canvas behind overlay (idle character floating, parallax slowly scrolling). Character select row visible. High score shown.</td>
+</tr>
+<tr>
+<td><strong>READY</strong></td>
+<td><code>&#39;playing&#39;</code></td>
+<td>Shell game loop running. Player hovers at start position (x=80, y=320). Background scrolls. No obstacles. &quot;tap to flap&quot; text pulses on canvas. Score shows 0. Waiting for first tap.</td>
+</tr>
+<tr>
+<td><strong>ACTIVE</strong></td>
+<td><code>&#39;playing&#39;</code></td>
+<td>Full game loop. Physics active. Obstacles spawning and scrolling. Scoring live. Collision detection active.</td>
+</tr>
+<tr>
+<td><strong>GAME OVER</strong></td>
+<td><code>&#39;game-over&#39;</code></td>
+<td>Shell shows game-over overlay. Canvas shows final death frame (player ragdolled, screen shake dissipating). Score count-up animation on overlay. Unlock check runs.</td>
+</tr>
+</tbody></table>
+<h3>Transition Logic</h3>
+<pre><code>onStart():
+  internalState = &#39;ready&#39;
+  reset player to x=80, y=logicalHeight/2, velocity=0
+  clear obstacles array
+  score = 0
+  scrollSpeed = BASE_SCROLL_SPEED
+  deathCount (in-memory) unchanged
+
+onUpdate(dt):
+  if internalState === &#39;ready&#39;:
+    update background scroll (slow, decorative)
+    update player idle hover (gentle sine bob)
+    on tap -&gt; internalState = &#39;active&#39;, player.flap(), playSound(&#39;flap&#39;)
+
+  if internalState === &#39;active&#39;:
+    on tap -&gt; player.flap(), playSound(&#39;flap&#39;)
+    update player physics (gravity, velocity, position)
+    update obstacles (scroll, spawn new, remove off-screen)
+    update background (scroll at current speed)
+    check scoring (player.x passes obstacle center)
+    check collisions (player vs obstacles, floor, ceiling)
+    update difficulty parameters from score
+    if collision -&gt; shell.setState(&#39;game-over&#39;)
+</code></pre>
+<hr>
+<h2>3. Entity Definitions</h2>
+<h3>3.1 Player</h3>
+<pre><code class="language-js">class Player {
+  // ---- Properties ----
+
+  x = 80;                      // Fixed horizontal position (logical px). Never changes during gameplay.
+  y = 320;                     // Vertical position (logical px). Center of canvas at start.
+  width = 30;                  // Hitbox width (px). 75% of visual 40px.
+  height = 30;                 // Hitbox height (px). 75% of visual 40px.
+  velocity = 0;                // Vertical velocity (px/frame at 60fps). Positive = downward.
+  rotation = 0;                // Visual rotation in radians. Derived from velocity each frame.
+  characterId = &#39;tralalero&#39;;   // Current character ID. Set from character select before run starts.
+  animFrame = 0;               // Current flap animation frame (0, 1, or 2).
+  animTimer = 0;               // Milliseconds since last animation frame change.
+  flapTimer = 0;               // Milliseconds remaining in flap animation (total 300ms).
+  alive = true;                // false after collision. Disables input and enables ragdoll.
+  deathVelocity = 0;           // Rotational velocity during death ragdoll.
+
+  // ---- Constants (from constants.js) ----
+
+  static GRAVITY = 0.4;            // px/frame^2 at 60fps. Added to velocity each frame.
+  static TAP_IMPULSE = -7.0;       // px/frame at 60fps. Set (not additive) on tap.
+  static TERMINAL_VELOCITY = 10.0; // Max downward velocity (px/frame).
+  static VISUAL_SIZE = 40;         // Draw size in px (hitbox is smaller).
+  static FLAP_DURATION = 300;      // ms total for flap leg animation.
+  static FLAP_FRAME_INTERVAL = 100;// ms per animation frame in flap cycle.
+
+  // ---- Methods ----
+
+  /**
+   * Apply upward impulse. Called on player tap.
+   * Sets velocity directly to TAP_IMPULSE (not additive).
+   * Resets flapTimer to FLAP_DURATION.
+   * Resets animFrame to 0.
+   *
+   * No-op if alive === false.
+   */
+  flap() {}
+
+  /**
+   * Per-frame physics and animation update.
+   *
+   * @param {number} dt -- Normalized delta time (1.0 = 1 frame at 60fps)
+   *
+   * If alive:
+   *   velocity += GRAVITY * dt
+   *   velocity = min(velocity, TERMINAL_VELOCITY)
+   *   y += velocity * dt
+   *   rotation = clamp(velocity * 3 * (Math.PI / 180), -30 * Math.PI/180, 90 * Math.PI/180)
+   *   Advance flap animation if flapTimer &gt; 0:
+   *     flapTimer -= dt * 16.67
+   *     animTimer += dt * 16.67
+   *     if animTimer &gt;= FLAP_FRAME_INTERVAL: animFrame = (animFrame + 1) % 3, animTimer = 0
+   *   If flapTimer &lt;= 0: animFrame = 0 (rest pose)
+   *
+   * If not alive (death ragdoll):
+   *   velocity += GRAVITY * dt (still falls)
+   *   y += velocity * dt
+   *   rotation += deathVelocity * dt (spins during fall)
+   *   rotation = min(rotation, 90 * Math.PI/180) (caps at nose-dive)
+   */
+  update(dt) {}
+
+  /**
+   * Draw the player character on the canvas.
+   * Delegates to the draw function in characters.js for the current characterId.
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   *
+   * Steps:
+   *   ctx.save()
+   *   ctx.translate(x, y)
+   *   ctx.rotate(rotation)
+   *   characters[characterId].draw(ctx, animFrame, flapTimer &gt; 0)
+   *   ctx.restore()
+   */
+  draw(ctx) {}
+
+  /**
+   * Reset all state for a new run.
+   * y = logicalHeight / 2
+   * velocity = 0, rotation = 0
+   * alive = true
+   * flapTimer = 0, animFrame = 0, animTimer = 0
+   */
+  reset(logicalHeight) {}
+
+  /**
+   * Returns the AABB hitbox for collision detection.
+   * Centered on the player&#39;s position (x, y is the visual center).
+   *
+   * @returns {{ x: number, y: number, width: number, height: number }}
+   *   x = this.x - this.width / 2
+   *   y = this.y - this.height / 2
+   *   width = this.width
+   *   height = this.height
+   */
+  getHitbox() {}
+
+  /**
+   * Trigger death state. Called on collision.
+   * alive = false
+   * deathVelocity = 0.15 (radians per frame, creates death spin)
+   */
+  die() {}
+}
+</code></pre>
+<h3>3.2 Obstacle</h3>
+<p>Each instance represents one obstacle pair (top and bottom).</p>
+<pre><code class="language-js">class Obstacle {
+  // ---- Properties ----
+
+  x;                          // Horizontal position of obstacle center (logical px).
+                              // Starts at logicalWidth + OBSTACLE_WIDTH (off-screen right).
+                              // Decreases each frame.
+  gapY;                       // Vertical center of the gap (logical px). Randomized on creation.
+  gapSize;                    // Height of the gap in px. Derived from difficulty formula.
+  width = 60;                 // Obstacle width (px). Fixed.
+  type;                       // Visual type string: &#39;bombardiro&#39;|&#39;mewing&#39;|&#39;skibidi&#39;|&#39;ohio&#39;|&#39;fanum&#39;
+  scored = false;             // true after player passes this obstacle. Prevents double-scoring.
+  passEffectTimer = 0;        // ms remaining for pass-through visual effect.
+
+  // ---- Constructor ----
+
+  /**
+   * @param {number} x        -- Initial x position
+   * @param {number} gapY     -- Center Y of the gap
+   * @param {number} gapSize  -- Height of the gap
+   * @param {string} type     -- Visual type
+   */
+  constructor(x, gapY, gapSize, type) {}
+
+  // ---- Methods ----
+
+  /**
+   * Move obstacle to the left.
+   *
+   * @param {number} dt    -- Normalized delta time
+   * @param {number} speed -- Current scroll speed (px/frame at 60fps)
+   *
+   * x -= speed * dt
+   * If passEffectTimer &gt; 0: passEffectTimer -= dt * 16.67
+   */
+  update(dt, speed) {}
+
+  /**
+   * Draw the obstacle pair on canvas.
+   * Delegates to type-specific draw functions.
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {number} canvasHeight -- Logical canvas height (640)
+   *
+   * Top obstacle: filled rectangle from y=0 to y=(gapY - gapSize/2), at x, width 60.
+   *   Decorated per type (teeth, jawline, toilet shapes, portal swirls, fingers).
+   * Bottom obstacle: filled rectangle from y=(gapY + gapSize/2) to y=canvasHeight.
+   *   Decorated per type (mirrored).
+   * If passEffectTimer &gt; 0: render pass-through effect per type.
+   */
+  draw(ctx, canvasHeight) {}
+
+  /**
+   * Returns AABB hitbox for the TOP obstacle.
+   * @returns {{ x: number, y: number, width: number, height: number }}
+   *   x = this.x - this.width / 2
+   *   y = 0
+   *   width = this.width
+   *   height = this.gapY - this.gapSize / 2
+   */
+  getTopHitbox() {}
+
+  /**
+   * Returns AABB hitbox for the BOTTOM obstacle.
+   * @param {number} canvasHeight -- Logical canvas height
+   * @returns {{ x: number, y: number, width: number, height: number }}
+   *   x = this.x - this.width / 2
+   *   y = this.gapY + this.gapSize / 2
+   *   width = this.width
+   *   height = canvasHeight - (this.gapY + this.gapSize / 2)
+   */
+  getBottomHitbox(canvasHeight) {}
+
+  /**
+   * Check if this obstacle is fully off-screen left (should be removed).
+   * @returns {boolean} true if x + width/2 &lt; 0
+   */
+  isOffScreen() {}
+
+  /**
+   * Trigger the pass-through visual effect.
+   * Sets passEffectTimer based on type:
+   *   bombardiro: 300, mewing: 200, skibidi: 250, ohio: 150, fanum: 500
+   */
+  triggerPassEffect() {}
+}
+</code></pre>
+<h4>Obstacle Type Draw Specs (summary from GDD)</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Top</th>
+<th>Bottom</th>
+<th>Pass Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bombardiro</code></td>
+<td>Green rect + zigzag white teeth on bottom edge</td>
+<td>Mirror (teeth on top edge)</td>
+<td>Orange explosion particles (3-4 circles, expand+fade, 300ms)</td>
+</tr>
+<tr>
+<td><code>mewing</code></td>
+<td>Flesh-colored rect + angular jaw contour on bottom</td>
+<td>Mirror (jaw pointing up)</td>
+<td>Purple glow outline (#b44dff), 200ms</td>
+</tr>
+<tr>
+<td><code>skibidi</code></td>
+<td>White rect + gray toilet shapes stacked vertically</td>
+<td>Inverted toilets</td>
+<td>Swirl particles (2-3 white circles orbit, 250ms)</td>
+</tr>
+<tr>
+<td><code>ohio</code></td>
+<td>Dark purple rect + concentric ellipses (rotating)</td>
+<td>Matching portal</td>
+<td>Screen purple tint flash 150ms + player wobble 500ms</td>
+</tr>
+<tr>
+<td><code>fanum</code></td>
+<td>Flesh rect + five finger rects at bottom, slightly spread</td>
+<td>Mirror (fingers point up)</td>
+<td>&quot;Taxed!&quot; text floats up in #ffd000, fades 500ms</td>
+</tr>
+</tbody></table>
+<h3>3.3 Background</h3>
+<pre><code class="language-js">class Background {
+  // ---- Properties ----
+
+  farOffset = 0;              // Horizontal scroll offset for far layer (px)
+  midOffset = 0;              // Horizontal scroll offset for mid layer (px)
+  floorOffset = 0;            // Horizontal scroll offset for floor/near layer (px)
+  currentBiome = 0;           // Current biome index (0-4)
+  biomeTransitionTimer = 0;   // ms remaining in biome color transition (0 = stable)
+  previousBiomeTint = null;   // Previous biome colors (for lerp during transition)
+  currentBiomeTint = null;    // Target biome colors
+
+  // ---- Biome Tint Table ----
+
+  static BIOMES = [
+    { name: &#39;Italian Piazza&#39;,      far: &#39;#12121a&#39;, mid: &#39;#1a1a28&#39; },   // score 0-24
+    { name: &#39;Ohio Wasteland&#39;,      far: &#39;#121a12&#39;, mid: &#39;#1a281a&#39; },   // score 25-49
+    { name: &#39;Sigma Gym&#39;,           far: &#39;#1a1220&#39;, mid: &#39;#281a30&#39; },   // score 50-74
+    { name: &#39;Skibidi Battlefield&#39;, far: &#39;#121220&#39;, mid: &#39;#1a1a38&#39; },   // score 75-99
+    { name: &#39;Meme Void&#39;,           far: &#39;cycle&#39;,   mid: &#39;cycle&#39;  },   // score 100+ (cycles)
+  ];
+
+  // ---- Speed Ratios (relative to obstacle scroll speed) ----
+
+  static FAR_SPEED_RATIO = 0.15;
+  static MID_SPEED_RATIO = 0.4;
+  static NEAR_SPEED_RATIO = 1.0;  // Same as obstacles
+
+  // ---- Methods ----
+
+  /**
+   * Scroll all layers and handle biome transitions.
+   *
+   * @param {number} dt    -- Normalized delta time
+   * @param {number} speed -- Current obstacle scroll speed (px/frame at 60fps)
+   * @param {number} score -- Current score (for biome selection)
+   *
+   * farOffset  -= speed * FAR_SPEED_RATIO * dt;  wraps at tile width (logicalWidth * 2)
+   * midOffset  -= speed * MID_SPEED_RATIO * dt;  wraps at tile width
+   * floorOffset -= speed * NEAR_SPEED_RATIO * dt; wraps at tile width
+   *
+   * Calculate target biome from score:
+   *   score &lt; 25 -&gt; 0, score &lt; 50 -&gt; 1, score &lt; 75 -&gt; 2, score &lt; 100 -&gt; 3, else 4
+   * If biome changed: start 2000ms transition, save previous tint, set new tint.
+   * If transitioning: biomeTransitionTimer -= dt * 16.67, lerp colors.
+   */
+  update(dt, speed, score) {}
+
+  /**
+   * Draw all three layers (far, mid, near/floor).
+   * Drawn BEFORE obstacles and player.
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {number} logicalWidth  -- 360
+   * @param {number} logicalHeight -- 640
+   *
+   * Layer order (back to front):
+   *   1. Sky: solid fill #0a0a0f
+   *   2. Far layer: city skyline silhouette rects at varying heights,
+   *      tinted per biome. Draws two copies side-by-side for seamless scroll.
+   *   3. Mid layer: ground hills as wavy line + fill, occasional brainrot
+   *      character silhouettes, tinted per biome.
+   *   4. Floor: flat rect at bottom 60px of canvas, #1e1e2e fill,
+   *      dashed line pattern for motion illusion (#2a2a3e).
+   */
+  draw(ctx, logicalWidth, logicalHeight) {}
+
+  /**
+   * Reset scroll offsets (for new run). Does NOT reset biome (biome persists
+   * based on score which resets to 0, so it naturally goes back to biome 0).
+   */
+  reset() {}
+}
+</code></pre>
+<h3>3.4 ScoreDisplay (on-canvas HUD)</h3>
+<pre><code class="language-js">class ScoreDisplay {
+  // ---- Properties ----
+
+  score = 0;                  // Actual current score
+  popTimer = 0;               // ms remaining of pop animation (total 150ms)
+  flashTimer = 0;             // ms remaining of lime flash (total 200ms)
+  popScale = 1.0;             // Current scale factor (1.0 normal, 1.2 peak)
+
+  // ---- Methods ----
+
+  /**
+   * Increment the score by 1. Trigger pop and flash animations.
+   *
+   * score++
+   * popTimer = 150
+   * flashTimer = 200
+   */
+  increment() {}
+
+  /**
+   * Per-frame update for animations.
+   *
+   * @param {number} dt -- Normalized delta time
+   *
+   * If popTimer &gt; 0:
+   *   popTimer -= dt * 16.67
+   *   progress = 1 - (popTimer / 150)
+   *   popScale = progress &lt; 0.5 ? lerp(1.0, 1.2, progress * 2) : lerp(1.2, 1.0, (progress - 0.5) * 2)
+   * Else: popScale = 1.0
+   *
+   * If flashTimer &gt; 0: flashTimer -= dt * 16.67
+   */
+  update(dt) {}
+
+  /**
+   * Draw the score on canvas.
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {number} canvasWidth -- Logical canvas width (360)
+   *
+   * Position: centered horizontally, y=48 (16px from top to text baseline).
+   * Font: Bungee, size = 56px * popScale.
+   * Color: flashTimer &gt; 0 ? &#39;#c8ff00&#39; (Electric Lime) : &#39;#f0f0f0&#39; (white).
+   * Text shadow: 2px 2px 0 rgba(0,0,0,0.5).
+   * Text align: center.
+   *
+   * Handles &quot;69&quot; easter egg: if score === 69, flash Hot Magenta, double pop.
+   */
+  draw(ctx, canvasWidth) {}
+
+  /**
+   * Reset to 0, clear all animation timers.
+   */
+  reset() {}
+}
+</code></pre>
+<hr>
+<h2>4. Game Loop Detail</h2>
+<h3>Update Order (inside <code>onUpdate(dt)</code>)</h3>
+<pre><code>1.  Read input (tap detected this frame? set tapFlag = true)
+
+2.  If internalState === &#39;ready&#39;:
+      a. Player idle bob: y += sin(time * 0.003) * 0.5 * dt  (gentle hover)
+      b. Background.update(dt, BASE_SCROLL_SPEED * 0.3, 0)  (slow decorative scroll)
+      c. If tapFlag:
+           internalState = &#39;active&#39;
+           player.flap()
+           playSound(&#39;flap&#39;)
+      d. Return (skip steps 3-10)
+
+3.  Player input:
+      If tapFlag &amp;&amp; player.alive: player.flap(), playSound(&#39;flap&#39;)
+
+4.  Player physics:
+      player.update(dt)
+
+5.  Obstacle management:
+      a. Update existing obstacles: obstacle.update(dt, currentScrollSpeed)
+      b. Remove off-screen obstacles: filter out where isOffScreen()
+      c. Spawn new obstacle if needed:
+           If obstacles.length === 0 OR last obstacle&#39;s x &lt; logicalWidth - currentSpacing:
+             gapSize = max(130, 200 - score * 1.4)
+             gapY = randomBetween(gapSize/2 + 60, logicalHeight - gapSize/2 - 60)
+             type = random from [&#39;bombardiro&#39;,&#39;mewing&#39;,&#39;skibidi&#39;,&#39;ohio&#39;,&#39;fanum&#39;]
+             obstacles.push(new Obstacle(logicalWidth + 60, gapY, gapSize, type))
+
+6.  Scoring:
+      For each obstacle where !obstacle.scored:
+        If player.x &gt; obstacle.x:
+          obstacle.scored = true
+          obstacle.triggerPassEffect()
+          scoreDisplay.increment()
+          playSound(&#39;score&#39;)
+
+7.  Difficulty update:
+      currentScrollSpeed = min(4.0, 2.5 + score * 0.03)
+      currentSpacing = max(180, 250 - score * 1.5)
+
+8.  Collision detection:
+      playerHitbox = player.getHitbox()
+      For each obstacle:
+        If checkCollisionAABB(playerHitbox, obstacle.getTopHitbox()):    -&gt; DIE
+        If checkCollisionAABB(playerHitbox, obstacle.getBottomHitbox(logicalHeight)): -&gt; DIE
+      Floor: If player.y + player.height/2 &gt; logicalHeight:  -&gt; DIE
+      Ceiling: If player.y - player.height/2 &lt; 0:            -&gt; DIE
+
+9.  If DIE:
+      player.die()
+      playSound(&#39;death&#39;)
+      screenShake.start(4, 200)  // 4px displacement, 200ms duration
+      // Wait 200ms (via timer), then:
+      shell.setState(&#39;game-over&#39;)
+
+10. Background.update(dt, currentScrollSpeed, score)
+    scoreDisplay.update(dt)
+    screenShake.update(dt)
+</code></pre>
+<h3>Render Order (inside <code>onRender(ctx)</code>)</h3>
+<pre><code>1.  Apply screen shake offset:
+      ctx.save()
+      ctx.translate(screenShake.offsetX, screenShake.offsetY)
+
+2.  Background.draw(ctx, logicalWidth, logicalHeight)
+      Draws: sky, far layer, mid layer, floor
+
+3.  Obstacles:
+      For each obstacle: obstacle.draw(ctx, logicalHeight)
+      (Includes pass-through effects if active)
+
+4.  Player:
+      player.draw(ctx)
+      (Character drawing with rotation and flap animation)
+
+5.  Restore screen shake:
+      ctx.restore()
+
+6.  HUD (NOT affected by screen shake):
+      scoreDisplay.draw(ctx, logicalWidth)
+      If internalState === &#39;ready&#39;:
+        Draw &quot;tap to flap&quot; text (centered, pulsing opacity)
+</code></pre>
+<hr>
+<h2>5. Difficulty Curve Formulas</h2>
+<p>All values are &quot;per frame at 60fps&quot; and multiplied by dt in the game loop.</p>
+<h3>Scroll Speed</h3>
+<pre><code>scrollSpeed = clamp(2.5 + score * 0.03, 2.5, 4.0)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Speed (px/frame)</th>
+<th>Speed (px/sec at 60fps)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>2.50</td>
+<td>150</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2.80</td>
+<td>168</td>
+</tr>
+<tr>
+<td>25</td>
+<td>3.25</td>
+<td>195</td>
+</tr>
+<tr>
+<td>50</td>
+<td>4.00 (cap)</td>
+<td>240</td>
+</tr>
+</tbody></table>
+<h3>Gap Size</h3>
+<pre><code>gapSize = clamp(200 - score * 1.4, 130, 200)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Gap (px)</th>
+<th>Gap as % of 640px canvas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>200</td>
+<td>31.3%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>186</td>
+<td>29.1%</td>
+</tr>
+<tr>
+<td>25</td>
+<td>165</td>
+<td>25.8%</td>
+</tr>
+<tr>
+<td>50</td>
+<td>130 (min)</td>
+<td>20.3%</td>
+</tr>
+</tbody></table>
+<h3>Obstacle Spacing</h3>
+<pre><code>spacing = clamp(250 - score * 1.5, 180, 250)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Spacing (px)</th>
+<th>Time between obstacles at base speed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>250</td>
+<td>~1.67s</td>
+</tr>
+<tr>
+<td>10</td>
+<td>235</td>
+<td>~1.40s</td>
+</tr>
+<tr>
+<td>25</td>
+<td>213</td>
+<td>~1.09s</td>
+</tr>
+<tr>
+<td>47+</td>
+<td>180 (min)</td>
+<td>~0.75s</td>
+</tr>
+</tbody></table>
+<h3>Gap Y Position Range</h3>
+<pre><code>minGapY = gapSize / 2 + 60
+maxGapY = canvasHeight - gapSize / 2 - 60
+gapY = randomBetween(minGapY, maxGapY)
+</code></pre>
+<p>The 60px buffer at top and bottom ensures gaps never clip the ceiling/floor edges.</p>
+<h3>Difficulty Plateau</h3>
+<p>After score ~50, all three parameters hit their caps. The game is at maximum difficulty. Further score progression is pure skill.</p>
+<hr>
+<h2>6. GameShell Integration</h2>
+<h3>main.js Wiring</h3>
+<pre><code class="language-js">import { GameShell } from &#39;../shared/game-shell.js&#39;;
+import { createInputManager } from &#39;../shared/input-manager.js&#39;;
+import { initAudio, registerSound, playSound } from &#39;../shared/sound-manager.js&#39;;
+import { shareScore } from &#39;../shared/share.js&#39;;
+import { checkCollisionAABB, clamp, randomBetween, randomInt } from &#39;../shared/utils.js&#39;;
+import { Player } from &#39;./player.js&#39;;
+import { Obstacle } from &#39;./obstacle.js&#39;;
+import { Background } from &#39;./background.js&#39;;
+import { ScoreDisplay } from &#39;./ui.js&#39;;
+import { CHARACTERS } from &#39;./characters.js&#39;;
+import * as C from &#39;./constants.js&#39;;
+
+// ---- Game State (module-scoped) ----
+let player, background, scoreDisplay;
+let obstacles = [];
+let internalState = &#39;ready&#39;;   // &#39;ready&#39; | &#39;active&#39;
+let currentScrollSpeed = C.BASE_SCROLL_SPEED;
+let currentSpacing = C.BASE_SPACING;
+let screenShake = { timer: 0, magnitude: 0, offsetX: 0, offsetY: 0 };
+let deathTimer = 0;
+let tapFlag = false;
+
+// ---- Shell Setup ----
+const shell = new GameShell({
+  title: &#39;FLAPPY TRALALERO&#39;,
+  gameId: &#39;flappy-tralalero&#39;,
+  logicalWidth: 360,
+  logicalHeight: 640,
+  maxDisplayWidth: 480,
+  theme: &#39;italian-brainrot&#39;,
+  subtitle: &#39;tap. die. share. repeat.&#39;,
+  accentColor: &#39;#ff3838&#39;,
+  shareUrl: &#39;https://brainrotgames.com/games/game-01/&#39;,
+});
+
+// ---- Callbacks ----
+
+shell.onStart = () =&gt; {
+  internalState = &#39;ready&#39;;
+  player = new Player();
+  player.characterId = getSelectedCharacter();
+  player.reset(640);
+  obstacles = [];
+  scoreDisplay = new ScoreDisplay();
+  background = new Background();
+  background.reset();
+  currentScrollSpeed = C.BASE_SCROLL_SPEED;
+  currentSpacing = C.BASE_SPACING;
+  screenShake = { timer: 0, magnitude: 0, offsetX: 0, offsetY: 0 };
+  deathTimer = 0;
+};
+
+shell.onUpdate = (dt) =&gt; {
+  // ... full update loop as described in Section 4
+};
+
+shell.onRender = (ctx) =&gt; {
+  // ... full render loop as described in Section 4
+};
+
+shell.onGameOver = () =&gt; {
+  const score = scoreDisplay.score;
+  const message = getDeathMessage(score);
+  checkUnlocks(score);
+  return {
+    score,
+    message,
+    scoreLabel: &#39;aura points&#39;,
+  };
+};
+
+// ---- Input ----
+shell.init();
+const input = createInputManager(shell.getCanvas(), 360, 640);
+input.onTap(() =&gt; {
+  tapFlag = true;
+  initAudio(); // Safe to call multiple times, only initializes once
+});
+
+// ---- Character Select ----
+// Render character select row in menu secondary actions area.
+// 7 circular icons. Locked = silhouette. Selected = accent border.
+// Selection stored in score-manager via getData/setData.
+
+// ---- Sound Registration ----
+// On first tap (inside onTap), after initAudio():
+//   registerSound(&#39;flap-tralalero&#39;, { notes: [...] })
+//   registerSound(&#39;death-tralalero&#39;, { notes: [...] })
+//   ... per character from characters.js
+</code></pre>
+<h3>Callback Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Shell Callback</th>
+<th>Flappy Tralalero Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>onStart()</code></td>
+<td>Reset player, obstacles, score, background, difficulty. Set internalState=&#39;ready&#39;.</td>
+</tr>
+<tr>
+<td><code>onUpdate(dt)</code></td>
+<td>Run physics, spawning, scrolling, scoring, collision, difficulty scaling. Sub-state machine for ready/active.</td>
+</tr>
+<tr>
+<td><code>onRender(ctx)</code></td>
+<td>Draw background, obstacles, player, HUD (score, &quot;tap to flap&quot; hint). Apply screen shake.</td>
+</tr>
+<tr>
+<td><code>onGameOver()</code></td>
+<td>Return <code>{ score, message (random from tier), scoreLabel: &quot;aura points&quot; }</code>. Check character unlocks.</td>
+</tr>
+<tr>
+<td><code>onMenuRender</code></td>
+<td>Draw idle Tralalero on canvas behind menu overlay (floating animation).</td>
+</tr>
+</tbody></table>
+<h3>Character Unlock Check (on game over)</h3>
+<pre><code class="language-js">function checkUnlocks(score) {
+  const unlocks = JSON.parse(getData(&#39;flappy-tralalero&#39;, &#39;unlocks&#39;) || &#39;{}&#39;);
+
+  const conditions = {
+    bombardiro: score &gt;= 10,
+    lirili: score &gt;= 25,
+    tungtung: score &gt;= 50,
+    cappuccino: score &gt;= 100,
+    // brrbrr: requires 5 ad views (future)
+    // lavaca: requires 10 title taps (handled in menu)
+  };
+
+  let newlyUnlocked = [];
+  for (const [id, condition] of Object.entries(conditions)) {
+    if (condition &amp;&amp; !unlocks[id]) {
+      unlocks[id] = true;
+      newlyUnlocked.push(id);
+    }
+  }
+
+  if (newlyUnlocked.length &gt; 0) {
+    setData(&#39;flappy-tralalero&#39;, &#39;unlocks&#39;, JSON.stringify(unlocks));
+    // Render unlock notification in game-over extra area
+  }
+  return newlyUnlocked;
+}
+</code></pre>
+<h3>localStorage Keys Used</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>flappy-tralalero-highscore</code></td>
+<td>number (string)</td>
+<td><code>&#39;0&#39;</code></td>
+<td>All-time high score</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-lastscore</code></td>
+<td>number (string)</td>
+<td><code>&#39;0&#39;</code></td>
+<td>Last run score</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-unlocks</code></td>
+<td>JSON string</td>
+<td><code>&#39;{}&#39;</code></td>
+<td>Character unlock map</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-selected</code></td>
+<td>string</td>
+<td><code>&#39;tralalero&#39;</code></td>
+<td>Selected character ID</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-deaths</code></td>
+<td>number (string)</td>
+<td><code>&#39;0&#39;</code></td>
+<td>Total deaths (for ad frequency)</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-ad-views</code></td>
+<td>number (string)</td>
+<td><code>&#39;0&#39;</code></td>
+<td>Rewarded ad views (Brr Brr unlock)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>7. Screen Shake</h2>
+<pre><code class="language-js">const screenShake = {
+  timer: 0,         // ms remaining
+  magnitude: 0,     // max displacement in px
+  offsetX: 0,       // current frame offset X
+  offsetY: 0,       // current frame offset Y
+};
+
+function startScreenShake(magnitude, durationMs) {
+  screenShake.timer = durationMs;
+  screenShake.magnitude = magnitude;
+}
+
+function updateScreenShake(dt) {
+  if (screenShake.timer &lt;= 0) {
+    screenShake.offsetX = 0;
+    screenShake.offsetY = 0;
+    return;
+  }
+  screenShake.timer -= dt * 16.67;
+  const intensity = screenShake.timer / 200; // decay linearly
+  screenShake.offsetX = (Math.random() * 2 - 1) * screenShake.magnitude * intensity;
+  screenShake.offsetY = (Math.random() * 2 - 1) * screenShake.magnitude * intensity;
+}
+</code></pre>
+<p>Used in render: <code>ctx.translate(screenShake.offsetX, screenShake.offsetY)</code> before drawing game world, <code>ctx.restore()</code> before drawing HUD.</p>
+<hr>
+<h2>8. Character Drawing Reference</h2>
+<p>Each character&#39;s draw function receives <code>(ctx, animFrame, isFlapping)</code> and draws at origin (0,0). The caller handles translate/rotate.</p>
+<p>All 7 characters share identical physics. Differences are visual + audio only.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Draw Size</th>
+<th>Hitbox</th>
+<th>Unlock</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tralalero</code></td>
+<td>Tralalero Tralala</td>
+<td>40x40</td>
+<td>30x30</td>
+<td>Default</td>
+</tr>
+<tr>
+<td><code>bombardiro</code></td>
+<td>Bombardiro Crocodilo</td>
+<td>40x40</td>
+<td>30x30</td>
+<td>Score 10+</td>
+</tr>
+<tr>
+<td><code>lirili</code></td>
+<td>Lirili Larila</td>
+<td>40x40</td>
+<td>30x30</td>
+<td>Score 25+</td>
+</tr>
+<tr>
+<td><code>tungtung</code></td>
+<td>Tung Tung Tung Sahur</td>
+<td>40x40</td>
+<td>30x30</td>
+<td>Score 50+</td>
+</tr>
+<tr>
+<td><code>cappuccino</code></td>
+<td>Cappuccino Assassino</td>
+<td>40x40</td>
+<td>30x30</td>
+<td>Score 100+</td>
+</tr>
+<tr>
+<td><code>brrbrr</code></td>
+<td>Brr Brr Patapim</td>
+<td>40x40</td>
+<td>30x30</td>
+<td>5 rewarded ads</td>
+</tr>
+<tr>
+<td><code>lavaca</code></td>
+<td>La Vaca Saturno Saturnita</td>
+<td>40x40</td>
+<td>30x30</td>
+<td>10 title taps (easter egg)</td>
+</tr>
+</tbody></table>
+<p>Full Canvas 2D drawing specs (coordinates, colors, shapes) are in GDD-01, Section 4.1. Each character is implemented as a function in <code>characters.js</code>:</p>
+<pre><code class="language-js">export const CHARACTERS = {
+  tralalero: {
+    name: &#39;Tralalero Tralala&#39;,
+    draw(ctx, animFrame, isFlapping) { /* ... GDD spec 4.1 ... */ },
+    flapSound: { notes: [{ type: &#39;square&#39;, frequency: 580, endFrequency: 620, duration: 0.06, gain: 0.12 }] },
+    deathSound: { notes: [{ type: &#39;square&#39;, frequency: 400, endFrequency: 100, duration: 0.5, gain: 0.2 }] },
+    unlockCondition: null, // default, always unlocked
+  },
+  bombardiro: {
+    name: &#39;Bombardiro Crocodilo&#39;,
+    draw(ctx, animFrame, isFlapping) { /* ... GDD spec ... */ },
+    flapSound: { /* ... */ },
+    deathSound: { notes: [
+      { type: &#39;noise&#39;, duration: 0.2, gain: 0.15 }, // explosion
+      { type: &#39;sine&#39;, frequency: 200, endFrequency: 600, duration: 0.3, delay: 0.1, gain: 0.2 }
+    ]},
+    unlockCondition: { type: &#39;score&#39;, value: 10 },
+  },
+  // ... remaining 5 characters follow same structure
+};
+</code></pre>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

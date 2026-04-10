@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation Index — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+
+<div class="hero">
+  <h1>BRAINROT GAMES</h1>
+  <p>documentation index — all project deliverables</p>
+</div>
+<div class="play-links">
+  <a href="../games/game-01/" class="play-btn">Play Flappy Tralalero</a>
+  <a href="../games/game-02/" class="play-btn">Play Whack-a-Rot</a>
+  <a href="../index.html" class="play-btn" style="background:#ff2d78;">Landing Page</a>
+</div>
+<div class="section-group"><h2>Root</h2><ul class="doc-list"><li><a href="BUILD-REPORT.html">
+      <div class="title">BUILD REPORT</div>
+      <div class="desc">BRAINROT GAMES — Final Build Report</div>
+      <div class="path">BUILD-REPORT.md</div>
+    </a></li></ul></div><div class="section-group"><h2>1. Research</h2><ul class="doc-list"><li><a href="research--30-new-mechanics.html">
+      <div class="title">30 New Mechanics</div>
+      <div class="desc">30 New Casual Game Mechanics Catalog</div>
+      <div class="path">research/30-new-mechanics.md</div>
+    </a></li><li><a href="research--brainrot-trends-report.html">
+      <div class="title">Brainrot Trends Report</div>
+      <div class="desc">Deep Research Report: Brainrot & Internet Culture Trends for Game Development</div>
+      <div class="path">research/brainrot-trends-report.md</div>
+    </a></li><li><a href="research--competitive-landscape.html">
+      <div class="title">Competitive Landscape</div>
+      <div class="desc">Competitive Landscape Report: Brainrot Games</div>
+      <div class="path">research/competitive-landscape.md</div>
+    </a></li><li><a href="research--executive-research-summary.html">
+      <div class="title">Executive Research Summary</div>
+      <div class="desc">Executive Research Summary — Gate 1</div>
+      <div class="path">research/executive-research-summary.md</div>
+    </a></li><li><a href="research--fresh-memes-report.html">
+      <div class="title">Fresh Memes Report</div>
+      <div class="desc">Deep Research Report: Fresh Meme & Internet Culture Themes for Game Expansion</div>
+      <div class="path">research/fresh-memes-report.md</div>
+    </a></li><li><a href="research--game-mechanics-report.html">
+      <div class="title">Game Mechanics Report</div>
+      <div class="desc">Research Brief: Proven Casual Game Mechanics for Brainrot/Meme Reskins</div>
+      <div class="path">research/game-mechanics-report.md</div>
+    </a></li></ul></div><div class="section-group"><h2>2. Brand</h2><ul class="doc-list"><li><a href="brand--brand-strategy.html">
+      <div class="title">Brand Strategy</div>
+      <div class="desc">Brand Strategy</div>
+      <div class="path">brand/brand-strategy.md</div>
+    </a></li><li><a href="brand--visual-identity.html">
+      <div class="title">Visual Identity</div>
+      <div class="desc">visual identity guide</div>
+      <div class="path">brand/visual-identity.md</div>
+    </a></li></ul></div><div class="section-group"><h2>3. Concepts</h2><ul class="doc-list"><li><a href="concepts--batch-2-plan.html">
+      <div class="title">Batch 2 Plan</div>
+      <div class="desc">Batch 2 Plan -- Games 06, 07, 08</div>
+      <div class="path">concepts/batch-2-plan.md</div>
+    </a></li><li><a href="concepts--batch-3-plan.html">
+      <div class="title">Batch 3 Plan</div>
+      <div class="desc">Batch 3 Plan -- Games 09, 10, 11</div>
+      <div class="path">concepts/batch-3-plan.md</div>
+    </a></li><li><a href="concepts--concept-matrix.html">
+      <div class="title">Concept Matrix</div>
+      <div class="desc">Concept Matrix</div>
+      <div class="path">concepts/concept-matrix.md</div>
+    </a></li><li><a href="concepts--game-concept-01.html">
+      <div class="title">Game Concept 01</div>
+      <div class="desc">Game Concept 01: Brainrot Whack-a-Mole</div>
+      <div class="path">concepts/game-concept-01.md</div>
+    </a></li><li><a href="concepts--game-concept-02.html">
+      <div class="title">Game Concept 02</div>
+      <div class="desc">Game Concept 02: Sigma/Rizz/Mewing Idle Clicker</div>
+      <div class="path">concepts/game-concept-02.md</div>
+    </a></li><li><a href="concepts--game-concept-03.html">
+      <div class="title">Game Concept 03</div>
+      <div class="desc">Game Concept 03: Italian Brainrot Flappy Bird</div>
+      <div class="path">concepts/game-concept-03.md</div>
+    </a></li><li><a href="concepts--selection-rationale.html">
+      <div class="title">Selection Rationale</div>
+      <div class="desc">Game Selection Rationale — Gate 3</div>
+      <div class="path">concepts/selection-rationale.md</div>
+    </a></li></ul></div><div class="section-group"><h2>4. Design Docs</h2><ul class="doc-list"><li><a href="design-docs--BUILD-REPORT.html">
+      <div class="title">BUILD REPORT</div>
+      <div class="desc">Build Report: Brainrot Games v1</div>
+      <div class="path">design-docs/BUILD-REPORT.md</div>
+    </a></li><li><a href="design-docs--GDD-01.html">
+      <div class="title">GDD 01</div>
+      <div class="desc">Game Design Document: FLAPPY TRALALERO</div>
+      <div class="path">design-docs/GDD-01.md</div>
+    </a></li><li><a href="design-docs--GDD-02.html">
+      <div class="title">GDD 02</div>
+      <div class="desc">GDD-02: WHACK-A-ROT</div>
+      <div class="path">design-docs/GDD-02.md</div>
+    </a></li><li><a href="design-docs--QA-REPORT.html">
+      <div class="title">QA REPORT</div>
+      <div class="desc">QA Report: Brainrot Games v1</div>
+      <div class="path">design-docs/QA-REPORT.md</div>
+    </a></li></ul></div><div class="section-group"><h2>5. Architecture</h2><ul class="doc-list"><li><a href="architecture--ARCHITECTURE.html">
+      <div class="title">ARCHITECTURE</div>
+      <div class="desc">Brainrot Games -- Shared Technical Architecture</div>
+      <div class="path">architecture/ARCHITECTURE.md</div>
+    </a></li><li><a href="architecture--game-01-architecture.html">
+      <div class="title">Game 01 Architecture</div>
+      <div class="desc">Game 01: FLAPPY TRALALERO -- Implementation Architecture</div>
+      <div class="path">architecture/game-01-architecture.md</div>
+    </a></li><li><a href="architecture--game-02-architecture.html">
+      <div class="title">Game 02 Architecture</div>
+      <div class="desc">Game 02: WHACK-A-ROT -- Implementation Architecture</div>
+      <div class="path">architecture/game-02-architecture.md</div>
+    </a></li></ul></div><div class="section-group"><h2>7. Marketing</h2><ul class="doc-list"><li><a href="marketing--seo-distribution-strategy.html">
+      <div class="title">SEO Distribution Strategy</div>
+      <div class="desc">SEO and Distribution Strategy</div>
+      <div class="path">marketing/seo-distribution-strategy.md</div>
+    </a></li><li><a href="marketing--social-media-launch-plan.html">
+      <div class="title">Social Media Launch Plan</div>
+      <div class="desc">social media launch plan</div>
+      <div class="path">marketing/social-media-launch-plan.md</div>
+    </a></li><li><a href="marketing--viral-influencer-strategy.html">
+      <div class="title">Viral Influencer Strategy</div>
+      <div class="desc">viral & influencer strategy</div>
+      <div class="path">marketing/viral-influencer-strategy.md</div>
+    </a></li></ul></div><div class="section-group"><h2>8. Business</h2><ul class="doc-list"><li><a href="business--BUSINESS-PLAN.html">
+      <div class="title">BUSINESS PLAN</div>
+      <div class="desc">Brainrot Games — Executive Business Plan</div>
+      <div class="path">business/BUSINESS-PLAN.md</div>
+    </a></li><li><a href="business--growth-roadmap.html">
+      <div class="title">Growth Roadmap</div>
+      <div class="desc">Growth Roadmap — Brainrot Games</div>
+      <div class="path">business/growth-roadmap.md</div>
+    </a></li><li><a href="business--revenue-model.html">
+      <div class="title">Revenue Model</div>
+      <div class="desc">Revenue Model: Brainrot Games</div>
+      <div class="path">business/revenue-model.md</div>
+    </a></li></ul></div>
+</div>
+</body>
+</html>

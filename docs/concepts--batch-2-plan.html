@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batch 2 Plan — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">concepts/batch-2-plan.md</div>
+    <div class="doc-content"><h1>Batch 2 Plan -- Games 06, 07, 08</h1>
+<h2>April 2026</h2>
+<hr>
+<h2>Selection Rationale</h2>
+<h3>Catalog Analysis (Games 01-05)</h3>
+<table>
+<thead>
+<tr>
+<th>Mechanic</th>
+<th>Feel</th>
+<th>Input Type</th>
+<th>Pacing</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Flappy Bird</td>
+<td>Timing / reflex</td>
+<td>Tap</td>
+<td>Frenetic, instant death</td>
+</tr>
+<tr>
+<td>Whack-a-Mole</td>
+<td>Reaction / target-hit</td>
+<td>Tap</td>
+<td>Fast bursts, timed</td>
+</tr>
+<tr>
+<td>Idle Clicker</td>
+<td>Passive / upgrade</td>
+<td>Tap + menu</td>
+<td>Slow, ambient</td>
+</tr>
+<tr>
+<td>Endless Runner</td>
+<td>Dodge / survive</td>
+<td>Swipe / tap</td>
+<td>Accelerating</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>Precision / timing</td>
+<td>Tap</td>
+<td>Rhythmic, steady</td>
+</tr>
+</tbody></table>
+<p><strong>What is missing from the catalog:</strong></p>
+<ol>
+<li><strong>Directional control</strong> -- every game so far is tap-only. No game lets the player steer something around a 2D space.</li>
+<li><strong>Puzzle / cognitive</strong> -- everything is reflex-based. No game makes you think.</li>
+<li><strong>Destruction / slicing</strong> -- everything is about surviving or building. No game lets you destroy things satisfyingly.</li>
+</ol>
+<h3>Mechanic Selections</h3>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Base Mechanic</th>
+<th>Why</th>
+<th>Complexity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>06</td>
+<td><strong>Snake</strong></td>
+<td>First directional-control game. Player steers in 2D. Self-generated difficulty. Universal recognition.</td>
+<td>1/5</td>
+</tr>
+<tr>
+<td>07</td>
+<td><strong>2048</strong></td>
+<td>First puzzle game. Cognitive engagement, longer sessions, zero reflex pressure. Proven meme-reskin potential (Doge 2048).</td>
+<td>2/5</td>
+</tr>
+<tr>
+<td>08</td>
+<td><strong>Fruit Ninja</strong></td>
+<td>First destruction game. Swipe input is completely new to the catalog. Tactile satisfaction, combo-chasing.</td>
+<td>3/5</td>
+</tr>
+</tbody></table>
+<h3>Theme Distribution After Batch 2</h3>
+<table>
+<thead>
+<tr>
+<th>Theme</th>
+<th>Games 01-05</th>
+<th>Batch 2 Appearances</th>
+<th>New Total</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Italian Brainrot</td>
+<td>4</td>
+<td>1 (Game 07)</td>
+<td>5 -- flagship, always present</td>
+</tr>
+<tr>
+<td>Sigma/Rizz/Mewing</td>
+<td>3</td>
+<td>0</td>
+<td>3 -- already well-represented</td>
+</tr>
+<tr>
+<td>Skibidi</td>
+<td>2</td>
+<td>1 (Game 08)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Ohio</td>
+<td>1</td>
+<td>1 (Game 06)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Fanum Tax</td>
+<td>1</td>
+<td>1 (Game 06)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Among Us</td>
+<td>1</td>
+<td>1 (Game 07)</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Aura Points</strong></td>
+<td>0 (label only)</td>
+<td><strong>1 (Game 08)</strong></td>
+<td><strong>1 -- finally a real theme</strong></td>
+</tr>
+<tr>
+<td><strong>Grimace Shake</strong></td>
+<td>0</td>
+<td><strong>1 (Game 06)</strong></td>
+<td><strong>1 -- debut</strong></td>
+</tr>
+</tbody></table>
+<p>This achieves the objective of featuring every underused theme at least once while keeping Italian Brainrot as the constant anchor.</p>
+<hr>
+<h2>Game 06: FANUM SNAKE</h2>
+<h3>Base Mechanic</h3>
+<p><strong>Snake</strong> -- grow while avoiding yourself and walls.</p>
+<h3>Why This Mechanic Next</h3>
+<p>Every game in the catalog is tap-to-do-one-thing. Snake is the first game where the player has <strong>directional control</strong> -- swipe or arrow keys to steer a continuously-moving entity around a 2D grid. It introduces spatial awareness, pathfinding instinct, and the uniquely cruel dynamic where <strong>your own success creates your obstacles</strong> (longer snake = less room). This is a fundamentally different play feel from anything in the catalog.</p>
+<p>Complexity is 1/5 -- grid-based movement, array-based body tracking, simple collision. One of the easiest Canvas games to implement.</p>
+<h3>3 Theme Variants</h3>
+<hr>
+<h4>Variant A: FANUM TAX (primary)</h4>
+<p><strong>Concept:</strong> You are the Fanum Tax collector -- a hungry mouth snake slithering around a kitchen/party, eating everyone&#39;s food before they notice. Your tail is a trail of stolen food items. The longer your trail of stolen goods, the more likely you are to trip over your own loot and get caught.</p>
+<p><strong>Currency/Score Label:</strong> STOLEN BITES</p>
+<p><strong>Visual Description:</strong></p>
+<ul>
+<li><strong>Player (snake head):</strong> Round head with a wide grinning mouth, small beady eyes, wearing a backwards cap. Drawn as a circle with arc-mouth and two dot-eyes. ~20 lines of Canvas.</li>
+<li><strong>Snake body segments:</strong> Each segment is a different stolen food item rendered as simple shapes -- pizza slice (triangle + circle), burger (stacked rectangles), fries (yellow rectangles), drink cup (trapezoid), donut (torus). Segments alternate through the food types. ~30 lines total for 5 food shapes.</li>
+<li><strong>Food pickups (spawned items):</strong> The same food items but with a glow ring around them, sitting on small plate circles.</li>
+<li><strong>Walls/border:</strong> Kitchen counter tile pattern -- simple alternating light/dark gray rectangles.</li>
+<li><strong>Background:</strong> Dark kitchen surface (#1a1a2e) with subtle grid lines.</li>
+</ul>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Background: <code>#1a1a2e</code> (dark navy kitchen)</li>
+<li>Grid lines: <code>#2a2a3e</code></li>
+<li>Snake head: <code>#ff9800</code> (orange) with <code>#ffffff</code> eyes</li>
+<li>Food items: <code>#ff5252</code> (pizza), <code>#ffb74d</code> (burger), <code>#fff176</code> (fries), <code>#4fc3f7</code> (drink), <code>#f48fb1</code> (donut)</li>
+<li>Accent: <code>#ff6b2b</code></li>
+<li>Score text: <code>#ff9800</code></li>
+</ul>
+<p><strong>5 Death/Game-Over Messages:</strong></p>
+<ol>
+<li>&quot;you got caught stealing food. fanum tax denied.&quot;</li>
+<li>&quot;tripped over your own stolen pizza. embarrassing.&quot;</li>
+<li>&quot;the food trail was too long. greed is your downfall.&quot;</li>
+<li>&quot;someone noticed their burger was missing.&quot;</li>
+<li>&quot;fanum tax audit complete. you failed.&quot;</li>
+</ol>
+<hr>
+<h4>Variant B: GRIMACE SNAKE</h4>
+<p><strong>Concept:</strong> You are the Grimace Shake -- a big purple blob snake slithering through a cursed McDonald&#39;s, consuming milkshakes. Your body is a chain of increasingly cursed purple shake cups. The longer you get, the more cursed and glitchy the screen becomes (subtle screen shake, color aberration on the border). The &quot;grimace shake challenge&quot; aesthetic -- something is deeply wrong.</p>
+<p><strong>Currency/Score Label:</strong> SHAKES CONSUMED</p>
+<p><strong>Visual Description:</strong></p>
+<ul>
+<li><strong>Player (snake head):</strong> Large purple circle with a wide, unsettling smile (arc), two big white eyes with tiny pupils. Simple but creepy-cute. ~15 lines of Canvas.</li>
+<li><strong>Snake body segments:</strong> Purple milkshake cups -- trapezoid body, dome top, straw line poking out. Each subsequent segment slightly darker purple (gets more &quot;cursed&quot; as the chain grows). ~15 lines per segment template.</li>
+<li><strong>Food pickups:</strong> Milkshake cups with swirl effect (concentric circles) and a pulsing glow.</li>
+<li><strong>Walls/border:</strong> McDonald&#39;s-style red and yellow striped border, but the colors get increasingly desaturated the longer the snake is (the curse spreads).</li>
+<li><strong>Background:</strong> Dark purple-black (<code>#1a0a1e</code>) with faint golden arches shapes drawn as decorative background elements.</li>
+</ul>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Background: <code>#1a0a1e</code> (deep cursed purple)</li>
+<li>Grid lines: <code>#2a1a2e</code></li>
+<li>Snake head: <code>#7b1fa2</code> (grimace purple) with <code>#ffffff</code> eyes</li>
+<li>Body segments: gradient from <code>#7b1fa2</code> to <code>#4a0072</code></li>
+<li>Food: <code>#ce93d8</code> (light purple shake)</li>
+<li>Border: <code>#d32f2f</code> / <code>#fdd835</code> (McDonald&#39;s red/yellow)</li>
+<li>Accent: <code>#7b1fa2</code></li>
+</ul>
+<p><strong>5 Death/Game-Over Messages:</strong></p>
+<ol>
+<li>&quot;the grimace shake got you in the end.&quot;</li>
+<li>&quot;you choked on your own cursed trail.&quot;</li>
+<li>&quot;the shake was not worth it. it never was.&quot;</li>
+<li>&quot;grimace consumed himself. poetic.&quot;</li>
+<li>&quot;another one lost to the purple curse.&quot;</li>
+</ol>
+<hr>
+<h4>Variant C: OHIO SNAKE</h4>
+<p><strong>Concept:</strong> You are a sentient Ohio cornstalk snaking through a cursed Ohio landscape, eating mutant corn kernels to grow longer. The background is a flat, eerie Ohio field. Obstacles on the grid include random &quot;only in Ohio&quot; hazards -- floating portals, mysterious fog patches, corn maze walls. The vibe is desolate, absurd, and slightly ominous.</p>
+<p><strong>Currency/Score Label:</strong> CORN CONSUMED</p>
+<p><strong>Visual Description:</strong></p>
+<ul>
+<li><strong>Player (snake head):</strong> Corn cob with a face -- elongated yellow oval, two rows of kernel bumps (small circles), angry eyebrows, determined expression. ~20 lines of Canvas.</li>
+<li><strong>Snake body segments:</strong> Individual corn kernels, each a rounded yellow rectangle with a subtle highlight. Clean, simple.</li>
+<li><strong>Food pickups:</strong> Glowing mutant corn kernels -- bright green or purple (mutant colors) with small radiation lines around them.</li>
+<li><strong>Walls/border:</strong> Cornfield fence posts -- brown vertical lines with horizontal wire.</li>
+<li><strong>Background:</strong> Dark desaturated green-brown (<code>#1a2a1a</code>) Ohio field. Subtle fog overlay (semi-transparent white gradient at edges).</li>
+</ul>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Background: <code>#1a2a1a</code> (dark Ohio field)</li>
+<li>Grid lines: <code>#2a3a2a</code></li>
+<li>Snake head: <code>#fdd835</code> (corn yellow) with <code>#2e1a00</code> eyes</li>
+<li>Body segments: <code>#f9a825</code> (darker corn)</li>
+<li>Mutant food: <code>#76ff03</code> (radioactive green)</li>
+<li>Accent: <code>#ff6b2b</code> (Ohio orange)</li>
+<li>Fog: <code>rgba(200, 200, 200, 0.05)</code></li>
+</ul>
+<p><strong>5 Death/Game-Over Messages:</strong></p>
+<ol>
+<li>&quot;only in ohio do the cornstalks eat themselves.&quot;</li>
+<li>&quot;ohio is undefeated. even the corn loses.&quot;</li>
+<li>&quot;the ohio curse claimed another crop.&quot;</li>
+<li>&quot;you got lost in the ohio corn maze. forever.&quot;</li>
+<li>&quot;average tuesday in an ohio cornfield.&quot;</li>
+</ol>
+<hr>
+<h3>Core Loop (every 5-10 seconds)</h3>
+<p>Player swipes or presses arrow keys to change the snake&#39;s direction. The snake moves forward one grid cell per tick (~150ms at start, faster as score increases). A food item sits on a random empty cell. Player steers toward it, eats it (score +1, body grows by one segment), a new food spawns. Player must avoid hitting their own growing body or the grid walls. Every ~10 food items, the tick rate decreases by 10ms (snake speeds up). The tension is the shrinking safe space as the body fills the grid.</p>
+<h3>Difficulty Curve</h3>
+<table>
+<thead>
+<tr>
+<th>Score Range</th>
+<th>Tick Interval</th>
+<th>What Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-9</td>
+<td>150ms</td>
+<td>Learning phase. Grid feels spacious.</td>
+</tr>
+<tr>
+<td>10-19</td>
+<td>135ms</td>
+<td>Noticeable speed bump. Body is getting in the way.</td>
+</tr>
+<tr>
+<td>20-29</td>
+<td>120ms</td>
+<td>Medium difficulty. Strategic pathing required.</td>
+</tr>
+<tr>
+<td>30-39</td>
+<td>105ms</td>
+<td>Fast. Mistakes are costly.</td>
+</tr>
+<tr>
+<td>40-49</td>
+<td>90ms</td>
+<td>Very fast. Only deliberate paths work.</td>
+</tr>
+<tr>
+<td>50+</td>
+<td>80ms (floor)</td>
+<td>Max speed. The grid is half-full. Survival mode.</td>
+</tr>
+</tbody></table>
+<h3>Estimated Build Complexity: 1/5</h3>
+<p>Grid-based movement eliminates continuous physics. Snake body is a simple array (push head, pop tail). Collision is head-position vs. body-array lookup. Food spawn is random-empty-cell. The draw loop iterates the body array and renders each segment. Total core logic: ~150 lines.</p>
+<h3>Key Canvas Drawing Notes</h3>
+<ul>
+<li><strong>Grid:</strong> 18x18 cells on a 360x640 canvas = 20px cells, grid occupies rows 2-19 (leaving top rows for HUD). Draw grid lines with <code>ctx.strokeStyle</code> at low opacity.</li>
+<li><strong>Snake head:</strong> Each theme has a <code>drawHead(ctx, x, y, cellSize, direction)</code> function. Direction enum (up/down/left/right) rotates the face. ~15-25 lines per theme.</li>
+<li><strong>Snake body segments:</strong> Each theme has a <code>drawSegment(ctx, x, y, cellSize, index)</code> function. Index determines which food-item variant to draw for Fanum, shade for Grimace, etc.</li>
+<li><strong>Food pickup:</strong> <code>drawFood(ctx, x, y, cellSize, frame)</code> with a pulsing glow effect (sin-wave alpha on an outer circle).</li>
+<li><strong>Grid border:</strong> <code>drawBorder(ctx, width, height)</code> for the themed wall.</li>
+<li><strong>Animations:</strong> Minimal. Head slight bob on eat (scale tween). Score float text on eat. Screen flash on death. No complex sprite animation.</li>
+</ul>
+<h3>How It Uses Shared Infrastructure</h3>
+<ul>
+<li><strong>GameShell:</strong> Standard 3-state machine (menu -&gt; playing -&gt; game-over). <code>onStart</code> resets snake to center, spawns first food. <code>onUpdate</code> handles tick timing and movement. <code>onRender</code> draws grid + snake + food + HUD.</li>
+<li><strong>InputManager:</strong> Uses swipe detection (already supports swipe via touch start/end delta) for mobile. Arrow keys for desktop. Maps swipe direction to snake direction change. Ignores reverse-direction input (can&#39;t turn 180 degrees).</li>
+<li><strong>ScoreManager:</strong> High score per theme variant, stored as <code>fanum-snake-{themeId}</code>.</li>
+<li><strong>SoundManager:</strong> Eat sound (short rising tone), death sound (descending buzz), direction-change click (subtle tick).</li>
+<li><strong>Share:</strong> Score card: &quot;{themeName} -- {score} STOLEN BITES / SHAKES CONSUMED / CORN CONSUMED -- brainrotgames.io/snake&quot;</li>
+</ul>
+<hr>
+<h2>Game 07: BRAINROT 2048</h2>
+<h3>Base Mechanic</h3>
+<p><strong>2048</strong> -- slide tiles on a 4x4 grid to merge matching pairs. 2+2=4, 4+4=8, etc. Reach 2048 to win. No valid moves remaining = game over.</p>
+<h3>Why This Mechanic Next</h3>
+<p>This is the first <strong>puzzle / cognitive</strong> game in the catalog. Every existing game is reflex-based (tap fast, react fast, time it right). 2048 requires strategic thinking, spatial planning, and patience. It produces the longest average sessions (8-15 minutes vs. 1-4 minutes for reflex games) -- this is important for engagement metrics and ad revenue per session. It also opens a completely different mood: contemplative instead of frantic.</p>
+<p>The meme-reskin angle is proven. Doge 2048 got millions of plays by simply putting Doge faces on the tiles. Our version makes each tile a progressively more powerful brainrot character, turning the merge tree into a collectible discovery mechanic (&quot;what character is the 2048 tile?!&quot;).</p>
+<p>Complexity is 2/5 -- the 4x4 grid logic and merge algorithm require careful state management but no physics, no real-time collision, no continuous rendering. The slide animation is the most complex visual element.</p>
+<h3>3 Theme Variants</h3>
+<hr>
+<h4>Variant A: ITALIAN BRAINROT 2048 (primary)</h4>
+<p><strong>Concept:</strong> Each tile is an Italian brainrot character. Merging two of the same character evolves them into a more powerful, more absurd character. The progression is a tier list of the Italian brainrot universe -- starting from a basic &quot;Tung Tung Tung Sahur&quot; (value 2) and merging your way up to the legendary &quot;Tralalero Tralala&quot; (value 2048). Each merge is a character reveal moment. The tile art for each tier is a simple Canvas portrait of the character.</p>
+<p><strong>Currency/Score Label:</strong> BRAINROT LEVEL</p>
+<p><strong>Tile Progression (value -&gt; character):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tile Value</th>
+<th>Character</th>
+<th>Visual (Canvas)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>Tung Tung Tung Sahur</td>
+<td>Small drum shape, two dot eyes</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Lirili Larila</td>
+<td>Butterfly wings (two triangles), round head</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Spongebobini Squarepantaloni</td>
+<td>Yellow square, big eyes, Italian mustache</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Bombombini Gusini</td>
+<td>Goose shape (oval body, long neck), bomb fuse on head</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Cappuccino Assassino</td>
+<td>Coffee cup shape, angry eyes, knife line</td>
+</tr>
+<tr>
+<td>64</td>
+<td>La Vaca Saturno Saturnita</td>
+<td>Cow (oval body, horns, Saturn ring around it)</td>
+</tr>
+<tr>
+<td>128</td>
+<td>Glorbo Fruttodrago</td>
+<td>Dragon head (triangles for horns, flame arc)</td>
+</tr>
+<tr>
+<td>256</td>
+<td>Chimpanzini Bananini</td>
+<td>Monkey circle face, banana on head</td>
+</tr>
+<tr>
+<td>512</td>
+<td>Bombardiro Crocodilo</td>
+<td>Crocodile snout (long rectangle), airplane wings</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>Brr Brr Patapim</td>
+<td>Refrigerator rectangle, legs, face</td>
+</tr>
+<tr>
+<td>2048</td>
+<td>Tralalero Tralala</td>
+<td>Shark fin, muscular arms (rectangles), sneakers</td>
+</tr>
+</tbody></table>
+<p><strong>Visual Description:</strong></p>
+<ul>
+<li><strong>Tiles:</strong> Rounded rectangles with background color intensity increasing with value. Each tile contains a ~30x30px character face drawn with Canvas primitives (circles, rectangles, arcs, lines). Characters are deliberately crude -- 10-15 lines of draw code per character.</li>
+<li><strong>Board:</strong> 4x4 grid with dark rounded-rectangle cells. Thin gap between cells.</li>
+<li><strong>Background:</strong> Deep dark navy (<code>#0d1117</code>) with subtle Italian flag stripe accents (green-white-red) as thin horizontal lines at top and bottom of the board.</li>
+</ul>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Background: <code>#0d1117</code></li>
+<li>Board bg: <code>#1a1a2e</code></li>
+<li>Cell empty: <code>#2a2a3e</code></li>
+<li>Tile colors by tier: <code>#4a3728</code> (2) -&gt; <code>#5a4030</code> (4) -&gt; <code>#6b4f2a</code> (8) -&gt; <code>#8b6914</code> (16) -&gt; <code>#a67c00</code> (32) -&gt; <code>#c89b3c</code> (64) -&gt; <code>#e6b800</code> (128) -&gt; <code>#ffd700</code> (256) -&gt; <code>#ff9800</code> (512) -&gt; <code>#ff5722</code> (1024) -&gt; <code>#c8ff00</code> (2048 -- the site accent)</li>
+<li>Text: <code>#f0f0f0</code></li>
+<li>Accent: <code>#c8ff00</code></li>
+</ul>
+<p><strong>5 Death/Game-Over Messages:</strong></p>
+<ol>
+<li>&quot;the brainrot consumed all available brain cells.&quot;</li>
+<li>&quot;no more room for characters. the lore is complete.&quot;</li>
+<li>&quot;your brainrot universe collapsed under its own weight.&quot;</li>
+<li>&quot;even tralalero couldn&#39;t save this board.&quot;</li>
+<li>&quot;game over. touch grass. (you won&#39;t.)&quot;</li>
+</ol>
+<hr>
+<h4>Variant B: AMONG US 2048</h4>
+<p><strong>Concept:</strong> Each tile is a crewmate in a different SUS level. Merging two crewmates makes them progressively more suspicious until the 2048 tile is THE IMPOSTOR. The tile characters go from &quot;not sus&quot; (plain crewmate) to &quot;mega sus&quot; (red crewmate with knife). Every merge is an escalation of sus-ness. Tiles occasionally get a &quot;?&quot; overlay when adjacent to a high-value tile (suspicion spreading).</p>
+<p><strong>Currency/Score Label:</strong> SUS LEVEL</p>
+<p><strong>Tile Progression (value -&gt; sus level):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tile Value</th>
+<th>Character</th>
+<th>Visual</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>Innocent Crewmate</td>
+<td>Simple bean shape, visor, white</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Slightly Nervous</td>
+<td>Bean shape, visor, sweat drop</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Side-Eye Crewmate</td>
+<td>Bean shape, visor shifted to one side</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Hiding Crewmate</td>
+<td>Bean shape partially behind a vent rectangle</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Sweating Hard</td>
+<td>Bean with multiple sweat drops, red tint starting</td>
+</tr>
+<tr>
+<td>64</td>
+<td>Fake Tasking</td>
+<td>Bean next to a task panel (small rectangle), looking away</td>
+</tr>
+<tr>
+<td>128</td>
+<td>Caught Venting</td>
+<td>Bean halfway in vent, exclamation mark</td>
+</tr>
+<tr>
+<td>256</td>
+<td>Self-Report</td>
+<td>Bean next to a dead bean (X eyes)</td>
+</tr>
+<tr>
+<td>512</td>
+<td>Double Kill</td>
+<td>Bean with two dead beans nearby</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>Mega Sus</td>
+<td>Red bean, glowing eyes, knife shape visible</td>
+</tr>
+<tr>
+<td>2048</td>
+<td>THE IMPOSTOR</td>
+<td>Red bean, full knife, evil grin arc, &quot;SUS&quot; text floating</td>
+</tr>
+</tbody></table>
+<p><strong>Visual Description:</strong></p>
+<ul>
+<li><strong>Crewmate shape:</strong> Rounded rectangle body (bean), rectangular visor, small backpack bump. ~8 lines of Canvas. Color shifts from white -&gt; yellow -&gt; orange -&gt; red through the tiers.</li>
+<li><strong>Board:</strong> Dark spaceship interior. Grid cells look like floor panels (dark gray with subtle rivet dots in corners).</li>
+<li><strong>Background:</strong> <code>#0a0a1a</code> (deep space black) with star dots and a vent grate drawn at the bottom.</li>
+</ul>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Background: <code>#0a0a1a</code></li>
+<li>Board: <code>#1a1a2a</code></li>
+<li>Cell empty: <code>#252535</code></li>
+<li>Tile colors: <code>#e0e0e0</code> (2, white) -&gt; <code>#c8e6c9</code> (4, green tint) -&gt; <code>#fff9c4</code> (8, yellow) -&gt; <code>#ffe082</code> (16) -&gt; <code>#ffcc02</code> (32) -&gt; <code>#ffab40</code> (64) -&gt; <code>#ff7043</code> (128) -&gt; <code>#ef5350</code> (256) -&gt; <code>#e53935</code> (512) -&gt; <code>#c62828</code> (1024) -&gt; <code>#b71c1c</code> (2048, blood red)</li>
+<li>Accent: <code>#ef5350</code></li>
+</ul>
+<p><strong>5 Death/Game-Over Messages:</strong></p>
+<ol>
+<li>&quot;emergency meeting! your board is dead.&quot;</li>
+<li>&quot;you were the impostor of puzzle games.&quot;</li>
+<li>&quot;ejected. no more moves remaining.&quot;</li>
+<li>&quot;the crewmates voted you out. 0 moves left.&quot;</li>
+<li>&quot;sus level maxed. brain capacity zero.&quot;</li>
+</ol>
+<hr>
+<h4>Variant C: ITALIAN BRAINROT 2048 -- CROSSOVER (Duo Merge)</h4>
+<p>Wait, let me reconsider. We already have Italian Brainrot as Variant A. The third theme should be one we&#39;re underusing.</p>
+<h4>Variant C: AURA 2048</h4>
+<p><strong>Concept:</strong> Every tile is an &quot;Aura Level.&quot; Merging tiles increases your aura. The visual metaphor is glowing energy levels -- tiles are concentric circles that get brighter and more complex with each tier. The progression goes from &quot;NPC energy&quot; (value 2, dim gray) to &quot;Main Character Energy&quot; (value 2048, blinding gold with particle effects). This is the mystical/spiritual take on 2048 -- the board feels like a meditation grid.</p>
+<p>This is the first time Aura Points is treated as a full THEME, not just a score label.</p>
+<p><strong>Currency/Score Label:</strong> AURA</p>
+<p><strong>Tile Progression (value -&gt; aura level):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tile Value</th>
+<th>Aura Level</th>
+<th>Visual</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>NPC</td>
+<td>Dim gray circle, flat, lifeless</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Background Character</td>
+<td>Slightly brighter circle, faint ring</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Side Character</td>
+<td>Light blue glow, single ring</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Recurring Character</td>
+<td>Green glow, double ring</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Fan Favorite</td>
+<td>Yellow glow, triple ring, small sparkles</td>
+</tr>
+<tr>
+<td>64</td>
+<td>Protagonist Energy</td>
+<td>Orange glow, pulsing rings</td>
+</tr>
+<tr>
+<td>128</td>
+<td>Main Character</td>
+<td>Bright gold, radiating lines</td>
+</tr>
+<tr>
+<td>256</td>
+<td>Anime Protagonist</td>
+<td>Intense gold, spiky aura lines (like DBZ)</td>
+</tr>
+<tr>
+<td>512</td>
+<td>Chosen One</td>
+<td>White-gold, multiple aura rings, screen-glow effect on tile</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>Ascended</td>
+<td>Prismatic/rainbow cycling outline, intense center</td>
+</tr>
+<tr>
+<td>2048</td>
+<td>GOD-TIER AURA</td>
+<td>Full rainbow gradient, particle burst, tile slightly larger than cell</td>
+</tr>
+</tbody></table>
+<p><strong>Visual Description:</strong></p>
+<ul>
+<li><strong>Tiles:</strong> Each tile is a circle (not a character) -- pure energy visualization. Inner circle + outer ring(s) + radial lines for higher tiers. Color and number of rings increase with value. Very clean, minimal, almost meditative.</li>
+<li><strong>Board:</strong> Black grid with thin gold cell borders. Elegant, sparse.</li>
+<li><strong>Background:</strong> Pure black (<code>#0a0a0a</code>) -- lets the aura colors pop.</li>
+</ul>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Background: <code>#0a0a0a</code></li>
+<li>Board: <code>#111111</code></li>
+<li>Cell empty: <code>#1a1a1a</code></li>
+<li>Tile colors: <code>#666666</code> (2) -&gt; <code>#888888</code> (4) -&gt; <code>#64b5f6</code> (8) -&gt; <code>#66bb6a</code> (16) -&gt; <code>#fdd835</code> (32) -&gt; <code>#ff9800</code> (64) -&gt; <code>#ffc107</code> (128) -&gt; <code>#ffd700</code> (256) -&gt; <code>#ffffcc</code> (512) -&gt; rainbow cycle (1024) -&gt; rainbow burst (2048)</li>
+<li>Accent: <code>#ffd700</code> (gold)</li>
+</ul>
+<p><strong>5 Death/Game-Over Messages:</strong></p>
+<ol>
+<li>&quot;aura depleted. you are now an npc.&quot;</li>
+<li>&quot;negative aura detected. seek grass immediately.&quot;</li>
+<li>&quot;the aura grid collapsed. main character arc over.&quot;</li>
+<li>&quot;your rizz could not save your spatial reasoning.&quot;</li>
+<li>&quot;aura check failed. back to background character.&quot;</li>
+</ol>
+<hr>
+<h3>Core Loop (every 5-10 seconds)</h3>
+<p>Player swipes in one of four directions (or presses arrow keys). All tiles slide in that direction. Matching adjacent tiles merge, doubling their value. A new &quot;2&quot; tile (90% chance) or &quot;4&quot; tile (10% chance) spawns in a random empty cell. Player evaluates the new board state, plans the next swipe. The strategic tension: every swipe spawns a new tile, filling the board. Merges clear space. The player must balance creating merges with not letting the board fill up.</p>
+<h3>Difficulty Curve</h3>
+<p>2048&#39;s difficulty is inherent to its mechanics -- no external acceleration needed.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Board State</th>
+<th>Player Experience</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Opening (0-500 pts)</td>
+<td>Mostly empty, small tiles</td>
+<td>Low stakes. Learning merge patterns.</td>
+</tr>
+<tr>
+<td>Midgame (500-5000 pts)</td>
+<td>Half full, medium tiles</td>
+<td>Strategic decisions start mattering. One bad swipe can trap a high tile.</td>
+</tr>
+<tr>
+<td>Lategame (5000-20000 pts)</td>
+<td>Nearly full, high-value tiles cornered</td>
+<td>Every move is critical. One wrong direction can end the game.</td>
+</tr>
+<tr>
+<td>Endgame (20000+ pts)</td>
+<td>Attempting 2048. Board is packed.</td>
+<td>Maximum tension. The discovery moment of seeing the 2048 character/aura is the payoff.</td>
+</tr>
+</tbody></table>
+<h3>Estimated Build Complexity: 2/5</h3>
+<p>The grid logic is the main challenge: implementing the slide-and-merge algorithm correctly (handling cascading merges, preventing double-merges in one swipe). The tile slide animation requires lerping tile positions between frames. No physics, no real-time collision. Total core logic: ~250 lines. Tile animation: ~80 lines. Character draw functions: ~200 lines across all themes.</p>
+<h3>Key Canvas Drawing Notes</h3>
+<ul>
+<li><strong>Grid:</strong> 4x4 on 360x640 canvas. Board centered horizontally, positioned in upper-center. Each cell ~80px with 8px gaps. Board total: ~344px wide, ~344px tall. Rounded rectangles for cells and tiles.</li>
+<li><strong>Tiles:</strong> <code>drawTile(ctx, x, y, size, value, themeId, animFrame)</code> dispatches to theme-specific character draw. Each character is 10-20 lines of Canvas primitives -- deliberately crude, charming pixel-art-by-math aesthetic.</li>
+<li><strong>Slide animation:</strong> Tiles lerp from old position to new position over ~150ms. Use a tween array: <code>[{fromX, fromY, toX, toY, progress}]</code>. Render tiles at interpolated position during animation. Block input during animation.</li>
+<li><strong>Merge animation:</strong> Brief scale-up pulse (1.0 -&gt; 1.2 -&gt; 1.0 over 200ms) when two tiles combine. Plus a floating &quot;+{value}&quot; text that fades upward.</li>
+<li><strong>New tile spawn:</strong> Fade-in + scale from 0.5 to 1.0 over 150ms.</li>
+<li><strong>Swipe trail:</strong> No swipe visualization needed (unlike Fruit Ninja). Swipe is input-only.</li>
+</ul>
+<h3>How It Uses Shared Infrastructure</h3>
+<ul>
+<li><strong>GameShell:</strong> Standard 3-state machine. <code>onStart</code> initializes empty 4x4 grid, spawns two random tiles. <code>onUpdate</code> processes queued swipe inputs, runs merge logic, checks win/loss. <code>onRender</code> draws board, tiles (with animation interpolation), HUD score.</li>
+<li><strong>InputManager:</strong> Swipe detection for mobile (threshold 30px to distinguish from accidental touch). Arrow keys for desktop. Input is queued -- swipes during animation are buffered and executed after animation completes.</li>
+<li><strong>ScoreManager:</strong> High score per theme variant: <code>brainrot-2048-{themeId}</code>. Also tracks &quot;highest tile reached&quot; as a secondary stat.</li>
+<li><strong>SoundManager:</strong> Merge sound (ascending tone, pitch increases with tile value). Slide sound (soft whoosh). New tile spawn (subtle plop). Win fanfare (ascending arpeggio). Loss sound (descending).</li>
+<li><strong>Share:</strong> Score card includes highest tile character name: &quot;BRAINROT 2048 -- reached Bombardiro Crocodilo (512) -- 12,480 BRAINROT LEVEL -- brainrotgames.io/2048&quot;. The character name in the share text is the viral hook -- people will want to reach higher characters.</li>
+</ul>
+<hr>
+<h2>Game 08: BRAINROT NINJA</h2>
+<h3>Base Mechanic</h3>
+<p><strong>Fruit Ninja</strong> -- swipe across the screen to slice objects tossed into the air. Slice meme objects for points. Avoid bombs. Chain multi-slices for combos.</p>
+<h3>Why This Mechanic Next</h3>
+<p>This is the first game with <strong>swipe/drag input</strong> -- every other game uses taps or directional presses. The swipe-to-slice gesture is uniquely satisfying and tactile in a way that no other mechanic in the catalog provides. It is also the first <strong>destruction-oriented</strong> game -- instead of building (Stack), surviving (Runner, Flappy), or growing (Snake), the player is actively destroying things. This is cathartic and visually spectacular with minimal art effort (slice effects are just lines and particles).</p>
+<p>Fruit Ninja also has the strongest &quot;clip moment&quot; potential after Flappy Bird -- a perfect multi-slice combo in slow motion is inherently satisfying to watch. TikTok content creation potential is high.</p>
+<p>Complexity is 3/5 -- the swipe gesture detection and object-swipe intersection math are the main challenges. But the game has no persistent state (no grid, no body tracking), making each frame self-contained.</p>
+<h3>3 Theme Variants</h3>
+<hr>
+<h4>Variant A: SKIBIDI SLICER (primary)</h4>
+<p><strong>Concept:</strong> Skibidi Toilets are being launched into the air and you are a Cameraman slicing them in half with your camera beam (the swipe trail). Toilets fly up, you slash them. Cameraman allies are the &quot;bombs&quot; -- slice one and you lose (friendly fire). Multi-toilet combos trigger &quot;CAMERA CREW COMBO&quot; text. The fiction: you are defending the camera faction by intercepting launched toilet projectiles.</p>
+<p><strong>Currency/Score Label:</strong> TOILETS SLICED</p>
+<p><strong>Visual Description:</strong></p>
+<ul>
+<li><strong>Slice objects (toilets):</strong> Skibidi Toilet -- oval bowl, rectangular tank, small head poking out the top. ~15 lines of Canvas. Drawn in various sizes (small=fast, large=slow). When sliced, the toilet splits into two halves that tumble off-screen with a brief water-splash particle effect (blue dots).</li>
+<li><strong>Bombs (cameramen):</strong> Camera-headed figure -- rectangular body, camera-lens circle for head, tripod legs. ~12 lines. Flash red briefly when they enter screen to warn player.</li>
+<li><strong>Swipe trail:</strong> Electric blue beam (<code>#00e5ff</code>) with white-hot center. Fades over 200ms. Looks like a camera flash beam cutting through the air.</li>
+<li><strong>Background:</strong> Dark cityscape silhouette (a few rectangular buildings along the bottom, dark sky above). Simple, non-distracting.</li>
+<li><strong>Slice effect:</strong> When a toilet is cut, two halves separate with a spray of blue droplet particles (4-6 small circles that arc outward and fade).</li>
+</ul>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Background: <code>#0a0a1a</code> (dark sky)</li>
+<li>Building silhouettes: <code>#1a1a2a</code></li>
+<li>Toilet body: <code>#e0e0e0</code> (white porcelain)</li>
+<li>Toilet head: <code>#f5deb3</code> (skin tone)</li>
+<li>Cameraman: <code>#333333</code> (dark body), <code>#78909c</code> (camera lens)</li>
+<li>Swipe trail: <code>#00e5ff</code> center, <code>#0088cc</code> outer glow</li>
+<li>Combo text: <code>#00e5ff</code></li>
+<li>Accent: <code>#00e5ff</code></li>
+</ul>
+<p><strong>5 Death/Game-Over Messages:</strong></p>
+<ol>
+<li>&quot;you sliced a cameraman. friendly fire is not sigma.&quot;</li>
+<li>&quot;the toilets won this round. skibidi 1, camera 0.&quot;</li>
+<li>&quot;your camera beam has been revoked.&quot;</li>
+<li>&quot;three toilets escaped. the invasion continues.&quot;</li>
+<li>&quot;skill issue. the cameramen are disappointed.&quot;</li>
+</ol>
+<hr>
+<h4>Variant B: AURA SLICER</h4>
+<p><strong>Concept:</strong> Objects flying through the air are &quot;negative aura&quot; entities -- cringe moments, L&#39;s, NPC behaviors, ratio&#39;d tweets. You slice them to gain aura. The positive-aura objects are the &quot;bombs&quot; -- glowing golden orbs that you must NOT slice (they represent W&#39;s, rizz moments, main character energy). Slicing a positive aura = you just destroyed good vibes = game over.</p>
+<p>This gives Aura Points its second themed appearance and makes it a gameplay concept, not just a label.</p>
+<p><strong>Currency/Score Label:</strong> AURA GAINED</p>
+<p><strong>Visual Description:</strong></p>
+<ul>
+<li><strong>Slice objects (negative aura):</strong> Dark purple/gray orbs with downward-pointing arrows and &quot;L&quot; text on them. Sad face emoticons. Cringe clouds (lumpy gray shapes with &quot;NPC&quot; text). 3 visual variants, each ~10 lines of Canvas. When sliced, they burst into dark purple particles that quickly fade (negative energy dissipating).</li>
+<li><strong>Bombs (positive aura):</strong> Bright golden orbs with upward arrows, sparkle effects, &quot;W&quot; text. Warm glow ring around them. Must NOT be sliced.</li>
+<li><strong>Swipe trail:</strong> Gold-white gradient, sparkle particles along the trail. Represents your aura energy beam.</li>
+<li><strong>Background:</strong> Gradient from deep navy (<code>#0a0a2a</code>) at bottom to slightly lighter at top. Clean, mystical.</li>
+<li><strong>Slice effect:</strong> Dark orbs burst into purple particles that dissolve. Satisfying &quot;aura cleansed&quot; visual.</li>
+</ul>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Background: <code>#0a0a2a</code> to <code>#1a1a3a</code> gradient</li>
+<li>Negative aura orbs: <code>#4a148c</code> (dark purple), <code>#616161</code> (gray), <code>#37474f</code> (dark teal)</li>
+<li>Positive aura orbs: <code>#ffd700</code> (gold) with <code>#fff8e1</code> glow</li>
+<li>Swipe trail: <code>#ffd700</code> to <code>#ffffff</code> gradient</li>
+<li>Text: <code>#f0f0f0</code></li>
+<li>Accent: <code>#ffd700</code></li>
+</ul>
+<p><strong>5 Death/Game-Over Messages:</strong></p>
+<ol>
+<li>&quot;you destroyed positive aura. negative aura check.&quot;</li>
+<li>&quot;you sliced a W. that was a self-ratio.&quot;</li>
+<li>&quot;aura obliterated. npc behavior detected.&quot;</li>
+<li>&quot;three L&#39;s escaped. your aura is in the negatives.&quot;</li>
+<li>&quot;main character arc: cancelled.&quot;</li>
+</ol>
+<hr>
+<h4>Variant C: FANUM FOOD FIGHT</h4>
+<p><strong>Concept:</strong> Food items are being tossed into the air and you are collecting the Fanum Tax by slicing through them mid-air to claim them. The food you must NOT slice: empty plates (already taxed, nothing left). Slicing an empty plate = embarrassment = game over. Multi-food combos = &quot;TAX COLLECTOR COMBO.&quot; The swipe trail looks like grabbing hands reaching out.</p>
+<p><strong>Currency/Score Label:</strong> FOOD TAXED</p>
+<p><strong>Visual Description:</strong></p>
+<ul>
+<li><strong>Slice objects (food):</strong> Pizza slices (triangle + circle), burgers (stacked rectangles), tacos (arc shape), chicken drumsticks (circle + rectangle), ice cream cones (triangle + circle). 5 food types, ~10 lines each. When sliced, food splits into two halves with sauce/crumb particle spray (colored dots matching the food).</li>
+<li><strong>Bombs (empty plates):</strong> White/gray circle (plate) with a sad face and &quot;EMPTY&quot; text. Small dust cloud around it. Hitting this = you tried to tax nothing.</li>
+<li><strong>Swipe trail:</strong> Orange-red gradient trail with small hand/finger shapes along the edge (simplified: just the orange trail is fine).</li>
+<li><strong>Background:</strong> Kitchen/restaurant dark interior. Counter silhouette at bottom. Dark warm tones.</li>
+<li><strong>Slice effect:</strong> Food-colored particle burst (red for pizza sauce, yellow for cheese, brown for burger, etc.).</li>
+</ul>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Background: <code>#1a1210</code> (dark kitchen brown)</li>
+<li>Counter: <code>#2a1a10</code></li>
+<li>Food items: <code>#ff5252</code> (pizza), <code>#ffb74d</code> (burger), <code>#fdd835</code> (taco), <code>#8d6e63</code> (drumstick), <code>#f48fb1</code> (ice cream)</li>
+<li>Empty plate: <code>#9e9e9e</code> (gray) with <code>#757575</code> sad face</li>
+<li>Swipe trail: <code>#ff6b2b</code> (orange)</li>
+<li>Accent: <code>#ff6b2b</code></li>
+</ul>
+<p><strong>5 Death/Game-Over Messages:</strong></p>
+<ol>
+<li>&quot;you tried to tax an empty plate. embarrassing.&quot;</li>
+<li>&quot;the food got away. fanum tax evaded.&quot;</li>
+<li>&quot;three meals escaped your grasp. hunger wins.&quot;</li>
+<li>&quot;your tax collector license has been revoked.&quot;</li>
+<li>&quot;no food left to steal. the fridge is empty.&quot;</li>
+</ol>
+<hr>
+<h3>Core Loop (every 5-10 seconds)</h3>
+<p>Objects are launched upward from below the screen in parabolic arcs (randomized launch angle and velocity). They hang at the apex for a beat, then fall. Player swipes across the screen to create a slice line. Any sliceable object intersecting the swipe line is destroyed (score + particle effect). Bombs intersecting the line trigger a strike (3 strikes = game over in Classic mode). Objects that fall off-screen un-sliced also count as a strike (in Classic mode). Every 15-20 seconds, a &quot;frenzy wave&quot; launches 6-8 objects simultaneously for a combo opportunity. The game runs on a 60-second timer in Arcade mode or infinite with 3-strikes in Classic mode.</p>
+<h3>Difficulty Curve</h3>
+<p><strong>Classic Mode (3 strikes):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Launch Rate</th>
+<th>What Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-20s</td>
+<td>1 object/1.5s</td>
+<td>Learning. Big, slow arcs. Few bombs.</td>
+</tr>
+<tr>
+<td>20-40s</td>
+<td>1 object/1.0s</td>
+<td>Faster launches. Bombs appear 15% of the time.</td>
+</tr>
+<tr>
+<td>40-60s</td>
+<td>1 object/0.7s</td>
+<td>Fast. Bombs at 20%. Multi-object launches start.</td>
+</tr>
+<tr>
+<td>60-90s</td>
+<td>2 objects/0.7s</td>
+<td>Intense. Must distinguish targets from bombs quickly.</td>
+</tr>
+<tr>
+<td>90s+</td>
+<td>2-3 objects/0.5s</td>
+<td>Survival. Screen is full. Combo opportunities everywhere but so are bombs.</td>
+</tr>
+</tbody></table>
+<p><strong>Arcade Mode (60-second timer):</strong>
+Fixed time, increasing launch rate. Score as many as possible. No &quot;missed object&quot; strikes -- only bomb strikes end the game early.</p>
+<h3>Estimated Build Complexity: 3/5</h3>
+<p>The main challenges:</p>
+<ol>
+<li><strong>Swipe detection:</strong> Track touch/mouse start and end points over ~200ms window. Compute the swipe line segment. This is more complex than tap detection but well-documented.</li>
+<li><strong>Object-swipe intersection:</strong> For each active object, test if the swipe line segment intersects the object&#39;s circular hitbox. Standard line-circle intersection math (~20 lines of utility code).</li>
+<li><strong>Parabolic trajectories:</strong> Each object has launch velocity (vx, vy) and gravity. Position updates: <code>x += vx * dt</code>, <code>y += vy * dt</code>, <code>vy += gravity * dt</code>. Simple but many objects are in flight simultaneously.</li>
+<li><strong>Particle system:</strong> Slice effects require a simple particle array. Each particle: {x, y, vx, vy, life, color}. Update positions, fade alpha by life, remove dead particles. ~40 lines.</li>
+<li><strong>Two game modes:</strong> Classic (strikes) and Arcade (timer) share 90% of logic, just different end conditions.</li>
+</ol>
+<h3>Key Canvas Drawing Notes</h3>
+<ul>
+<li><strong>Objects in flight:</strong> Each object drawn at its current (x, y) with rotation based on angular velocity (adds tumble: <code>ctx.rotate(angle)</code>). Objects are 40-60px diameter. 5-8 objects on screen at peak.</li>
+<li><strong>Swipe trail rendering:</strong> Store last N touch points (10-15 points over 200ms). Draw a tapered line through them -- thick at start, thin at end. Use <code>ctx.lineWidth</code> tapering or draw successive line segments with decreasing width. Glow effect via shadow blur. Fade trail alpha over 300ms after swipe ends.</li>
+<li><strong>Slice effect:</strong> When an object is sliced, compute the slice angle from the swipe direction. Split the object into two halves -- draw each half using <code>ctx.clip()</code> with a rectangle rotated to the slice angle. Each half gets opposite velocity to tumble apart. Alternatively, simpler: just spawn 8-12 particles in the object&#39;s color and hide the object.</li>
+<li><strong>Particle system:</strong> Simple circle particles. Each has position, velocity, gravity, life (0-1), color. Draw as small filled circles with <code>globalAlpha = life</code>. ~30 particles active at peak. Trivial performance impact.</li>
+<li><strong>Background:</strong> Static. Draw once to an offscreen canvas, blit each frame. City silhouette or kitchen counter is just <code>fillRect</code> shapes.</li>
+<li><strong>HUD:</strong> Score top-left. Strikes (X marks) top-right for Classic. Timer bar for Arcade. Combo text (e.g., &quot;3x COMBO!&quot;) center-screen, fades up over 500ms.</li>
+</ul>
+<h3>How It Uses Shared Infrastructure</h3>
+<ul>
+<li><strong>GameShell:</strong> Standard 3-state machine. Menu screen shows mode select (Classic / Arcade) -- can be a simple toggle in the menu overlay. <code>onStart</code> clears all objects and particles, resets score/strikes/timer. <code>onUpdate</code> spawns objects on schedule, updates trajectories, processes swipe intersections, checks game-over conditions. <code>onRender</code> draws background, objects, swipe trail, particles, HUD.</li>
+<li><strong>InputManager:</strong> Needs swipe path tracking (not just swipe direction). The existing InputManager tracks touch start/end for swipe direction -- this game needs the intermediate points too. <strong>Extension needed:</strong> add <code>onSwipe(points[])</code> callback that fires when a swipe gesture is detected, passing the array of {x, y, time} points along the path. Alternatively, the game can directly listen to <code>touchmove</code>/<code>mousemove</code> events on the canvas for this specific input pattern. Recommendation: game-local input handling for the swipe trail, using InputManager only for menu taps.</li>
+<li><strong>ScoreManager:</strong> High score per mode per theme: <code>brainrot-ninja-{themeId}-{mode}</code>.</li>
+<li><strong>SoundManager:</strong> Slice sound (sharp high-pitched &quot;shing&quot;). Bomb hit sound (low buzz + warning). Combo sound (ascending quick notes, pitch based on combo count). Miss sound (whoosh). Background: no music, just effects.</li>
+<li><strong>Share:</strong> Score card: &quot;SKIBIDI SLICER -- sliced 47 TOILETS -- 3x best combo -- brainrotgames.io/ninja&quot;</li>
+</ul>
+<hr>
+<h2>Summary: Batch 2 at a Glance</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Game 06</th>
+<th>Game 07</th>
+<th>Game 08</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>FANUM SNAKE</td>
+<td>BRAINROT 2048</td>
+<td>BRAINROT NINJA</td>
+</tr>
+<tr>
+<td><strong>Base Mechanic</strong></td>
+<td>Snake</td>
+<td>2048</td>
+<td>Fruit Ninja</td>
+</tr>
+<tr>
+<td><strong>New to Catalog</strong></td>
+<td>Directional control</td>
+<td>Puzzle / cognitive</td>
+<td>Swipe / destruction</td>
+</tr>
+<tr>
+<td><strong>Themes</strong></td>
+<td>Fanum Tax, Grimace Shake, Ohio</td>
+<td>Italian Brainrot, Among Us, Aura Points</td>
+<td>Skibidi, Aura Points, Fanum Tax</td>
+</tr>
+<tr>
+<td><strong>Complexity</strong></td>
+<td>1/5</td>
+<td>2/5</td>
+<td>3/5</td>
+</tr>
+<tr>
+<td><strong>Avg Session</strong></td>
+<td>3-7 min</td>
+<td>8-15 min</td>
+<td>2-5 min</td>
+</tr>
+<tr>
+<td><strong>Retry Factor</strong></td>
+<td>4/5</td>
+<td>4/5</td>
+<td>3/5</td>
+</tr>
+<tr>
+<td><strong>Input Type</strong></td>
+<td>Swipe direction / arrows</td>
+<td>Swipe direction / arrows</td>
+<td>Swipe path / mouse drag</td>
+</tr>
+<tr>
+<td><strong>Core Feel</strong></td>
+<td>Growing tension</td>
+<td>Strategic planning</td>
+<td>Satisfying destruction</td>
+</tr>
+</tbody></table>
+<h3>Build Order Recommendation</h3>
+<ol>
+<li><strong>Game 06 (Snake)</strong> first -- complexity 1/5, shares swipe-direction input pattern with existing games, fastest to ship.</li>
+<li><strong>Game 07 (2048)</strong> second -- complexity 2/5, also uses swipe-direction, but the merge algorithm and tile animation need more careful implementation.</li>
+<li><strong>Game 08 (Fruit Ninja)</strong> third -- complexity 3/5, requires new swipe-path input handling and a particle system. Most complex but most visually impressive.</li>
+</ol>
+<h3>Shared Infrastructure Additions Needed</h3>
+<ol>
+<li><strong>Particle system utility</strong> (<code>games/shared/particles.js</code>) -- Games 06 and 07 need minimal particles (score floats, merge pulses). Game 08 needs a proper particle system. Building a shared lightweight particle manager benefits all three and future games.</li>
+<li><strong>Swipe path tracking</strong> -- InputManager currently tracks swipe start/end for direction detection. Game 08 needs intermediate touch points. Either extend InputManager with a <code>getSwipePath()</code> method or let Game 08 handle its own touch events directly on the canvas (recommended -- keeps InputManager simple for the majority of games that only need direction).</li>
+<li><strong>Grid utility</strong> (<code>games/shared/grid.js</code>) -- Both Game 06 (18x18) and Game 07 (4x4) use grid-based logic. A small shared utility for grid rendering (draw grid lines, cell coordinate math) could reduce duplication, but the grids are different enough that game-local implementations are also fine. Optional.</li>
+</ol>
+<hr>
+<p><em>Batch 2 plan produced 2026-04-10. Ready for GDD authoring per game.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

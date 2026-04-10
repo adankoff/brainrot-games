@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUSINESS PLAN — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">business/BUSINESS-PLAN.md</div>
+    <div class="doc-content"><h1>Brainrot Games — Executive Business Plan</h1>
+<h3>April 2026</h3>
+<hr>
+<h2>1. Company Overview</h2>
+<p><strong>Name:</strong> Brainrot Games
+<strong>Mission:</strong> We make games that are bad for you in all the right ways.
+<strong>Tagline:</strong> your brain on memes.</p>
+<p>Brainrot Games is a casual game studio that takes proven, addictive game mechanics (Flappy Bird, Whack-a-Mole, idle clickers, endless runners) and reskins them with trending internet culture — Italian brainrot characters, sigma/rizz vocabulary, Ohio memes, and whatever is currently melting Gen Alpha&#39;s brains on TikTok.</p>
+<p>The games are free, browser-based HTML5 games. No download, no signup, no app store. Click a link, play immediately. Built to be shared.</p>
+<h2>2. Market Opportunity</h2>
+<p><strong>Brainrot culture × casual gaming</strong> is a proven intersection at massive scale:</p>
+<ul>
+<li><strong>Steal a Brainrot</strong> on Roblox hit 25.4M concurrent users and generates ~$11M/month in revenue</li>
+<li>&quot;Brain rot&quot; was Oxford Dictionary&#39;s 2024 Word of the Year</li>
+<li>Browser gaming is resurging: Poki reached 625M annual players; the HTML5 games market is projected at $6B→$10.4B by 2035</li>
+<li>Target demographic (ages 8-16): 83% play games weekly, 52% make in-game purchases, 6+ hours daily gaming time</li>
+</ul>
+<p><strong>The gap:</strong> Roblox is saturated with brainrot content. Mobile has mostly low-quality clones. The browser game space has massive demand (search traffic for &quot;brainrot games&quot; is growing) but no quality-first studio serving it.</p>
+<p><strong>TAM estimate:</strong> HTML5 games market: $6B (2026). Casual/hyper-casual mobile (which browser games compete with): $20B+. Our addressable slice: the intersection of meme-culture games × browser platform — estimated at $50-200M globally.</p>
+<h2>3. Product Strategy</h2>
+<p><strong>The playbook: Reskin, don&#39;t reinvent.</strong></p>
+<p>Take mechanics with billions of cumulative downloads (Flappy Bird, Whack-a-Mole, 2048, Snake, idle clickers). Wrap them in brainrot themes. Ship fast. Measure. Iterate.</p>
+<p><strong>Current catalog:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Mechanic</th>
+<th>Theme</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Flappy Tralalero</td>
+<td>Flappy Bird</td>
+<td>Italian Brainrot</td>
+<td>Live</td>
+</tr>
+<tr>
+<td>Whack-a-Rot</td>
+<td>Whack-a-Mole</td>
+<td>Italian Brainrot</td>
+<td>Live</td>
+</tr>
+</tbody></table>
+<p><strong>Pipeline (90 days):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Game</th>
+<th>Mechanic</th>
+<th>Theme</th>
+<th>Ship Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sigma Grindset Simulator</td>
+<td>Idle Clicker</td>
+<td>Sigma/Rizz/Mewing</td>
+<td>Month 2</td>
+</tr>
+<tr>
+<td>Ohio Survival Run</td>
+<td>Endless Runner</td>
+<td>Ohio Memes</td>
+<td>Month 2</td>
+</tr>
+<tr>
+<td>Skibidi Stack</td>
+<td>Stack</td>
+<td>Skibidi Toilet</td>
+<td>Month 3</td>
+</tr>
+<tr>
+<td>Brainrot 2048</td>
+<td>2048</td>
+<td>Italian Brainrot</td>
+<td>Month 3</td>
+</tr>
+</tbody></table>
+<p><strong>Target cadence:</strong> 2 new games per month. Each game takes 1-5 days to build on shared infrastructure.</p>
+<h2>4. Competitive Advantage</h2>
+<ol>
+<li><strong>Speed of execution.</strong> Shared infrastructure means each new game is 1-5 days of incremental work. Competitors take weeks.</li>
+<li><strong>Trend-native brand.</strong> The brand voice is authentically online, not a corporation cosplaying as a meme page.</li>
+<li><strong>Zero-friction distribution.</strong> Browser-first means no app store gatekeeping, no download friction, no install conversion drop-off. A game is a URL.</li>
+<li><strong>AI-accelerated production.</strong> 1-2 person team producing at the pace of a 5-person studio.</li>
+<li><strong>No legacy baggage.</strong> No existing codebase, no team politics, no enterprise processes. Pure velocity.</li>
+</ol>
+<h2>5. Go-to-Market</h2>
+<p><strong>Viral-first, social-native, zero-budget launch.</strong></p>
+<ul>
+<li><strong>Primary channel:</strong> TikTok gameplay clips (15-second failures, score challenges, reaction bait)</li>
+<li><strong>Secondary channels:</strong> Reddit (r/webgames, r/InternetIsBeautiful), Discord, YouTube Shorts</li>
+<li><strong>Distribution platforms:</strong> Own website (full ad revenue) → Poki/CrazyGames (discovery) → itch.io (indie cred)</li>
+<li><strong>Influencer strategy:</strong> Micro-influencer outreach to gaming TikTokers (10K-100K followers). No budget — the pitch is &quot;this is funny, try it.&quot;</li>
+<li><strong>Viral mechanics:</strong> Built into every game — shareable score cards, funny death screen messages, screenshot-worthy moments.</li>
+</ul>
+<p><strong>The growth loop:</strong> Player plays → dies hilariously → screenshots/records → shares to group chat/TikTok → friends click link → play immediately → repeat.</p>
+<h2>6. Revenue Model</h2>
+<p><strong>Phase 1 (Launch):</strong> Ad-supported</p>
+<ul>
+<li>Interstitial ads on death (every 3rd death)</li>
+<li>Rewarded video for &quot;continue&quot; or score multiplier</li>
+<li>Blended eCPM: $2-4 (web, mixed geo)</li>
+</ul>
+<p><strong>Phase 2 (Month 2+):</strong> Multi-channel</p>
+<ul>
+<li>Poki/CrazyGames revenue share (50/50 on platform traffic)</li>
+<li>Game licensing to portal networks ($200-2000 per deal)</li>
+</ul>
+<p><strong>Phase 3 (Month 3+):</strong> Diversified</p>
+<ul>
+<li>Cosmetic IAP (character skins, $0.99-1.99)</li>
+<li>Android app wrapper (Google Play)</li>
+<li>Steam premium collection bundle ($2.99)</li>
+</ul>
+<p><strong>Revenue projections:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Month 1</th>
+<th>Month 3</th>
+<th>Month 6</th>
+<th>Month 12</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Conservative (10K MAU)</td>
+<td>$100</td>
+<td>$500</td>
+<td>$1,500</td>
+<td>$3,000</td>
+</tr>
+<tr>
+<td>Moderate (100K MAU)</td>
+<td>$500</td>
+<td>$3,000</td>
+<td>$12,000</td>
+<td>$30,000</td>
+</tr>
+<tr>
+<td>Optimistic (500K MAU)</td>
+<td>$2,000</td>
+<td>$15,000</td>
+<td>$60,000</td>
+<td>$150,000</td>
+</tr>
+</tbody></table>
+<p><strong>Cost structure:</strong> Near zero. Static site hosting (free on Vercel/Netlify), domain ($15/yr), no paid ads at launch.</p>
+<p><strong>Break-even:</strong> Effectively immediate — costs are &lt;$20/month. Any revenue is profit.</p>
+<h2>7. 90-Day Milestones</h2>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>Target</th>
+<th>By</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2 games live on own website</td>
+<td>✅</td>
+<td>Day 1</td>
+</tr>
+<tr>
+<td>Games submitted to Poki + CrazyGames</td>
+<td>Submitted</td>
+<td>Week 1</td>
+</tr>
+<tr>
+<td>5,000 MAU</td>
+<td>Organic traffic</td>
+<td>Month 1</td>
+</tr>
+<tr>
+<td>Analytics + monetization live</td>
+<td>Implemented</td>
+<td>Month 1</td>
+</tr>
+<tr>
+<td>4 games in catalog</td>
+<td>+2 shipped</td>
+<td>Month 2</td>
+</tr>
+<tr>
+<td>Global leaderboards</td>
+<td>Firebase</td>
+<td>Month 2</td>
+</tr>
+<tr>
+<td>$500/month revenue</td>
+<td>Ad revenue</td>
+<td>Month 2</td>
+</tr>
+<tr>
+<td>6 games in catalog</td>
+<td>+2 shipped</td>
+<td>Month 3</td>
+</tr>
+<tr>
+<td>50,000 MAU</td>
+<td>Growth</td>
+<td>Month 3</td>
+</tr>
+<tr>
+<td>$2,000/month revenue</td>
+<td>Multi-channel</td>
+<td>Month 3</td>
+</tr>
+<tr>
+<td>Android app on Google Play</td>
+<td>TWA wrapper</td>
+<td>Month 3</td>
+</tr>
+</tbody></table>
+<h2>8. Risks &amp; Mitigations</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Severity</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Meme theme decay</strong> — Italian brainrot fades</td>
+<td>High</td>
+<td>Mechanics stand alone; reskin with next trending meme in &lt;1 day. Theme is the skin, not the skeleton.</td>
+</tr>
+<tr>
+<td><strong>AI game flooding</strong> — everyone can build these now</td>
+<td>High</td>
+<td>Compete on curation, brand, and cultural taste, not technical execution. Be the studio with good games, not just games.</td>
+</tr>
+<tr>
+<td><strong>TikTok regulatory risk</strong> — potential US restrictions</td>
+<td>Medium</td>
+<td>YouTube Shorts + Instagram Reels as backup distribution. Reddit/Discord organic as base.</td>
+</tr>
+<tr>
+<td><strong>Low initial traffic</strong> — organic growth is slow</td>
+<td>High</td>
+<td>Expected. Budget 3 months before judging. Volume of games increases surface area.</td>
+</tr>
+<tr>
+<td><strong>Platform dependency</strong> — Poki/CrazyGames change terms</td>
+<td>Medium</td>
+<td>Own website is primary revenue source. Portals are supplementary.</td>
+</tr>
+<tr>
+<td><strong>Content appropriateness</strong> — parent/media pushback</td>
+<td>Medium</td>
+<td>Content is absurdist, not edgy. No violence, no sexual content, no bullying. Self-police aggressively.</td>
+</tr>
+</tbody></table>
+<h2>9. Team</h2>
+<p><strong>Current:</strong> AI-augmented solo operation</p>
+<ul>
+<li>15+ specialized AI agents handling: research, design, development, QA, marketing, business strategy</li>
+<li>Human founder: creative direction, strategic decisions, community management</li>
+</ul>
+<p><strong>Planned additions (revenue-triggered):</strong></p>
+<ul>
+<li>$5K/month revenue: Part-time community manager ($500-1K/month)</li>
+<li>$10K/month revenue: Contract game developer ($2-4K/month)</li>
+<li>$25K/month revenue: Freelance sprite artist, sound designer (project-based)</li>
+</ul>
+<hr>
+<p><em>Business plan effective April 2026. Review monthly against actual metrics. Adapt fast — the only plan that survives contact with reality is one that&#39;s designed to change.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

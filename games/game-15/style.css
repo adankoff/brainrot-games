@@ -1,0 +1,58 @@
+/* ==========================================================================
+   NYAN CAT RUN -- Game-Specific Styles
+   Minimal overrides on top of shared/styles.css + design-system.css.
+   Theme: data-theme="cat-run" (default, swapped dynamically)
+   ========================================================================== */
+
+/* ---- Game container positions overlays relative to canvas ---- */
+.game-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Theme Selector Row (in menu secondary actions) ---- */
+.theme-select {
+  display: flex;
+  gap: var(--space-xs);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--space-xs) 0;
+}
+
+.theme-select__btn {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-xs);
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-text-tertiary);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+  min-height: 36px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.theme-select__btn:hover {
+  transform: scale(1.05);
+  color: var(--color-text);
+}
+
+.theme-select__btn--selected {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-surface-elevated);
+  box-shadow: 0 0 8px var(--color-primary-glow);
+}
+
+.theme-select__btn--selected:hover {
+  transform: none;
+}

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viral Influencer Strategy — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">marketing/viral-influencer-strategy.md</div>
+    <div class="doc-content"><h1>viral &amp; influencer strategy</h1>
+<h2>brainrot games | april 2026</h2>
+<hr>
+<h2>1. micro-influencer outreach plan</h2>
+<h3>1.1 target creator profiles</h3>
+<p>We are not going after mega-influencers. We are going after the 10K-100K tier — people whose followers actually watch their stuff, whose DMs are not buried under 500 brand pitches a day, and who will actually play the game because they think it is funny.</p>
+<p><strong>Tier 1: brainrot / italian meme accounts (highest priority)</strong></p>
+<ul>
+<li>accounts that post Tralalero Tralala, Bombardiro Crocodilo, Tung Tung Sahur edits</li>
+<li>platforms: TikTok, Instagram Reels, YouTube Shorts</li>
+<li>follower range: 10K-100K</li>
+<li>they already speak the language. they already know the characters. zero explanation needed.</li>
+<li>search terms for finding them: &quot;tralalero tralala,&quot; &quot;italian brainrot,&quot; &quot;bombardiro crocodilo,&quot; &quot;brainrot characters,&quot; &quot;brr brr patapim&quot;</li>
+<li>example account types: pages named things like @italianbrainrot, @tralalero.edits, @bombardiro.daily</li>
+</ul>
+<p><strong>Tier 2: casual gaming TikTokers</strong></p>
+<ul>
+<li>creators who play random browser games, io games, or mobile games on camera</li>
+<li>the &quot;let me try this random game&quot; format — reaction-based, short clips, authentic responses</li>
+<li>platforms: TikTok, YouTube Shorts</li>
+<li>follower range: 10K-80K</li>
+<li>search terms: &quot;browser game,&quot; &quot;addicting game,&quot; &quot;random game I found,&quot; &quot;worst game ever&quot;</li>
+<li>example account types: pages that post themselves playing krunker, slither.io, flappy bird clones, random itch.io games</li>
+</ul>
+<p><strong>Tier 3: meme compilation / brainrot commentary accounts</strong></p>
+<ul>
+<li>accounts that aggregate, remix, or commentate on brainrot culture</li>
+<li>they do &quot;brainrot tier lists,&quot; &quot;explaining brainrot to my mom,&quot; &quot;this generation is cooked&quot; format videos</li>
+<li>platforms: TikTok, YouTube, Twitter/X</li>
+<li>follower range: 15K-100K</li>
+<li>they provide the meta-commentary layer that makes something feel like a Moment</li>
+</ul>
+<p><strong>Tier 4: school / student humor accounts</strong></p>
+<ul>
+<li>accounts that post school memes, teacher reactions, class group chat screenshots</li>
+<li>our primary persona (ages 8-16) follows these accounts</li>
+<li>platforms: TikTok, Instagram</li>
+<li>follower range: 10K-60K</li>
+<li>the angle: &quot;this is the game that is going to get your phone taken away in class&quot;</li>
+</ul>
+<h3>1.2 outreach approach</h3>
+<p><strong>The rule: no brand pitch. no media kit. no partnership proposal.</strong></p>
+<p>These creators get corporate DMs daily. The moment the message reads like a brand pitch, it gets ignored. Our outreach should feel like a friend sending a link — because that is literally what we are doing.</p>
+<p>We are not offering money. We are not offering sponsorship. We are offering something funnier: a game themed around their exact niche that they can react to. The game IS the pitch. If it is funny enough, they will post about it because it is content for them, not because we asked.</p>
+<p><strong>Outreach channel priority:</strong></p>
+<ol>
+<li>TikTok DM (highest open rate for this audience)</li>
+<li>Instagram DM</li>
+<li>Twitter/X DM</li>
+<li>Discord DM (if they have a public server)</li>
+<li>Email (last resort — feels too formal)</li>
+</ol>
+<h3>1.3 outreach message templates</h3>
+<p><strong>Template A: the zero-context friend link</strong></p>
+<p>For brainrot meme accounts and gaming accounts. No introduction, no explanation. Just the energy of a friend texting at 2am.</p>
+<pre><code>yo someone made flappy bird but you&#39;re Tralalero Tralala
+
+brainrotgames.com/games/game-01/
+
+the death messages are unhinged
+</code></pre>
+<p>Alternate for Whack-a-Rot:</p>
+<pre><code>this game lets you whack Bombardiro Crocodilo and it gives you &quot;aura points&quot;
+
+brainrotgames.com/games/game-02/
+
+i got 3,200 on my first try which is apparently &quot;certified NPC moment&quot; level
+</code></pre>
+<p><strong>Template B: the specific callout</strong></p>
+<p>For creators whose content directly relates to our characters. This one shows we actually watch their stuff.</p>
+<pre><code>[name] your [specific recent video reference] had me dead
+
+someone literally made a flappy bird game with Tralalero and the obstacles are Skibidi Toilets and mewing jawlines. the game over screen told me i have &quot;0 aura. absolute 0 aura.&quot;
+
+brainrotgames.com
+
+thought you&#39;d appreciate this or at least roast it
+</code></pre>
+<p>Alternate:</p>
+<pre><code>[name] your brainrot tier list was accurate except you forgot that Brr Brr Patapim is now a penalty character in a whack-a-mole game
+
+brainrotgames.com/games/game-02/
+
+the combo system actually goes hard. hit 12 in a row and you get &quot;MAXIMUM AURA&quot; on screen
+</code></pre>
+<p><strong>Template C: the challenge bait</strong></p>
+<p>For competitive gaming accounts. Give them something to prove.</p>
+<pre><code>genuine question: can you beat 25 in this
+
+brainrotgames.com/games/game-01/
+
+it&#39;s flappy bird but with italian brainrot characters and it gets brutal after score 50. nobody i know has broken 100. someone needs to.
+</code></pre>
+<p>Alternate:</p>
+<pre><code>bet you can&#39;t hit 5,000 aura in Whack-a-Rot
+
+brainrotgames.com/games/game-02/
+
+the combo multiplier goes up to 4x and there&#39;s a penalty character that resets everything. it&#39;s mean.
+</code></pre>
+<h3>1.4 what we offer</h3>
+<p><strong>Nothing. That is the point.</strong></p>
+<p>No payment. No promo codes. No affiliate links. No &quot;partnership&quot; language. The games are free, instant, and browser-based. There is literally nothing to sell.</p>
+<p>What we are actually offering (without saying it):</p>
+<ul>
+<li><strong>free content for their channel</strong> — a funny game themed around their niche that their audience will recognize</li>
+<li><strong>built-in reaction bait</strong> — the death messages, the score system, the character names are all clip-worthy</li>
+<li><strong>something their followers will actually want to play</strong> — it is a link, not a download. zero friction.</li>
+<li><strong>bragging rights</strong> — high score challenges give them an excuse to revisit</li>
+</ul>
+<p>If a creator posts about the game organically, our response strategy:</p>
+<ol>
+<li>Repost/stitch/duet their content (DO NOT ask permission first — just do it, credit them)</li>
+<li>Comment something brief and on-brand: &quot;working as intended&quot; or &quot;the death messages only get worse&quot;</li>
+<li>Do NOT reply with corporate thanks. No &quot;Thanks for featuring us! We love your content!&quot; — that kills the bit.</li>
+</ol>
+<h3>1.5 outreach volume and cadence</h3>
+<p><strong>Week 1 (launch week):</strong></p>
+<ul>
+<li>50 outreach messages across all tiers</li>
+<li>Priority: Tier 1 (brainrot accounts) gets 25 messages, Tier 2 (gaming) gets 15, Tier 3 and 4 split the remaining 10</li>
+<li>Send in batches of 10/day to avoid looking like spam or getting rate-limited</li>
+<li>Track who opens, who responds, who posts</li>
+</ul>
+<p><strong>Week 2-4:</strong></p>
+<ul>
+<li>20 outreach messages per week</li>
+<li>Shift priority based on which tiers converted best in week 1</li>
+<li>Add any new accounts discovered through the algorithm (once one creator posts, their algorithm surfaces similar accounts)</li>
+</ul>
+<p><strong>Ongoing:</strong></p>
+<ul>
+<li>Monitor for organic mentions. When someone posts about the game without us reaching out, engage immediately</li>
+<li>Every new game launch gets its own outreach wave using the same templates adapted for the new game</li>
+</ul>
+<hr>
+<h2>2. viral mechanics built into the games</h2>
+<h3>2.1 shareable score cards</h3>
+<p>Both games already have the share mechanic built into the game-over screen. Here is how it works and how to promote it:</p>
+<p><strong>Current implementation:</strong></p>
+<ul>
+<li>&quot;flex this&quot; button on every game-over screen</li>
+<li>Uses Web Share API on mobile (native share sheet) with clipboard fallback on desktop</li>
+<li>Share text format: <code>i got [SCORE] in FLAPPY TRALALERO</code> / <code>i got [SCORE] aura in WHACK-A-ROT</code> + game URL</li>
+<li>The share URL takes you directly to the game — zero friction from share to play</li>
+</ul>
+<p><strong>Promotion strategy for the share mechanic:</strong></p>
+<p>The share button should never feel like a marketing feature. It should feel like the obvious next step after getting a funny score. The existing &quot;flex this&quot; copy is correct — it frames sharing as bragging, not promoting.</p>
+<p>Actions to amplify:</p>
+<ol>
+<li><strong>Make the share text meme-ready.</strong> The current format is clean. Consider A/B testing with the death message appended: <code>i got 3 in FLAPPY TRALALERO. &quot;skill issue detected&quot;</code> — the death message is the screenshot bait.</li>
+<li><strong>Open Graph previews must be perfect.</strong> When someone pastes the link in a group chat, Discord, or Twitter, the OG preview needs to sell the game in one glance. The current OG tags are set. Verify the preview image is eye-catching and meme-adjacent (not &quot;professional game marketing&quot;).</li>
+<li><strong>Seed the sharing behavior.</strong> Our own social accounts should post scores constantly using the exact same format players use. This normalizes the format so when real players share, it looks native to the platform.</li>
+</ol>
+<h3>2.2 death screen messages as screenshot bait</h3>
+<p>This is our single strongest viral mechanic. The death messages are funny enough to screenshot and send to a group chat even if the recipient never plays the game. Every death screen is a potential social post.</p>
+<p><strong>Flappy Tralalero death messages by tier (already implemented):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Example Messages</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>&quot;certified NPC moment&quot; / &quot;0 aura. absolute 0 aura.&quot;</td>
+</tr>
+<tr>
+<td>1-5</td>
+<td>&quot;participation trophy incoming&quot; / &quot;even Tralalero is embarrassed&quot;</td>
+</tr>
+<tr>
+<td>6-14</td>
+<td>&quot;not terrible. not great. mid.&quot; / &quot;the skibidi toilet claims another victim&quot;</td>
+</tr>
+<tr>
+<td>15-24</td>
+<td>&quot;slight aura detected&quot; / &quot;you&#39;re starting to lock in&quot;</td>
+</tr>
+<tr>
+<td>25-49</td>
+<td>&quot;actual rizz detected&quot; / &quot;the sigma grindset is working&quot;</td>
+</tr>
+<tr>
+<td>50-99</td>
+<td>&quot;the aura is immeasurable&quot; / &quot;okay you&#39;re actually goated&quot;</td>
+</tr>
+<tr>
+<td>100+</td>
+<td>&quot;you need to go outside&quot; / &quot;touch grass immediately&quot;</td>
+</tr>
+</tbody></table>
+<p><strong>Whack-a-Rot death messages by tier (already implemented):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Example Messages</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-500</td>
+<td>&quot;certified NPC moment&quot; / &quot;Brr Brr Patapim sends his regards&quot;</td>
+</tr>
+<tr>
+<td>501-2000</td>
+<td>&quot;the Italian brainrot council acknowledges you&quot;</td>
+</tr>
+<tr>
+<td>2001-5000</td>
+<td>&quot;your reflexes are illegal in 12 countries&quot;</td>
+</tr>
+<tr>
+<td>5001+</td>
+<td>&quot;this score is a violation of the Geneva Convention&quot;</td>
+</tr>
+</tbody></table>
+<p><strong>How to weaponize these for virality:</strong></p>
+<ol>
+<li><p><strong>Screenshot bait is already baked in.</strong> The game-over screen displays the death message prominently above the score. The visual layout (message + score + game title) is a self-contained meme format.</p>
+</li>
+<li><p><strong>Encourage screenshot sharing explicitly.</strong> On our social channels, regularly post game-over screenshots with captions like: &quot;what&#39;s the worst death message you&#39;ve gotten?&quot; or &quot;post your game-over screen, no context.&quot; This teaches the audience that the screenshot IS the shareable unit.</p>
+</li>
+<li><p><strong>Rotating seasonal/topical messages.</strong> Add a few timely messages that get swapped in/out (e.g., during exam season: &quot;your GPA died so you could get 14 in flappy tralalero&quot;). These feel fresh and reward repeat players with new material to screenshot.</p>
+</li>
+<li><p><strong>Creator screenshot bait.</strong> When reaching out to creators, lead with a screenshot of a funny death message. The message itself is the hook — they will want to see what message THEY get.</p>
+</li>
+</ol>
+<h3>2.3 challenge modes</h3>
+<p>Challenges give people a reason to play again AND a reason to share. The challenge itself is the marketing.</p>
+<p><strong>Score challenge format:</strong></p>
+<p>Post a challenge on social / Discord with a specific score target. Simple, shareable, competitive.</p>
+<ul>
+<li><p><strong>&quot;beat 25 in Flappy Tralalero — screenshot or it didn&#39;t happen&quot;</strong></p>
+<ul>
+<li>25 is hard enough that most players cannot do it on their first session but achievable enough that it feels possible</li>
+<li>The screenshot requirement drives game-over screen shares organically</li>
+</ul>
+</li>
+<li><p><strong>&quot;hit 5,000 aura in Whack-a-Rot — the brainrot council demands proof&quot;</strong></p>
+<ul>
+<li>5,000 requires maintaining combos, which requires skill</li>
+<li>&quot;Aura points&quot; as the scoring unit is inherently funny and shareable</li>
+</ul>
+</li>
+<li><p><strong>&quot;get a score of exactly 0 in Flappy Tralalero and screenshot the death message&quot;</strong></p>
+<ul>
+<li>Inverted challenge. Intentionally dying immediately is easy but the death message (&quot;certified NPC moment&quot; / &quot;you literally didn&#39;t even try&quot;) is the punchline</li>
+<li>Zero-effort participation threshold. Anyone can do this.</li>
+</ul>
+</li>
+<li><p><strong>&quot;hit a 20 combo in Whack-a-Rot — TRANSCENDENT or it didn&#39;t happen&quot;</strong></p>
+<ul>
+<li>The TRANSCENDENT text effect at combo 20+ is visually dramatic and screenshot-worthy</li>
+</ul>
+</li>
+</ul>
+<p><strong>Weekly challenge cadence:</strong></p>
+<ul>
+<li>Post one challenge per week across TikTok, Twitter, Discord</li>
+<li>Vary between Flappy Tralalero and Whack-a-Rot challenges</li>
+<li>Pin the challenge in the Discord server</li>
+<li>Repost the best entries (with credit)</li>
+</ul>
+<p><strong>Creator-specific challenges:</strong></p>
+<ul>
+<li>DM a creator with a specific challenge: &quot;bet you can&#39;t beat 50 in Flappy Tralalero on camera&quot;</li>
+<li>If they post the attempt, duet/stitch it regardless of whether they succeed</li>
+<li>Failure content is often funnier and more shareable than success content</li>
+</ul>
+<h3>2.4 cross-promotion between games</h3>
+<p>Both games live on the same domain. Every player of one game is a potential player of the other.</p>
+<p><strong>Current state:</strong></p>
+<ul>
+<li>The game-over screen in the game shell has a secondary button area. Currently has &quot;menu&quot; as a ghost button.</li>
+<li>The site index page lists both games as cards.</li>
+</ul>
+<p><strong>Cross-promotion touchpoints (prioritized):</strong></p>
+<ol>
+<li><p><strong>Game-over screen cross-link (highest impact, already structurally supported):</strong></p>
+<ul>
+<li>Add an &quot;other games&quot; ghost button to the game-over overlay secondary actions</li>
+<li>Flappy Tralalero game-over shows: &quot;try WHACK-A-ROT&quot; (links to <code>/games/game-02/</code>)</li>
+<li>Whack-a-Rot game-over shows: &quot;try FLAPPY TRALALERO&quot; (links to <code>/games/game-01/</code>)</li>
+<li>Copy should be casual: &quot;you died. play something else?&quot; or &quot;need a break? go whack some brainrot characters instead&quot;</li>
+</ul>
+</li>
+<li><p><strong>Share text cross-reference:</strong></p>
+<ul>
+<li>Consider appending to share text: <code>i got [SCORE] in FLAPPY TRALALERO | more games at brainrotgames.com</code></li>
+<li>The root URL leads to the index page which shows both games</li>
+<li>Keeps share text short but introduces the brand URL for discovery</li>
+</ul>
+</li>
+<li><p><strong>Menu screen mention:</strong></p>
+<ul>
+<li>Small text on each game&#39;s menu screen: &quot;also: [other game name]&quot; with a link</li>
+<li>Not prominent — players should not feel redirected before they even play. But present for anyone looking.</li>
+</ul>
+</li>
+<li><p><strong>Character overlap:</strong></p>
+<ul>
+<li>Tralalero Tralala appears in both games (playable character in Flappy, whackable target in Whack-a-Rot)</li>
+<li>Bombardiro Crocodilo appears in both (unlockable character in Flappy, target in Whack-a-Rot)</li>
+<li>Use this in marketing: &quot;you&#39;ve been flying as Tralalero. now whack him.&quot;</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>3. discord server launch</h2>
+<h3>3.1 server structure</h3>
+<p>Server name: <strong>brainrot games</strong>
+Server icon: brain emoji or stylized BRG logo
+Server description: &quot;your brain on memes. home of flappy tralalero, whack-a-rot, and whatever cursed game we make next.&quot;</p>
+<p><strong>Channels:</strong></p>
+<pre><code>INFORMATION
+  #rules              -- short, non-corporate. &quot;don&#39;t be weird. that&#39;s it.&quot;
+  #announcements      -- new games, updates, events. locked to admin posts.
+  #faq                -- &quot;how do i play?&quot; &quot;click the link.&quot; &quot;that&#39;s it.&quot;
+
+GAMES
+  #flappy-tralalero   -- scores, screenshots, strategies, clips
+  #whack-a-rot        -- scores, screenshots, strategies, clips
+  #high-scores        -- weekly leaderboard posts (manual or bot-assisted)
+  #bug-reports        -- &quot;the game is broken&quot; &quot;have you tried tapping&quot;
+
+HANG OUT
+  #general            -- off-topic brainrot discussion
+  #memes              -- brainrot memes, fan art, edits
+  #suggestions        -- game ideas, feature requests, character nominations
+
+EVENTS
+  #challenges         -- weekly challenges posted here
+  #contest-entries    -- where people submit challenge screenshots
+</code></pre>
+<p><strong>Roles:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>How to Get It</th>
+<th>Perks</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@player</td>
+<td>auto-assigned on join</td>
+<td>access to all channels</td>
+</tr>
+<tr>
+<td>@sigma (verified high scorer)</td>
+<td>post a screenshot of 50+ in Flappy or 5,000+ in Whack-a-Rot</td>
+<td>special color, access to #sigma-lounge (hidden channel for flex)</td>
+</tr>
+<tr>
+<td>@transcendent</td>
+<td>post a screenshot of 100+ in Flappy or combo 20+ in Whack-a-Rot</td>
+<td>rarest role, different color, bragging rights</td>
+</tr>
+<tr>
+<td>@meme council</td>
+<td>given to the best meme posters by mods</td>
+<td>can post in #announcements during meme contests</td>
+</tr>
+<tr>
+<td>@og</td>
+<td>first 100 members</td>
+<td>permanent badge of being early</td>
+</tr>
+</tbody></table>
+<h3>3.2 launch events</h3>
+<p><strong>Event 1: &quot;the great aura race&quot; (launch day, runs 48 hours)</strong></p>
+<ul>
+<li>Both games count. Players post their highest score screenshot in #contest-entries.</li>
+<li>Highest Flappy Tralalero score and highest Whack-a-Rot score each win a custom role + shoutout on social.</li>
+<li>No prizes beyond clout. The point is participation and screenshot generation.</li>
+</ul>
+<p><strong>Event 2: &quot;worst score competition&quot; (week 1)</strong></p>
+<ul>
+<li>Lowest non-zero score in Flappy Tralalero wins. Score of 1 beats score of 2.</li>
+<li>Players post their game-over screenshot. The death messages at low scores are the funniest, so this generates the best screenshot content.</li>
+<li>Highlight: the winner gets the @certified-npc role for a week.</li>
+</ul>
+<p><strong>Event 3: &quot;meme contest&quot; (week 2)</strong></p>
+<ul>
+<li>Submit an original meme using a game-over screenshot, gameplay clip, or brainrot character from the games.</li>
+<li>Posted in #memes, voted on by reaction count.</li>
+<li>Winner gets @meme-council role.</li>
+</ul>
+<p><strong>Event 4: &quot;combo marathon&quot; (week 3)</strong></p>
+<ul>
+<li>Whack-a-Rot only. Highest combo in a single round.</li>
+<li>The TRANSCENDENT threshold (20+ combo) is the target. Anyone who hits it gets @transcendent.</li>
+</ul>
+<p><strong>Ongoing weekly events:</strong></p>
+<ul>
+<li><strong>Monday: new challenge posted</strong> — score target for the week, pinned in #challenges</li>
+<li><strong>Friday: leaderboard update</strong> — top scores from the week posted in #high-scores</li>
+<li><strong>Sunday: meme roundup</strong> — best memes from #memes get reposted to social channels with credit</li>
+</ul>
+<h3>3.3 growth strategy</h3>
+<p><strong>Phase 1: Seed (week 1, target 100 members)</strong></p>
+<ul>
+<li>Include Discord link in game-over screens (small text, not intrusive)</li>
+<li>Include Discord link in social bios across all platforms</li>
+<li>Include Discord link in the site footer (already has a placeholder link)</li>
+<li>Mention Discord in outreach messages to creators: &quot;there&#39;s also a Discord if you want to see people losing their minds over this game&quot;</li>
+<li>Every influencer who posts about the game funnels their audience toward the Discord</li>
+</ul>
+<p><strong>Phase 2: Activate (weeks 2-4, target 500 members)</strong></p>
+<ul>
+<li>Run the launch events listed above — events give people a reason to join AND stay</li>
+<li>Cross-post challenge results to social — showing Discord activity makes it look alive</li>
+<li>Engage personally in conversations. The server should feel like a group chat, not a corporate community.</li>
+<li>Pin the best moments: funny screenshots, absurd scores, good memes</li>
+</ul>
+<p><strong>Phase 3: Self-sustain (month 2+, target 1,000+ members)</strong></p>
+<ul>
+<li>By this point, members should be generating their own conversations and memes</li>
+<li>Mod team from active members (grant @meme-council or mod roles to consistent contributors)</li>
+<li>Tease new games in Discord first — make the server feel like an insider channel</li>
+<li>&quot;The Discord knew about [new game] two days before anyone else&quot; — this incentivizes joining</li>
+</ul>
+<p><strong>Growth rules:</strong></p>
+<ul>
+<li>Never buy members or run &quot;join for giveaway&quot; schemes. Inflated member counts with zero activity is worse than a small active server.</li>
+<li>Never over-moderate. The server should feel chaotic in a fun way. Delete spam and truly offensive stuff. Let everything else ride.</li>
+<li>Never make the server feel required. The games work without Discord. Discord is a bonus for people who want more.</li>
+</ul>
+<hr>
+<h2>4. cross-promotion strategy</h2>
+<h3>4.1 game-over screen cross-links</h3>
+<p>This is the highest-leverage cross-promotion point. Every player sees the game-over screen multiple times per session (Flappy Tralalero averages 5-10 deaths per session, Whack-a-Rot 3-5 rounds).</p>
+<p><strong>Implementation:</strong></p>
+<p>The existing <code>GameShell</code> in <code>games/shared/game-shell.js</code> builds the game-over overlay with a secondary actions area. Add a cross-promo link there.</p>
+<p><strong>Flappy Tralalero game-over screen addition:</strong></p>
+<ul>
+<li>Below the &quot;menu&quot; ghost button, add: <strong>&quot;or go whack some brainrot characters&quot;</strong> as a ghost button linking to <code>/games/game-02/</code></li>
+<li>The text is casual, on-brand, and frames the other game as an alternative activity rather than an ad</li>
+</ul>
+<p><strong>Whack-a-Rot game-over screen addition:</strong></p>
+<ul>
+<li>Below the &quot;menu&quot; ghost button, add: <strong>&quot;or go flap as Tralalero&quot;</strong> as a ghost button linking to <code>/games/game-01/</code></li>
+</ul>
+<p><strong>Contextual cross-promo copy variants (rotate randomly):</strong></p>
+<p>For Flappy Tralalero -&gt; Whack-a-Rot:</p>
+<ul>
+<li>&quot;tired of dying? go whack stuff instead&quot;</li>
+<li>&quot;Bombardiro Crocodilo is waiting to be whacked&quot;</li>
+<li>&quot;same characters, less gravity, more whacking&quot;</li>
+</ul>
+<p>For Whack-a-Rot -&gt; Flappy Tralalero:</p>
+<ul>
+<li>&quot;done whacking? try flapping&quot;</li>
+<li>&quot;Tralalero wants to fly. help him (you won&#39;t)&quot;</li>
+<li>&quot;same brainrot, different suffering&quot;</li>
+</ul>
+<h3>4.2 share text cross-promotion</h3>
+<p><strong>Current share text:</strong> <code>i got [SCORE] in [GAME TITLE]</code> + game URL</p>
+<p><strong>Proposed enhancement:</strong> <code>i got [SCORE] in [GAME TITLE]</code> + root URL instead of game-specific URL</p>
+<p>Change the share URL from <code>brainrotgames.com/games/game-01/</code> to <code>brainrotgames.com</code> for maximum discovery. The root URL shows both games. Anyone clicking the shared link sees the full catalog instead of just one game.</p>
+<p>Trade-off: game-specific URL has less friction (they land on the exact game). Root URL has more discovery (they see both games). Recommendation: keep game-specific URL for the share text but append a line break and <code>more at brainrotgames.com</code> only when sharing via clipboard (not via Web Share API, where brevity matters more).</p>
+<h3>4.3 character-based cross-promotion</h3>
+<p>The character roster overlaps between games. Use this.</p>
+<p><strong>Social content that bridges both games:</strong></p>
+<ul>
+<li>&quot;Tralalero Tralala&#39;s week: Monday — flying through Skibidi Toilets. Tuesday — getting whacked for 100 aura points.&quot;</li>
+<li>Character spotlight posts that show the same character in both games</li>
+<li>&quot;which game is harder for Bombardiro?&quot; poll format</li>
+</ul>
+<p><strong>In-game hint (future feature):</strong></p>
+<ul>
+<li>When a player unlocks Bombardiro Crocodilo in Flappy Tralalero (score 10+), the unlock notification could read: &quot;BOMBARDIRO UNLOCKED. he&#39;s also in WHACK-A-ROT if you want to hit him instead.&quot;</li>
+<li>Non-intrusive. Funny. Contextual.</li>
+</ul>
+<hr>
+<h2>5. PR / media targets</h2>
+<h3>5.1 gaming and indie game press</h3>
+<p>These publications cover indie games, browser games, and gaming culture. The pitch angle: &quot;free browser game themed around the Italian brainrot meme trend.&quot;</p>
+<table>
+<thead>
+<tr>
+<th>Publication</th>
+<th>Pitch Angle</th>
+<th>Contact Method</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Kotaku</strong></td>
+<td>&quot;Italian brainrot memes are now playable browser games and they&#39;re actually good&quot; — culture angle, meme-meets-gaming</td>
+<td><a href="mailto:tips@kotaku.com">tips@kotaku.com</a> or DM gaming reporters on Twitter</td>
+</tr>
+<tr>
+<td><strong>PC Gamer</strong></td>
+<td>&quot;These free browser games turn Tralalero Tralala and Bombardiro Crocodilo into Flappy Bird and Whack-a-Mole&quot; — straightforward indie coverage</td>
+<td>news tips form on site</td>
+</tr>
+<tr>
+<td><strong>Rock Paper Shotgun</strong></td>
+<td>&quot;The best worst thing to happen to your browser tab this week&quot; — their tone is dry and British, match it</td>
+<td>tips or news section contacts</td>
+</tr>
+<tr>
+<td><strong>Polygon</strong></td>
+<td>Cultural angle: &quot;How Italian brainrot memes became playable games&quot; — Polygon covers internet culture x gaming intersections</td>
+<td><a href="mailto:tips@polygon.com">tips@polygon.com</a></td>
+</tr>
+<tr>
+<td><strong>IGN</strong></td>
+<td>Quick-hit coverage: &quot;You can now play Flappy Bird as Tralalero Tralala for free in your browser&quot; — straightforward news item</td>
+<td>tips form</td>
+</tr>
+<tr>
+<td><strong>Destructoid</strong></td>
+<td>Indie games coverage, they write about weird browser games regularly</td>
+<td>news tips</td>
+</tr>
+<tr>
+<td><strong>Game Jolt / itch.io featured</strong></td>
+<td>List the games on these platforms for organic discovery. Both platforms feature browser games and have active communities.</td>
+<td>Upload/submit through platform</td>
+</tr>
+<tr>
+<td><strong>IndieGamesPlus</strong></td>
+<td>Pure indie coverage, covers small free games with interesting themes</td>
+<td>contact form</td>
+</tr>
+</tbody></table>
+<h3>5.2 meme culture and internet media</h3>
+<p>These outlets cover meme culture, internet trends, and viral phenomena. The pitch angle: &quot;someone turned the Italian brainrot meme into actual games.&quot;</p>
+<table>
+<thead>
+<tr>
+<th>Publication</th>
+<th>Pitch Angle</th>
+<th>Why They&#39;d Cover It</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Know Your Meme</strong></td>
+<td>Submit entries for both games as derivatives of the Italian brainrot characters. KYM documents meme evolution — games built from memes are exactly their coverage area.</td>
+<td>Submit through their entry system + reach out to editors</td>
+</tr>
+<tr>
+<td><strong>Dexerto</strong></td>
+<td>&quot;Italian brainrot characters are now in free browser games and TikTok is losing it&quot; — they cover TikTok trends and gaming overlap</td>
+<td><a href="mailto:tips@dexerto.com">tips@dexerto.com</a></td>
+</tr>
+<tr>
+<td><strong>Daily Dot</strong></td>
+<td>Internet culture coverage. &quot;Brainrot memes have officially become a gaming genre.&quot;</td>
+<td>news tips</td>
+</tr>
+<tr>
+<td><strong>Mashable</strong></td>
+<td>&quot;These browser games turn your favorite brainrot memes into actual gameplay&quot; — lifestyle/culture section</td>
+<td>mashable pitches</td>
+</tr>
+<tr>
+<td><strong>Vice / Motherboard</strong> (if still active)</td>
+<td>&quot;A game studio built entirely around internet brainrot&quot; — the meta-story of building a company on meme culture</td>
+<td>editorial contacts</td>
+</tr>
+<tr>
+<td><strong>MEL Magazine / Input Mag</strong></td>
+<td>Deeper cultural take: &quot;What does it mean that brainrot is now a game genre?&quot;</td>
+<td>pitch editors directly</td>
+</tr>
+</tbody></table>
+<h3>5.3 youtube and podcast coverage</h3>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Pitch Angle</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Dunkey / videogamedunkey</strong></td>
+<td>He covers absurd indie games. Flappy Tralalero is exactly his format. Do not pitch — just make the game visible enough that it reaches him organically. DM is a hail mary.</td>
+</tr>
+<tr>
+<td><strong>Jacksepticeye / Markiplier</strong></td>
+<td>They play random indie games. Browser games with reaction-bait death screens are content gold for them. Reach out through management.</td>
+</tr>
+<tr>
+<td><strong>SmallAnt</strong></td>
+<td>Challenge-focused gaming content. &quot;Can I beat 100 in Flappy Tralalero?&quot; is a video format he already does.</td>
+</tr>
+<tr>
+<td><strong>Ludwig</strong></td>
+<td>Covers internet culture and gaming. Would cover it as a &quot;look at this thing the internet made.&quot;</td>
+</tr>
+<tr>
+<td><strong>Various &quot;I played the worst games on the internet&quot; creators</strong></td>
+<td>There is an entire genre of TikTok/YouTube content that is just playing weird free games. Our games are made for this format. Search &quot;worst browser games&quot; on TikTok and DM the top 20.</td>
+</tr>
+</tbody></table>
+<h3>5.4 pitch template for press</h3>
+<p>Keep it short. Journalists get hundreds of pitches. This is not a press release.</p>
+<pre><code>Subject: free browser games themed around italian brainrot memes
+
+hey [name],
+
+someone had to do it — we made Flappy Bird but you&#39;re Tralalero Tralala
+(the three-legged shark), and a whack-a-mole game where you slap
+Bombardiro Crocodilo for &quot;aura points.&quot;
+
+both games are free, instant, browser-based. no download, no signup.
+the death messages alone are worth a look (&quot;certified NPC moment,&quot;
+&quot;touch grass immediately,&quot; &quot;this score is a violation of the Geneva Convention&quot;).
+
+play them: brainrotgames.com
+
+that&#39;s the whole pitch. happy to send screenshots or answer questions
+but honestly the games explain themselves.
+
+[name]
+brainrot games
+</code></pre>
+<p><strong>What NOT to include in the pitch:</strong></p>
+<ul>
+<li>A press release</li>
+<li>Business metrics or player count projections</li>
+<li>The words &quot;innovative,&quot; &quot;revolutionary,&quot; &quot;disruptive,&quot; or anything on the banned words list</li>
+<li>An embargo or NDA request — we want coverage whenever they want to write it</li>
+<li>A media kit PDF attachment (provide a link to screenshots/assets if asked, not proactively)</li>
+</ul>
+<h3>5.5 pitch timing</h3>
+<p><strong>Wave 1: launch day</strong></p>
+<ul>
+<li>Send to Tier 1 press targets (gaming press that covers indie/browser games)</li>
+<li>Send to meme culture outlets simultaneously</li>
+<li>These two groups have different audiences with minimal overlap, so simultaneous coverage is additive</li>
+</ul>
+<p><strong>Wave 2: 1 week post-launch</strong></p>
+<ul>
+<li>Send to Tier 2 targets (larger publications) WITH social proof</li>
+<li>&quot;X thousand people played this in the first week&quot; gives them a news angle, not just a product pitch</li>
+<li>Include links to any creator content or organic social traction</li>
+</ul>
+<p><strong>Wave 3: ongoing</strong></p>
+<ul>
+<li>Every new game launch gets its own press wave</li>
+<li>Any organic viral moment (a creator&#39;s video blows up, a meme takes off) gets a follow-up pitch: &quot;hey, that thing that went viral? here&#39;s more context if you want to write about it&quot;</li>
+</ul>
+<hr>
+<h2>6. social channel strategy (supporting virality)</h2>
+<h3>6.1 TikTok (primary channel)</h3>
+<p>This is where the audience lives. Every piece of content on TikTok should feel native to the platform.</p>
+<p><strong>Content types:</strong></p>
+<ol>
+<li><strong>Gameplay clips</strong> — 15-30 second clips of playing, dying, showing the death message. No commentary needed.</li>
+<li><strong>Score challenge posts</strong> — &quot;can you beat this?&quot; with a score on screen.</li>
+<li><strong>Death message compilations</strong> — rapid cuts between different death messages. &quot;every death message in Flappy Tralalero, ranked.&quot;</li>
+<li><strong>Duets/stitches</strong> — react to creators playing the game. Keep reactions minimal (thumbs up, head nod, &quot;working as intended&quot;).</li>
+<li><strong>&quot;POV&quot; format</strong> — &quot;pov: you opened a link in the group chat and now you can&#39;t stop playing&quot; over gameplay footage.</li>
+</ol>
+<p><strong>Posting cadence:</strong> 1-2 posts per day during launch week. 3-5 posts per week ongoing.</p>
+<h3>6.2 Twitter/X (secondary, for press and gaming audience)</h3>
+<p><strong>Content types:</strong></p>
+<ol>
+<li><strong>Game launch announcements</strong> — deadpan, lowercase, one sentence. &quot;new game just dropped. it&#39;s flappy bird but the bird is Tralalero Tralala. you&#39;re welcome&quot;</li>
+<li><strong>Score screenshots</strong> — post scores using the same share format players use, normalizing the behavior</li>
+<li><strong>Quote tweets of anyone playing the game</strong> — brief, on-brand replies</li>
+<li><strong>Patch notes as comedy</strong> — &quot;patch notes: added Bombardiro Crocodilo. fixed nothing else.&quot;</li>
+</ol>
+<p><strong>Posting cadence:</strong> 1 post per day. More during launch week. Responsive QTs as they come.</p>
+<h3>6.3 Instagram (tertiary, for reach)</h3>
+<p><strong>Content types:</strong></p>
+<ol>
+<li><strong>Reels</strong> — repurpose TikTok content</li>
+<li><strong>Story polls</strong> — &quot;which game is harder?&quot; / &quot;what&#39;s your high score?&quot;</li>
+<li><strong>Carousel posts</strong> — &quot;every brainrot character in our games, explained in one sentence each&quot;</li>
+</ol>
+<p><strong>Posting cadence:</strong> 3-4 posts per week. Daily stories during active campaigns.</p>
+<hr>
+<h2>7. measurement</h2>
+<h3>7.1 metrics that matter</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target (Month 1)</th>
+<th>How to Measure</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Total game plays (both games)</td>
+<td>100,000</td>
+<td>Analytics on game page loads</td>
+</tr>
+<tr>
+<td>Share button taps</td>
+<td>10% of game-over screens</td>
+<td>Event tracking on &quot;flex this&quot; button</td>
+</tr>
+<tr>
+<td>Organic social mentions</td>
+<td>200+ across platforms</td>
+<td>Social listening (manual or tool-based)</td>
+</tr>
+<tr>
+<td>Creator posts (from outreach)</td>
+<td>15-20 creators posting</td>
+<td>Track outreach conversion</td>
+</tr>
+<tr>
+<td>Discord members</td>
+<td>500</td>
+<td>Discord server analytics</td>
+</tr>
+<tr>
+<td>Press coverage</td>
+<td>3-5 articles</td>
+<td>Google Alerts + manual tracking</td>
+</tr>
+<tr>
+<td>Referral traffic from social</td>
+<td>30% of total traffic</td>
+<td>UTM tracking on shared links</td>
+</tr>
+</tbody></table>
+<h3>7.2 metrics that don&#39;t matter</h3>
+<ul>
+<li>Follower count on brand social accounts (we are optimizing for game plays, not follows)</li>
+<li>&quot;Impressions&quot; or &quot;reach&quot; in isolation (a million impressions with zero game plays is a failure)</li>
+<li>Influencer follower count (a 10K account that gets 50 people to play is worth more than a 500K account that gets zero)</li>
+</ul>
+<h3>7.3 feedback loops</h3>
+<ul>
+<li><strong>Death messages drive screenshots drive social posts drive new players drive more death messages.</strong> This is the core loop. Every optimization should support it.</li>
+<li><strong>Creator content drives more creator content.</strong> Once one creator posts, the algorithm shows it to similar creators. Our job is to light the first match.</li>
+<li><strong>High scores drive challenges drive competition drive return visits.</strong> The Discord leaderboard is the retention mechanism.</li>
+</ul>
+<hr>
+<p><em>this document defines distribution tactics, not brand voice. for brand guidelines see <code>/brand/brand-strategy.md</code>. for game mechanics see <code>/design-docs/GDD-01.md</code> and <code>/design-docs/GDD-02.md</code>.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

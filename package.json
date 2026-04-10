@@ -1,0 +1,13 @@
+{
+  "name": "brainrot-games",
+  "version": "1.0.0",
+  "description": "Meme-themed HTML5 browser games",
+  "private": true,
+  "scripts": {
+    "dev": "npx live-server . --port=3000 --no-browser",
+    "start": "npx live-server . --port=3000"
+  },
+  "devDependencies": {
+    "marked": "^18.0.0"
+  }
+}

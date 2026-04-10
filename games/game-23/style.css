@@ -1,0 +1,42 @@
+.game-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-select {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.theme-select__btn {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--color-surface, #111122);
+  color: var(--color-text, #e0e0e0);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md, 8px);
+  font-family: var(--font-body, 'Space Grotesk', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.theme-select__btn:hover {
+  border-color: var(--color-primary, #c8ff00);
+  background: #15152a;
+}
+
+.theme-select__btn--active {
+  border-color: var(--color-primary, #c8ff00);
+  background: #1a1a3e;
+  color: var(--color-primary, #c8ff00);
+}

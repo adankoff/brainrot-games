@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game 02 Architecture — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">architecture/game-02-architecture.md</div>
+    <div class="doc-content"><h1>Game 02: WHACK-A-ROT -- Implementation Architecture</h1>
+<p><strong>Source GDD:</strong> <code>/design-docs/GDD-02.md</code>
+<strong>Shared infrastructure:</strong> <code>/architecture/ARCHITECTURE.md</code></p>
+<hr>
+<h2>1. File Listing</h2>
+<pre><code>games/game-02/
+  index.html            Entry point. Canvas, overlay containers, module script tag.
+                        Body: data-theme=&quot;italian-brainrot&quot;
+                        Loads: ../shared/styles.css, style.css, js/main.js (type=module)
+
+  style.css             Game-specific overrides. HUD positioning, timer warning styles,
+                        wave progress bar, combo display positioning.
+                        Minimal -- most styling from shared/styles.css + design-system.css.
+
+  js/
+    main.js             Entry point. Creates GameShell, InputManager, registers sounds.
+                        Wires onStart/onUpdate/onRender/onGameOver callbacks.
+                        Manages round counter. Initializes audio on first gesture.
+
+    game.js             Core game orchestrator. Spawn scheduler, wave system,
+                        timer countdown, active character tracking. Exports functions
+                        called by main.js callbacks.
+
+    characters.js       6 character type definitions. Each: draw(ctx, cx, cy, time),
+                        getHitboxCenter(cx, cy, time), basePoints, displayTimeMultiplier,
+                        hitboxRadius, spawn weight tables.
+
+    holes.js            3x3 grid. Hole position constants, hole state machine,
+                        hole rendering (ellipse portal, swirl, rim), character clipping.
+
+    effects.js          Visual effects: impact flash, floating score text, screen shake,
+                        combo milestone text, ambient particles.
+
+    constants.js        All tuning values: grid positions, timing formulas, scoring,
+                        combo thresholds, colors, messages, dimensions.
+
+    ui.js               Game-specific UI beyond what GameShell provides:
+                        on-canvas HUD (score, timer, combo counter, wave progress),
+                        hit stats display on game-over, mute toggle icon.
+</code></pre>
+<hr>
+<h2>2. Game State Machine</h2>
+<p>Whack-a-Rot uses the GameShell&#39;s 3 states directly. No sub-states needed (unlike Flappy Tralalero&#39;s ready/active split).</p>
+<pre><code>                    +-----------+
+          +--------&gt;|   MENU    |&lt;-----------+
+          |         +-----+-----+            |
+          |               |                  |
+          |        tap &quot;start game&quot;          |
+          |               |                  |
+          |         +-----v-----+            |
+          |         |  PLAYING  |            |
+          |         |           |            |
+          |         +-----+-----+            |
+          |               |                  |
+          |          timer = 0               |
+          |               |                  |
+          |         +-----v-----+            |
+          +---------| GAME OVER |------------+
+           &quot;menu&quot;   +-----------+   &quot;retry&quot;
+</code></pre>
+<h3>State Behaviors</h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>What Happens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MENU</strong></td>
+<td>Shell shows menu overlay. Canvas draws static background with hole grid (no characters). Title &quot;WHACK-A-ROT&quot; in accent color. High score displayed.</td>
+</tr>
+<tr>
+<td><strong>PLAYING</strong></td>
+<td>Game loop active. 60-second countdown timer. Characters spawning from holes. Player taps to whack. Score, combo, timer updating every frame. Wave system advancing every 15s.</td>
+</tr>
+<tr>
+<td><strong>GAME OVER</strong></td>
+<td>Shell shows game-over overlay. Canvas shows final game frame (frozen). Score, high score, death message, hit stats displayed on overlay.</td>
+</tr>
+</tbody></table>
+<h3>Transition Logic</h3>
+<pre><code>MENU -&gt; PLAYING (shell.setState(&#39;playing&#39;)):
+  shell.onStart() fires:
+    score = 0
+    combo = 0
+    maxCombo = 0
+    timer = 60.0
+    wave = 1
+    round++ (or round = 1 if first)
+    effectiveWave = wave + (round - 1) * 2
+    Clear all holes to &#39;empty&#39; state
+    Reset hit stats to all zeros
+    Clear all active effects
+    Reset spawn timer
+
+PLAYING -&gt; GAME OVER (shell.setState(&#39;game-over&#39;)):
+  Triggered when timer &lt;= 0
+  shell.onGameOver() fires:
+    return { score, message, scoreLabel: &#39;aura points&#39;, extra: hitStats }
+
+GAME OVER -&gt; PLAYING (retry):
+  shell.onStart() fires (same as above, round increments)
+
+GAME OVER -&gt; MENU:
+  round resets to 0
+</code></pre>
+<hr>
+<h2>3. Entity Definitions</h2>
+<h3>3.1 Hole</h3>
+<p>The 3x3 grid is the playing field. Each hole is a state machine that manages character lifecycle.</p>
+<pre><code class="language-js">class Hole {
+  // ---- Properties ----
+
+  id;                          // Index 0-8
+  x;                           // Center X position (logical px)
+  y;                           // Center Y position (logical px)
+  state = &#39;empty&#39;;             // &#39;empty&#39;|&#39;rising&#39;|&#39;visible&#39;|&#39;sinking&#39;|&#39;hit&#39;
+  stateTimer = 0;              // ms elapsed in current state
+  character = null;            // Character type object (from characters.js) or null
+  displayTime = 0;             // Total ms this character will be visible (set on spawn)
+  hitScale = 1.0;              // Scale multiplier for hit animation (1.0 normal, peaks at 1.3)
+  hitFlashAlpha = 0;           // White flash overlay opacity during hit animation (0-0.6)
+
+  // ---- Grid Position Constants (logical canvas 400x600) ----
+
+  static POSITIONS = [
+    { x: 80,  y: 227 },   // [0,0] top-left
+    { x: 200, y: 227 },   // [1,0] top-center
+    { x: 320, y: 227 },   // [2,0] top-right
+    { x: 80,  y: 340 },   // [0,1] mid-left
+    { x: 200, y: 340 },   // [1,1] mid-center
+    { x: 320, y: 340 },   // [2,1] mid-right
+    { x: 80,  y: 453 },   // [0,2] bot-left
+    { x: 200, y: 453 },   // [1,2] bot-center
+    { x: 320, y: 453 },   // [2,2] bot-right
+  ];
+
+  // ---- Timing Constants ----
+
+  static RISE_DURATION = 200;     // ms for character to fully emerge from hole
+  static SINK_DURATION = 150;     // ms for character to descend back into hole
+  static HIT_ANIM_DURATION = 200; // ms for impact animation before sinking
+
+  // ---- Constructor ----
+
+  /**
+   * @param {number} id -- Index 0-8
+   */
+  constructor(id) {
+    this.id = id;
+    this.x = Hole.POSITIONS[id].x;
+    this.y = Hole.POSITIONS[id].y;
+  }
+
+  // ---- Methods ----
+
+  /**
+   * Spawn a character in this hole. Transition from &#39;empty&#39; to &#39;rising&#39;.
+   *
+   * @param {Object} characterType -- Character definition from characters.js
+   * @param {number} displayTime   -- How long (ms) this character stays visible
+   *
+   * Precondition: state must be &#39;empty&#39;. If not, this is a no-op.
+   */
+  spawn(characterType, displayTime) {}
+
+  /**
+   * Per-frame update. Advances state machine timers and transitions.
+   *
+   * @param {number} dt -- Normalized delta time (1.0 = 16.67ms)
+   *
+   * State transitions:
+   *   &#39;rising&#39;:  stateTimer += dt * 16.67
+   *              If stateTimer &gt;= RISE_DURATION -&gt; state = &#39;visible&#39;, stateTimer = 0
+   *
+   *   &#39;visible&#39;: stateTimer += dt * 16.67
+   *              If stateTimer &gt;= displayTime -&gt; state = &#39;sinking&#39;, stateTimer = 0
+   *              (Character was missed -- combo breaks)
+   *              Returns { event: &#39;miss&#39;, characterType: this.character }
+   *
+   *   &#39;sinking&#39;: stateTimer += dt * 16.67
+   *              If stateTimer &gt;= SINK_DURATION -&gt; state = &#39;empty&#39;, character = null, stateTimer = 0
+   *
+   *   &#39;hit&#39;:     stateTimer += dt * 16.67
+   *              Animate: hitScale = lerp(1.3, 1.0, stateTimer / HIT_ANIM_DURATION)
+   *              Animate: hitFlashAlpha = lerp(0.6, 0, stateTimer / HIT_ANIM_DURATION)
+   *              If stateTimer &gt;= HIT_ANIM_DURATION -&gt; state = &#39;sinking&#39;, stateTimer = 0
+   *
+   *   &#39;empty&#39;:   No-op.
+   *
+   * @returns {{ event: string, characterType: Object }|null}
+   *   Returns { event: &#39;miss&#39;, characterType } when a character despawns untapped.
+   *   Returns null otherwise.
+   */
+  update(dt) {}
+
+  /**
+   * Register a hit on this hole. Transition to &#39;hit&#39; state.
+   *
+   * Precondition: state must be &#39;rising&#39; or &#39;visible&#39;. Otherwise returns null.
+   *
+   * @returns {{ characterType: Object, points: number }|null}
+   *   Returns the character type and base points if hit was valid.
+   *   Returns null if hole has no hittable character.
+   *
+   * Side effects:
+   *   state = &#39;hit&#39;
+   *   stateTimer = 0
+   *   hitScale = 1.3
+   *   hitFlashAlpha = 0.6
+   */
+  hit() {}
+
+  /**
+   * Test if a tap at (tapX, tapY) in logical coordinates hits this hole&#39;s character.
+   * Uses the character&#39;s hitbox (circle) and accounts for per-character modifiers.
+   *
+   * @param {number} tapX -- Tap X in logical canvas space
+   * @param {number} tapY -- Tap Y in logical canvas space
+   * @param {number} time -- Current game time in ms (for sway calculations)
+   * @returns {boolean} true if tap is inside the character&#39;s hitbox
+   *
+   * Logic:
+   *   If state is not &#39;rising&#39; or &#39;visible&#39;: return false
+   *   hitCenter = character.getHitboxCenter(this.x, this.y, time)
+   *   radius = character.hitboxRadius
+   *   dx = tapX - hitCenter.x
+   *   dy = tapY - hitCenter.y
+   *   return (dx*dx + dy*dy) &lt;= (radius*radius)
+   */
+  isHit(tapX, tapY, time) {}
+
+  /**
+   * Draw the hole (portal) and any character currently in it.
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {number} time -- Game time in ms (for idle animations, swirl rotation)
+   *
+   * Draw order:
+   *   1. Hole shadow ellipse (below hole)
+   *   2. If character present (state != &#39;empty&#39;):
+   *        Calculate clipHeight based on state:
+   *          &#39;rising&#39;:  clipHeight = (stateTimer / RISE_DURATION) * 80  (0 to 80px)
+   *          &#39;visible&#39;: clipHeight = 80 (fully visible)
+   *          &#39;hit&#39;:     clipHeight = 80 (fully visible, with flash/scale)
+   *          &#39;sinking&#39;: clipHeight = (1 - stateTimer / SINK_DURATION) * 80  (80 to 0px)
+   *        ctx.save()
+   *        Create clipping region: rect from (x-35, y-clipHeight) to (x+35, y+20)
+   *        Apply hitScale if in &#39;hit&#39; state
+   *        character.draw(ctx, this.x, this.y, time)
+   *        If hitFlashAlpha &gt; 0: overlay white rect at alpha
+   *        ctx.restore()
+   *   3. Hole opening ellipse (covers character&#39;s lower body for &quot;emerging&quot; effect)
+   *   4. Hole rim highlight stroke
+   *   5. Swirl detail arcs (animated, subtle)
+   */
+  draw(ctx, time) {}
+
+  /**
+   * Reset hole to empty state.
+   */
+  reset() {}
+
+  /**
+   * Check if this hole is available for spawning.
+   * @returns {boolean} true if state === &#39;empty&#39;
+   */
+  isAvailable() {}
+}
+</code></pre>
+<h3>3.2 Character Types</h3>
+<p>Defined as plain objects in <code>characters.js</code>. Not classes -- these are type definitions, not instances.</p>
+<pre><code class="language-js">export const CHARACTER_TYPES = {
+
+  tralalero: {
+    id: &#39;tralalero&#39;,
+    name: &#39;Tralalero Tralala&#39;,
+    basePoints: 100,
+    displayTimeMultiplier: 1.0,     // standard
+    hitboxRadius: 40,               // standard
+    spawnWeights: {                  // by effective wave range
+      early: 0.35,                  // wave 1-2
+      mid: 0.30,                    // wave 3-4
+      late: 0.25,                   // wave 5+
+    },
+    appearsFromWave: 1,             // available from the start
+
+    /**
+     * Draw this character at the given center position.
+     *
+     * @param {CanvasRenderingContext2D} ctx
+     * @param {number} cx -- Center X of hole
+     * @param {number} cy -- Center Y of hole minus 40 (character center is 40px above hole)
+     * @param {number} time -- Game time in ms (drives idle animation)
+     *
+     * Draws: blue shark body (ellipse), pointed head, 2 eyes with pupils,
+     *        wide toothy grin, dorsal fin, 3 legs with Nike shoes.
+     * Idle: body bobs cy + 3*sin(time*0.004)
+     *
+     * Full draw spec: GDD-02, Section 4.1, Character 1
+     */
+    draw(ctx, cx, cy, time) {},
+
+    /**
+     * Get the current hitbox center, accounting for any movement.
+     * Tralalero is stationary (standard hitbox).
+     *
+     * @param {number} cx -- Hole center X
+     * @param {number} cy -- Hole center Y
+     * @param {number} time -- Game time (unused for this character)
+     * @returns {{ x: number, y: number }} Hitbox center: { x: cx, y: cy - 40 }
+     */
+    getHitboxCenter(cx, cy, time) {
+      return { x: cx, y: cy - 40 };
+    },
+  },
+
+  bombardiro: {
+    id: &#39;bombardiro&#39;,
+    name: &#39;Bombardiro Crocodilo&#39;,
+    basePoints: 200,
+    displayTimeMultiplier: 0.6,     // fast -- 60% of standard display time
+    hitboxRadius: 40,               // standard
+    spawnWeights: { early: 0.20, mid: 0.20, late: 0.20 },
+    appearsFromWave: 1,
+
+    /**
+     * Draws: olive green bomber fuselage body, wings with tips,
+     *        bright green crocodile head, elongated snout with nostrils,
+     *        yellow eyes with slit pupils, zigzag teeth, spinning propeller.
+     * Idle: propeller spins (angle += time * 0.01), body rocks 2px at 1.5Hz
+     *
+     * Full draw spec: GDD-02, Section 4.1, Character 2
+     */
+    draw(ctx, cx, cy, time) {},
+
+    getHitboxCenter(cx, cy, time) {
+      return { x: cx, y: cy - 40 };
+    },
+  },
+
+  tungtung: {
+    id: &#39;tungtung&#39;,
+    name: &#39;Tung Tung Tung Sahur&#39;,
+    basePoints: 150,
+    displayTimeMultiplier: 1.3,     // slow -- 130% of standard display time
+    hitboxRadius: 30,               // SMALLER than standard (narrow plank body)
+    spawnWeights: { early: 0.20, mid: 0.18, late: 0.15 },
+    appearsFromWave: 1,
+
+    /**
+     * Draws: brown wooden plank body, wood grain lines, painted face
+     *        (angry eyes, eyebrows, flat mouth), red headband with tail,
+     *        baseball bat held to the right.
+     * Idle: bat swings in repeating arc (+/-15deg at 4Hz, &quot;tung tung tung&quot; rhythm)
+     *
+     * Full draw spec: GDD-02, Section 4.1, Character 3
+     */
+    draw(ctx, cx, cy, time) {},
+
+    getHitboxCenter(cx, cy, time) {
+      return { x: cx, y: cy - 40 };
+    },
+  },
+
+  ballerina: {
+    id: &#39;ballerina&#39;,
+    name: &#39;Ballerina Cappuccina&#39;,
+    basePoints: 150,
+    displayTimeMultiplier: 1.0,     // standard
+    hitboxRadius: 40,               // standard
+    spawnWeights: { early: 0.15, mid: 0.15, late: 0.15 },
+    appearsFromWave: 1,
+
+    /**
+     * Draws: pink trapezoid torso, fan tutu skirt, curved ballet arms,
+     *        white ceramic coffee cup head with handle, dark coffee inside,
+     *        steam wisps (animated sine waves), happy face with blush.
+     * Idle: sways left-right, entire character x += 15 * sin(time * 0.003)
+     *
+     * Full draw spec: GDD-02, Section 4.1, Character 4
+     */
+    draw(ctx, cx, cy, time) {},
+
+    /**
+     * Hitbox center SHIFTS with sway. This is the key mechanic:
+     * the hitbox moves with the visual, so players must track the sway.
+     *
+     * @returns {{ x: number, y: number }}
+     *   x = cx + 15 * Math.sin(time * 0.003)
+     *   y = cy - 40
+     */
+    getHitboxCenter(cx, cy, time) {
+      return { x: cx + 15 * Math.sin(time * 0.003), y: cy - 40 };
+    },
+  },
+
+  brrbrr: {
+    id: &#39;brrbrr&#39;,
+    name: &#39;Brr Brr Patapim&#39;,
+    basePoints: -200,               // PENALTY: negative points
+    displayTimeMultiplier: 1.2,     // lingers slightly longer than standard (bait)
+    hitboxRadius: 40,               // standard
+    spawnWeights: { early: 0.10, mid: 0.15, late: 0.20 },
+    appearsFromWave: 1,
+    isPenalty: true,                // Flag for scoring logic
+
+    /**
+     * Draws: red spiky circle body (8 triangular spikes), cute face
+     *        (large white eyes, big pupils with kawaii highlights, small frown),
+     *        warning triangle with &quot;!&quot; above head, pulsing red glow shadow.
+     * Idle: jitters +/-1px randomly each frame, spikes pulse (radius 32-36),
+     *       blinks every 2s (eyes close for 100ms), lip quivers at 3Hz
+     *
+     * VISUALLY DISTINCT: red color, spikes, warning indicator.
+     *
+     * Full draw spec: GDD-02, Section 4.1, Character 5
+     */
+    draw(ctx, cx, cy, time) {},
+
+    getHitboxCenter(cx, cy, time) {
+      return { x: cx, y: cy - 40 };
+    },
+  },
+
+  lirili: {
+    id: &#39;lirili&#39;,
+    name: &#39;Lirili Larila&#39;,
+    basePoints: 500,                // RARE BONUS: high points
+    displayTimeMultiplier: 0.4,     // very fast -- 40% of standard display time
+    hitboxRadius: 40,               // standard
+    spawnWeights: { early: 0, mid: 0.02, late: 0.05 },
+    appearsFromWave: 3,             // Does NOT appear before wave 3
+    isBonus: true,                  // Flag for effects logic
+
+    /**
+     * Draws: small gold oval body, 4 butterfly wings (ellipses, 70% opacity,
+     *        sparkle dots blinking), small black dot eyes, tiny smile, curved
+     *        antennae with tip dots, pulsing radial gold glow behind entire character.
+     * Idle: wings flap (+/-10deg at 6Hz), character floats upward slowly
+     *       (rises 15px total over display duration), wing sparkles shimmer randomly
+     *
+     * Full draw spec: GDD-02, Section 4.1, Character 6
+     */
+    draw(ctx, cx, cy, time) {},
+
+    getHitboxCenter(cx, cy, time) {
+      return { x: cx, y: cy - 40 };
+    },
+  },
+};
+</code></pre>
+<h3>3.3 SpawnScheduler (in <code>game.js</code>)</h3>
+<p>Manages when and where characters spawn.</p>
+<pre><code class="language-js">class SpawnScheduler {
+  // ---- Properties ----
+
+  spawnTimer = 0;                  // ms until next spawn attempt
+  gameTime = 0;                    // Total ms elapsed in this round
+
+  // ---- Methods ----
+
+  /**
+   * Per-frame update. Advances timer and spawns characters when ready.
+   *
+   * @param {number} dt         -- Normalized delta time
+   * @param {Hole[]} holes      -- Array of 9 Hole instances
+   * @param {number} effectiveWave -- Current effective wave number
+   * @returns {void}
+   *
+   * Logic:
+   *   gameTime += dt * 16.67
+   *   spawnTimer -= dt * 16.67
+   *
+   *   If spawnTimer &lt;= 0:
+   *     spawnInterval = max(300, 900 - effectiveWave * 60)
+   *     spawnTimer = spawnInterval + randomBetween(-50, 50)  // slight jitter
+   *
+   *     maxActive = min(5, 1 + floor(effectiveWave / 2))
+   *     currentActive = count of holes where state != &#39;empty&#39;
+   *     If currentActive &gt;= maxActive: return (skip spawn)
+   *
+   *     Pick random available hole (state === &#39;empty&#39;)
+   *     Pick character type via weighted random (see selectCharacterType)
+   *     Calculate displayTime for this character:
+   *       baseDisplayTime = max(400, 1200 - effectiveWave * 80)
+   *       displayTime = baseDisplayTime * character.displayTimeMultiplier
+   *     hole.spawn(characterType, displayTime)
+   */
+  update(dt, holes, effectiveWave) {}
+
+  /**
+   * Select a character type using weighted random based on effective wave.
+   *
+   * @param {number} effectiveWave
+   * @returns {Object} A character type object from CHARACTER_TYPES
+   *
+   * Logic:
+   *   1. Build weight table from CHARACTER_TYPES:
+   *      For each character:
+   *        If effectiveWave &lt; character.appearsFromWave: weight = 0
+   *        Else: weight = interpolate between early/mid/late spawn weights
+   *          effectiveWave 1-2: use &#39;early&#39;
+   *          effectiveWave 3-4: use &#39;mid&#39;
+   *          effectiveWave 5+:  use &#39;late&#39;
+   *   2. Override penalty weight with formula:
+   *      penaltyWeight = min(0.25, 0.10 + effectiveWave * 0.02)
+   *      (This overrides brrbrr&#39;s table weight for precise control)
+   *   3. Normalize all weights to sum to 1.0
+   *   4. Random select based on cumulative weights
+   */
+  selectCharacterType(effectiveWave) {}
+
+  /**
+   * Reset for new round.
+   */
+  reset() {}
+}
+</code></pre>
+<h3>3.4 Timer</h3>
+<pre><code class="language-js">class GameTimer {
+  // ---- Properties ----
+
+  remaining = 60.0;           // Seconds remaining (float, tenths precision)
+  isWarning = false;          // true when remaining &lt; 10.0
+  paused = false;             // true when tab is not visible
+
+  // ---- Methods ----
+
+  /**
+   * Per-frame update. Counts down.
+   *
+   * @param {number} dt -- Normalized delta time
+   * @returns {boolean} true if timer just reached 0 (game over trigger)
+   *
+   * If paused: return false (no update)
+   * remaining -= (dt * 16.67) / 1000   // convert dt-ms to seconds
+   * isWarning = remaining &lt; 10.0
+   * If remaining &lt;= 0:
+   *   remaining = 0
+   *   return true  // game over
+   * return false
+   */
+  update(dt) {}
+
+  /**
+   * Draw the timer on canvas.
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   *
+   * Position: top-right, x=370, y=36
+   * Font: Bungee, 28px
+   * Format: &quot;00:&quot; + remaining.toFixed(0) padded to 2 digits (e.g., &quot;00:42&quot;)
+   *   When remaining &lt; 10: show decimal &quot;00:09.3&quot;
+   * Color: isWarning ? &#39;#ff2d78&#39; (Hot Magenta) : &#39;#f0f0f0&#39;
+   * If isWarning: apply gentle pulse (scale 1.0 to 1.05 at 2Hz via sin(time * 0.012))
+   */
+  draw(ctx, time) {}
+
+  /**
+   * Reset to 60 seconds.
+   */
+  reset() {}
+
+  /**
+   * Pause/resume (for tab visibility changes).
+   * @param {boolean} paused
+   */
+  setPaused(paused) {}
+}
+</code></pre>
+<p>The timer pauses when the browser tab loses focus, detected via:</p>
+<pre><code class="language-js">document.addEventListener(&#39;visibilitychange&#39;, () =&gt; {
+  timer.setPaused(document.hidden);
+});
+</code></pre>
+<h3>3.5 ComboCounter</h3>
+<pre><code class="language-js">class ComboCounter {
+  // ---- Properties ----
+
+  count = 0;                   // Current consecutive hit count
+  maxCombo = 0;                // Highest combo this round (for stats)
+  multiplier = 1.0;            // Current score multiplier
+  lastMilestoneShown = 0;      // Last combo milestone that triggered feedback
+
+  // ---- Milestone Table ----
+
+  static MILESTONES = [
+    { threshold: 5,  text: &#39;NICE&#39;,          color: &#39;#00e5ff&#39; },  // Cyan Pulse
+    { threshold: 10, text: &#39;SIGMA STREAK&#39;,  color: &#39;#c8ff00&#39; },  // Electric Lime
+    { threshold: 15, text: &#39;MAXIMUM AURA&#39;,  color: &#39;#ffd000&#39; },  // Brainrot Yellow
+    { threshold: 20, text: &#39;TRANSCENDENT&#39;,  color: &#39;#c8ff00&#39; },  // Electric Lime (continuous glow)
+  ];
+
+  // ---- Methods ----
+
+  /**
+   * Increment combo on successful (non-penalty) hit.
+   *
+   * @returns {{ milestone: Object|null }} Returns milestone object if a new milestone was reached.
+   *
+   * count++
+   * if count &gt; maxCombo: maxCombo = count
+   * multiplier = min(4.0, 1 + count * 0.25)
+   *
+   * Check milestones:
+   *   For each milestone where threshold &lt;= count and threshold &gt; lastMilestoneShown:
+   *     lastMilestoneShown = threshold
+   *     return { milestone }
+   *   return { milestone: null }
+   */
+  increment() {}
+
+  /**
+   * Reset combo to 0. Called on miss or penalty hit.
+   */
+  resetCombo() {}
+
+  /**
+   * Calculate score for a hit.
+   *
+   * @param {number} basePoints -- Character&#39;s base point value
+   * @returns {number} Math.floor(basePoints * multiplier)
+   *
+   * Note: For penalty characters (basePoints &lt; 0), the multiplier is NOT applied.
+   * Penalty is always flat -200 regardless of combo.
+   */
+  calculateScore(basePoints) {}
+
+  /**
+   * Draw the combo counter on the HUD (on-canvas).
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {number} canvasWidth -- 400
+   *
+   * Only visible when count &gt; 0.
+   * Position: centered horizontally, y=78
+   * Font: Space Grotesk 500, 16px
+   * Color: &#39;#00ffaa&#39; (Mint Aura)
+   * Format: &quot;combo x{count}&quot; (e.g., &quot;combo x5&quot;)
+   *
+   * If count &gt;= 20: apply continuous lime glow to score display
+   *   (communicated via a flag, not drawn here)
+   */
+  draw(ctx, canvasWidth) {}
+
+  /**
+   * Reset all state for new round.
+   */
+  reset() {}
+}
+</code></pre>
+<h3>3.6 Effects (in <code>effects.js</code>)</h3>
+<pre><code class="language-js">/**
+ * Manages all transient visual effects: floating text, impact flash, screen shake,
+ * combo milestone announcements, ambient particles.
+ */
+class EffectsManager {
+  // ---- Internal State ----
+
+  floatingTexts = [];          // Array of { text, x, y, color, alpha, timer, maxTimer }
+  screenShake = { timer: 0, magnitude: 0, offsetX: 0, offsetY: 0 };
+  particles = [];              // Ambient floating particles: { x, y, vx, vy, alpha, radius }
+
+  // ---- Methods ----
+
+  /**
+   * Spawn a floating score text that rises and fades.
+   *
+   * @param {string} text   -- Text to display (e.g., &quot;+100&quot;, &quot;+200&quot;, &quot;NICE&quot;)
+   * @param {number} x      -- Center X position
+   * @param {number} y      -- Start Y position
+   * @param {string} color  -- Fill color hex
+   * @param {number} [duration=500] -- Total duration in ms
+   *
+   * The text rises 40px and fades from alpha 1.0 to 0.0 over duration.
+   * Font: Bungee, 20px for score numbers, 28px for milestone text.
+   */
+  spawnFloatingText(text, x, y, color, duration = 500) {}
+
+  /**
+   * Start screen shake effect.
+   *
+   * @param {number} magnitude  -- Max displacement in px (e.g., 4)
+   * @param {number} durationMs -- Total duration in ms (e.g., 300)
+   */
+  startScreenShake(magnitude, durationMs) {}
+
+  /**
+   * Initialize ambient particles (call once on game start).
+   * Creates 10-15 tiny circles that drift upward slowly.
+   * Particles: radius 1-2px, fill #c8ff00 at 10-20% opacity.
+   */
+  initParticles(canvasWidth, canvasHeight) {}
+
+  /**
+   * Per-frame update for all effects.
+   *
+   * @param {number} dt -- Normalized delta time
+   *
+   * Floating texts: advance timer, update position (rise), update alpha (fade).
+   *   Remove texts where timer &gt;= maxTimer.
+   * Screen shake: advance timer, calculate random offset * intensity.
+   *   Intensity decays linearly to 0 over duration.
+   * Particles: move upward slowly, wrap when they reach top.
+   */
+  update(dt) {}
+
+  /**
+   * Draw all active effects.
+   *
+   * @param {CanvasRenderingContext2D} ctx
+   *
+   * Draw order:
+   *   1. Ambient particles (behind everything game-related, but EffectsManager
+   *      should be called after background and before HUD)
+   *   2. Floating texts
+   *   (Screen shake is applied externally via ctx.translate before game draw)
+   */
+  draw(ctx) {}
+
+  /**
+   * Get current screen shake offset. Used by main render to apply ctx.translate.
+   * @returns {{ x: number, y: number }}
+   */
+  getShakeOffset() {}
+
+  /**
+   * Clear all effects (for round reset).
+   */
+  reset() {}
+}
+</code></pre>
+<hr>
+<h2>4. Game Loop Detail</h2>
+<h3>Update Order (inside <code>onUpdate(dt)</code>)</h3>
+<pre><code>1.  Timer:
+      gameOver = timer.update(dt)
+      If gameOver: shell.setState(&#39;game-over&#39;), return
+
+2.  Wave calculation:
+      elapsedSeconds = 60 - timer.remaining
+      wave = min(4, 1 + floor(elapsedSeconds / 15))
+      effectiveWave = wave + (round - 1) * 2
+
+3.  Spawn scheduler:
+      spawnScheduler.update(dt, holes, effectiveWave)
+
+4.  Hole updates (all 9 holes):
+      For each hole:
+        result = hole.update(dt)
+        If result &amp;&amp; result.event === &#39;miss&#39;:
+          combo.resetCombo()
+          // Optionally: playSound(&#39;miss&#39;)
+
+5.  Input processing:
+      (Handled via inputManager.onTapAt callback, which sets a pending tap queue)
+      For each pending tap { x, y }:
+        hitFound = false
+        For each hole (front-to-back, bottom row first for z-order):
+          If hole.isHit(tapX, tapY, gameTime):
+            result = hole.hit()
+            If result:
+              hitFound = true
+              If result.characterType.isPenalty:
+                score = max(0, score - 200)
+                combo.resetCombo()
+                effects.startScreenShake(4, 300)
+                playSound(&#39;penalty&#39;)
+                hitStats.brrbrr++
+              Else:
+                milestoneResult = combo.increment()
+                points = combo.calculateScore(result.characterType.basePoints)
+                score += points
+                effects.spawnFloatingText(&#39;+&#39; + points, hole.x, hole.y - 60, &#39;#c8ff00&#39;)
+                playSound(result.characterType.isBonus ? &#39;bonus&#39; : &#39;hit&#39;)
+                hitStats[result.characterType.id]++
+                If milestoneResult.milestone:
+                  effects.spawnFloatingText(milestoneResult.milestone.text,
+                    200, 140, milestoneResult.milestone.color, 800)
+                  playSound(&#39;combo&#39;)
+            break  // Only hit one character per tap
+
+6.  Score display update:
+      scoreDisplay.update(dt, score)
+
+7.  Effects update:
+      effects.update(dt)
+</code></pre>
+<h3>Render Order (inside <code>onRender(ctx)</code>)</h3>
+<pre><code>1.  Apply screen shake:
+      shakeOffset = effects.getShakeOffset()
+      ctx.save()
+      ctx.translate(shakeOffset.x, shakeOffset.y)
+
+2.  Background:
+      ctx.fillStyle = &#39;#0a0a0f&#39;
+      ctx.fillRect(0, 0, 400, 600)
+      Draw far background (Italian cityscape silhouette, drifting)
+      Draw mid background (radial gradient spotlight)
+      Draw ground plane strip
+
+3.  Ambient particles:
+      effects.drawParticles(ctx)
+
+4.  Holes and characters (draw order: top row first, bottom row last for overlap):
+      For row = 0 to 2:
+        For col = 0 to 2:
+          holes[row * 3 + col].draw(ctx, gameTime)
+
+5.  Restore screen shake:
+      ctx.restore()
+
+6.  HUD (NOT affected by screen shake):
+      Draw &quot;AURA POINTS&quot; label: Space Grotesk 500, 14px, #8888a0, centered, y=16
+      Draw score number: Bungee, 48px, #f0f0f0 (or #c8ff00 during flash), centered, y=58
+      combo.draw(ctx, 400)
+      timer.draw(ctx, gameTime)
+      Draw mute icon button: top-left, 36x36px
+      Draw wave progress bar: bottom, y=585, 4 segments
+
+7.  Floating text effects (drawn above everything):
+      effects.drawFloatingTexts(ctx)
+</code></pre>
+<hr>
+<h2>5. Difficulty Progression Formulas</h2>
+<p>All formulas use <code>effectiveWave = wave + (round - 1) * 2</code> where:</p>
+<ul>
+<li><code>wave</code> = 1 to 4 within a round (changes every 15 seconds)</li>
+<li><code>round</code> = increments each time the player replays (starts at 1)</li>
+</ul>
+<h3>Display Time (how long a character stays visible)</h3>
+<pre><code>baseDisplayTime = max(400, 1200 - effectiveWave * 80) ms
+actualDisplayTime = baseDisplayTime * character.displayTimeMultiplier
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Effective Wave</th>
+<th>Base Display Time</th>
+<th>Tralalero (1.0x)</th>
+<th>Bombardiro (0.6x)</th>
+<th>Lirili (0.4x)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1120ms</td>
+<td>1120ms</td>
+<td>672ms</td>
+<td>-- (not yet)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1040ms</td>
+<td>1040ms</td>
+<td>624ms</td>
+<td>--</td>
+</tr>
+<tr>
+<td>3</td>
+<td>960ms</td>
+<td>960ms</td>
+<td>576ms</td>
+<td>384ms</td>
+</tr>
+<tr>
+<td>4</td>
+<td>880ms</td>
+<td>880ms</td>
+<td>528ms</td>
+<td>352ms</td>
+</tr>
+<tr>
+<td>5</td>
+<td>800ms</td>
+<td>800ms</td>
+<td>480ms</td>
+<td>320ms</td>
+</tr>
+<tr>
+<td>10</td>
+<td>400ms (min)</td>
+<td>400ms</td>
+<td>240ms</td>
+<td>160ms</td>
+</tr>
+</tbody></table>
+<h3>Spawn Interval (time between spawns)</h3>
+<pre><code>spawnInterval = max(300, 900 - effectiveWave * 60) ms
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Effective Wave</th>
+<th>Spawn Interval</th>
+<th>Spawns per Minute</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>840ms</td>
+<td>~71</td>
+</tr>
+<tr>
+<td>2</td>
+<td>780ms</td>
+<td>~77</td>
+</tr>
+<tr>
+<td>3</td>
+<td>720ms</td>
+<td>~83</td>
+</tr>
+<tr>
+<td>4</td>
+<td>660ms</td>
+<td>~91</td>
+</tr>
+<tr>
+<td>5</td>
+<td>600ms</td>
+<td>~100</td>
+</tr>
+<tr>
+<td>10</td>
+<td>300ms (min)</td>
+<td>~200</td>
+</tr>
+</tbody></table>
+<h3>Max Active Characters</h3>
+<pre><code>maxActive = min(5, 1 + floor(effectiveWave / 2))
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Effective Wave</th>
+<th>Max Active</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr>
+<td>8</td>
+<td>5 (cap)</td>
+</tr>
+</tbody></table>
+<h3>Penalty Spawn Weight (Brr Brr Patapim)</h3>
+<pre><code>penaltyWeight = min(0.25, 0.10 + effectiveWave * 0.02)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Effective Wave</th>
+<th>Penalty %</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>14%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>16%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>18%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>8+</td>
+<td>25% (cap)</td>
+</tr>
+</tbody></table>
+<h3>Combo Multiplier</h3>
+<pre><code>multiplier = min(4.0, 1 + comboCount * 0.25)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Combo</th>
+<th>Multiplier</th>
+<th>100pt Character</th>
+<th>200pt Character</th>
+<th>500pt Character</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1.00x</td>
+<td>100</td>
+<td>200</td>
+<td>500</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1.25x</td>
+<td>125</td>
+<td>250</td>
+<td>625</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2.00x</td>
+<td>200</td>
+<td>400</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3.00x</td>
+<td>300</td>
+<td>600</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>12+</td>
+<td>4.00x (cap)</td>
+<td>400</td>
+<td>800</td>
+<td>2000</td>
+</tr>
+</tbody></table>
+<p>Penalty (Brr Brr Patapim) is always flat -200, never multiplied.</p>
+<h3>Round Progression Table (first 3 rounds)</h3>
+<table>
+<thead>
+<tr>
+<th>Round</th>
+<th>Wave</th>
+<th>Effective Wave</th>
+<th>Display</th>
+<th>Spawn Int</th>
+<th>Max Active</th>
+<th>Penalty %</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1120ms</td>
+<td>840ms</td>
+<td>1</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1040ms</td>
+<td>780ms</td>
+<td>2</td>
+<td>14%</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>960ms</td>
+<td>720ms</td>
+<td>2</td>
+<td>16%</td>
+</tr>
+<tr>
+<td>1</td>
+<td>4</td>
+<td>4</td>
+<td>880ms</td>
+<td>660ms</td>
+<td>3</td>
+<td>18%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>960ms</td>
+<td>720ms</td>
+<td>2</td>
+<td>16%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>880ms</td>
+<td>660ms</td>
+<td>3</td>
+<td>18%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>800ms</td>
+<td>600ms</td>
+<td>3</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+<td>720ms</td>
+<td>540ms</td>
+<td>4</td>
+<td>22%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+<td>800ms</td>
+<td>600ms</td>
+<td>3</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>6</td>
+<td>720ms</td>
+<td>540ms</td>
+<td>4</td>
+<td>22%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>7</td>
+<td>640ms</td>
+<td>480ms</td>
+<td>4</td>
+<td>24%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>8</td>
+<td>560ms</td>
+<td>420ms</td>
+<td>5</td>
+<td>25%</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>6. GameShell Integration</h2>
+<h3>main.js Wiring</h3>
+<pre><code class="language-js">import { GameShell } from &#39;../shared/game-shell.js&#39;;
+import { createInputManager } from &#39;../shared/input-manager.js&#39;;
+import { initAudio, registerSound, playSound } from &#39;../shared/sound-manager.js&#39;;
+import { checkCollisionCirclePoint, clamp, randomBetween, randomInt, formatScore } from &#39;../shared/utils.js&#39;;
+import { CHARACTER_TYPES } from &#39;./characters.js&#39;;
+import { Hole } from &#39;./holes.js&#39;;
+import { SpawnScheduler } from &#39;./game.js&#39;;
+import { GameTimer } from &#39;./game.js&#39;;
+import { ComboCounter } from &#39;./ui.js&#39;;
+import { EffectsManager } from &#39;./effects.js&#39;;
+import * as C from &#39;./constants.js&#39;;
+
+// ---- Game State (module-scoped) ----
+let holes = [];
+let spawnScheduler, timer, combo, effects;
+let score = 0;
+let wave = 1;
+let round = 0;
+let effectiveWave = 1;
+let gameTime = 0;
+let hitStats = { tralalero: 0, bombardiro: 0, tungtung: 0, ballerina: 0, brrbrr: 0, lirili: 0 };
+let pendingTaps = [];
+
+// ---- Shell Setup ----
+const shell = new GameShell({
+  title: &#39;WHACK-A-ROT&#39;,
+  gameId: &#39;whack-a-rot&#39;,
+  logicalWidth: 400,
+  logicalHeight: 600,
+  maxDisplayWidth: 500,
+  theme: &#39;italian-brainrot&#39;,
+  subtitle: &#39;whack brainrot. earn aura. flex.&#39;,
+  accentColor: &#39;#ff3838&#39;,
+  shareUrl: &#39;https://brainrotgames.com/games/game-02/&#39;,
+});
+
+// ---- Callbacks ----
+
+shell.onStart = () =&gt; {
+  round++;
+  score = 0;
+  wave = 1;
+  effectiveWave = wave + (round - 1) * 2;
+  gameTime = 0;
+
+  holes = Array.from({ length: 9 }, (_, i) =&gt; new Hole(i));
+  spawnScheduler = new SpawnScheduler();
+  timer = new GameTimer();
+  combo = new ComboCounter();
+  effects = new EffectsManager();
+  effects.initParticles(400, 600);
+
+  hitStats = { tralalero: 0, bombardiro: 0, tungtung: 0, ballerina: 0, brrbrr: 0, lirili: 0 };
+  pendingTaps = [];
+
+  // Tab visibility pause
+  document.addEventListener(&#39;visibilitychange&#39;, onVisibilityChange);
+};
+
+shell.onUpdate = (dt) =&gt; {
+  gameTime += dt * 16.67;
+  // ... full update loop as described in Section 4
+};
+
+shell.onRender = (ctx) =&gt; {
+  // ... full render loop as described in Section 4
+};
+
+shell.onGameOver = () =&gt; {
+  document.removeEventListener(&#39;visibilitychange&#39;, onVisibilityChange);
+  const message = getGameOverMessage(score);
+  return {
+    score,
+    message,
+    scoreLabel: &#39;aura points&#39;,
+    extra: { hitStats, maxCombo: combo.maxCombo },
+  };
+};
+
+// Custom game-over rendering: hit stats
+shell.onGameOverRender = (ctx) =&gt; {
+  // Draw character hit stat icons + counts on the game-over extra area
+  // Row of 6 mini character icons (24x24) with hit count below each
+};
+
+// ---- Input ----
+shell.init();
+const input = createInputManager(shell.getCanvas(), 400, 600);
+input.onTap(() =&gt; {
+  initAudio(); // Safe to call multiple times
+});
+input.onTapAt(({ x, y }) =&gt; {
+  pendingTaps.push({ x, y });
+});
+
+// ---- Sound Registration ----
+// After initAudio(), register game-specific sounds:
+//   registerSound(&#39;hit&#39;, { ... })      -- standard bonk (overrides built-in)
+//   registerSound(&#39;bonus&#39;, { ... })    -- Lirili sparkle arpeggio
+//   registerSound(&#39;penalty&#39;, { ... })  -- Brr Brr buzzy wrong
+//   registerSound(&#39;miss&#39;, { ... })     -- subtle womp
+//   registerSound(&#39;combo&#39;, { ... })    -- milestone harmonic
+//   registerSound(&#39;gameover&#39;, { ... }) -- descending 4-note
+//   registerSound(&#39;highscore&#39;, { ... })-- ascending celebration
+</code></pre>
+<h3>Callback Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Shell Callback</th>
+<th>Whack-a-Rot Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>onStart()</code></td>
+<td>Increment round. Reset score=0, combo=0, timer=60, wave=1. Create 9 holes (empty). Init spawn scheduler. Init effects with ambient particles. Clear hit stats.</td>
+</tr>
+<tr>
+<td><code>onUpdate(dt)</code></td>
+<td>Update timer (check game-over). Calculate wave/effectiveWave. Run spawn scheduler. Update holes (check misses). Process tap queue (hit detection, scoring, effects). Update effects.</td>
+</tr>
+<tr>
+<td><code>onRender(ctx)</code></td>
+<td>Draw background. Draw ambient particles. Draw holes (top-to-bottom row order). Draw HUD (score, combo, timer, mute, wave bar). Draw floating text effects.</td>
+</tr>
+<tr>
+<td><code>onGameOver()</code></td>
+<td>Return <code>{ score, message, scoreLabel: &quot;aura points&quot;, extra: { hitStats, maxCombo } }</code>.</td>
+</tr>
+<tr>
+<td><code>onGameOverRender(ctx)</code></td>
+<td>Draw character hit stats row (6 mini icons with counts) on canvas behind game-over overlay.</td>
+</tr>
+</tbody></table>
+<h3>Tap Hit Detection Priority</h3>
+<p>When multiple characters overlap (rare but possible at adjacent holes), the tap is tested against holes in a specific order:</p>
+<ol>
+<li>Bottom row first (row 2, indices 6-7-8) -- visually in front</li>
+<li>Middle row (row 1, indices 3-4-5)</li>
+<li>Top row (row 0, indices 0-1-2)</li>
+</ol>
+<p>Within a row, left-to-right. First hit found wins -- one tap can only hit one character.</p>
+<h3>localStorage Keys Used</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>whack-a-rot-highscore</code></td>
+<td>number (string)</td>
+<td><code>&#39;0&#39;</code></td>
+<td>All-time high score</td>
+</tr>
+<tr>
+<td><code>whack-a-rot-lastscore</code></td>
+<td>number (string)</td>
+<td><code>&#39;0&#39;</code></td>
+<td>Last round score</td>
+</tr>
+<tr>
+<td><code>whack-a-rot-rounds</code></td>
+<td>number (string)</td>
+<td><code>&#39;0&#39;</code></td>
+<td>Total rounds played (for ad frequency)</td>
+</tr>
+<tr>
+<td><code>whack-a-rot-muted</code></td>
+<td><code>&#39;true&#39;</code>/<code>&#39;false&#39;</code></td>
+<td><code>&#39;false&#39;</code></td>
+<td>Sound mute preference</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>7. Background Rendering</h2>
+<pre><code>Layer stack (back to front):
+
+1. Base fill: #0a0a0f (Void)
+
+2. Far background:
+   - Italian cityscape silhouette: rectangles + triangles in #12121a
+   - Includes a leaning tower shape (Pisa reference)
+   - Drifts left at 0.2px/frame, wraps at canvas width * 2
+
+3. Mid background:
+   - Radial gradient: center #0f0f18, edge #0a0a0f
+   - Creates spotlight-on-grid effect
+   - Optional: faint grid lines connecting hole positions, #111118 at 20% opacity
+
+4. Ground plane:
+   - Elevated strip behind bottom hole row
+   - Color: #13131d
+   - Subtle depth illusion
+
+5. Ambient particles (drawn by EffectsManager):
+   - 10-15 tiny circles drifting upward
+   - Radius 1-2px, fill #c8ff00 at 10-20% opacity
+   - &quot;Aura energy&quot; ambiance
+</code></pre>
+<hr>
+<h2>8. Wave Progress Bar</h2>
+<p>Visual indicator at the bottom of the canvas showing wave progression through the round.</p>
+<pre><code>Position: y=585, centered, width=320, height=4
+Background: #1e1e2e (Surface Elevated)
+Fill: #555570 (Text Tertiary)
+
+4 segments, each 80px wide, separated by 1px gaps.
+Fill percentage = (elapsed time within current wave) / 15 seconds.
+
+Segment 1 fills during wave 1 (0-15s)
+Segment 2 fills during wave 2 (15-30s)
+Segment 3 fills during wave 3 (30-45s)
+Segment 4 fills during wave 4 (45-60s)
+
+Completed segments are fully filled. Current segment fills progressively.
+Future segments are empty (background color only).
+</code></pre>
+<p>This is decorative information -- not critical to gameplay. Players primarily watch the timer.</p>
+<hr>
+<h2>9. Hit Stats (Game-Over Extra)</h2>
+<p>Tracked during gameplay in the <code>hitStats</code> object. Displayed on the game-over screen below the score.</p>
+<pre><code>Layout: horizontal row of 6 items, centered
+
+Each item:
+  - 24x24 mini character rendering (simplified version of the full draw function)
+  - Below: hit count in Space Grotesk 500, 14px, Text Secondary
+  - Penalty hits (brrbrr) shown in Hot Magenta color
+
+Example visual:
+  [shark] [croc] [plank] [cup] [spike] [butterfly]
+    12      5      8       7     3!       1
+
+This is screenshot-friendly -- players can flex their breakdown stats.
+</code></pre>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

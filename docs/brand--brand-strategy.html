@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Strategy — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">brand/brand-strategy.md</div>
+    <div class="doc-content"><h1>Brand Strategy</h1>
+<h2>April 2026</h2>
+<hr>
+<h2>1. Company Name</h2>
+<p>Five candidates. Criteria: 1-2 words, sounds like a meme, not like a startup. Easy to type into a URL bar. Your 12-year-old cousin should be able to say it without explanation.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>.com Available?</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Brainrot Games</strong></td>
+<td>brainrotgames.com</td>
+<td>Says exactly what it is. Zero interpretation needed. The term &quot;brainrot&quot; is Oxford Word of the Year 2024 and permanent Gen Z/Alpha vocabulary. Search-native: people already Google &quot;brainrot games.&quot;</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Rotware</strong></td>
+<td>rotware.com</td>
+<td>&quot;Software&quot; meets &quot;brainrot.&quot; Sounds like a fake virus you&#39;d get from a cursed link, which is exactly the energy. Short, punchy, slightly ominous.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Skullrot</strong></td>
+<td>skullrot.com</td>
+<td>Dark, sticky, sounds like a debuff in an RPG. Visual brand practically designs itself (skull + melting). But slightly limits the tone to edgy — may alienate younger players.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Brainjuice</strong></td>
+<td>brainjuice.gg</td>
+<td>Gross in a fun way. Implies the games liquify your brain. But could be confused with productivity/nootropic brands. Weaker signal.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>0 Aura Games</strong></td>
+<td>0aura.gg</td>
+<td>Deep-cut meme reference (&quot;you lost aura for that&quot;). Funny to people who get it. But memes expire, and building a company name on one is risky. Also hard to Google.</td>
+</tr>
+</tbody></table>
+<h3>Recommendation: Brainrot Games</h3>
+<p>Here&#39;s why, and it&#39;s not complicated:</p>
+<p><strong>The name IS the SEO strategy.</strong> People are already searching &quot;brainrot games&quot; as a genre term. Owning that exact-match term is a distribution advantage that compounds every month the category grows. This is the &quot;Voodoo&quot; move — generic enough to own the category, specific enough to signal exactly what you make.</p>
+<p>It&#39;s also the honest name. We make games themed around internet brainrot. Saying that plainly is funnier and more on-brand than trying to be clever about it.</p>
+<p>The risk is that &quot;brainrot&quot; could become dated. But it has already survived the transition from slang to dictionary word. That&#39;s the line where slang becomes permanent vocabulary. &quot;Cringe&quot; did the same thing a decade ago. Nobody stopped saying cringe.</p>
+<p>Short form for social: <strong>Brainrot</strong> or <strong>BRG</strong>. Domain: <strong>brainrotgames.com</strong> (or brainrot.gg if gaming TLD is preferred).</p>
+<hr>
+<h2>2. Mission Statement</h2>
+<blockquote>
+<p><strong>We make games that are bad for you in all the right ways.</strong></p>
+</blockquote>
+<p>Alternate:</p>
+<blockquote>
+<p><strong>Proven mechanics. Unhinged themes. Zero attention span required.</strong></p>
+</blockquote>
+<p>The first is the brand line — quotable, slightly self-deprecating, works in a social bio, works on a pitch deck. The second is the operational description for people who need to understand the business in one breath.</p>
+<hr>
+<h2>3. Brand Voice</h2>
+<p>The voice is simple: we are the friend in the group chat who sends you a game link at 2am with zero context. Not a brand trying to &quot;speak Gen Z.&quot; Not a corporation with a meme consultant. Just someone who is clearly Too Online and thinks that&#39;s fine.</p>
+<h3>The Rules</h3>
+<p><strong>Irony is load-bearing.</strong> We know our games are stupid. That&#39;s the point. The moment we start taking ourselves seriously — calling our games &quot;experiences&quot; or our memes &quot;intellectual property&quot; — we&#39;re dead.</p>
+<p><strong>Self-aware, not self-deprecating.</strong> There&#39;s a difference between &quot;yeah this game will ruin your productivity, you&#39;re welcome&quot; and &quot;haha we&#39;re so random and quirky.&quot; The first is confident. The second is begging.</p>
+<p><strong>Fluent, not performant.</strong> We use meme language because we actually speak it, not because a brand guidelines doc told us to. If a reference feels forced, kill it. Nothing is more cringe than a brand trying to use slang it doesn&#39;t understand.</p>
+<p><strong>Short.</strong> Social copy is 1-2 sentences max. We&#39;re competing for attention against TikTok and Discord notifications. Write like you&#39;re texting, not like you&#39;re drafting a press release.</p>
+<h3>5 Things the Brand WOULD Say</h3>
+<ol>
+<li>&quot;new game just dropped. it&#39;s flappy bird but the bird is Tralalero Tralala. you&#39;re welcome&quot;</li>
+<li>&quot;this game has been scientifically proven to lower your GPA&quot;</li>
+<li>&quot;we spent way too long making a whack-a-mole game about Italian brainrot characters and we&#39;d do it again&quot;</li>
+<li>&quot;your high score is 3. that&#39;s not a flex but you should share it anyway&quot;</li>
+<li>&quot;patch notes: added Bombardiro Crocodilo. fixed nothing else&quot;</li>
+</ol>
+<h3>5 Things the Brand Would NEVER Say</h3>
+<ol>
+<li>&quot;Introducing our revolutionary new gaming experience powered by cutting-edge meme technology&quot;</li>
+<li>&quot;At Brainrot Games, we believe in the power of community to drive meaningful engagement&quot;</li>
+<li>&quot;We&#39;re disrupting the casual gaming space with our innovative approach to user-generated content&quot;</li>
+<li>&quot;Our team is passionate about creating best-in-class entertainment for the next generation&quot;</li>
+<li>&quot;Download now and join millions of players on an epic adventure! Use code SIGMA for 20% off!&quot;</li>
+</ol>
+<h3>Voice Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Tone</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Game launch</td>
+<td>Deadpan excited</td>
+<td>&quot;new brainrot just dropped. don&#39;t say we didn&#39;t warn you&quot;</td>
+</tr>
+<tr>
+<td>Bug/outage</td>
+<td>Honest, unbothered</td>
+<td>&quot;game&#39;s broken. we&#39;re fixing it. play the other one for now&quot;</td>
+</tr>
+<tr>
+<td>Milestone</td>
+<td>Casually impressed</td>
+<td>&quot;apparently 1 million people played this. that&#39;s a lot of lost homework&quot;</td>
+</tr>
+<tr>
+<td>Responding to fans</td>
+<td>Match their energy</td>
+<td>Fan says &quot;this game ruined my life&quot; / We say &quot;working as intended&quot;</td>
+</tr>
+<tr>
+<td>Serious comms (legal, safety)</td>
+<td>Straight, no jokes</td>
+<td>Drop the bit entirely. Be clear, be direct, be human.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. Tagline</h2>
+<p>Options, ranked:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Tagline</th>
+<th>Where It Works</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>your brain on memes</strong></td>
+<td>Social bio, site header, merch. Short. Vaguely ominous. Memorable.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>games for when you should be doing literally anything else</strong></td>
+<td>About page, longer social bios. Funny but long.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>rotate your phone. rot your brain.</strong></td>
+<td>Marketing, app store descriptions. Good cadence.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>the games your teacher warned you about</strong></td>
+<td>Marketing, social. Plays to the school demographic.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>tap. die. share. repeat.</strong></td>
+<td>Mechanical. Describes the actual gameplay loop. Works for ads.</td>
+</tr>
+</tbody></table>
+<h3>Recommendation: &quot;your brain on memes&quot;</h3>
+<p>Short enough for a Twitter/TikTok bio. Works as a site subtitle. Immediately communicates what the company does and what tone it operates in. Riffs on the classic &quot;this is your brain on drugs&quot; PSA format, which itself is a meme at this point. Also: lowercase is intentional. The brand never capitalizes unless it absolutely has to.</p>
+<hr>
+<h2>5. Banned Words</h2>
+<p>These words are dead on arrival. If they show up in any copy — social, web, marketing, internal docs — rewrite the sentence.</p>
+<table>
+<thead>
+<tr>
+<th>Word/Phrase</th>
+<th>Why It&#39;s Banned</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>revolutionary</strong></td>
+<td>Nothing about a Flappy Bird reskin is revolutionary. We know that.</td>
+</tr>
+<tr>
+<td><strong>innovative</strong></td>
+<td>See above.</td>
+</tr>
+<tr>
+<td><strong>unleash</strong></td>
+<td>We&#39;re not uncaging a beast. We&#39;re making meme games.</td>
+</tr>
+<tr>
+<td><strong>supercharge</strong></td>
+<td>Corporate cringe. Instant trust-killer with the audience.</td>
+</tr>
+<tr>
+<td><strong>synergy</strong></td>
+<td>If this word appears anywhere near this brand, something has gone horribly wrong.</td>
+</tr>
+<tr>
+<td><strong>leverage</strong></td>
+<td>You leverage a fulcrum, not a whack-a-mole game.</td>
+</tr>
+<tr>
+<td><strong>empower</strong></td>
+<td>We empower nothing. We distract.</td>
+</tr>
+<tr>
+<td><strong>disrupt</strong></td>
+<td>We&#39;re not disrupting gaming. We&#39;re making dumb games well.</td>
+</tr>
+<tr>
+<td><strong>ecosystem</strong></td>
+<td>Unless talking about actual Italian brainrot character ecosystems, and even then, say &quot;universe&quot; instead.</td>
+</tr>
+<tr>
+<td><strong>best-in-class</strong></td>
+<td>Class of what? Brainrot games? There is no class.</td>
+</tr>
+<tr>
+<td><strong>cutting-edge</strong></td>
+<td>The edge of what? A 2014 game mechanic with a meme skin?</td>
+</tr>
+<tr>
+<td><strong>experience</strong></td>
+<td>It&#39;s a game. Call it a game. &quot;Gaming experience&quot; is what theme parks say.</td>
+</tr>
+<tr>
+<td><strong>community</strong></td>
+<td>Overused to meaninglessness. Say &quot;players&quot; or &quot;the people who play our stuff.&quot;</td>
+</tr>
+<tr>
+<td><strong>passionate</strong></td>
+<td>Show it. Don&#39;t say it. The games are the proof.</td>
+</tr>
+<tr>
+<td><strong>epic</strong></td>
+<td>So overloaded it means nothing. Also legally adjacent to a company we&#39;d rather not invoke.</td>
+</tr>
+<tr>
+<td><strong>engage / engagement</strong></td>
+<td>Marketing-brain word. Say &quot;play&quot; or &quot;come back&quot; or &quot;share.&quot;</td>
+</tr>
+<tr>
+<td><strong>content</strong></td>
+<td>We make games, not content. Content is what brands make. Games are what players play.</td>
+</tr>
+<tr>
+<td><strong>journey</strong></td>
+<td>There is no journey. You tap a screen and a brainrot character dies.</td>
+</tr>
+</tbody></table>
+<p>Also banned: any sentence that starts with &quot;At [Company Name], we believe...&quot;</p>
+<hr>
+<h2>6. Target Personas</h2>
+<h3>Persona 1: &quot;The Player&quot;</h3>
+<p><strong>Ages 8-16. Gen Alpha / Young Gen Z.</strong></p>
+<p>They don&#39;t read brand strategy docs. They click a link in their group chat, play for 90 seconds, and either share it or forget it. That&#39;s the entire decision funnel.</p>
+<p><strong>Demographics:</strong></p>
+<ul>
+<li>83% play games weekly, averaging 6+ hours daily across platforms</li>
+<li>73% play primarily on mobile (phones they technically aren&#39;t supposed to have)</li>
+<li>52% have made an in-game purchase (mostly small — $1-5 range, parents&#39; card)</li>
+<li>Primary discovery: TikTok, YouTube Shorts, word-of-mouth, school group chats</li>
+<li>Roblox is their social platform (126M DAU). Discord is their backchannel.</li>
+</ul>
+<p><strong>What they care about:</strong></p>
+<ul>
+<li>Can I play this RIGHT NOW without downloading anything?</li>
+<li>Is it funny? Will my friends think it&#39;s funny?</li>
+<li>Can I collect things? Is there a score I can screenshot?</li>
+<li>Do I recognize the characters? (Italian brainrot, Skibidi, sigma references)</li>
+<li>Is it hard enough that beating my friend&#39;s score means something?</li>
+</ul>
+<p><strong>What they don&#39;t care about:</strong></p>
+<ul>
+<li>Your brand. Your company name. Your mission statement. Your story.</li>
+<li>Whether the game mechanic is &quot;original&quot;</li>
+<li>Whether brainrot culture is &quot;real art&quot; or &quot;AI-generated garbage&quot;</li>
+<li>Polish beyond a baseline (but below that baseline they bounce instantly)</li>
+</ul>
+<p><strong>Messaging that works:</strong></p>
+<ul>
+<li>Zero words. Just a link, a thumbnail, and maybe a score to beat.</li>
+<li>&quot;bet you can&#39;t beat 12&quot;</li>
+<li>Show the game. Don&#39;t describe the game. Gameplay clips &gt; marketing copy.</li>
+<li>Reference current meme vocabulary naturally. Never explain the joke.</li>
+</ul>
+<p><strong>Messaging that fails:</strong></p>
+<ul>
+<li>Anything that reads like an adult wrote it for kids</li>
+<li>Explaining what brainrot is (they know, grandpa)</li>
+<li>&quot;Fun for the whole family!&quot;</li>
+<li>Any friction before play. Sign-up walls, loading screens, tutorials.</li>
+</ul>
+<hr>
+<h3>Persona 2: &quot;The Sharer&quot;</h3>
+<p><strong>Ages 17-25. Older Gen Z.</strong></p>
+<p>They are the distribution engine. They don&#39;t necessarily play for hours, but they play once, find it funny, and send it to 4 group chats, post it on their story, or make a TikTok about it. They engage with brainrot ironically and that irony IS the engagement.</p>
+<p><strong>Demographics:</strong></p>
+<ul>
+<li>Heavy social media users across TikTok, Instagram, Discord, Reddit, Twitter/X</li>
+<li>Higher spending power than The Player, but more price-sensitive (grew up in subscription fatigue)</li>
+<li>Many are in college or early career. Play games during procrastination windows.</li>
+<li>Taste-makers in their friend groups. What they share, younger siblings and followers play.</li>
+</ul>
+<p><strong>What they care about:</strong></p>
+<ul>
+<li>Is this funny enough to share without me looking stupid?</li>
+<li>Is the humor self-aware? (They can smell try-hard from a mile away)</li>
+<li>Is it easy to clip or screenshot for social?</li>
+<li>Does it have that &quot;I can&#39;t believe someone made this&quot; energy?</li>
+<li>Is there a competitive/comparative element? (Score cards, rankings, reaction content)</li>
+</ul>
+<p><strong>What they don&#39;t care about:</strong></p>
+<ul>
+<li>Game depth. They&#39;ll play for 3 minutes max unless it&#39;s genuinely addictive.</li>
+<li>Your monetization strategy (but they&#39;ll roast you publicly if ads are obnoxious)</li>
+<li>Being &quot;the target audience&quot; — they know they&#39;re too old for this and that&#39;s part of the joke</li>
+</ul>
+<p><strong>Messaging that works:</strong></p>
+<ul>
+<li>Self-aware humor. &quot;this game has no right to be this addictive&quot;</li>
+<li>Deadpan product descriptions. &quot;it&#39;s flappy bird but worse (better)&quot;</li>
+<li>Making the share itself funny. Shareable score cards, ridiculous death screens.</li>
+<li>Engaging with meme creators who cover your games (repost, don&#39;t sponsor)</li>
+</ul>
+<p><strong>Messaging that fails:</strong></p>
+<ul>
+<li>Trying too hard. Forced meme references. Using slang incorrectly.</li>
+<li>Influencer-marketing-voice (&quot;OMG you guys have to try this game&quot;)</li>
+<li>Pretending the game is more than it is</li>
+<li>Any whiff of &quot;how do you do, fellow kids&quot;</li>
+</ul>
+<hr>
+<h2>7. Brand Principles (The Short Version)</h2>
+<p>Five rules. Tape them to the wall.</p>
+<ol>
+<li><p><strong>The game is the marketing.</strong> If the game isn&#39;t funny and shareable on its own, no amount of brand voice fixes that.</p>
+</li>
+<li><p><strong>Lowercase everything.</strong> Literally and figuratively. No screaming. No hype. Understated confidence.</p>
+</li>
+<li><p><strong>Ship the joke fast.</strong> Memes have a half-life. A good brainrot game shipped this week beats a perfect one shipped next month.</p>
+</li>
+<li><p><strong>Never explain the meme.</strong> If you have to explain why Bombardiro Crocodilo is funny, you&#39;ve already lost. The audience gets it. Trust them.</p>
+</li>
+<li><p><strong>Earn the irony.</strong> Being self-aware only works if the underlying product is actually good. Ironic detachment from a bad game is just cope. Make the game good, then be funny about it.</p>
+</li>
+</ol>
+<hr>
+<p><em>This document defines how we talk, not what we build. For game selection and technical architecture, see the design docs and sprint plans. For content calendar and distribution strategy, see marketing/.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

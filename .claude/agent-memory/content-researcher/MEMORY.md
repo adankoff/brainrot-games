@@ -1,0 +1,2 @@
+- [Project Context](project_brainrot_games.md) -- Brainrot/meme themed HTML5 Canvas casual game studio, vanilla JS stack
+- [Game Mechanics Research](project_game_mechanics_research.md) -- Completed foundational research on 15 casual game mechanics, top 5 identified

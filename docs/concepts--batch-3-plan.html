@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batch 3 Plan — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">concepts/batch-3-plan.md</div>
+    <div class="doc-content"><h1>Batch 3 Plan -- Games 09, 10, 11</h1>
+<h2>Brainrot Games Catalog Expansion</h2>
+<h3>April 2026</h3>
+<hr>
+<h2>Batch Strategy</h2>
+<p>Batch 3 pushes beyond the obvious tap-and-reflex pairings that dominate Batches 1-2. By this point the catalog has: tap-to-fly (Flappy), tap-targets (Whack), tap-and-upgrade (Idle), side-scroll (Runner), drop-blocks (Stack), grow-trail (Snake), slide-merge (2048), and likely one of Color Switch/Doodle Jump. Batch 3 introduces <strong>three genuinely different interaction models</strong>: swipe gestures, paddle/ball physics, and rhythm-platforming. Each game has 3 selectable meme theme variants instead of a single theme.</p>
+<p><strong>Selection criteria applied:</strong></p>
+<ol>
+<li>Mechanical diversity -- swipe, paddle-control, and tap-rhythm are all absent from the catalog</li>
+<li>Fresh themes -- heavy rotation of Grimace Shake, Among Us/Sus, Looksmaxxing, NPC Streaming, and Ohio (all underused or unused)</li>
+<li>Viral hooks -- combo counters, level destruction, and percentage-based death screens are all proven shareable formats</li>
+<li>3 genuine theme variants per game -- each variant meaningfully changes visuals, vocabulary, and end-screen humor</li>
+</ol>
+<hr>
+<h2>Game 09: SLICE THE BRAINROT</h2>
+<h3>Base Mechanic</h3>
+<p><strong>Fruit Ninja.</strong> Swipe/drag across objects tossed into the air. Slice for points, chain slices into combos. Avoid bombs. 60-second arcade timer.</p>
+<h3>Why This Mechanic</h3>
+<p>Fruit Ninja is the only swipe-gesture game in the entire catalog. Every other game uses tap or directional input. The tactile satisfaction of swiping through objects is fundamentally different from tapping -- it engages a different motor pattern and produces a different emotional response (physical, visceral, destructive). The combo system rewards precision and creates clip-worthy moments. 1B+ downloads prove the mechanic. Implementation is moderate (3/5) due to swipe detection and trail rendering, but by Game 09 the team has shipped 8 games and can handle it.</p>
+<p>The key insight: slicing meme characters in half is inherently funnier than slicing fruit. The splatter effects, the character reactions, the absurdity of bisecting Grimace -- this is screenshot/clip bait at a level that fruit never was.</p>
+<h3>Theme Variant 1: GRIMACE SHAKE SLICE</h3>
+<p><strong>Theme:</strong> Grimace Shake / McDonald&#39;s horror meme
+<strong>Scoring Label:</strong> SHAKE POINTS
+<strong>Visual Description:</strong> Purple-dominant screen. Objects tossed upward are Grimace Shake cups of various sizes, purple milkshake blobs, and cursed Grimace faces. Slicing a shake produces a purple splatter that stains the screen (accumulates over the round -- by 50 seconds the screen is dripping purple). Bombs are replaced by <strong>golden arches</strong> -- slice a golden arch and the screen goes to a fake &quot;McDonald&#39;s cease &amp; desist&quot; overlay for a beat before the game continues (you lose your combo). Background is a dimly-lit McDonald&#39;s interior that gets progressively more corrupted/glitchy. The slice trail is neon purple.</p>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Primary: #7B2D8E (Grimace purple)</li>
+<li>Secondary: #FFD700 (golden arches yellow)</li>
+<li>Background: #1A0A1F (dark purple-black)</li>
+<li>Splatter: #9B30FF (bright purple)</li>
+<li>Accent: #FF1744 (danger red for golden arches)</li>
+</ul>
+<p><strong>Death/End Messages (60-second timer expiry):</strong></p>
+<ol>
+<li>&quot;grimace saw what you did. he&#39;s not happy.&quot;</li>
+<li>&quot;the shake was never just a shake.&quot;</li>
+<li>&quot;ronald is watching. he always was.&quot;</li>
+<li>&quot;you sliced [X] shakes. that&#39;s [X] too many. or not enough.&quot;</li>
+<li>&quot;the purple stains don&#39;t wash out. check your hands.&quot;</li>
+</ol>
+<h3>Theme Variant 2: LOOKSMAXXING SLASH</h3>
+<p><strong>Theme:</strong> Looksmaxxing / glow-up culture
+<strong>Scoring Label:</strong> GLOW POINTS
+<strong>Visual Description:</strong> Objects tossed upward are &quot;bad trait&quot; items that need to be sliced away: crooked jawlines, weak chins, asymmetrical faces, bad haircuts, unibrows, and acne clusters. Slicing produces a sparkle/glow-up effect instead of splatter. The background character (a silhouette face) gradually transforms from &quot;before&quot; to &quot;after&quot; as you slice more items -- jawline sharpens, cheekbones appear, hair improves. Bombs are replaced by <strong>&quot;already maxed&quot; items</strong> (perfect jawlines, ideal canthal tilt markers) -- slicing these removes glow points because you&#39;re cutting away perfection. The slice trail is a gleaming gold razor edge.</p>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Primary: #C4A265 (gold/bronze)</li>
+<li>Secondary: #FF6B9D (skin-tone pink)</li>
+<li>Background: #0D0D0D (pitch black, surgical theater vibe)</li>
+<li>Glow effect: #FFE066 (bright gold sparkle)</li>
+<li>Accent: #00E5FF (clinical cyan, like a cosmetic surgery laser)</li>
+</ul>
+<p><strong>Death/End Messages (60-second timer expiry):</strong></p>
+<ol>
+<li>&quot;jawline status: could be worse. is worse.&quot;</li>
+<li>&quot;you removed [X] flaws. [X * 10] remain. sorry.&quot;</li>
+<li>&quot;mewing alone can&#39;t fix this. you need the blade.&quot;</li>
+<li>&quot;glow-up progress: 12%. see you tomorrow.&quot;</li>
+<li>&quot;the mirror called. it wants an apology.&quot;</li>
+</ol>
+<h3>Theme Variant 3: SUS SLICE</h3>
+<p><strong>Theme:</strong> Among Us / &quot;sus&quot; / imposter culture
+<strong>Scoring Label:</strong> TRUST POINTS
+<strong>Visual Description:</strong> Crewmate-shaped objects in various colors are tossed upward. Regular crewmates can be sliced for points. But some are <strong>imposters</strong> -- visually identical except for a brief tell (a tiny fang, a shadow flicker, a slightly wrong color shade) that appears for ~200ms when they reach peak height. Slicing an imposter gives 3x points. Slicing a crewmate gives normal points. Bombs are replaced by <strong>emergency meeting buttons</strong> -- hit one and ALL objects currently on screen freeze for 1 second (useful but costs your combo). The splatter is colored blood matching the crewmate&#39;s color. Background is a spaceship interior with vents that occasionally open.</p>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Primary: #C51111 (Among Us red)</li>
+<li>Secondary: #132ED1 (Among Us blue)</li>
+<li>Background: #1B1B2F (dark space-station interior)</li>
+<li>Splatter: varies per crewmate color</li>
+<li>Accent: #FFFF00 (emergency meeting yellow)</li>
+</ul>
+<p><strong>Death/End Messages (60-second timer expiry):</strong></p>
+<ol>
+<li>&quot;you were not the imposter. you were the victim.&quot;</li>
+<li>&quot;[X] crewmates sliced. reported to admin.&quot;</li>
+<li>&quot;emergency meeting called. the evidence is you.&quot;</li>
+<li>&quot;kinda sus that you enjoyed that.&quot;</li>
+<li>&quot;vented out of the game. [X] trust points ejected.&quot;</li>
+</ol>
+<h3>Core Loop</h3>
+<ol>
+<li>Objects launch upward from the bottom of the screen in arcing trajectories (1-4 at a time)</li>
+<li>Player swipes across the screen to create a slice trail</li>
+<li>Any object the trail intersects is sliced in half -- halves separate and fall with physics</li>
+<li>Themed splatter/effect on slice, points fly up as floating text</li>
+<li>Multi-object slices in a single swipe = combo multiplier (2x, 3x, 4x+)</li>
+<li>Avoid the &quot;bomb&quot; equivalent (golden arches / perfect traits / emergency buttons) -- hitting one breaks combo</li>
+<li>60-second arcade timer counts down</li>
+<li>End screen: total score, best combo, objects sliced count, shareable card</li>
+</ol>
+<h3>Difficulty Curve</h3>
+<ul>
+<li><strong>0-15s:</strong> 1-2 objects at a time, slow arc, no bombs. Tutorial feel.</li>
+<li><strong>15-30s:</strong> 2-3 objects, faster arcs, first bombs appear. Combos become possible.</li>
+<li><strong>30-45s:</strong> 3-4 objects, varied arc speeds (some fast/high, some slow/low), bombs more frequent. Player must choose which clusters to swipe and which to dodge.</li>
+<li><strong>45-60s:</strong> 4-5 objects, rapid fire, multiple bombs mixed in. Pure chaos. The &quot;clippable&quot; window where skilled players rack up massive combos and casual players are just surviving.</li>
+<li><strong>Bonus:</strong> 3+ perfect combos (4+ objects in one swipe) trigger a brief slow-motion &quot;BRAINROT TIME&quot; where everything floats for 2 seconds, allowing one massive multi-slice.</li>
+</ul>
+<h3>Estimated Complexity: 3/5</h3>
+<p>The swipe/touch gesture detection is the hard part. Core components:</p>
+<ul>
+<li>Touch/mouse event tracking to build swipe path (array of points over time)</li>
+<li>Line-segment vs. circle intersection for hit detection (swipe path vs. object hitboxes)</li>
+<li>Parabolic arc physics for object trajectories</li>
+<li>Object splitting animation (two halves falling with rotation)</li>
+<li>Particle system for splatter/sparkle effects</li>
+<li>Trail rendering (fading line behind the swipe)</li>
+<li>Combo detection (multiple hits within a single swipe gesture)</li>
+<li>60-second timer with difficulty ramping</li>
+</ul>
+<p>Estimated build: 3-4 days for a polished version. The swipe detection logic is well-documented (GitHub repos and Canvas tutorials exist). The visual polish (splatter accumulation, trail glow, split animations) is what separates good from great.</p>
+<h3>Key Canvas Drawing Notes</h3>
+<ul>
+<li>Swipe trail: render as a series of connected line segments with decreasing opacity and width (most recent = brightest/widest). Use <code>ctx.lineWidth</code> gradient and <code>ctx.globalAlpha</code> fade.</li>
+<li>Object splitting: when sliced, create two clip paths (one for each half of the object along the slice angle), then apply gravity + rotation to each half independently.</li>
+<li>Splatter: particle system with 15-30 small circles per slice, random velocity vectors, gravity, and decreasing opacity. For Grimace variant, splatters persist on screen (draw to a separate offscreen canvas that accumulates).</li>
+<li>Arc trajectories: standard projectile motion -- <code>x = x0 + vx*t</code>, <code>y = y0 + vy*t + 0.5*g*t^2</code>. Vary initial velocity and angle per object.</li>
+<li>Hit detection: for each frame of a swipe, check if the line segment from previous touch point to current touch point intersects any object&#39;s bounding circle. Use line-circle intersection math.</li>
+</ul>
+<h3>Viral Hook</h3>
+<p>The <strong>combo counter</strong> is the viral engine. A 6x combo where the player slices through a cluster of Grimace Shakes in one smooth swipe, purple splatter exploding everywhere, &quot;BRAINROT TIME&quot; triggering slow-mo -- that is a 5-second clip that gets 500K views on TikTok. The accumulated screen splatter by the end of a round (especially in Grimace variant) is visually absurd and screenshot-worthy. The Looksmaxxing variant has the additional hook of the face transformation -- players share their &quot;glow-up progress&quot; end screen.</p>
+<hr>
+<h2>Game 10: BRAINROT BREAKER</h2>
+<h3>Base Mechanic</h3>
+<p><strong>Breakout / Brick Breaker.</strong> Move a paddle to bounce a ball into a grid of bricks. Destroy all bricks to clear the level. Power-ups drop from destroyed bricks. This is the MDN Canvas tutorial game -- literally the most documented HTML5 Canvas implementation in existence.</p>
+<h3>Why This Mechanic</h3>
+<p>Breakout introduces <strong>level-based structure</strong> to the catalog for the first time. Every other game is endless/timed. Levels create a fundamentally different motivation: completion. &quot;I almost beat level 7&quot; is a different kind of shareability than &quot;my high score is 47.&quot; The progressive destruction of a brick wall is deeply satisfying in a way that no other mechanic in the catalog delivers -- you watch your progress happen in real-time as the wall crumbles. Power-ups add a variable-reward layer. And the ball-bouncing physics create genuine &quot;how did THAT happen&quot; moments when the ball ricochets through a narrow gap and clears a whole row.</p>
+<p>Implementation is 2/5 -- this is literally the beginner Canvas tutorial. Paddle movement, ball physics (angle of reflection), rectangle collision detection, brick grid rendering. The team can build this in their sleep by Game 10.</p>
+<h3>Theme Variant 1: NPC STREAMING BREAKER</h3>
+<p><strong>Theme:</strong> NPC Streaming / TikTok Live / gifting culture
+<strong>Scoring Label:</strong> GIFT POINTS
+<strong>Visual Description:</strong> The brick wall is a grid of <strong>NPC streamer faces</strong> frozen in their signature expressions (the &quot;ice cream so good&quot; face, the &quot;gang gang&quot; face, the &quot;yes yes yes&quot; face). Each face-brick has a different NPC expression. The paddle is a <strong>chat bar</strong> at the bottom. The ball is a <strong>TikTok gift</strong> (rose, lion, universe). Destroying a face-brick triggers the NPC&#39;s catchphrase as floating text (&quot;ice cream so good!&quot;, &quot;gang gang!&quot;, &quot;slay queen!&quot;). Power-ups are <strong>premium gifts</strong>: a Universe gift = multi-ball, a Lion gift = bigger paddle (wider chat bar), a Rose gift = fireball (ball passes through bricks instead of bouncing). Background is a phone screen frame with fake chat scrolling on the sides (&quot;user_8847 sent a rose&quot;, &quot;ohio_boy_99: NPC MODE ACTIVATED&quot;).</p>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Primary: #FF0050 (TikTok pink)</li>
+<li>Secondary: #00F2EA (TikTok cyan)</li>
+<li>Background: #000000 (phone screen black)</li>
+<li>Bricks: flesh tones + varied expression colors</li>
+<li>Accent: #FFD700 (gift gold)</li>
+</ul>
+<p><strong>Death/End Messages (lose all lives):</strong></p>
+<ol>
+<li>&quot;stream ended. 0 viewers. as expected.&quot;</li>
+<li>&quot;the NPCs won. you are now one of them.&quot;</li>
+<li>&quot;chat is typing... &#39;L&#39;. just &#39;L&#39;.&quot;</li>
+<li>&quot;your gifting privileges have been revoked.&quot;</li>
+<li>&quot;NPC mode: deactivated. you weren&#39;t ready.&quot;</li>
+</ol>
+<h3>Theme Variant 2: OHIO BREAKER</h3>
+<p><strong>Theme:</strong> Ohio Memes / &quot;Only in Ohio&quot; / surreal Midwest horror
+<strong>Scoring Label:</strong> SURVIVAL POINTS
+<strong>Visual Description:</strong> The brick wall is a map/grid of <strong>Ohio landmarks and hazards</strong> -- each brick is a cursed Ohio thing (mutant corn, haunted barn, interdimensional portal, suspicious deer, corn maze entrance, &quot;Welcome to Ohio&quot; sign). The paddle is a <strong>highway guardrail</strong>. The ball is a <strong>mysterious Ohio orb</strong> (glowing, slightly pulsating, leaves a faint trail). Destroying bricks reveals the Ohio landscape behind them -- as you clear more bricks, you can see further into Ohio (and it gets worse). Power-ups drop as <strong>Ohio survival gear</strong>: flashlight = the ball glows brighter and moves through dark bricks, corn shield = paddle gets wider, portal gun = ball teleports through walls. Background is a cornfield at dusk with unsettling movement in the far distance.</p>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Primary: #4A7C2E (corn/field green)</li>
+<li>Secondary: #8B4513 (barn brown)</li>
+<li>Background: #1A1A2E (Ohio night sky, ominous)</li>
+<li>Ball: #00FF88 (eerie green glow)</li>
+<li>Accent: #FF4500 (warning orange)</li>
+</ul>
+<p><strong>Death/End Messages (lose all lives):</strong></p>
+<ol>
+<li>&quot;you could not escape ohio. nobody escapes ohio.&quot;</li>
+<li>&quot;the corn remembers your name now.&quot;</li>
+<li>&quot;only in ohio would you lose at brick breaker.&quot;</li>
+<li>&quot;ohio consumed [X] of your survival points. ohio is full now.&quot;</li>
+<li>&quot;you broke [X] bricks. ohio broke you.&quot;</li>
+</ol>
+<h3>Theme Variant 3: GREAT MEME RESET BREAKER</h3>
+<p><strong>Theme:</strong> The Great Meme Reset / meme archaeology / dead memes coming back
+<strong>Scoring Label:</strong> REVIVAL POINTS
+<strong>Visual Description:</strong> The brick wall is a <strong>meme graveyard</strong> -- each brick is a dead/classic meme (Trollface, Nyan Cat, Doge, Rage Comics, Harambe, Dat Boi, Ugandan Knuckles, Loss, Keyboard Cat, Rickroll). The bricks are arranged chronologically: oldest memes at the top, most recent dead memes at the bottom. The paddle is a <strong>scroll bar</strong> (like you&#39;re scrolling through internet history). The ball is a <strong>&quot;revive&quot; orb</strong> with a resurrection glow. Destroying a meme brick &quot;revives&quot; it -- the meme briefly animates to life with its original context (Nyan Cat flies across, Trollface laughs, Doge text appears) before dissolving. Power-ups are <strong>internet artifacts</strong>: dial-up modem = ball speeds up with dial-up sound, WiFi signal = multi-ball spreading in a signal pattern, Blue Screen of Death = clears an entire row. Background is an old Windows XP desktop that degrades as you play (more popups, more toolbars).</p>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Primary: #3A86FF (hyperlink blue)</li>
+<li>Secondary: #FF006E (old-internet magenta)</li>
+<li>Background: #3A6EA5 (Windows XP blue) degrading to #000000</li>
+<li>Bricks: varied per meme era (pixelated pastels for early memes, HD for recent)</li>
+<li>Accent: #32CD32 (old-web green, like early forum text)</li>
+</ul>
+<p><strong>Death/End Messages (lose all lives):</strong></p>
+<ol>
+<li>&quot;the memes stay dead. you failed them.&quot;</li>
+<li>&quot;harambe is still gone. this changes nothing.&quot;</li>
+<li>&quot;you revived [X] memes. the internet felt that.&quot;</li>
+<li>&quot;ctrl+z doesn&#39;t work on real life. or this game.&quot;</li>
+<li>&quot;the great meme reset cannot be stopped. you tried.&quot;</li>
+</ol>
+<h3>Core Loop</h3>
+<ol>
+<li>Ball launches from paddle at game start (player taps to release)</li>
+<li>Ball bounces off walls, ceiling, and paddle according to reflection physics</li>
+<li>Ball destroys bricks on contact, bouncing back</li>
+<li>Destroyed bricks occasionally drop power-ups that fall toward the paddle</li>
+<li>Player moves paddle left/right (touch drag or arrow keys) to catch ball and power-ups</li>
+<li>Missing the ball costs a life (3 lives total)</li>
+<li>Clear all bricks to advance to next level</li>
+<li>Each level introduces new brick layouts, more durable bricks (2-3 hits), and faster ball speed</li>
+<li>Level completion screen with score + share card</li>
+</ol>
+<h3>Difficulty Curve</h3>
+<ul>
+<li><strong>Levels 1-3:</strong> Single-hit bricks, simple rectangular layouts, slow ball, wide paddle. Learn the controls.</li>
+<li><strong>Levels 4-6:</strong> 2-hit bricks introduced (different visual state on first hit), L-shaped and diamond layouts, ball speed +15%. First power-ups appear.</li>
+<li><strong>Levels 7-9:</strong> 3-hit bricks (boss bricks, themed as the variant&#39;s &quot;strongest&quot; element), moving bricks in some rows, ball speed +30%, paddle shrinks slightly. Power-ups critical for survival.</li>
+<li><strong>Level 10:</strong> Boss level. A single massive brick that takes 20+ hits, spawns mini-bricks as debris, and the ball speed is at maximum. Clearing this is the &quot;I beat Brainrot Breaker&quot; achievement.</li>
+<li><strong>Endless mode unlocked after level 10:</strong> Procedurally generated levels with increasing speed and complexity. This is where high scores live.</li>
+</ul>
+<h3>Estimated Complexity: 2/5</h3>
+<p>This is literally the MDN beginner Canvas tutorial with a theme layer on top. Core components:</p>
+<ul>
+<li>Ball position and velocity (2D vector), reflection on wall/ceiling/paddle contact</li>
+<li>Paddle position tracking from touch/mouse/keyboard input</li>
+<li>Brick grid: 2D array, each cell has a type, hit points, and position</li>
+<li>Collision detection: ball vs. rectangles (bricks and paddle), ball vs. walls</li>
+<li>Power-up drop system: random chance on brick destruction, gravity fall, paddle catch detection</li>
+<li>Level data: array of brick layouts (can be hand-designed or procedurally generated)</li>
+<li>Life counter and level progression</li>
+</ul>
+<p>Estimated build: 2-3 days. The core Breakout engine is a weekend project. The theme variants (NPC expressions, Ohio hazards, meme animations on brick death) are the polish layer that makes it worth playing.</p>
+<h3>Key Canvas Drawing Notes</h3>
+<ul>
+<li>Brick grid: draw as filled rectangles with themed sprites/icons inside. Use <code>ctx.drawImage()</code> for brick face content, <code>ctx.strokeRect()</code> for borders. Hit-state bricks get a crack overlay.</li>
+<li>Ball: circle with <code>ctx.arc()</code>. Add a subtle glow trail using decreasing-opacity circles at previous positions (store last 5-8 positions).</li>
+<li>Paddle: rounded rectangle with themed texture. Responsive to touch (track <code>touchmove</code> clientX) and keyboard (left/right arrows).</li>
+<li>Power-up drops: small themed icons that fall with gravity from destroyed brick positions. Collision with paddle = activate.</li>
+<li>Ball reflection angle: when ball hits paddle, the reflection angle depends on WHERE on the paddle it hits. Center = straight up, edges = angled. This gives the player directional control. Formula: <code>angle = (ballX - paddleCenter) / (paddleWidth / 2) * maxAngle</code>.</li>
+<li>Brick destruction animation: brief flash, then particles scatter outward. For meme variant, play a 0.5s animation of the meme before the particles.</li>
+</ul>
+<h3>Viral Hook</h3>
+<p><strong>Level completion screenshots</strong> with the themed end-screen. &quot;I just freed Harambe in Brainrot Breaker&quot; hits different. The meme revival variant is especially shareable because each brick-death produces a nostalgic micro-moment -- older Gen Z will share &quot;they put Trollface in a game&quot; content unprompted. The NPC variant has clip potential when multiple NPC catchphrases fire simultaneously during a multi-ball power-up. The Ohio variant&#39;s gradually-revealed Ohio landscape (progressively more cursed as you clear bricks) is screenshot bait at every level.</p>
+<hr>
+<h2>Game 11: BRAINROT DASH</h2>
+<h3>Base Mechanic</h3>
+<p><strong>Geometry Dash (simplified).</strong> Character auto-scrolls rightward. Tap to jump. One-touch controls. Obstacles are precisely placed in a pattern. One collision = restart from the beginning. Progress shown as a percentage. No strict rhythm-sync requirement (simplified from full Geometry Dash to avoid Web Audio API latency issues -- the music accompanies but obstacles are pattern-based, not beat-mapped).</p>
+<h3>Why This Mechanic</h3>
+<p>Geometry Dash has the <strong>highest addictiveness rating (5/5)</strong> in the research and the strongest &quot;one more try&quot; factor of any mechanic analyzed, tied only with Flappy Bird and Color Switch. The percentage-based progress display is arguably the most powerful retry mechanic ever designed -- &quot;I died at 87%&quot; is an almost physically painful statement that makes restart inevitable. The mechanic introduces <strong>level memorization and mastery</strong> to the catalog -- every other game is procedurally generated or random. Here, the level is fixed, and the player improves through repetition and muscle memory. That is a fundamentally different engagement model.</p>
+<p>The research flagged this as 4/5 complexity due to rhythm sync. We simplify: no beat-mapping, just a hard platformer with a soundtrack. The music is hype but decorative. Obstacle patterns are hand-designed. This drops complexity to 2.5-3/5 while keeping the core psychology intact.</p>
+<h3>Theme Variant 1: AURA DASH</h3>
+<p><strong>Theme:</strong> Aura Points / aura measurement / social status energy
+<strong>Scoring Label:</strong> AURA LEVEL
+<strong>Visual Description:</strong> The player character is a <strong>glowing orb</strong> whose aura color and intensity change based on how far through the level they are. Start as a dim gray orb (0% = zero aura). At 25% it glows faint blue. At 50% it pulses green. At 75% it radiates gold. At 90%+ it blazes white-hot with particle trails. Obstacles are <strong>aura drains</strong> -- matte black geometric shapes that absorb light. The background is a gradient that shifts from cold gray (start) to vibrant cosmic purple (end). Spikes are replaced by void patches. Platforms are luminescent. The entire screen brightness correlates with progress -- dying at 90% and restarting at 0% is viscerally jarring because the screen goes dark again.</p>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Primary: #7C3AED (aura purple)</li>
+<li>Secondary: varies with progress (gray -&gt; blue -&gt; green -&gt; gold -&gt; white)</li>
+<li>Background: gradient from #1A1A2E (start) to #4A00E0 (end)</li>
+<li>Obstacles: #0A0A0A (void black)</li>
+<li>Accent: #FFD700 (peak aura gold)</li>
+</ul>
+<p><strong>Death/End Messages (on collision):</strong></p>
+<ol>
+<li>&quot;aura check failed at [X]%. the void noticed.&quot;</li>
+<li>&quot;[X]% aura accumulated. [100-X]% aura wasted.&quot;</li>
+<li>&quot;you peaked at [X]%. that&#39;s your ceiling.&quot;</li>
+<li>&quot;the glow was temporary. the darkness is permanent.&quot;</li>
+<li>&quot;aura status: revoked. start grinding.&quot;</li>
+</ol>
+<h3>Theme Variant 2: SLAY OR SASHAY DASH</h3>
+<p><strong>Theme:</strong> Sigma grindset meets drag/slay culture mashup
+<strong>Scoring Label:</strong> SLAY METER
+<strong>Visual Description:</strong> The player character alternates between two visual modes as they pass through <strong>transformation portals</strong>: SIGMA MODE (dark, angular, stoic cube with sunglasses) and SLAY MODE (sparkly, rounded, fabulous star shape with glitter trail). The level is designed so you must be in the correct mode to pass through certain obstacles -- sigma walls (dark, angular, only sigma-shaped character fits through) and slay walls (sparkly, curved, only slay-shaped character fits through). Portals that switch your mode are placed before each obstacle type. The skill is reacting to the portal-obstacle sequence. Background alternates between a dark gym aesthetic and a glittering runway. Music shifts between phonk and house beats at each portal.</p>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Sigma mode: #1A1A2E (dark navy), #4A4A4A (gunmetal), #FF0000 (laser red eyes)</li>
+<li>Slay mode: #FF69B4 (hot pink), #FFD700 (gold glitter), #E040FB (magenta sparkle)</li>
+<li>Background: alternates between dark/angular and bright/curved</li>
+<li>Portals: swirling gradient of both palettes</li>
+</ul>
+<p><strong>Death/End Messages (on collision):</strong></p>
+<ol>
+<li>&quot;you were neither sigma nor slay. you were just wrong.&quot;</li>
+<li>&quot;the grindset doesn&#39;t grind itself. [X]% and you stopped.&quot;</li>
+<li>&quot;slay attempt: denied. sigma attempt: also denied.&quot;</li>
+<li>&quot;mode confusion at [X]%. the runway and the gym both reject you.&quot;</li>
+<li>&quot;the portals giveth and the portals taketh. mostly taketh.&quot;</li>
+</ol>
+<h3>Theme Variant 3: OHIO GAUNTLET</h3>
+<p><strong>Theme:</strong> Ohio survival / &quot;Only in Ohio&quot; obstacle course
+<strong>Scoring Label:</strong> OHIO METERS
+<strong>Visual Description:</strong> The player character is a <strong>terrified stick figure</strong> running through Ohio. The level is a horizontal cross-section of Ohio&#39;s most cursed landscape. Obstacles are surreal Ohio hazards: <strong>giant corn stalks</strong> that thrust upward from the ground (spikes), <strong>flying deer</strong> that glide across the screen (moving obstacles), <strong>interdimensional portals</strong> that teleport the player backward if touched, <strong>lake erie tentacles</strong> that sweep from the ceiling, and <strong>construction zones</strong> that are just walls (Ohio is always under construction). The background is a continuous Ohio landscape: cornfields, suburban sprawl, abandoned malls, mysterious fog. At 50% the sky turns red. At 75% the ground starts floating. At 90% everything is upside down. A &quot;MILES INTO OHIO&quot; counter replaces the percentage.</p>
+<p><strong>Color Palette:</strong></p>
+<ul>
+<li>Primary: #2D5016 (corn green)</li>
+<li>Secondary: #8B6914 (wheat/field gold)</li>
+<li>Background: #87CEEB (midwest sky) degrading to #4A0000 (hellish red)</li>
+<li>Obstacles: #654321 (earthy brown), #1B1B1B (construction black)</li>
+<li>Accent: #FF4500 (danger orange, construction cones)</li>
+</ul>
+<p><strong>Death/End Messages (on collision):</strong></p>
+<ol>
+<li>&quot;you made it [X] miles into ohio. ohio won.&quot;</li>
+<li>&quot;the corn got you. the corn always gets them.&quot;</li>
+<li>&quot;only in ohio would a deer fly at you at mach 2.&quot;</li>
+<li>&quot;ohio is not a place. ohio is a state of suffering. [X]%.&quot;</li>
+<li>&quot;you lasted [X] miles. the ohio record is [best].&quot;</li>
+</ol>
+<h3>Core Loop</h3>
+<ol>
+<li>Level begins. Character auto-scrolls rightward at constant speed.</li>
+<li>Player taps to jump. Hold for higher jump (or tap rapidly for repeated short hops).</li>
+<li>Obstacles approach from the right. Player must jump over, duck under, or (in Slay/Sigma variant) be in the correct mode.</li>
+<li>One collision = instant death. Screen shows percentage reached. Tap to restart from 0%.</li>
+<li>Percentage counter climbs from 0% to 100%. The closer to 100%, the more painful death feels.</li>
+<li>Reach 100% = level complete. Unlock next level.</li>
+<li>Each level has a fixed obstacle pattern that the player memorizes through repetition.</li>
+<li>3 levels per theme variant (9 total levels at launch). Each level is 45-90 seconds long.</li>
+</ol>
+<h3>Difficulty Curve</h3>
+<ul>
+<li><strong>Level 1 (per variant):</strong> Simple jump patterns. Single obstacle types. Generous spacing. Any player can reach 50%+ on first try, 100% within 5-10 attempts.</li>
+<li><strong>Level 2:</strong> Combined obstacle types. Tighter spacing. Requires some memorization. Most players need 15-30 attempts. The &quot;I died at 94%&quot; moments start here.</li>
+<li><strong>Level 3:</strong> Full obstacle vocabulary. Fake-out patterns (obstacle that looks like it needs a jump but actually needs a duck). Speed increase. Some sections require frame-perfect timing. 50-100+ attempts for most players. Completing level 3 is the flex.</li>
+<li><strong>Speed modifier:</strong> Ball speed increases by 5% every 25% of the level, so the back half is always harder than the front.</li>
+</ul>
+<h3>Estimated Complexity: 3/5</h3>
+<p>Simplified from full Geometry Dash (4/5) by removing rhythm sync and vehicle mode transformations. Core components:</p>
+<ul>
+<li>Auto-scroll camera system (fixed-speed rightward movement)</li>
+<li>Jump physics (tap = upward impulse, gravity pulls down, ground collision)</li>
+<li>Level data format: array of obstacle positions and types along a horizontal timeline</li>
+<li>Obstacle rendering: rectangles, triangles (spikes), moving platforms</li>
+<li>Collision detection: player hitbox vs. obstacle hitboxes (rectangle and triangle intersection)</li>
+<li>Percentage counter: <code>playerX / levelLength * 100</code></li>
+<li>Level select screen with completion status</li>
+<li>For Slay/Sigma variant: mode state variable, portal triggers, mode-specific collision rules</li>
+</ul>
+<p>Estimated build: 3-4 days. The level design is the time-consuming part, not the code. Each of the 9 levels needs to be hand-crafted and playtested for fairness and fun. The code itself is a side-scrolling platformer with fixed-speed scrolling -- simpler than a full platformer because there&#39;s no backtracking or exploration.</p>
+<h3>Key Canvas Drawing Notes</h3>
+<ul>
+<li>Auto-scroll: the level is stored as a long horizontal array. The camera <code>offsetX</code> increases at a constant rate each frame. All obstacles are drawn at <code>obstacle.x - offsetX</code>. Simple and performant.</li>
+<li>Jump physics: <code>velocityY -= jumpForce</code> on tap, <code>velocityY += gravity</code> each frame, <code>playerY += velocityY</code>. Clamp to ground level.</li>
+<li>Spike/triangle obstacles: draw with <code>ctx.beginPath(); ctx.moveTo(); ctx.lineTo(); ctx.closePath(); ctx.fill()</code>. Collision detection uses point-in-triangle test for the player&#39;s corners.</li>
+<li>Percentage bar: horizontal bar at the top of the screen, <code>width = (offsetX / levelLength) * screenWidth</code>. Animate fill color based on progress tiers.</li>
+<li>Death effect: brief screen flash red, player character shatters into particles at collision point, camera freezes for 0.3 seconds before showing the percentage overlay.</li>
+<li>Aura variant glow: draw the player orb, then draw 3-4 concentric circles with increasing radius and decreasing opacity around it. Particle trail = store last 15 positions, draw small circles at each with decreasing opacity.</li>
+<li>Parallax: 2-3 background layers scrolling at 0.2x, 0.5x, and 0.8x of the camera speed. Gives depth without complexity.</li>
+</ul>
+<h3>Viral Hook</h3>
+<p>The <strong>percentage death screen</strong> is the entire viral strategy. &quot;I died at 97% on Ohio Gauntlet level 3&quot; is a sentence that makes people (a) feel sympathy, (b) feel competitive, and (c) want to try it themselves. Geometry Dash proved this -- percentage screenshots are one of the most shared game formats on social media. The Ohio variant adds geographic humor (&quot;I made it 97 miles into Ohio&quot;). The Aura variant adds the visual gut-punch of going from blazing white-gold back to dim gray on death. The Slay/Sigma variant has the mode-confusion deaths that are funny to watch (&quot;WHY DID IT SWITCH ME TO SIGMA RIGHT BEFORE THE SLAY WALL&quot;).</p>
+<hr>
+<h2>Batch 3 Summary</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Game</th>
+<th>Mechanic</th>
+<th>Theme Variants</th>
+<th>Complexity</th>
+<th>Unique Addition to Catalog</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>09</td>
+<td>SLICE THE BRAINROT</td>
+<td>Fruit Ninja (swipe)</td>
+<td>Grimace Shake, Looksmaxxing, Among Us/Sus</td>
+<td>3/5</td>
+<td>First swipe-gesture game; tactile destruction</td>
+</tr>
+<tr>
+<td>10</td>
+<td>BRAINROT BREAKER</td>
+<td>Breakout (paddle+ball)</td>
+<td>NPC Streaming, Ohio, Great Meme Reset</td>
+<td>2/5</td>
+<td>First level-based game; progressive destruction</td>
+</tr>
+<tr>
+<td>11</td>
+<td>BRAINROT DASH</td>
+<td>Geometry Dash (simplified)</td>
+<td>Aura Points, Slay/Sigma, Ohio</td>
+<td>3/5</td>
+<td>First memorization/mastery game; percentage death</td>
+</tr>
+</tbody></table>
+<h3>Theme Coverage in Batch 3</h3>
+<table>
+<thead>
+<tr>
+<th>Theme</th>
+<th>Game(s)</th>
+<th>Prior Usage (Batches 1-2)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Grimace Shake</td>
+<td>Game 09 (variant 1)</td>
+<td>None -- first appearance</td>
+</tr>
+<tr>
+<td>Looksmaxxing</td>
+<td>Game 09 (variant 2)</td>
+<td>None -- first appearance</td>
+</tr>
+<tr>
+<td>Among Us / Sus</td>
+<td>Game 09 (variant 3)</td>
+<td>None -- first appearance</td>
+</tr>
+<tr>
+<td>NPC Streaming</td>
+<td>Game 10 (variant 1)</td>
+<td>None -- first appearance</td>
+</tr>
+<tr>
+<td>Ohio</td>
+<td>Game 10 (variant 2), Game 11 (variant 3)</td>
+<td>Game 04 (Endless Runner) -- 1 prior</td>
+</tr>
+<tr>
+<td>Great Meme Reset</td>
+<td>Game 10 (variant 3)</td>
+<td>None -- first appearance</td>
+</tr>
+<tr>
+<td>Aura Points</td>
+<td>Game 11 (variant 1)</td>
+<td>Used as scoring label, not as theme</td>
+</tr>
+<tr>
+<td>Sigma/Slay</td>
+<td>Game 11 (variant 2)</td>
+<td>Game 03 (Idle Clicker) -- 1 prior</td>
+</tr>
+</tbody></table>
+<p><strong>6 completely new themes introduced.</strong> Ohio gets its deserved second game. Sigma gets a creative mashup variant. The Italian Brainrot universe gets a rest -- it anchored Batches 1-2, and variety matters.</p>
+<h3>Build Order Recommendation</h3>
+<ol>
+<li><strong>Game 10: BRAINROT BREAKER</strong> -- lowest complexity (2/5), MDN-tutorial-level code, fastest to ship. Proves the multi-variant system works.</li>
+<li><strong>Game 09: SLICE THE BRAINROT</strong> -- moderate complexity, but the swipe mechanic needs the most playtesting for feel. Ship second to allow tuning time.</li>
+<li><strong>Game 11: BRAINROT DASH</strong> -- highest design effort (9 hand-crafted levels). Ship last. Level design can happen in parallel with Games 09-10 development.</li>
+</ol>
+<h3>Cross-Batch Mechanical Diversity Check</h3>
+<table>
+<thead>
+<tr>
+<th>Input Type</th>
+<th>Games</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tap (reflex)</td>
+<td>01 Flappy, 02 Whack, 05 Stack</td>
+</tr>
+<tr>
+<td>Tap (upgrade)</td>
+<td>03 Idle Clicker</td>
+</tr>
+<tr>
+<td>Directional</td>
+<td>04 Runner, 06 Snake</td>
+</tr>
+<tr>
+<td>Slide</td>
+<td>07 2048</td>
+</tr>
+<tr>
+<td>Swipe gesture</td>
+<td><strong>09 Slice</strong> (NEW)</td>
+</tr>
+<tr>
+<td>Drag/steer</td>
+<td><strong>10 Breaker</strong> (NEW)</td>
+</tr>
+<tr>
+<td>Tap (rhythm/memorize)</td>
+<td><strong>11 Dash</strong> (NEW)</td>
+</tr>
+</tbody></table>
+<p>No overlap. Batch 3 fills three empty input-type slots.</p>
+<hr>
+<p><em>Batch 3 plan generated 2026-04-10. Three games, nine theme variants, zero mechanical overlap with Batches 1-2. Submit to Product Head for review.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

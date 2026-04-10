@@ -1,0 +1,51 @@
+/* ==========================================================================
+   BRAINROT DASH -- Game-Specific Styles
+   Minimal overrides on top of shared/styles.css + design-system.css.
+   Theme: data-theme="brainrot-dash" (set on body)
+   ========================================================================== */
+
+/* ---- Game container positions overlays relative to canvas ---- */
+.game-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Theme Select Row (in menu secondary actions) ---- */
+.theme-select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  align-items: center;
+  padding: var(--space-xs) 0;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.theme-select__btn {
+  display: block;
+  width: 100%;
+  padding: var(--space-xs) var(--space-sm);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  text-align: center;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 2px solid var(--color-text-tertiary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.theme-select__btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text);
+}
+
+.theme-select__btn--active {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.1);
+  border-width: 2px;
+}

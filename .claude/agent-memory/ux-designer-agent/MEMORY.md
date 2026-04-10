@@ -1,0 +1,2 @@
+- [Visual identity system](project_visual_identity.md) — Brainrot Games design system and visual identity guide, created 2026-04-10
+- [Landing page](project_landing_page.md) — Company landing page (index.html + styles.css) with hero, games grid, about, footer, created 2026-04-10

@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Launch Plan — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">marketing/social-media-launch-plan.md</div>
+    <div class="doc-content"><h1>social media launch plan</h1>
+<h2>brainrot games | april 2026</h2>
+<hr>
+<p>this is the plan for how we show up on the internet. not a &quot;social media strategy deck.&quot; not a &quot;digital engagement framework.&quot; just: here&#39;s what we post, where we post it, and how we talk to people when they talk back.</p>
+<p>two games at launch:</p>
+<ul>
+<li><strong>flappy tralalero</strong> -- flappy bird but you&#39;re a three-legged nike-wearing shark kicking through skibidi toilets</li>
+<li><strong>whack-a-rot</strong> -- whack-a-mole but the moles are six italian brainrot characters and one of them steals your aura points</li>
+</ul>
+<p>both are HTML5 browser games. no download. no signup. tap a link, you&#39;re playing. that&#39;s the entire funnel and the entire pitch.</p>
+<hr>
+<h2>1. platform strategy</h2>
+<p>we&#39;re not &quot;building a presence on social media.&quot; we&#39;re putting games in front of people who are already scrolling and giving them something funnier to do for 90 seconds. each platform has a job.</p>
+<h3>tiktok -- PRIMARY</h3>
+<p><strong>the job:</strong> discovery. this is where strangers find us.</p>
+<p>tiktok is the engine. it&#39;s where a 12-year-old in brazil sees a gameplay clip, plays the game, gets a score of 4, and posts their own clip about it. the algorithm does the distribution. we just need to feed it.</p>
+<ul>
+<li><strong>format:</strong> vertical video, 15-30 seconds. gameplay clips, fail compilations, score challenges.</li>
+<li><strong>posting cadence:</strong> 2-3x/day during launch week, 1-2x/day ongoing.</li>
+<li><strong>tone:</strong> unhinged but short. caption is one sentence max. let the clip do the work.</li>
+<li><strong>goal metric:</strong> views and shares. we don&#39;t care about followers yet. we care about clips entering the FYP rotation.</li>
+</ul>
+<p>tiktok rewards volume and hooks. the first 1-2 seconds decide everything. every clip opens mid-action -- a death, a near-miss, a score reveal. never a logo. never a &quot;hey guys.&quot;</p>
+<h3>youtube shorts -- SECONDARY DISCOVERY</h3>
+<p><strong>the job:</strong> tiktok&#39;s slower cousin. same clips, wider age range.</p>
+<p>youtube shorts reaches people tiktok doesn&#39;t -- slightly older, more likely to be searching for &quot;brainrot games&quot; directly. the algorithm works differently (watch time matters more than engagement rate) but the content is the same.</p>
+<ul>
+<li><strong>format:</strong> vertical video, 15-60 seconds. repurpose tiktok clips with minor re-edits (remove tiktok watermark, re-export natively).</li>
+<li><strong>posting cadence:</strong> 1-2x/day during launch week, 5-7x/week ongoing.</li>
+<li><strong>tone:</strong> same as tiktok. slightly more descriptive titles because youtube is search-driven.</li>
+<li><strong>goal metric:</strong> views and click-through to the game link in the channel description.</li>
+</ul>
+<h3>twitter/x -- CONVERSATION + VIRALITY</h3>
+<p><strong>the job:</strong> the group chat. this is where we talk.</p>
+<p>twitter is text-first. we post short, dumb, quotable things. we reply to people. we quote-tweet their scores. we exist in the timeline the way a person does, not the way a brand does. the best outcome on twitter is someone screenshotting our tweet and posting it somewhere else.</p>
+<ul>
+<li><strong>format:</strong> text posts, gameplay GIFs (under 15s), score screenshots, replies. video performs worse here than on tiktok -- lean into text and images.</li>
+<li><strong>posting cadence:</strong> 3-5x/day during launch week (mix of original posts and replies), 2-3x/day ongoing.</li>
+<li><strong>tone:</strong> deadpan. the driest version of our voice. one-liners. no hashtags in tweets (they look desperate here). we&#39;re the account people follow because we&#39;re funny, not because we&#39;re a game company.</li>
+<li><strong>goal metric:</strong> retweets, quote tweets, and replies. the conversation IS the marketing.</li>
+</ul>
+<p>twitter is also our real-time channel. when something goes viral, when something breaks, when someone famous plays the game -- twitter is where we respond first.</p>
+<h3>instagram reels -- VISUAL FEED + STORIES</h3>
+<p><strong>the job:</strong> the portfolio. instagram is where the brand looks polished (by our standards).</p>
+<p>instagram reels gets the best-performing tiktok clips re-posted. the feed is sparse and intentional -- we&#39;re not posting 3x/day here. stories are for behind-the-scenes, polls, and score challenge stickers.</p>
+<ul>
+<li><strong>format:</strong> reels (repurposed vertical video), stories (polls, score screenshots, quick updates), occasional feed posts (score cards, character art, memes).</li>
+<li><strong>posting cadence:</strong> 1 reel/day during launch week, 3-5 stories/day, 4-5 reels/week ongoing.</li>
+<li><strong>tone:</strong> slightly more visual effort than tiktok. same voice, but the clips we post here should be the bangers, not the volume plays. instagram punishes low-performing posts harder than tiktok does.</li>
+<li><strong>goal metric:</strong> saves, shares, and story replies. saves signal the algorithm that it&#39;s worth resurfacing.</li>
+</ul>
+<h3>reddit -- SEEDING + AUTHENTICITY</h3>
+<p><strong>the job:</strong> plant the seed. let reddit do the rest.</p>
+<p>reddit hates marketing. so we don&#39;t market. we post gameplay clips to relevant subreddits (r/gaming, r/webgames, r/IndieGaming, r/brainrot, r/shitposting, r/196) as a person, not as a brand. the energy is &quot;i made this dumb thing&quot; not &quot;check out our new game.&quot; if reddit likes it, they&#39;ll spread it harder than any paid campaign.</p>
+<ul>
+<li><strong>format:</strong> direct video uploads or link posts. never cross-post from our own subreddit (we don&#39;t have one yet and shouldn&#39;t until there&#39;s demand). comments should be honest and self-deprecating.</li>
+<li><strong>posting cadence:</strong> 2-3 well-placed posts during launch week. 1-2/week ongoing. quality over quantity. reddit will bury you if you spam.</li>
+<li><strong>tone:</strong> casual, first-person, slightly self-deprecating. &quot;i made a flappy bird clone but the bird is tralalero tralala&quot; energy. drop the brand voice a notch -- reddit users can detect corporate tone instantly.</li>
+<li><strong>goal metric:</strong> upvotes and comment sentiment. if people are roasting the game lovingly, we&#39;re winning.</li>
+</ul>
+<hr>
+<h2>2. content types</h2>
+<p>every piece we post falls into one of these categories. this isn&#39;t a creative framework. it&#39;s a list of things that work so we don&#39;t have to reinvent the wheel every morning.</p>
+<h3>type 1: gameplay clips (the bread and butter)</h3>
+<p>raw, short clips of the games being played. this is 60-70% of what we post.</p>
+<p><strong>what works:</strong></p>
+<ul>
+<li>fails. spectacular, unexpected deaths. tralalero face-planting into a skibidi toilet at score 1.</li>
+<li>near-misses. threading through a gap by one pixel. the intake-of-breath moment.</li>
+<li>high score runs. clean gameplay, satisfying score counter, ends with the score card.</li>
+<li>speed progression. &quot;first try vs. 100th try&quot; side-by-side.</li>
+<li>the whack-a-rot bait. someone confidently tapping fast and then hitting brr brr patapim. combo gone. aura destroyed.</li>
+</ul>
+<p><strong>format notes:</strong></p>
+<ul>
+<li>always screen-record on a real phone. emulator footage looks sterile.</li>
+<li>game audio on. death sounds and score dings are half the comedy.</li>
+<li>no intro. no outro. start mid-action, end on the punchline.</li>
+<li>15-30 seconds for tiktok/shorts. under 15 seconds for twitter GIFs.</li>
+</ul>
+<h3>type 2: score challenge posts</h3>
+<p>&quot;bet you can&#39;t beat this.&quot; competitive, shareable, drives traffic directly.</p>
+<p><strong>formats:</strong></p>
+<ul>
+<li>screenshot of a score card + &quot;beat this.&quot; that&#39;s the whole post.</li>
+<li>video of achieving a score + challenge text overlay.</li>
+<li>&quot;nobody has scored higher than [X] on flappy tralalero. prove us wrong.&quot;</li>
+<li>weekly leaderboard graphics (once we have volume).</li>
+</ul>
+<p><strong>platform notes:</strong></p>
+<ul>
+<li>twitter: text + score screenshot. keep it simple.</li>
+<li>tiktok: video of the score being achieved with a reaction.</li>
+<li>instagram stories: use the poll sticker. &quot;can you beat 15? yes / absolutely not&quot;</li>
+</ul>
+<h3>type 3: &quot;try not to laugh&quot; / reaction format</h3>
+<p>lean into the format people already know. show someone playing our games for the first time. their confusion is the joke.</p>
+<p><strong>formats:</strong></p>
+<ul>
+<li>screen recording + face cam reaction (picture-in-picture).</li>
+<li>&quot;showing my [friend/parent/coworker] brainrot games&quot; POV.</li>
+<li>compilation: &quot;5 people play flappy tralalero for the first time.&quot;</li>
+<li>&quot;explaining tralalero tralala to someone who has never seen italian brainrot&quot; (the explanation is the game. just hand them the phone.)</li>
+</ul>
+<p><strong>platform priority:</strong> tiktok and youtube shorts. this format lives and dies on those platforms.</p>
+<h3>type 4: behind-the-scenes (the &quot;how we made this&quot; angle)</h3>
+<p>we made these games with AI tools. that&#39;s interesting to people. not as a tech flex -- as a &quot;two people made these dumb games in a week and here&#39;s the chaos&quot; story.</p>
+<p><strong>formats:</strong></p>
+<ul>
+<li>&quot;how we made a flappy bird game about an italian brainrot shark in [X] days&quot;</li>
+<li>side-by-side: the character reference image vs. the in-game sprite</li>
+<li>timelapse of game development (screen recording of code + design tools)</li>
+<li>&quot;the AI generated this death message and we kept it&quot; (show the funny generated text)</li>
+<li>&quot;things that went wrong making brainrot games&quot; (bugs, cursed sprites, broken physics)</li>
+</ul>
+<p><strong>tone note:</strong> this is NOT a tech demo. it&#39;s not &quot;look how powerful AI is.&quot; it&#39;s &quot;look at this ridiculous thing we made and here&#39;s the messy process.&quot; self-aware, not self-important.</p>
+<p><strong>platform priority:</strong> tiktok and youtube shorts for short clips. twitter for text-based dev stories. reddit for longer breakdowns (r/IndieGaming, r/webdev love process posts).</p>
+<h3>type 5: meme edits</h3>
+<p>take game footage and edit it into existing meme formats. the game becomes meme material.</p>
+<p><strong>formats:</strong></p>
+<ul>
+<li>tralalero flapping into [thing from current meme trend]. edit the obstacles to be whatever&#39;s trending.</li>
+<li>&quot;me at 3am&quot; + whack-a-rot gameplay. the &quot;why am i doing this&quot; energy.</li>
+<li>brr brr patapim popping up as &quot;that one friend who ruins everything.&quot; relatable meme, game footage.</li>
+<li>score card edits. &quot;my GPA&quot; next to a score of 2. &quot;my productivity this week&quot; next to 0.</li>
+<li>duet/stitch format: someone posts a meme, we stitch it with related gameplay.</li>
+</ul>
+<p><strong>platform priority:</strong> tiktok (duets/stitches), twitter (image memes, GIF replies), instagram (reels, stories).</p>
+<hr>
+<h2>3. launch week calendar</h2>
+<p>seven days. the goal is simple: put the games in front of as many eyeballs as possible and make the first impression funny enough to share.</p>
+<p>launch date: <strong>day 1 = the day both games are live on brainrotgames.com</strong></p>
+<h3>pre-launch (day -1): tease</h3>
+<p>we don&#39;t do a countdown. we don&#39;t &quot;build anticipation.&quot; we post one thing on each platform the night before.</p>
+<table>
+<thead>
+<tr>
+<th>platform</th>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tiktok</td>
+<td>8pm</td>
+<td>10-second clip: tralalero flapping, crashes into first obstacle. text overlay: &quot;tomorrow.&quot; no other context.</td>
+</tr>
+<tr>
+<td>twitter</td>
+<td>8pm</td>
+<td>&quot;something is coming tomorrow and it will make your life measurably worse&quot;</td>
+</tr>
+<tr>
+<td>instagram</td>
+<td>8pm</td>
+<td>story: black screen, tralalero eyes glowing in the dark, text: &quot;soon&quot;</td>
+</tr>
+<tr>
+<td>youtube</td>
+<td>--</td>
+<td>nothing. shorts algorithm doesn&#39;t reward teasers. save it for launch.</td>
+</tr>
+<tr>
+<td>reddit</td>
+<td>--</td>
+<td>nothing. reddit teasers get downvoted. post when there&#39;s something to play.</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>day 1: launch day (flappy tralalero + whack-a-rot go live)</h3>
+<p>the most important day. volume matters. quality matters more. every post has the link.</p>
+<h4>tiktok (3 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10am</td>
+<td><strong>the announcement.</strong> 20-second gameplay montage of both games. fast cuts. deaths. scores. text overlay: &quot;new brainrot just dropped. it&#39;s free. it&#39;s in your browser. you&#39;re welcome.&quot; link in bio.</td>
+</tr>
+<tr>
+<td>2pm</td>
+<td><strong>the fail compilation.</strong> 30-second clip of dying in flappy tralalero 8 times in a row. final score: 3. caption: &quot;this game is harder than it looks and it doesn&#39;t look hard&quot;</td>
+</tr>
+<tr>
+<td>7pm</td>
+<td><strong>the whack-a-rot bait.</strong> clip of someone getting a 10-combo in whack-a-rot, feeling confident, then whacking brr brr patapim. aura destroyed. combo gone. caption: &quot;brr brr patapim ruins everything&quot;</td>
+</tr>
+</tbody></table>
+<h4>youtube shorts (2 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11am</td>
+<td><strong>repurpose tiktok #1</strong> with native upload. title: &quot;we made flappy bird but the bird is tralalero tralala&quot;</td>
+</tr>
+<tr>
+<td>5pm</td>
+<td><strong>repurpose tiktok #3</strong> (whack-a-rot bait). title: &quot;this character steals your aura points -- whack-a-rot&quot;</td>
+</tr>
+</tbody></table>
+<h4>twitter (5 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9am</td>
+<td>&quot;new brainrot just dropped. two games. free. browser. no download. no signup. just tap and regret. [link]&quot;</td>
+</tr>
+<tr>
+<td>11am</td>
+<td>&quot;flappy tralalero is live. it&#39;s flappy bird but you&#39;re an italian brainrot shark with nike shoes. your high score will be embarrassing. [link]&quot;</td>
+</tr>
+<tr>
+<td>1pm</td>
+<td>&quot;whack-a-rot is live. 6 brainrot characters. one of them steals your aura points. we&#39;re not telling you which one. [link]&quot;</td>
+</tr>
+<tr>
+<td>4pm</td>
+<td>gameplay GIF (tralalero dying instantly) + &quot;average flappy tralalero run (real)&quot;</td>
+</tr>
+<tr>
+<td>8pm</td>
+<td>&quot;how&#39;s everyone&#39;s high scores going&quot; (engagement bait. reply to everyone who responds.)</td>
+</tr>
+</tbody></table>
+<h4>instagram (1 reel + 5 stories)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td><strong>reel:</strong> best 20-second gameplay montage from the tiktok clips. clean edit. game audio. caption: &quot;two games. zero productivity. link in bio.&quot;</td>
+</tr>
+<tr>
+<td>throughout the day</td>
+<td><strong>stories:</strong> (1) launch announcement graphic (2) &quot;which game first?&quot; poll: flappy tralalero vs whack-a-rot (3) score card screenshot &quot;day 1 high score: 7. beat it.&quot; (4) &quot;swipe up to play&quot; with gameplay clip (5) repost any early UGC</td>
+</tr>
+</tbody></table>
+<h4>reddit (2 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11am</td>
+<td>r/webgames: &quot;i made two browser games themed around italian brainrot memes -- flappy tralalero and whack-a-rot. they&#39;re free and probably bad for you. [link]&quot; (be genuine in comments. answer questions. don&#39;t be salesy.)</td>
+</tr>
+<tr>
+<td>3pm</td>
+<td>r/gaming or r/shitposting: direct video upload of the funniest fail clip. title: &quot;flappy bird but the bird is tralalero tralala.&quot; let the clip speak. link in comments only if someone asks.</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>day 2: the score challenge begins</h3>
+<p>shift from &quot;here&#39;s the game&quot; to &quot;bet you can&#39;t beat this.&quot;</p>
+<h4>tiktok (3 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10am</td>
+<td><strong>score challenge launch.</strong> clip of someone scoring 15 on flappy tralalero. text overlay: &quot;the current record is 15. break it and we&#39;ll post your clip.&quot; caption: &quot;nobody&#39;s beaten 15 yet. #flappytralalero&quot;</td>
+</tr>
+<tr>
+<td>2pm</td>
+<td><strong>whack-a-rot character guide but unhinged.</strong> fast 25-second breakdown of all 6 characters. &quot;this one gives you 100 points. this one gives you 200. this one TAKES 200 and ends your combo. good luck.&quot;</td>
+</tr>
+<tr>
+<td>7pm</td>
+<td><strong>reaction clip.</strong> someone playing flappy tralalero for the first time. genuine confusion at the tralalero character. dies immediately.</td>
+</tr>
+</tbody></table>
+<h4>youtube shorts (2 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11am</td>
+<td>repurpose score challenge clip. title: &quot;can you beat 15 on flappy tralalero?&quot;</td>
+</tr>
+<tr>
+<td>5pm</td>
+<td>repurpose character guide. title: &quot;every character in whack-a-rot explained in 25 seconds&quot;</td>
+</tr>
+</tbody></table>
+<h4>twitter (3 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10am</td>
+<td>&quot;the highest flappy tralalero score we&#39;ve seen is 15. someone&#39;s going to beat it today and we&#39;ll retweet it. [link]&quot;</td>
+</tr>
+<tr>
+<td>2pm</td>
+<td>&quot;whack-a-rot character tier list: S tier: lirili larila (500 points, impossible to hit). F tier: brr brr patapim (steals your aura. ruins your combo. exists only to cause pain.)&quot;</td>
+</tr>
+<tr>
+<td>7pm</td>
+<td>reply marathon. quote-tweet anyone posting scores. be funny about bad scores. be genuinely impressed by good ones.</td>
+</tr>
+</tbody></table>
+<h4>instagram (1 reel + 3 stories)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>reel: score challenge clip</td>
+</tr>
+<tr>
+<td>stories</td>
+<td>(1) &quot;what&#39;s your high score?&quot; question sticker (2) repost best UGC score (3) whack-a-rot character reveal carousel</td>
+</tr>
+</tbody></table>
+<h4>reddit (1 post)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2pm</td>
+<td>r/IndieGaming: &quot;we built two brainrot-themed browser games and somehow people are actually competing for high scores. here&#39;s the current record on our flappy bird clone. [video]&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>day 3: the brr brr patapim problem</h3>
+<p>lean into whack-a-rot. make brr brr patapim the villain. everyone hates this character. that&#39;s the joke.</p>
+<h4>tiktok (3 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10am</td>
+<td><strong>brr brr patapim villain arc.</strong> compilation of people hitting brr brr patapim and losing their combos. dramatic music. text: &quot;the most hated character in gaming.&quot;</td>
+</tr>
+<tr>
+<td>2pm</td>
+<td><strong>the impossible challenge.</strong> &quot;play whack-a-rot for 60 seconds without hitting brr brr patapim. it&#39;s harder than you think.&quot;</td>
+</tr>
+<tr>
+<td>8pm</td>
+<td><strong>first UGC repost.</strong> if anyone has posted gameplay, duet or stitch their clip. if not, post another fail compilation with text &quot;day 3. still can&#39;t get past 8. this shark has no right being this difficult&quot;</td>
+</tr>
+</tbody></table>
+<h4>youtube shorts (1 post)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>brr brr patapim villain compilation. title: &quot;this character ruined my high score&quot;</td>
+</tr>
+</tbody></table>
+<h4>twitter (3 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10am</td>
+<td>&quot;brr brr patapim has stolen a combined [X] aura points from players in 3 days. someone has to stop him&quot;</td>
+</tr>
+<tr>
+<td>3pm</td>
+<td>&quot;hot take: brr brr patapim is the best designed character in whack-a-rot because of how much you hate him. he exists purely to cause suffering and he&#39;s perfect at it&quot;</td>
+</tr>
+<tr>
+<td>8pm</td>
+<td>engagement check + reply to scores/clips</td>
+</tr>
+</tbody></table>
+<h4>instagram (1 reel + 3 stories)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>reel: brr brr patapim villain edit</td>
+</tr>
+<tr>
+<td>stories</td>
+<td>(1) &quot;brr brr patapim appreciation post&quot; (sarcastic) (2) &quot;have you hit him yet?&quot; poll: yes, many times / i am immune (3) repost UGC</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>day 4: behind the scenes</h3>
+<p>show how the games were made. the &quot;i can&#39;t believe someone actually built this&quot; angle.</p>
+<h4>tiktok (2 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11am</td>
+<td><strong>how we made flappy tralalero.</strong> 30-second BTS. show the character sprite, the code, the first playtest, a death. &quot;we made flappy bird but with an italian brainrot shark and honestly we&#39;d do it again.&quot;</td>
+</tr>
+<tr>
+<td>6pm</td>
+<td><strong>the death messages.</strong> showcase the funniest game-over messages from both games. &quot;we wrote 40 death messages and every single one is unhinged&quot;</td>
+</tr>
+</tbody></table>
+<h4>youtube shorts (1 post)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>repurpose BTS clip. title: &quot;how we made a game about tralalero tralala&quot;</td>
+</tr>
+</tbody></table>
+<h4>twitter (3 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10am</td>
+<td>&quot;fun fact: the hitbox on tralalero is 25% smaller than the sprite. you&#39;re dying to invisible air. you&#39;re welcome.&quot;</td>
+</tr>
+<tr>
+<td>2pm</td>
+<td>&quot;we made 6 brainrot characters for whack-a-rot and gave one of them the ability to steal your points. some of our best work honestly&quot;</td>
+</tr>
+<tr>
+<td>7pm</td>
+<td>score challenge update + engagement</td>
+</tr>
+</tbody></table>
+<h4>instagram (1 reel + 3 stories)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>reel: BTS montage -- character designs, code, playtesting, launch</td>
+</tr>
+<tr>
+<td>stories</td>
+<td>(1) &quot;which character should we add next?&quot; question sticker (2) side-by-side: reference image vs sprite (3) code screenshot + &quot;this is the line that makes tralalero&#39;s legs kick. important work&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>day 5: UGC push</h3>
+<p>by day 5 we should have some player clips rolling in. today is about amplifying them and encouraging more.</p>
+<h4>tiktok (2 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11am</td>
+<td><strong>UGC compilation.</strong> stitch together the best player clips with &quot;the people have spoken&quot; text overlay. if we don&#39;t have enough UGC, post a &quot;show me your high score and i&#39;ll rate it&quot; challenge.</td>
+</tr>
+<tr>
+<td>6pm</td>
+<td><strong>score update.</strong> &quot;the flappy tralalero record has been broken. the new high score is [X]. this is getting out of hand.&quot;</td>
+</tr>
+</tbody></table>
+<h4>youtube shorts (1 post)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>UGC compilation or score record clip</td>
+</tr>
+</tbody></table>
+<h4>twitter (3 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10am</td>
+<td>&quot;post your flappy tralalero score. we&#39;ll judge you.&quot; (quote-tweet the best and worst scores)</td>
+</tr>
+<tr>
+<td>3pm</td>
+<td>retweet/QT the best player tweet of the day</td>
+</tr>
+<tr>
+<td>8pm</td>
+<td>&quot;it&#39;s been 5 days and someone scored [X]. we didn&#39;t think that was possible. we tested this game. we were wrong about how good people could get.&quot;</td>
+</tr>
+</tbody></table>
+<h4>instagram (1 reel + 3 stories)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>reel: best UGC or score record</td>
+</tr>
+<tr>
+<td>stories</td>
+<td>repost player scores, reaction screenshots, any memes people have made</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>day 6: meme day</h3>
+<p>pure meme energy. no sales pitch. just make things people want to share.</p>
+<h4>tiktok (2 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11am</td>
+<td><strong>meme edit.</strong> take whatever&#39;s trending this week and edit brainrot games footage into it. tralalero flying into the trending meme format. keep it current and reactive.</td>
+</tr>
+<tr>
+<td>6pm</td>
+<td><strong>&quot;me playing brainrot games at [relatable time/place].&quot;</strong> relatable meme format with gameplay footage. &quot;me at 3am when i have work tomorrow&quot; + whack-a-rot gameplay.</td>
+</tr>
+</tbody></table>
+<h4>youtube shorts (1 post)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>best meme edit repurposed</td>
+</tr>
+</tbody></table>
+<h4>twitter (3 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10am</td>
+<td>&quot;tralalero tralala has flapped [estimated total] times across all players. most of those flaps ended in immediate death. this is fine&quot;</td>
+</tr>
+<tr>
+<td>2pm</td>
+<td>meme image post -- game screenshot edited into a meme format</td>
+</tr>
+<tr>
+<td>7pm</td>
+<td>&quot;it&#39;s saturday. you could go outside or you could try to beat your whack-a-rot high score. we both know which one you&#39;re picking&quot;</td>
+</tr>
+</tbody></table>
+<h4>instagram (1 reel + 3 stories)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>reel: best meme edit</td>
+</tr>
+<tr>
+<td>stories</td>
+<td>meme carousel, &quot;which game is harder?&quot; poll, weekend score challenge</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>day 7: week one recap + what&#39;s next</h3>
+<p>close the week. share the data. tease what&#39;s coming.</p>
+<h4>tiktok (2 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>11am</td>
+<td><strong>week one by the numbers.</strong> fast-cut montage. &quot;[X] games played. [X] total deaths. [X] aura points stolen by brr brr patapim. highest flappy tralalero score: [X]. you did this.&quot;</td>
+</tr>
+<tr>
+<td>6pm</td>
+<td><strong>tease.</strong> 5-second clip of a new character sprite or a new obstacle type. no context. caption: &quot;soon&quot;</td>
+</tr>
+</tbody></table>
+<h4>youtube shorts (1 post)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>week one recap montage</td>
+</tr>
+</tbody></table>
+<h4>twitter (3 posts)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10am</td>
+<td>&quot;week one stats: [X] games played. [X] deaths. average score: [X]. highest score: [X]. average session time: definitely longer than anyone planned. thank you for rotting your brains with us&quot;</td>
+</tr>
+<tr>
+<td>2pm</td>
+<td>&quot;we&#39;re working on something new. it&#39;s dumb. you&#39;ll love it.&quot;</td>
+</tr>
+<tr>
+<td>7pm</td>
+<td>&quot;if you played our games this week, you&#39;re part of the problem now. welcome.&quot;</td>
+</tr>
+</tbody></table>
+<h4>instagram (1 reel + 3 stories)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12pm</td>
+<td>reel: polished week one recap</td>
+</tr>
+<tr>
+<td>stories</td>
+<td>(1) stats graphic (2) &quot;what game should we make next?&quot; question sticker (3) &quot;week 1 done. week 2 is going to be worse (better)&quot;</td>
+</tr>
+</tbody></table>
+<h4>reddit (1 post)</h4>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>post</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2pm</td>
+<td>r/IndieGaming: &quot;our two brainrot browser games have been live for a week. here&#39;s what happened.&quot; genuine reflection. what worked, what surprised us, share real numbers. reddit respects transparency.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. hashtag strategy</h2>
+<p>hashtags work differently on every platform. using the wrong ones (or too many) is worse than using none.</p>
+<h3>tiktok</h3>
+<p>tiktok hashtags are discovery tools. the algorithm uses them to categorize. use 3-5 per post max.</p>
+<p><strong>primary (use on every post):</strong></p>
+<ul>
+<li><code>#brainrotgames</code></li>
+<li><code>#flappytralalero</code> (game-specific)</li>
+<li><code>#whackarot</code> (game-specific)</li>
+</ul>
+<p><strong>secondary (rotate based on content):</strong></p>
+<ul>
+<li><code>#brainrot</code></li>
+<li><code>#tralalerotalala</code></li>
+<li><code>#italianbrainrot</code></li>
+<li><code>#bombardirocrocodilo</code></li>
+<li><code>#brrbrrpatapim</code></li>
+<li><code>#tungtungtungsahur</code></li>
+<li><code>#ballerinacappuccina</code></li>
+<li><code>#lirilalarila</code></li>
+</ul>
+<p><strong>general reach (use 1-2 per post, rotate):</strong></p>
+<ul>
+<li><code>#browsergames</code></li>
+<li><code>#freegames</code></li>
+<li><code>#mobilegaming</code></li>
+<li><code>#indiegames</code></li>
+<li><code>#flappybird</code></li>
+<li><code>#addictinggames</code></li>
+<li><code>#gamingfail</code></li>
+<li><code>#highscore</code></li>
+</ul>
+<p><strong>viral/trending (use when relevant):</strong></p>
+<ul>
+<li><code>#fyp</code> (debated but still moves the needle on tiktok)</li>
+<li><code>#gaming</code></li>
+<li><code>#trynottolaugh</code></li>
+<li><code>#challenge</code></li>
+</ul>
+<p><strong>example tiktok hashtag set:</strong>
+<code>#flappytralalero #brainrot #tralalerotalala #browsergames #gamingfail</code></p>
+<h3>youtube shorts</h3>
+<p>youtube uses hashtags for search, not discovery. put them in the title or description, not as a caption wall.</p>
+<p><strong>in title (1-2 max):</strong></p>
+<ul>
+<li><code>#FlappyTralalero</code> or <code>#WhackARot</code> (game name)</li>
+<li><code>#BrainrotGames</code> (brand)</li>
+</ul>
+<p><strong>in description (3-5):</strong></p>
+<ul>
+<li><code>#brainrot #tralalerotalala #italianbrainrot #browsergame #indiegame</code></li>
+</ul>
+<p>youtube shorts titles should be searchable. &quot;flappy bird but the bird is tralalero tralala #FlappyTralalero&quot; works. &quot;#fyp #viral #gaming&quot; in a youtube title does not.</p>
+<h3>twitter/x</h3>
+<p><strong>do not use hashtags in tweets.</strong> twitter is a text-first platform. hashtags in tweets make you look like a brand that read a 2016 social media guide. the exception is if we&#39;re explicitly starting a hashtag challenge (rare).</p>
+<p><strong>when we do use them (rare, specific campaigns):</strong></p>
+<ul>
+<li><code>#FlappyTralalero</code> (score challenge)</li>
+<li><code>#BrainrotGames</code></li>
+</ul>
+<p><strong>mostly:</strong> just write a good tweet. the engagement comes from the writing, not the tagging.</p>
+<h3>instagram</h3>
+<p>instagram allows up to 30 hashtags. don&#39;t use 30. use 8-12 in the first comment (not the caption). the caption should be clean.</p>
+<p><strong>brand + game (always):</strong></p>
+<ul>
+<li><code>#brainrotgames</code></li>
+<li><code>#flappytralalero</code></li>
+<li><code>#whackarot</code></li>
+</ul>
+<p><strong>brainrot culture:</strong></p>
+<ul>
+<li><code>#brainrot</code></li>
+<li><code>#tralalerotalala</code></li>
+<li><code>#italianbrainrot</code></li>
+<li><code>#bombardirocrocodilo</code></li>
+<li><code>#brrbrrpatapim</code></li>
+</ul>
+<p><strong>gaming:</strong></p>
+<ul>
+<li><code>#browsergames</code></li>
+<li><code>#indiegames</code></li>
+<li><code>#mobilegaming</code></li>
+<li><code>#casualgaming</code></li>
+</ul>
+<p><strong>reach:</strong></p>
+<ul>
+<li><code>#gamingmemes</code></li>
+<li><code>#gamingfails</code></li>
+<li><code>#addicted</code></li>
+</ul>
+<h3>reddit</h3>
+<p><strong>do not use hashtags on reddit.</strong> reddit doesn&#39;t support them and using them makes you look like a lost instagram user. use descriptive titles. flair your posts correctly. that&#39;s it.</p>
+<hr>
+<h2>5. community engagement playbook</h2>
+<p>how we talk to people who talk to us. this is where the brand voice matters most because every reply is a one-to-one interaction that other people read.</p>
+<h3>the core rule</h3>
+<p><strong>match their energy, then add 10%.</strong> if someone is excited, be more excited (but deadpan about it). if someone is frustrated, acknowledge it. if someone is roasting us, roast back (gently). the only energy we never match is genuine hostility -- that gets a straight response or silence.</p>
+<h3>response templates by scenario</h3>
+<p>these aren&#39;t scripts. they&#39;re starting points. never copy-paste a template literally. adapt to the specific comment.</p>
+<h4>someone posts a high score</h4>
+<p>their energy: proud, flexing
+our energy: impressed but understated</p>
+<blockquote>
+<p>them: &quot;just got 23 on flappy tralalero&quot;
+us: &quot;23??? we made this game and can&#39;t get past 14. this is humbling.&quot;</p>
+</blockquote>
+<blockquote>
+<p>them: &quot;new whack-a-rot PB: 4200 aura points&quot;
+us: &quot;you have more aura than our entire team combined&quot;</p>
+</blockquote>
+<p>do: make them feel like they accomplished something real. retweet/share good scores.
+don&#39;t: be sarcastic about high scores. they earned it.</p>
+<h4>someone posts a terrible score</h4>
+<p>their energy: self-deprecating, amused
+our energy: sympathetic but funny</p>
+<blockquote>
+<p>them: &quot;my high score is 2 lmaooo&quot;
+us: &quot;2 is technically above average. we&#39;re not saying the average is 1 but we&#39;re not NOT saying that&quot;</p>
+</blockquote>
+<blockquote>
+<p>them: &quot;i can&#39;t get past the first pipe&quot;
+us: &quot;the first pipe is the hardest pipe. also the second pipe. all the pipes honestly&quot;</p>
+</blockquote>
+<p>do: normalize bad scores. make it funny. &quot;you&#39;re not bad, the game is designed to be brutal&quot; energy.
+don&#39;t: be mean about bad scores. the person might be 10 years old.</p>
+<h4>someone says the game is too hard</h4>
+<p>their energy: frustrated
+our energy: honest, slightly proud</p>
+<blockquote>
+<p>them: &quot;this game is impossible&quot;
+us: &quot;working as intended&quot;</p>
+</blockquote>
+<blockquote>
+<p>them: &quot;how is anyone supposed to beat this&quot;
+us: &quot;practice, luck, and an unhealthy amount of free time. the game believes in you even if the score doesn&#39;t&quot;</p>
+</blockquote>
+<p>do: acknowledge the difficulty without apologizing for it. the difficulty is a feature.
+don&#39;t: give tips unless they ask. nobody wants unsolicited gaming advice from a brand account.</p>
+<h4>someone says the game is bad/trash</h4>
+<p>their energy: dismissive
+our energy: unbothered</p>
+<blockquote>
+<p>them: &quot;this game sucks&quot;
+us: &quot;understandable. the shark respects your honesty&quot;</p>
+</blockquote>
+<blockquote>
+<p>them: &quot;this is just flappy bird with a skin&quot;
+us: &quot;yes&quot;</p>
+</blockquote>
+<p>do: agree with fair criticism in a funny way. disarm with honesty.
+don&#39;t: get defensive. ever. about anything. defensiveness is the fastest way to look like a brand that can&#39;t take a joke.</p>
+<h4>someone reports a bug</h4>
+<p>their energy: helpful or annoyed
+our energy: grateful, honest</p>
+<blockquote>
+<p>them: &quot;the game freezes when i tap too fast&quot;
+us: &quot;that&#39;s a bug not a feature (this time). we&#39;re on it. thanks for the heads up&quot;</p>
+</blockquote>
+<blockquote>
+<p>them: &quot;score didn&#39;t save&quot;
+us: &quot;looking into it. in the meantime your score lives in our hearts&quot;</p>
+</blockquote>
+<p>do: acknowledge quickly. be honest about whether it&#39;s known. fix it.
+don&#39;t: make jokes if someone is genuinely frustrated about a technical issue. read the room.</p>
+<h4>someone famous plays the game</h4>
+<p>their energy: varies
+our energy: cool about it (internally screaming)</p>
+<blockquote>
+<p>them: [famous person posts gameplay]
+us: (on twitter) &quot;not bad&quot; or &quot;the lore is expanding&quot; -- one short response, don&#39;t gush</p>
+</blockquote>
+<p>do: retweet/share. one cool reply. let the moment breathe.
+don&#39;t: fanboy out. don&#39;t @-spam them. don&#39;t make it weird. don&#39;t post &quot;OMG [celebrity] played our game!!!&quot; -- that&#39;s what an intern does, not a brand with confidence.</p>
+<h4>someone asks if the game is AI-generated</h4>
+<p>their energy: skeptical or curious
+our energy: honest</p>
+<blockquote>
+<p>them: &quot;is this made by AI?&quot;
+us: &quot;we used AI tools to help build it. the games are real, the fun is real, the shark&#39;s legs are AI-generated and we&#39;re at peace with that&quot;</p>
+</blockquote>
+<p>do: be transparent. don&#39;t hide it. don&#39;t over-explain.
+don&#39;t: get into a debate about AI ethics in the replies. if someone wants to argue, a simple &quot;fair point, we get it&quot; is enough.</p>
+<h3>encouraging UGC (user-generated clips/posts)</h3>
+<p>the goal is to make it easy and rewarding for people to post about the games without it feeling forced.</p>
+<p><strong>built-in sharing:</strong> both games have share buttons on the score screen. the share generates a score card image optimized for social. make the score card funny enough that people WANT to screenshot and post it.</p>
+<p><strong>amplification strategy:</strong></p>
+<ul>
+<li>repost/share every piece of UGC we find (with credit). even bad ones. especially bad ones.</li>
+<li>on tiktok: duet or stitch player clips with our reaction.</li>
+<li>on twitter: quote-tweet player scores with commentary.</li>
+<li>on instagram: repost to stories with the &quot;look at this&quot; energy.</li>
+<li>never ask for UGC directly (&quot;post your score and tag us!&quot;). that&#39;s cringe. instead: make the share button frictionless, react to people who share organically, and others will follow.</li>
+</ul>
+<p><strong>the score card is the UGC machine.</strong> if the game-over screen is funny, shareable, and has the game name/URL on it, every death is a potential social post. the game IS the social strategy. everything else is amplification.</p>
+<h3>handling negative sentiment / crisis</h3>
+<p><strong>level 1: regular criticism (&quot;this game is mid&quot;)</strong>
+respond with humor or don&#39;t respond. this isn&#39;t a crisis. it&#39;s tuesday.</p>
+<p><strong>level 2: valid complaints (&quot;ads are too aggressive&quot; / &quot;game crashes on my phone&quot;)</strong>
+acknowledge publicly. &quot;we hear you. we&#39;re looking into it.&quot; then actually fix it. follow up when fixed.</p>
+<p><strong>level 3: negative trend (lots of people complaining about the same thing)</strong>
+don&#39;t joke. make a straight statement. &quot;we&#39;ve seen the feedback about [X]. we&#39;re working on it. here&#39;s what we&#39;re doing.&quot; drop the bit entirely. be a real company for a minute.</p>
+<p><strong>level 4: actual crisis (offensive content association, security issue, legal)</strong>
+all social goes silent until we have an approved response. no jokes. no engagement. clear, direct communication only. this is the &quot;serious comms&quot; mode from the brand voice matrix.</p>
+<p><strong>the universal rule:</strong> never delete negative comments unless they&#39;re spam, hate speech, or contain personal information. deleting criticism looks like we&#39;re hiding something. visible criticism we&#39;ve responded to well is better than a comment section that looks suspiciously clean.</p>
+<hr>
+<h2>6. recurring content templates</h2>
+<p>formats we can run every week without needing to invent new ideas. the games generate the material. we just capture and format it.</p>
+<h3>template 1: &quot;beat the dev score challenge&quot; (weekly)</h3>
+<p><strong>format:</strong> one of us plays the game, records the session, posts the score. challenges followers to beat it.</p>
+<p><strong>cadence:</strong> every monday. starts the week with a competitive hook.</p>
+<p><strong>example post (tiktok):</strong> [gameplay clip, score: 17] &quot;the dev score this week is 17 on flappy tralalero. beat it and we&#39;ll post your clip. good luck you&#39;ll need it. #FlappyTralalero #BeatTheDevScore&quot;</p>
+<p><strong>example post (twitter):</strong> &quot;this week&#39;s dev score: 17 on flappy tralalero. we know at least 3 of you can beat this. prove it. [link]&quot;</p>
+<p><strong>why it works:</strong> creates a weekly event. gives people a specific target. generates UGC when people post their attempts.</p>
+<h3>template 2: &quot;brainrot character of the week&quot; (weekly)</h3>
+<p><strong>format:</strong> spotlight one character from whack-a-rot. lore dump (made up on the spot). stats. gameplay clips featuring that character.</p>
+<p><strong>cadence:</strong> every wednesday.</p>
+<p><strong>example post (tiktok):</strong> &quot;whack-a-rot character spotlight: bombardiro crocodilo. 200 points. appears for 0.6 seconds. by the time you&#39;ve read this caption he&#39;s already gone. #WhackARot #BombardiroCrocodilo&quot;</p>
+<p><strong>example post (twitter):</strong> &quot;bombardiro crocodilo appreciation post. the fastest character in whack-a-rot. gives you 200 points if you can hit him. you can&#39;t hit him. he&#39;s too fast. he knows this.&quot;</p>
+<p><strong>why it works:</strong> makes each character a micro-personality. fans pick favorites. debate happens in the comments. free engagement.</p>
+<h3>template 3: &quot;death message of the week&quot; (weekly)</h3>
+<p><strong>format:</strong> screenshot or clip of the funniest game-over message from the week.</p>
+<p><strong>cadence:</strong> every friday. end the week on a joke.</p>
+<p><strong>example post (twitter):</strong> &quot;death message of the week: &#39;tralalero tralala didn&#39;t deserve this but neither did your high score&#39;&quot; + screenshot</p>
+<p><strong>example post (instagram story):</strong> screenshot of death message + &quot;which one broke you this week?&quot; question sticker</p>
+<p><strong>why it works:</strong> death messages are already funny. curating the best one is low-effort, high-engagement. people reply with their own favorites.</p>
+<h3>template 4: &quot;scoreboard update&quot; (weekly)</h3>
+<p><strong>format:</strong> graphic showing the week&#39;s top scores across both games. name/handle the top scorers (with permission).</p>
+<p><strong>cadence:</strong> every sunday.</p>
+<p><strong>example post (twitter):</strong> &quot;this week&#39;s top scores. flappy tralalero: [name] with 31. whack-a-rot: [name] with 5,800 aura points. these people are not okay. respect.&quot;</p>
+<p><strong>example post (instagram):</strong> scoreboard graphic as a feed post. clean design, game branding, player names.</p>
+<p><strong>why it works:</strong> recognition drives competition. people play more when there&#39;s a public leaderboard. the top scorers become micro-advocates.</p>
+<h3>template 5: &quot;new meme becomes a game&quot; (biweekly or as memes emerge)</h3>
+<p><strong>format:</strong> when a new brainrot meme blows up, post a &quot;what if this was in the game&quot; concept. character mockup, fake gameplay, or just a tweet speculating. gauge interest. if it hits, actually make it.</p>
+<p><strong>cadence:</strong> whenever a new meme character hits critical mass. not forced. 1-2x/month max.</p>
+<p><strong>example post (twitter):</strong> &quot;if [new meme character] gets 10k likes on this tweet we&#39;re adding them to whack-a-rot. not joking. we can ship a character in 48 hours. try us.&quot;</p>
+<p><strong>example post (tiktok):</strong> mock-up of new character in the game (even if it&#39;s a rough edit). &quot;should we add [character] to whack-a-rot? yes or yes.&quot;</p>
+<p><strong>why it works:</strong> makes the games feel alive and responsive to the culture. turns the audience into collaborators. generates massive engagement on voting posts. and if we actually ship the character, that&#39;s another launch day.</p>
+<h3>template 6: &quot;player spotlight&quot; (weekly, once we have volume)</h3>
+<p><strong>format:</strong> feature one player. their score, their reaction, their clip. give them a moment.</p>
+<p><strong>cadence:</strong> every thursday. starts when we have enough UGC (probably week 2-3).</p>
+<p><strong>example post (twitter):</strong> &quot;player of the week: @[handle] scored 28 on flappy tralalero. we watched the clip 4 times. it shouldn&#39;t be possible. it is. barely.&quot;</p>
+<p><strong>example post (tiktok):</strong> duet or stitch the player&#39;s clip. our side: slow clap reaction or just silence + nodding.</p>
+<p><strong>why it works:</strong> recognition is the best incentive for UGC. when people see that sharing a score can get them featured, more people share scores.</p>
+<hr>
+<h2>7. metrics that matter (and metrics that don&#39;t)</h2>
+<p>what we actually track and why.</p>
+<h3>track these</h3>
+<table>
+<thead>
+<tr>
+<th>metric</th>
+<th>why</th>
+<th>target (launch week)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>shares per post</strong></td>
+<td>a share = someone saying &quot;my friend needs to see this.&quot; the highest-signal metric for viral potential.</td>
+<td>aim for share rate above 3% on tiktok</td>
+</tr>
+<tr>
+<td><strong>click-through to game</strong></td>
+<td>the whole point. did the post make someone play?</td>
+<td>track via UTM parameters per platform per post</td>
+</tr>
+<tr>
+<td><strong>UGC volume</strong></td>
+<td>how many people are posting about the games without us asking them to.</td>
+<td>10+ organic posts by end of week 1</td>
+</tr>
+<tr>
+<td><strong>score card shares</strong></td>
+<td>how many game-over screens are being screenshotted/shared. this is the product-as-marketing metric.</td>
+<td>track via watermark/URL on score card</td>
+</tr>
+<tr>
+<td><strong>reply rate (twitter)</strong></td>
+<td>are people talking back to us? conversation = relevance.</td>
+<td>respond to 100% of @-mentions in launch week</td>
+</tr>
+<tr>
+<td><strong>save rate (instagram)</strong></td>
+<td>saves signal the algorithm to resurface. a save &gt; a like.</td>
+<td>above 2% save rate on reels</td>
+</tr>
+<tr>
+<td><strong>completion rate (tiktok/shorts)</strong></td>
+<td>did people watch the whole clip? this is the algorithm&#39;s main ranking signal.</td>
+<td>above 70% average on clips under 20s</td>
+</tr>
+</tbody></table>
+<h3>don&#39;t obsess over these</h3>
+<table>
+<thead>
+<tr>
+<th>metric</th>
+<th>why we&#39;re not tracking it hard</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>follower count</strong></td>
+<td>followers don&#39;t play games. views and shares play games. we can have 500 followers and 500k views. that&#39;s fine.</td>
+</tr>
+<tr>
+<td><strong>likes</strong></td>
+<td>a like is the minimum interaction. it means almost nothing. shares &gt; likes always.</td>
+</tr>
+<tr>
+<td><strong>post frequency</strong></td>
+<td>posting 5x/day means nothing if the clips aren&#39;t good. quality &gt; volume after launch week.</td>
+</tr>
+<tr>
+<td><strong>reach (raw number)</strong></td>
+<td>reach without click-through is a billboard nobody looked at.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>summary</h2>
+<p>the plan is simple:</p>
+<ol>
+<li>make the games funny enough to share on their own</li>
+<li>capture gameplay that shows why they&#39;re funny</li>
+<li>post that gameplay where people already scroll</li>
+<li>talk to people like a person, not a brand</li>
+<li>let the players be the marketing team</li>
+</ol>
+<p>everything else is amplification. the game is the marketing. the score card is the ad. the death screen is the meme. we just hit record and stay out of the way.</p>
+<hr>
+<p><em>this document covers launch week and recurring formats. for the ongoing content calendar (month 2+), update based on what actually worked in week 1. plans are guesses. data is real.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

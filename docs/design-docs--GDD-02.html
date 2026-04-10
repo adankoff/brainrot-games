@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GDD 02 — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">design-docs/GDD-02.md</div>
+    <div class="doc-content"><h1>GDD-02: WHACK-A-ROT</h1>
+<h2>1. Overview</h2>
+<p><strong>Game name:</strong> WHACK-A-ROT</p>
+<p><strong>Elevator pitch:</strong> Whack-a-mole but the moles are Italian brainrot characters popping out of holes and you slap them back to whatever cursed dimension they came from. Different characters have different point values, speeds, and behaviors. Whack the wrong one and you lose AURA POINTS. Chase combos. Beat your high score. Screenshot it. Send it to every group chat you&#39;re in.</p>
+<p><strong>Platform:</strong> HTML5 web, mobile-first. Canvas rendering. Works on any device with a browser. No install, no sign-up. Tap a link, tap play, you&#39;re whacking.</p>
+<p><strong>Target session:</strong> 45-90 seconds per round. Full session (play, die, score screen, replay) is 3-5 minutes across 3-5 rounds.</p>
+<p><strong>File path:</strong> <code>games/game-02/</code></p>
+<hr>
+<h2>2. Core Gameplay Loop</h2>
+<p>One round plays out in a tight cycle. Every decision takes under 500ms.</p>
+<pre><code>1. SPAWN       A character pops up from a random hole (200ms rise animation)
+2. VISIBLE     Character is hittable for `displayTime` ms (starts at 1200ms, shrinks with waves)
+3. DECIDE      Player identifies character type: whack for points or avoid (penalty)
+4. TAP/MISS    Player taps the character OR the display window expires
+   - HIT correct target  -&gt; +points, combo++, impact effect, floating score text
+   - HIT penalty target  -&gt; -200 points, combo reset, screen shake, sad sound
+   - MISS (no tap)       -&gt; combo resets, character does taunt animation, ducks back down
+5. RETREAT     Character descends back into hole (150ms sink animation)
+6. REPEAT      Next spawn starts after a random delay of `spawnInterval` ms
+</code></pre>
+<p>Multiple holes are active simultaneously. At any given moment, 1-3 characters may be visible, requiring prioritization.</p>
+<p><strong>Timing budget per round:</strong></p>
+<ul>
+<li>Round duration: 60 seconds (fixed timer, counts down)</li>
+<li>Characters spawned per round: 40-70 depending on wave</li>
+<li>Average active characters at once: 1.5 (wave 1) to 3.0 (wave 5+)</li>
+</ul>
+<hr>
+<h2>3. Game Mechanics</h2>
+<h3>3.1 Character Roster</h3>
+<p>Six characters. Each has unique point value, display time, spawn weight, and visual behavior.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Character</th>
+<th>Points</th>
+<th>Display Time (ms)</th>
+<th>Spawn Weight (wave 1)</th>
+<th>Spawn Weight (wave 5+)</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Tralalero Tralala</td>
+<td>100</td>
+<td><code>displayTime</code> (standard)</td>
+<td>35%</td>
+<td>25%</td>
+<td>Standard. Pops up, idle bounce, ducks down. The bread and butter.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bombardiro Crocodilo</td>
+<td>200</td>
+<td><code>displayTime * 0.6</code> (fast)</td>
+<td>20%</td>
+<td>20%</td>
+<td>Fast. Pops up quickly, barely stays visible. Reward for quick reflexes.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Tung Tung Tung Sahur</td>
+<td>150</td>
+<td><code>displayTime * 1.3</code> (slow)</td>
+<td>20%</td>
+<td>15%</td>
+<td>Drums on the hole edge while visible. Longer display but smaller hitbox (see 3.5).</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Ballerina Cappuccina</td>
+<td>150</td>
+<td><code>displayTime</code> (standard)</td>
+<td>15%</td>
+<td>15%</td>
+<td>Sways left-right during display, shifting the hitbox center by +/-15px.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Brr Brr Patapim</td>
+<td>-200 (penalty)</td>
+<td><code>displayTime * 1.2</code> (lingering)</td>
+<td>10%</td>
+<td>20%</td>
+<td>PENALTY. Stays visible longer to bait taps. Hitting costs 200 points AND resets combo.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Lirili Larila</td>
+<td>500</td>
+<td><code>displayTime * 0.4</code> (very fast)</td>
+<td>0% (wave 3+)</td>
+<td>5%</td>
+<td>RARE BONUS. Golden glow. Blink-and-miss display time. Appears starting wave 3.</td>
+</tr>
+</tbody></table>
+<p><strong>Spawn weight normalization:</strong> Weights are normalized to 100% per wave. When Lirili Larila joins in wave 3, all other weights reduce proportionally.</p>
+<h3>3.2 Scoring System</h3>
+<p><strong>Base score:</strong>
+Each character awards its base point value on hit. Points are labeled &quot;AURA POINTS&quot; in the HUD.</p>
+<p><strong>Combo multiplier:</strong>
+Consecutive successful hits (hitting a non-penalty character) build a combo counter.</p>
+<pre><code>comboMultiplier = 1 + (comboCount * 0.25)
+// combo 0 = 1.0x, combo 1 = 1.25x, combo 2 = 1.5x, combo 3 = 1.75x, ...
+// Cap at 4.0x (combo 12)
+</code></pre>
+<p><strong>Score per hit:</strong></p>
+<pre><code>scoreAwarded = Math.floor(basePoints * comboMultiplier)
+</code></pre>
+<p><strong>Combo breaks:</strong></p>
+<ul>
+<li>Hitting Brr Brr Patapim: combo resets to 0, player loses 200 points (unaffected by multiplier)</li>
+<li>Missing a character (it despawns without being tapped): combo resets to 0</li>
+<li>Player score cannot go below 0</li>
+</ul>
+<p><strong>Combo milestones with feedback:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Combo</th>
+<th>Feedback</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>&quot;NICE&quot; floating text in Cyan Pulse</td>
+</tr>
+<tr>
+<td>10</td>
+<td>&quot;SIGMA STREAK&quot; floating text in Electric Lime + screen border flash</td>
+</tr>
+<tr>
+<td>15</td>
+<td>&quot;MAXIMUM AURA&quot; floating text in Brainrot Yellow + background pulse</td>
+</tr>
+<tr>
+<td>20+</td>
+<td>&quot;TRANSCENDENT&quot; + continuous lime glow on score display</td>
+</tr>
+</tbody></table>
+<h3>3.3 Difficulty Progression</h3>
+<p>The game uses a wave system. Each wave lasts 15 seconds. A 60-second round has 4 waves.</p>
+<p><strong>Wave parameters:</strong></p>
+<pre><code class="language-javascript">// Wave number: 1, 2, 3, 4 within a round
+// Round number: increments each time the player replays (persists via gameState)
+
+const effectiveWave = wave + (round - 1) * 2; // Rounds get progressively harder
+
+// How long a standard character stays visible (ms)
+const displayTime = Math.max(400, 1200 - effectiveWave * 80);
+
+// Time between spawns across the full grid (ms)
+const spawnInterval = Math.max(300, 900 - effectiveWave * 60);
+
+// Maximum characters visible simultaneously
+const maxActive = Math.min(5, 1 + Math.floor(effectiveWave / 2));
+
+// Probability that a spawn is a penalty character (Brr Brr Patapim)
+const penaltyWeight = Math.min(0.25, 0.10 + effectiveWave * 0.02);
+</code></pre>
+<p><strong>Progression table (first playthrough, round 1):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Wave</th>
+<th>Effective Wave</th>
+<th>Display Time</th>
+<th>Spawn Interval</th>
+<th>Max Active</th>
+<th>Penalty %</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1120ms</td>
+<td>840ms</td>
+<td>1</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>1040ms</td>
+<td>780ms</td>
+<td>2</td>
+<td>14%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>960ms</td>
+<td>720ms</td>
+<td>2</td>
+<td>16%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>880ms</td>
+<td>660ms</td>
+<td>3</td>
+<td>18%</td>
+</tr>
+</tbody></table>
+<p><strong>Round 2 starts at effective wave 3, round 3 at effective wave 5, etc.</strong> The game never becomes literally impossible but approaches a human reaction-time ceiling around effective wave 10 (display time 400ms, spawn interval 300ms, max 5 active, 30% penalty).</p>
+<h3>3.4 Grid Layout</h3>
+<p>3x3 grid of holes. 9 total positions.</p>
+<p><strong>Canvas coordinate system (based on 400x600 logical canvas):</strong></p>
+<pre><code>Grid starts at y=200 (below HUD) and ends at y=540 (above bottom padding).
+Grid starts at x=40 and ends at x=360.
+Column spacing: 160px center-to-center
+Row spacing: 113px center-to-center
+
+Hole positions (center x, center y):
+  [0,0] = (80,  227)    [1,0] = (200, 227)    [2,0] = (320, 227)
+  [0,1] = (80,  340)    [1,1] = (200, 340)    [2,1] = (320, 340)
+  [0,2] = (80,  453)    [1,2] = (200, 453)    [2,2] = (320, 453)
+</code></pre>
+<p><strong>Hole dimensions:</strong></p>
+<ul>
+<li>Hole opening: ellipse, radiusX=50, radiusY=20, centered at hole position</li>
+<li>Character pop-up zone: 70px wide, extends 80px above hole center</li>
+<li>Hole visual depth: 10px dark gradient below the ellipse</li>
+</ul>
+<h3>3.5 Collision Detection</h3>
+<p>Tap/click position is tested against each active (visible) character&#39;s hitbox.</p>
+<p><strong>Standard hitbox:</strong> Circle centered at <code>(hole.x, hole.y - 40)</code> with radius 40px.</p>
+<pre><code class="language-javascript">function isHit(tapX, tapY, hole) {
+  const hitCenterX = hole.x;
+  const hitCenterY = hole.y - 40; // Character center is 40px above hole center
+  const radius = 40;
+  const dx = tapX - hitCenterX;
+  const dy = tapY - hitCenterY;
+  return (dx * dx + dy * dy) &lt;= (radius * radius);
+}
+</code></pre>
+<p><strong>Per-character hitbox modifiers:</strong></p>
+<ul>
+<li>Tung Tung Tung Sahur: radius = 30 (smaller, he&#39;s a narrow plank)</li>
+<li>Ballerina Cappuccina: hitCenterX shifts by <code>15 * Math.sin(elapsed * 0.005)</code> (she sways)</li>
+<li>All others: standard radius 40</li>
+</ul>
+<p><strong>Tap coordinate conversion:</strong>
+Canvas coordinates must account for CSS scaling. Convert DOM event coordinates to canvas space:</p>
+<pre><code class="language-javascript">const rect = canvas.getBoundingClientRect();
+const scaleX = canvas.width / rect.width;
+const scaleY = canvas.height / rect.height;
+const canvasX = (event.clientX - rect.left) * scaleX;
+const canvasY = (event.clientY - rect.top) * scaleY;
+</code></pre>
+<p>Touch events use <code>event.touches[0].clientX</code> and <code>event.touches[0].clientY</code>. Both <code>mousedown</code> and <code>touchstart</code> are bound. <code>touchstart</code> calls <code>preventDefault()</code> to avoid double-firing.</p>
+<h3>3.6 Wave System</h3>
+<p><strong>Structure:</strong> Continuous 60-second timer. No explicit wave transitions visible to the player. Internally, difficulty parameters step up every 15 seconds (waves 1-4). The player sees only the countdown timer.</p>
+<p><strong>Wave transitions are invisible</strong> -- no pause, no announcement. The game just gets subtly harder. This keeps the flow unbroken.</p>
+<p><strong>Wave indicator:</strong> A subtle horizontal progress bar at the very bottom of the screen. 4 segments. Fills left-to-right as waves progress. Color: Text Tertiary (<code>#555570</code>). This is decorative, not critical information.</p>
+<h3>3.7 Timer</h3>
+<p><strong>60-second countdown.</strong> Displayed top-right of HUD in Bungee font.</p>
+<ul>
+<li>Starts at 60.0, counts down by tenths of a second</li>
+<li>At 10 seconds remaining: timer text turns Hot Magenta (<code>#ff2d78</code>), pulses gently (scale 1.0 to 1.05 at 2Hz)</li>
+<li>At 0.0: game over. No lives system. The round is purely time-boxed.</li>
+<li>Timer pauses if the browser tab loses focus (<code>document.hidden</code> check via <code>visibilitychange</code> event)</li>
+</ul>
+<hr>
+<h2>4. Brainrot Theme Integration</h2>
+<h3>4.1 Character Drawing Instructions (Canvas Primitives)</h3>
+<p>Every character is drawn procedurally with Canvas 2D primitives. No image assets. Each character is drawn within a 70x80px bounding box, positioned relative to its hole center. The character &quot;rises&quot; from the hole via a clipping mask (the hole ellipse clips the lower portion during the rise/sink animation).</p>
+<p>All colors are specified as hex. All coordinates are relative to the character&#39;s origin point <code>(cx, cy)</code> where <code>cx = hole.x</code> and <code>cy = hole.y - 40</code> (the character center).</p>
+<hr>
+<h4>Character 1: Tralalero Tralala</h4>
+<p><em>Blue shark with 3 legs, Nike-like swooshes on the shoes, wide toothy grin.</em></p>
+<p><strong>Body (shark torso):</strong></p>
+<ul>
+<li>Ellipse centered at <code>(cx, cy - 5)</code>, radiusX=28, radiusY=22</li>
+<li>Fill: <code>#4488dd</code> (medium blue)</li>
+<li>Stroke: <code>#335599</code>, lineWidth 2</li>
+</ul>
+<p><strong>Head (shark head, pointed):</strong></p>
+<ul>
+<li>Draw a triangle-ish shape above the body:<ul>
+<li><code>moveTo(cx, cy - 42)</code> (top of head, pointed)</li>
+<li><code>quadraticCurveTo(cx + 22, cy - 30, cx + 20, cy - 18)</code> (right side curves down)</li>
+<li><code>lineTo(cx - 20, cy - 18)</code> (across bottom of head)</li>
+<li><code>quadraticCurveTo(cx - 22, cy - 30, cx, cy - 42)</code> (left side curves up)</li>
+</ul>
+</li>
+<li>Fill: <code>#4488dd</code></li>
+<li>Stroke: <code>#335599</code>, lineWidth 2</li>
+</ul>
+<p><strong>Eyes:</strong></p>
+<ul>
+<li>Two white circles: <code>(cx - 10, cy - 28)</code> and <code>(cx + 10, cy - 28)</code>, radius 6</li>
+<li>Fill: <code>#ffffff</code></li>
+<li>Pupils: two black circles at same centers, radius 3</li>
+<li>Fill: <code>#000000</code></li>
+</ul>
+<p><strong>Mouth (wide grin):</strong></p>
+<ul>
+<li>Arc from <code>(cx - 15, cy - 16)</code> to <code>(cx + 15, cy - 16)</code>, curving downward</li>
+<li><code>ctx.arc(cx, cy - 16, 15, 0, Math.PI)</code> -- semicircle opening downward</li>
+<li>Fill: <code>#cc2222</code> (red mouth interior)</li>
+<li>Teeth: 5 small white triangles along the top edge of the mouth arc, each 4px wide, 5px tall<ul>
+<li>Draw at x positions: cx-12, cx-6, cx, cx+6, cx+12</li>
+<li>Each: <code>moveTo(x-2, cy-16)</code>, <code>lineTo(x, cy-11)</code>, <code>lineTo(x+2, cy-16)</code></li>
+<li>Fill: <code>#ffffff</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Dorsal fin:</strong></p>
+<ul>
+<li>Triangle on top-right of body:<ul>
+<li><code>moveTo(cx + 10, cy - 20)</code>, <code>lineTo(cx + 20, cy - 35)</code>, <code>lineTo(cx + 18, cy - 15)</code></li>
+</ul>
+</li>
+<li>Fill: <code>#3377cc</code></li>
+</ul>
+<p><strong>Legs (3 legs, the meme feature):</strong></p>
+<ul>
+<li>Three legs extending below the body at x positions: cx-15, cx, cx+15</li>
+<li>Each leg: <code>fillRect(legX - 3, cy + 12, 6, 20)</code> -- Fill: <code>#4488dd</code></li>
+<li>Each foot: <code>fillRect(legX - 5, cy + 30, 10, 6)</code> -- Fill: <code>#ffffff</code> (white shoe)</li>
+<li>Nike swoosh on each shoe: small curved line<ul>
+<li><code>moveTo(legX - 4, cy + 33)</code>, <code>quadraticCurveTo(legX, cy + 30, legX + 5, cy + 33)</code></li>
+<li>Stroke: <code>#ff4400</code> (orange-red swoosh), lineWidth 1.5</li>
+</ul>
+</li>
+</ul>
+<p><strong>Idle animation:</strong> Body bobs up and down 3px at 2Hz (<code>cy + 3 * Math.sin(time * 0.004)</code>)</p>
+<hr>
+<h4>Character 2: Bombardiro Crocodilo</h4>
+<p><em>Green crocodile head with propeller/wings on top, bomber plane body.</em></p>
+<p><strong>Body (bomber fuselage):</strong></p>
+<ul>
+<li>Rounded rect centered at <code>(cx, cy + 5)</code>, width 50, height 24, borderRadius 10</li>
+<li>Fill: <code>#556b55</code> (military olive green)</li>
+<li>Stroke: <code>#3d4d3d</code>, lineWidth 2</li>
+</ul>
+<p><strong>Wings:</strong></p>
+<ul>
+<li>Left wing: <code>fillRect(cx - 35, cy + 2, 16, 8)</code> -- Fill: <code>#556b55</code></li>
+<li>Right wing: <code>fillRect(cx + 19, cy + 2, 16, 8)</code> -- Fill: <code>#556b55</code></li>
+<li>Wing tips are angled: small triangles at the ends<ul>
+<li>Left: <code>moveTo(cx-35, cy+2)</code>, <code>lineTo(cx-40, cy+6)</code>, <code>lineTo(cx-35, cy+10)</code></li>
+<li>Right: mirror of left</li>
+</ul>
+</li>
+</ul>
+<p><strong>Crocodile head:</strong></p>
+<ul>
+<li>Elongated ellipse centered at <code>(cx, cy - 18)</code>, radiusX=18, radiusY=14</li>
+<li>Fill: <code>#44aa44</code> (bright green)</li>
+<li>Stroke: <code>#338833</code>, lineWidth 2</li>
+</ul>
+<p><strong>Snout:</strong></p>
+<ul>
+<li>Rounded rect: <code>(cx - 12, cy - 14)</code>, width 24, height 10, borderRadius 4</li>
+<li>Fill: <code>#44aa44</code></li>
+<li>Nostrils: two small dark circles at <code>(cx - 5, cy - 10)</code> and <code>(cx + 5, cy - 10)</code>, radius 2</li>
+<li>Fill: <code>#226622</code></li>
+</ul>
+<p><strong>Eyes:</strong></p>
+<ul>
+<li>Two yellow circles: <code>(cx - 8, cy - 24)</code> and <code>(cx + 8, cy - 24)</code>, radius 5</li>
+<li>Fill: <code>#ffdd00</code></li>
+<li>Vertical slit pupils: thin black ellipses, radiusX=1.5, radiusY=4</li>
+<li>Fill: <code>#000000</code></li>
+</ul>
+<p><strong>Teeth:</strong></p>
+<ul>
+<li>Zigzag line along the bottom of the snout (the croc grin):<ul>
+<li>6 teeth alternating up/down along <code>y = cy - 8</code>, each 4px wide, 3px tall</li>
+<li>Fill: <code>#ffffff</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Propeller (on top of head):</strong></p>
+<ul>
+<li>Hub: small circle at <code>(cx, cy - 32)</code>, radius 3, fill <code>#888888</code></li>
+<li>Two blades: rotating lines from hub, length 18px each, opposite directions<ul>
+<li>Blade fill: <code>#aaaaaa</code>, rounded ends</li>
+<li>Rotation: <code>angle += deltaTime * 0.01</code> (spins continuously)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Idle animation:</strong> Propeller spins. Body rocks left-right 2px at 1.5Hz.</p>
+<hr>
+<h4>Character 3: Tung Tung Tung Sahur</h4>
+<p><em>Brown wooden plank body (like a 2x4 lumber plank), holding a baseball bat, wearing a headband.</em></p>
+<p><strong>Body (wooden plank):</strong></p>
+<ul>
+<li>Rect centered at <code>(cx, cy)</code>, width 24, height 55</li>
+<li>Fill: <code>#b5813a</code> (wood brown)</li>
+<li>Stroke: <code>#8b6324</code>, lineWidth 2</li>
+<li>Wood grain lines: 3 horizontal lines across the plank body<ul>
+<li><code>moveTo(cx-10, cy-15)</code> to <code>(cx+10, cy-15)</code>, and at cy-2, cy+12</li>
+<li>Stroke: <code>#9a7030</code>, lineWidth 1</li>
+</ul>
+</li>
+</ul>
+<p><strong>Face (painted/carved on the plank):</strong></p>
+<ul>
+<li>Eyes: two dots at <code>(cx - 5, cy - 18)</code> and <code>(cx + 5, cy - 18)</code>, radius 3</li>
+<li>Fill: <code>#000000</code></li>
+<li>Angry eyebrows: angled lines above each eye<ul>
+<li>Left: <code>moveTo(cx-9, cy-24)</code> to <code>(cx-2, cy-22)</code> -- angled down-inward</li>
+<li>Right: <code>moveTo(cx+9, cy-24)</code> to <code>(cx+2, cy-22)</code> -- mirror</li>
+<li>Stroke: <code>#000000</code>, lineWidth 2</li>
+</ul>
+</li>
+<li>Mouth: small flat line at <code>(cx - 4, cy - 12)</code> to <code>(cx + 4, cy - 12)</code><ul>
+<li>Stroke: <code>#000000</code>, lineWidth 2</li>
+</ul>
+</li>
+</ul>
+<p><strong>Headband:</strong></p>
+<ul>
+<li>Rect across the top of the plank: <code>(cx - 14, cy - 28)</code>, width 28, height 6</li>
+<li>Fill: <code>#dd2222</code> (red)</li>
+<li>Tail of headband fluttering to the right:<ul>
+<li>Two small lines from <code>(cx + 14, cy - 28)</code> curving right and down</li>
+<li>Stroke: <code>#dd2222</code>, lineWidth 3</li>
+</ul>
+</li>
+</ul>
+<p><strong>Baseball bat (held to the right):</strong></p>
+<ul>
+<li>Bat handle: <code>fillRect(cx + 14, cy - 10, 5, 25)</code> -- Fill: <code>#8b6324</code></li>
+<li>Bat barrel: rounded rect at <code>(cx + 12, cy - 25)</code>, width 12, height 18, borderRadius 4</li>
+<li>Fill: <code>#c4a265</code> (lighter wood)</li>
+<li>Stroke: <code>#8b6324</code>, lineWidth 1</li>
+</ul>
+<p><strong>Idle animation:</strong> Drums the bat on the hole edge. Bat swings down and up in a repeating arc (rotation around handle base, +/-15 degrees at 4Hz). Produces the &quot;tung tung tung&quot; rhythm visual.</p>
+<hr>
+<h4>Character 4: Ballerina Cappuccina</h4>
+<p><em>Coffee cup for a head, pink tutu, ballet pose with arms raised.</em></p>
+<p><strong>Body (ballerina torso):</strong></p>
+<ul>
+<li>Trapezoid centered at <code>(cx, cy + 8)</code>:<ul>
+<li><code>moveTo(cx - 8, cy - 2)</code>, <code>lineTo(cx + 8, cy - 2)</code>, <code>lineTo(cx + 6, cy + 16)</code>, <code>lineTo(cx - 6, cy + 16)</code></li>
+</ul>
+</li>
+<li>Fill: <code>#ffccdd</code> (light pink)</li>
+<li>Stroke: <code>#dd88aa</code>, lineWidth 1</li>
+</ul>
+<p><strong>Tutu (skirt):</strong></p>
+<ul>
+<li>Series of overlapping triangles fanning out from the waist at <code>cy + 16</code>:<ul>
+<li>7 triangles, each 14px wide at base, 12px tall, evenly spaced around the waist</li>
+<li>Fan from angle -80deg to +80deg</li>
+<li>Fill: <code>#ff88bb</code> (bright pink)</li>
+<li>Stroke: <code>#dd6699</code>, lineWidth 1</li>
+</ul>
+</li>
+<li>A slightly darker underlayer: same shape at <code>#ee77aa</code>, offset 2px lower, for depth</li>
+</ul>
+<p><strong>Arms (ballet pose, raised):</strong></p>
+<ul>
+<li>Left arm: curved line from <code>(cx - 8, cy)</code> arcing up to <code>(cx - 20, cy - 25)</code><ul>
+<li><code>quadraticCurveTo(cx - 18, cy - 10, cx - 20, cy - 25)</code></li>
+</ul>
+</li>
+<li>Right arm: mirror, arcing to <code>(cx + 20, cy - 25)</code></li>
+<li>Stroke: <code>#ffccdd</code>, lineWidth 4</li>
+<li>Hands: small circles at arm tips, radius 3, fill <code>#ffccdd</code></li>
+</ul>
+<p><strong>Head (coffee cup):</strong></p>
+<ul>
+<li>Cup body: trapezoid<ul>
+<li><code>moveTo(cx - 10, cy - 14)</code>, <code>lineTo(cx + 10, cy - 14)</code>, <code>lineTo(cx + 8, cy - 32)</code>, <code>lineTo(cx - 8, cy - 32)</code></li>
+</ul>
+</li>
+<li>Fill: <code>#ffffff</code> (white ceramic)</li>
+<li>Stroke: <code>#cccccc</code>, lineWidth 1.5</li>
+<li>Cup rim: rect <code>(cx - 11, cy - 34)</code>, width 22, height 3</li>
+<li>Fill: <code>#eeeeee</code></li>
+<li>Handle: small arc on right side of cup<ul>
+<li><code>ctx.arc(cx + 12, cy - 24, 5, -Math.PI/2, Math.PI/2)</code> (open arc, right side)</li>
+<li>Stroke: <code>#cccccc</code>, lineWidth 2, no fill</li>
+</ul>
+</li>
+<li>Coffee inside: dark ellipse visible at top of cup<ul>
+<li>Ellipse at <code>(cx, cy - 32)</code>, radiusX=7, radiusY=2</li>
+<li>Fill: <code>#4a2c0a</code> (dark coffee brown)</li>
+</ul>
+</li>
+<li>Steam: 2-3 wavy lines rising from coffee surface<ul>
+<li>Sine wave paths from <code>(cx - 3, cy - 35)</code> and <code>(cx + 3, cy - 35)</code>, rising 10px</li>
+<li>Stroke: <code>#cccccc</code> at 50% opacity, lineWidth 1</li>
+<li>Animated: phase shifts over time for rising steam effect</li>
+</ul>
+</li>
+</ul>
+<p><strong>Face (on the cup):</strong></p>
+<ul>
+<li>Eyes: two small arcs (happy closed eyes, like <code>^  ^</code>)<ul>
+<li>Left: arc at <code>(cx - 4, cy - 24)</code>, opening downward, radius 3</li>
+<li>Right: arc at <code>(cx + 4, cy - 24)</code>, same</li>
+<li>Stroke: <code>#4a2c0a</code>, lineWidth 1.5</li>
+</ul>
+</li>
+<li>Blush: two small pink circles at <code>(cx - 7, cy - 21)</code> and <code>(cx + 7, cy - 21)</code>, radius 2.5<ul>
+<li>Fill: <code>#ffaacc</code> at 60% opacity</li>
+</ul>
+</li>
+<li>Mouth: small &quot;o&quot; circle at <code>(cx, cy - 20)</code>, radius 2<ul>
+<li>Stroke: <code>#4a2c0a</code>, lineWidth 1</li>
+</ul>
+</li>
+</ul>
+<p><strong>Idle animation:</strong> Sways left and right. Entire character translates <code>x += 15 * Math.sin(time * 0.003)</code>. Steam continues animating.</p>
+<hr>
+<h4>Character 5: Brr Brr Patapim (PENALTY)</h4>
+<p><em>Spiky, red/warning-colored creature. Visually screams &quot;DO NOT TAP.&quot; But also cute enough to bait mistakes.</em></p>
+<p><strong>Body (round, spiky):</strong></p>
+<ul>
+<li>Main body circle at <code>(cx, cy)</code>, radius 22</li>
+<li>Fill: <code>#ff3838</code> (Italian Red from extended palette)</li>
+<li>Stroke: <code>#cc2020</code>, lineWidth 2</li>
+</ul>
+<p><strong>Spikes (8 spikes radiating from body):</strong></p>
+<ul>
+<li>8 triangular spikes evenly around the body (every 45 degrees):<ul>
+<li>For each spike at angle <code>a = i * Math.PI / 4</code>:<ul>
+<li>Base points: two points on the circle edge at <code>a - 0.15</code> and <code>a + 0.15</code>, radius 22</li>
+<li>Tip: point at radius 34 at angle <code>a</code></li>
+<li>Draw triangle connecting these three points</li>
+</ul>
+</li>
+<li>Fill: <code>#ff5555</code></li>
+<li>Stroke: <code>#cc2020</code>, lineWidth 1</li>
+</ul>
+</li>
+</ul>
+<p><strong>Face (cute but evil):</strong></p>
+<ul>
+<li>Eyes: two large circles at <code>(cx - 8, cy - 6)</code> and <code>(cx + 8, cy - 6)</code>, radius 6<ul>
+<li>Fill: <code>#ffffff</code></li>
+<li>Pupils: large black circles, radius 4 (big puppy eyes -- the bait)</li>
+<li>Fill: <code>#000000</code></li>
+<li>Highlight dots: tiny white circles at <code>(pupilX + 1.5, pupilY - 1.5)</code>, radius 1.5<ul>
+<li>Fill: <code>#ffffff</code> (the kawaii eye highlight that makes it look cute)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mouth: small curved frown<ul>
+<li><code>ctx.arc(cx, cy + 6, 6, Math.PI * 0.15, Math.PI * 0.85)</code> -- upside-down arc</li>
+<li>Stroke: <code>#880000</code>, lineWidth 2</li>
+</ul>
+</li>
+<li>Bottom lip quiver: mouth oscillates +/- 1px vertically at 3Hz (trembling, as if cold -- &quot;brrr&quot;)</li>
+</ul>
+<p><strong>Warning indicators:</strong></p>
+<ul>
+<li>Small exclamation mark above head: triangle <code>(cx, cy - 40)</code> with <code>!</code> inside<ul>
+<li>Triangle: fill <code>#ffd000</code> (Brainrot Yellow), 12px wide, 10px tall</li>
+<li><code>!</code> text: Bungee, 8px, fill <code>#000000</code></li>
+</ul>
+</li>
+<li>Pulsing red glow: shadow around the body<ul>
+<li><code>ctx.shadowColor = &#39;#ff3838&#39;</code>, <code>shadowBlur = 8 + 4 * Math.sin(time * 0.006)</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Idle animation:</strong> Shivers/vibrates. Position jitters +/- 1px randomly each frame on both axes. Spikes pulse slightly (radius oscillates 32-36). Cute blink every 2 seconds (eyes close for 100ms).</p>
+<hr>
+<h4>Character 6: Lirili Larila (RARE BONUS)</h4>
+<p><em>Golden, glowing, ethereal butterfly-fairy creature. Shimmers. Appears only briefly.</em></p>
+<p><strong>Body (small, delicate):</strong></p>
+<ul>
+<li>Oval body at <code>(cx, cy + 2)</code>, radiusX=10, radiusY=14</li>
+<li>Fill: <code>#ffd700</code> (gold)</li>
+<li>Stroke: <code>#daa520</code>, lineWidth 1.5</li>
+</ul>
+<p><strong>Wings (butterfly-style, 4 wings):</strong></p>
+<ul>
+<li>Upper-left wing: large ellipse at <code>(cx - 18, cy - 8)</code>, radiusX=14, radiusY=10, rotated -20deg</li>
+<li>Upper-right wing: mirror</li>
+<li>Lower-left wing: smaller ellipse at <code>(cx - 14, cy + 6)</code>, radiusX=10, radiusY=7, rotated -30deg</li>
+<li>Lower-right wing: mirror</li>
+<li>Wing fill: <code>#ffd700</code> at 70% opacity</li>
+<li>Wing stroke: <code>#daa520</code>, lineWidth 1</li>
+<li>Wing sparkle: 3-4 tiny white dots at random positions within each wing, blinking on/off at staggered intervals</li>
+</ul>
+<p><strong>Face:</strong></p>
+<ul>
+<li>Eyes: two small black dots at <code>(cx - 4, cy - 4)</code> and <code>(cx + 4, cy - 4)</code>, radius 2</li>
+<li>Smile: tiny upward arc at <code>(cx, cy + 1)</code>, radius 3, top-half arc<ul>
+<li>Stroke: <code>#8b6914</code>, lineWidth 1</li>
+</ul>
+</li>
+</ul>
+<p><strong>Antennae:</strong></p>
+<ul>
+<li>Two curved lines from top of body:<ul>
+<li>Left: <code>moveTo(cx - 3, cy - 12)</code>, <code>quadraticCurveTo(cx - 10, cy - 25, cx - 6, cy - 28)</code></li>
+<li>Right: mirror</li>
+<li>Stroke: <code>#daa520</code>, lineWidth 1</li>
+<li>Tip dots: circles at antenna ends, radius 2, fill <code>#ffd700</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Glow effect:</strong></p>
+<ul>
+<li>Radial gradient behind entire character:<ul>
+<li>Center: <code>rgba(255, 215, 0, 0.3)</code>, outer: <code>rgba(255, 215, 0, 0.0)</code></li>
+<li>Radius: 50px, centered on character</li>
+<li>Pulsing: gradient opacity oscillates 0.15-0.35 at 3Hz</li>
+</ul>
+</li>
+</ul>
+<p><strong>Idle animation:</strong> Wings flap (rotate +/-10deg at 6Hz). Entire character floats upward slowly during display (rises 15px total over display duration). Sparkles on wings shimmer randomly.</p>
+<hr>
+<h3>4.2 Hole Design</h3>
+<p>The holes are dark oval portals with a subtle swirl effect.</p>
+<p><strong>Hole rendering (per hole):</strong></p>
+<ol>
+<li><p><strong>Shadow/depth</strong> -- dark ellipse beneath the hole:</p>
+<ul>
+<li>Ellipse at <code>(hole.x, hole.y + 4)</code>, radiusX=52, radiusY=22</li>
+<li>Fill: <code>#000000</code> at 40% opacity</li>
+</ul>
+</li>
+<li><p><strong>Hole opening</strong> -- main dark portal:</p>
+<ul>
+<li>Ellipse at <code>(hole.x, hole.y)</code>, radiusX=50, radiusY=20</li>
+<li>Fill: radial gradient center <code>#0a0a0f</code> (Void), edge <code>#16161f</code> (Surface)</li>
+</ul>
+</li>
+<li><p><strong>Rim highlight</strong> -- subtle edge:</p>
+<ul>
+<li>Ellipse stroke at same position, radiusX=50, radiusY=20</li>
+<li>Stroke: <code>#2a2a3f</code> (slightly lighter than Surface), lineWidth 2</li>
+</ul>
+</li>
+<li><p><strong>Swirl detail</strong> -- two subtle curved lines inside the hole:</p>
+<ul>
+<li>Small arcs in <code>#1a1a2f</code> at 30% opacity, suggesting a portal void</li>
+<li>Animated: rotate slowly (0.5 RPM) for a living portal effect</li>
+</ul>
+</li>
+</ol>
+<p><strong>Character clipping:</strong> When a character rises from or sinks into a hole, use <code>ctx.save()</code> / <code>ctx.clip()</code> with the hole ellipse as clipping region for the lower portion of the character sprite. This creates the illusion of emerging from the hole.</p>
+<h3>4.3 Background</h3>
+<p><strong>Playing field layers (back to front):</strong></p>
+<ol>
+<li><p><strong>Base fill:</strong> Solid <code>#0a0a0f</code> (Void)</p>
+</li>
+<li><p><strong>Far background (parallax layer 1, moves at 0.1x speed of... nothing, just a subtle drift):</strong></p>
+<ul>
+<li>Abstract Italian cityscape silhouette along the bottom third</li>
+<li>Simple rectangles and triangles in <code>#12121a</code> representing buildings</li>
+<li>A leaning tower shape (Pisa reference) off to one side</li>
+<li>Drifts left at 0.2px/frame, wraps around</li>
+</ul>
+</li>
+<li><p><strong>Mid background (static):</strong></p>
+<ul>
+<li>Subtle radial gradient from center: <code>#0f0f18</code> at center to <code>#0a0a0f</code> at edges</li>
+<li>Creates a &quot;spotlight on the grid&quot; feel</li>
+<li>Optional: very faint grid lines connecting the hole positions, stroke <code>#111118</code> at 20% opacity</li>
+</ul>
+</li>
+<li><p><strong>Ground plane:</strong></p>
+<ul>
+<li>A slightly elevated surface strip behind the bottom row of holes</li>
+<li>Color: <code>#13131d</code></li>
+<li>Gives the 3x3 grid a slight depth illusion</li>
+</ul>
+</li>
+<li><p><strong>Particle layer (over everything, under HUD):</strong></p>
+<ul>
+<li>10-15 tiny floating particles drifting upward slowly</li>
+<li>Small circles, radius 1-2px, fill <code>#c8ff00</code> at 10-20% opacity</li>
+<li>Adds &quot;aura energy&quot; ambiance without being distracting</li>
+</ul>
+</li>
+</ol>
+<h3>4.4 Sound Effects (Web Audio API)</h3>
+<p>All sounds are synthesized. No audio file assets. Each sound is described as an oscillator configuration for Web Audio API.</p>
+<p><strong>Sound architecture:</strong></p>
+<pre><code class="language-javascript">const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+// Resume on first user interaction (required by browsers)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Sound</th>
+<th>Trigger</th>
+<th>Synthesis</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Hit (standard)</strong></td>
+<td>Tap any point character</td>
+<td>440Hz square wave, 80ms duration, quick volume ramp down. Gain: 0.3. Feels like a &quot;bonk.&quot;</td>
+</tr>
+<tr>
+<td><strong>Hit (bonus/Lirili)</strong></td>
+<td>Tap Lirili Larila</td>
+<td>Rising arpeggio: 523Hz -&gt; 659Hz -&gt; 784Hz, each 60ms, triangle wave. Gain: 0.3. Sparkly.</td>
+</tr>
+<tr>
+<td><strong>Hit (penalty)</strong></td>
+<td>Tap Brr Brr Patapim</td>
+<td>150Hz sawtooth wave, 200ms, slight pitch bend down to 100Hz. Gain: 0.4. Buzzy and wrong-sounding.</td>
+</tr>
+<tr>
+<td><strong>Miss</strong></td>
+<td>Character despawns untapped</td>
+<td>300Hz sine wave, pitch bend down to 200Hz over 150ms. Gain: 0.15. Subtle &quot;womp.&quot;</td>
+</tr>
+<tr>
+<td><strong>Combo milestone (5+)</strong></td>
+<td>Combo counter hits 5, 10, 15, 20</td>
+<td>Base note + perfect fifth (e.g., 440 + 660Hz), both triangle waves, 150ms, slight chorus via detuning one by 5 cents. Gain: 0.25.</td>
+</tr>
+<tr>
+<td><strong>Game over</strong></td>
+<td>Timer reaches 0</td>
+<td>Descending 4-note sequence: 523 -&gt; 440 -&gt; 349 -&gt; 261Hz, each 200ms, square wave. Gain: 0.3. Classic &quot;you died&quot; feel.</td>
+</tr>
+<tr>
+<td><strong>New high score</strong></td>
+<td>Score exceeds stored best</td>
+<td>Ascending 4-note sequence: 523 -&gt; 659 -&gt; 784 -&gt; 1047Hz, each 150ms, triangle wave. Gain: 0.3. Celebratory.</td>
+</tr>
+<tr>
+<td><strong>Tap feedback</strong></td>
+<td>Any tap on canvas (no hit)</td>
+<td>800Hz sine, 20ms, gain 0.05. Near-silent click confirmation.</td>
+</tr>
+</tbody></table>
+<p><strong>Sound toggle:</strong> All sound is OFF by default (see Scope -- sound is nice-to-have). When implemented, a mute toggle button (icon button, top-left) controls a master gain node.</p>
+<h3>4.5 UI Theming</h3>
+<p><strong>HUD layout during gameplay (on-canvas, drawn every frame):</strong></p>
+<pre><code>+------------------------------------------+
+| [mute]          AURA POINTS        00:60 |
+|              *** 4,250 ***               |
+|                combo x3                  |
+|                                          |
+|    (O)         (O)         (O)           |
+|                                          |
+|    (O)         (O)         (O)           |
+|                                          |
+|    (O)         (O)         (O)           |
+|                                          |
+| [====|====|====|    ] wave progress      |
++------------------------------------------+
+</code></pre>
+<p><strong>Elements:</strong></p>
+<ol>
+<li><strong>&quot;AURA POINTS&quot; label:</strong> Space Grotesk 500, 14px, Text Secondary (<code>#8888a0</code>), centered, y=16</li>
+<li><strong>Score number:</strong> Bungee, 48px, Text Primary (<code>#f0f0f0</code>), centered, y=58. On score change: flash to Electric Lime (<code>#c8ff00</code>) then fade back over 200ms + scale to 1.15x then back over 150ms.</li>
+<li><strong>Combo counter:</strong> Space Grotesk 500, 16px, Mint Aura (<code>#00ffaa</code>), centered, y=78. Format: <code>&quot;combo x{n}&quot;</code>. Hidden when combo is 0.</li>
+<li><strong>Timer:</strong> Bungee, 28px, Text Primary, top-right (x=370, y=36). Format: <code>&quot;00:XX&quot;</code>. Turns Hot Magenta at 10s.</li>
+<li><strong>Mute button:</strong> top-left, 36x36px tap target, icon: speaker/muted glyph drawn with lines.</li>
+<li><strong>Wave progress bar:</strong> bottom of canvas, y=585, width=320, height=4, centered. Background <code>#1e1e2e</code>, fill <code>#555570</code>.</li>
+</ol>
+<p><strong>Per-game accent color:</strong> Italian Red (<code>#ff3838</code>) from the extended palette. Used for:</p>
+<ul>
+<li>Penalty hit screen-edge flash</li>
+<li>Brr Brr Patapim glow</li>
+<li>&quot;GAME OVER&quot; text on the game-over screen (actually Hot Magenta as per visual identity, Italian Red reserved for in-game danger states)</li>
+</ul>
+<h3>4.6 Game-Over Messages</h3>
+<p>Displayed on the game-over overlay. Selected randomly. The message corresponds to score tiers but includes random variety within each tier.</p>
+<p><strong>Score 0-500 (low):</strong></p>
+<ol>
+<li>&quot;certified NPC moment&quot;</li>
+<li>&quot;the brainrot was too powerful&quot;</li>
+<li>&quot;you have negative aura right now&quot;</li>
+<li>&quot;Brr Brr Patapim sends his regards&quot;</li>
+<li>&quot;skill issue detected&quot;</li>
+</ol>
+<p><strong>Score 501-2000 (mid):</strong>
+6. &quot;not bad. not good. but not bad.&quot;
+7. &quot;your aura is... acceptable&quot;
+8. &quot;the Italian brainrot council acknowledges you&quot;
+9. &quot;Tralalero would be mildly impressed&quot;
+10. &quot;somewhere, Bombardiro nods respectfully&quot;</p>
+<p><strong>Score 2001-5000 (high):</strong>
+11. &quot;okay you actually kind of cooked&quot;
+12. &quot;sigma-tier aura detected&quot;
+13. &quot;the brainrot bows before you&quot;
+14. &quot;Lirili Larila wrote a song about this&quot;
+15. &quot;your reflexes are illegal in 12 countries&quot;</p>
+<p><strong>Score 5001+ (elite):</strong>
+16. &quot;you&#39;ve transcended brainrot. you ARE brainrot.&quot;
+17. &quot;the aura readings are off the charts&quot;
+18. &quot;touch grass immediately (after sharing this)&quot;
+19. &quot;Tung Tung Tung Sahur plays a drum solo in your honor&quot;
+20. &quot;this score is a violation of the Geneva Convention&quot;</p>
+<hr>
+<h2>5. User Stories</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>User Story</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>US-1</td>
+<td>As a player, I want to tap characters that pop up from holes so that I can earn AURA POINTS and feel the satisfaction of whacking them.</td>
+<td>Must-have</td>
+</tr>
+<tr>
+<td>US-2</td>
+<td>As a player, I want different characters to be worth different points and have different behaviors so that I have to make quick decisions about which to prioritize.</td>
+<td>Must-have</td>
+</tr>
+<tr>
+<td>US-3</td>
+<td>As a player, I want a penalty character that costs me points if I tap it so that the game requires restraint, not just speed.</td>
+<td>Must-have</td>
+</tr>
+<tr>
+<td>US-4</td>
+<td>As a player, I want a combo system that rewards consecutive hits so that I&#39;m motivated to maintain focus and not miss.</td>
+<td>Must-have</td>
+</tr>
+<tr>
+<td>US-5</td>
+<td>As a player, I want the game to get harder over time (faster spawns, shorter display, more penalties) so that every round feels progressively more intense.</td>
+<td>Must-have</td>
+</tr>
+<tr>
+<td>US-6</td>
+<td>As a player, I want my high score saved locally so that I have a persistent personal best to chase across sessions.</td>
+<td>Must-have</td>
+</tr>
+<tr>
+<td>US-7</td>
+<td>As a player, I want a share button on the game-over screen so that I can flex my AURA POINTS in group chats and social media.</td>
+<td>Must-have</td>
+</tr>
+<tr>
+<td>US-8</td>
+<td>As a player, I want the game to be playable on my phone with responsive touch targets and proper canvas scaling so that it works well on any screen size.</td>
+<td>Must-have</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>6. Acceptance Criteria</h2>
+<h3>US-1: Tap characters for points</h3>
+<ul>
+<li><input disabled="" type="checkbox"> AC-1.1: Tapping a visible character within its hitbox increments the score by that character&#39;s base points (modified by combo multiplier)</li>
+<li><input disabled="" type="checkbox"> AC-1.2: A hit character plays a 200ms impact animation (scale to 1.3x + white flash) and floating score text (+N) that rises and fades over 500ms</li>
+<li><input disabled="" type="checkbox"> AC-1.3: The character descends back into the hole over 150ms after being hit</li>
+<li><input disabled="" type="checkbox"> AC-1.4: Tapping an empty hole or area with no active character has no effect on score or combo</li>
+</ul>
+<h3>US-2: Different character behaviors</h3>
+<ul>
+<li><input disabled="" type="checkbox"> AC-2.1: Tralalero Tralala appears at standard display time and awards 100 base points</li>
+<li><input disabled="" type="checkbox"> AC-2.2: Bombardiro Crocodilo appears at 60% of standard display time and awards 200 base points</li>
+<li><input disabled="" type="checkbox"> AC-2.3: Tung Tung Tung Sahur appears at 130% display time with a reduced hitbox radius (30px vs 40px) and awards 150 base points</li>
+<li><input disabled="" type="checkbox"> AC-2.4: Ballerina Cappuccina sways left-right during display (hitbox center shifts +/-15px sinusoidally) and awards 150 base points</li>
+<li><input disabled="" type="checkbox"> AC-2.5: Lirili Larila appears at 40% display time, glows gold, and awards 500 base points. Does not appear before wave 3 (effective wave 3)</li>
+<li><input disabled="" type="checkbox"> AC-2.6: Each character is visually distinct and identifiable within 200ms of appearing</li>
+</ul>
+<h3>US-3: Penalty character</h3>
+<ul>
+<li><input disabled="" type="checkbox"> AC-3.1: Hitting Brr Brr Patapim subtracts 200 points from the score (score cannot go below 0)</li>
+<li><input disabled="" type="checkbox"> AC-3.2: Hitting Brr Brr Patapim resets the combo counter to 0</li>
+<li><input disabled="" type="checkbox"> AC-3.3: Hitting Brr Brr Patapim triggers a screen shake effect (canvas translates +/-4px for 300ms) and penalty sound</li>
+<li><input disabled="" type="checkbox"> AC-3.4: Brr Brr Patapim is visually distinct: red, spiky, has warning indicator above head</li>
+<li><input disabled="" type="checkbox"> AC-3.5: Brr Brr Patapim&#39;s spawn weight increases with difficulty (10% at wave 1 to 20%+ at wave 5+)</li>
+</ul>
+<h3>US-4: Combo system</h3>
+<ul>
+<li><input disabled="" type="checkbox"> AC-4.1: Each consecutive hit (non-penalty) increments the combo counter by 1</li>
+<li><input disabled="" type="checkbox"> AC-4.2: The score multiplier equals <code>1 + (comboCount * 0.25)</code>, capped at 4.0x (combo 12)</li>
+<li><input disabled="" type="checkbox"> AC-4.3: Missing a character (despawn without tap) resets combo to 0</li>
+<li><input disabled="" type="checkbox"> AC-4.4: The combo counter is displayed on the HUD when combo &gt;= 1, hidden when combo is 0</li>
+<li><input disabled="" type="checkbox"> AC-4.5: Combo milestones (5, 10, 15, 20) display floating text feedback with distinct styling</li>
+</ul>
+<h3>US-5: Difficulty progression</h3>
+<ul>
+<li><input disabled="" type="checkbox"> AC-5.1: Display time decreases each wave per formula: <code>max(400, 1200 - effectiveWave * 80)</code> ms</li>
+<li><input disabled="" type="checkbox"> AC-5.2: Spawn interval decreases each wave per formula: <code>max(300, 900 - effectiveWave * 60)</code> ms</li>
+<li><input disabled="" type="checkbox"> AC-5.3: Maximum simultaneously active characters increases per formula: <code>min(5, 1 + floor(effectiveWave / 2))</code></li>
+<li><input disabled="" type="checkbox"> AC-5.4: Penalty character spawn weight increases per formula: <code>min(0.25, 0.10 + effectiveWave * 0.02)</code></li>
+<li><input disabled="" type="checkbox"> AC-5.5: Wave transitions occur every 15 seconds without visible interruption to gameplay</li>
+</ul>
+<h3>US-6: High score persistence</h3>
+<ul>
+<li><input disabled="" type="checkbox"> AC-6.1: After each round, if the current score exceeds the stored high score, the new high score is saved to localStorage under key <code>whackARotHighScore</code></li>
+<li><input disabled="" type="checkbox"> AC-6.2: The game-over screen displays the current score and the all-time high score</li>
+<li><input disabled="" type="checkbox"> AC-6.3: If the player achieves a new high score, the game-over screen displays &quot;NEW HIGH SCORE&quot; in Brainrot Yellow (<code>#ffd000</code>) with a flash animation</li>
+<li><input disabled="" type="checkbox"> AC-6.4: High score persists across browser sessions (page reload, close/reopen)</li>
+</ul>
+<h3>US-7: Share functionality</h3>
+<ul>
+<li><input disabled="" type="checkbox"> AC-7.1: The game-over screen includes a &quot;share score&quot; button (primary button style)</li>
+<li><input disabled="" type="checkbox"> AC-7.2: Tapping &quot;share score&quot; copies the following text to clipboard: <code>&quot;i got [SCORE] aura in WHACK-A-ROT [URL]&quot;</code> (where URL is the game page)</li>
+<li><input disabled="" type="checkbox"> AC-7.3: If the Web Share API is available (mobile), it invokes <code>navigator.share()</code> with the share text instead of clipboard</li>
+<li><input disabled="" type="checkbox"> AC-7.4: After share action, the button text changes to &quot;copied!&quot; or &quot;shared!&quot; for 2 seconds, then reverts</li>
+</ul>
+<h3>US-8: Responsive mobile play</h3>
+<ul>
+<li><input disabled="" type="checkbox"> AC-8.1: The canvas renders at a logical resolution of 400x600 and scales to fill the viewport width (max 100vw) while maintaining aspect ratio</li>
+<li><input disabled="" type="checkbox"> AC-8.2: On viewports wider than 500px, the canvas is capped at 500px width and centered</li>
+<li><input disabled="" type="checkbox"> AC-8.3: Touch targets (characters) have a minimum effective tap area of 48x48px at any screen size</li>
+<li><input disabled="" type="checkbox"> AC-8.4: Both <code>mousedown</code> and <code>touchstart</code> events are handled. <code>touchstart</code> calls <code>preventDefault()</code> to prevent double-firing and ghost clicks</li>
+<li><input disabled="" type="checkbox"> AC-8.5: The game prevents page scroll/bounce on touch devices during gameplay (CSS <code>touch-action: none</code> on the canvas, <code>overflow: hidden</code> on body)</li>
+<li><input disabled="" type="checkbox"> AC-8.6: The canvas is not letterboxed on common phone aspect ratios (16:9 through 19.5:9). The 400x600 (2:3) logical ratio fits within all of these with minimal black bars.</li>
+</ul>
+<hr>
+<h2>7. Technical Spec</h2>
+<h3>7.1 Canvas Size and Scaling</h3>
+<p><strong>Logical canvas:</strong> 400 x 600 pixels. All game coordinates use this space.</p>
+<p><strong>CSS scaling:</strong></p>
+<pre><code class="language-css">canvas {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  display: block;
+  margin: 0 auto;
+  touch-action: none;
+}
+</code></pre>
+<p>The <code>canvas.width</code> and <code>canvas.height</code> attributes are set to 400 and 600 respectively. CSS scales the display. Input coordinates are converted from DOM space to canvas space (see section 3.5).</p>
+<p><strong>Device pixel ratio:</strong> For crisp rendering on Retina/high-DPI screens:</p>
+<pre><code class="language-javascript">const dpr = window.devicePixelRatio || 1;
+canvas.width = 400 * dpr;
+canvas.height = 600 * dpr;
+ctx.scale(dpr, dpr);
+// CSS size remains 400x600 logical
+</code></pre>
+<h3>7.2 Game State Machine</h3>
+<pre><code>                    +-----------+
+                    |   MENU    |
+                    |           |
+                    +-----+-----+
+                          |
+                    tap &quot;start&quot;
+                          |
+                    +-----v-----+
+                    |  PLAYING  |&lt;---+
+                    |           |    |
+                    +-----+-----+    |
+                          |          |
+                   timer = 0         |
+                          |          |
+                    +-----v-----+    |
+                    | GAME_OVER |    |
+                    |           |----+
+                    +-----------+
+                     tap &quot;retry&quot;
+</code></pre>
+<p><strong>States:</strong></p>
+<ul>
+<li><code>MENU</code>: Title screen. &quot;start game&quot; button. High score display. Static, no game loop running.</li>
+<li><code>PLAYING</code>: Active game loop (requestAnimationFrame). Timer counting down. Characters spawning. Input active.</li>
+<li><code>GAME_OVER</code>: Overlay on dimmed final game frame. Score, high score, share button, retry button. Game loop paused.</li>
+</ul>
+<p><strong>Transitions:</strong></p>
+<ul>
+<li><code>MENU</code> -&gt; <code>PLAYING</code>: on &quot;start game&quot; tap. Initialize: score=0, combo=0, timer=60, wave=1, round++ (or round=1 if first).</li>
+<li><code>PLAYING</code> -&gt; <code>GAME_OVER</code>: when timer reaches 0. Calculate final score. Check/save high score. Select game-over message.</li>
+<li><code>GAME_OVER</code> -&gt; <code>PLAYING</code>: on &quot;retry&quot; tap. Reset game state, increment round counter.</li>
+<li><code>GAME_OVER</code> -&gt; <code>MENU</code>: on &quot;menu&quot; tap. Reset round counter.</li>
+</ul>
+<h3>7.3 File Structure</h3>
+<pre><code>games/game-02/
+  index.html          -- Entry point. Canvas element, font imports, meta tags, script loading
+  css/
+    style.css         -- Canvas container, body reset, font declarations, responsive rules
+  js/
+    main.js           -- Entry point. Initializes canvas, state machine, starts menu
+    game.js           -- Game loop (update + render), timer, wave management, spawn scheduler
+    characters.js     -- Character type definitions (points, timing, hitbox, draw functions)
+    holes.js          -- Hole grid positions, hole rendering, character rise/sink clipping
+    input.js          -- Mouse and touch event handling, coordinate conversion, hit testing
+    scoring.js        -- Score tracking, combo multiplier logic, high score (localStorage)
+    ui.js             -- HUD rendering (score, timer, combo), menu screen, game-over overlay
+    audio.js          -- Web Audio API synthesis, sound definitions, mute toggle
+    effects.js        -- Impact animations, floating text, screen shake, combo milestone effects
+    sharing.js        -- Web Share API / clipboard copy, share text generation
+    utils.js          -- Helper functions: lerp, clamp, random range, easing functions
+</code></pre>
+<p><strong>Total: 1 HTML, 1 CSS, 11 JS files.</strong> No build step. No bundler. Script tags in index.html load in order (utils first, main last) or use a single <code>type=&quot;module&quot;</code> entry point with imports.</p>
+<h3>7.4 Entity Model</h3>
+<pre><code>Game
+  state: &#39;menu&#39; | &#39;playing&#39; | &#39;game_over&#39;
+  score: number
+  highScore: number
+  combo: number
+  timer: number (seconds remaining, float)
+  wave: number (1-4 within round)
+  round: number (increments on retry)
+  effectiveWave: number (computed)
+  holes: Hole[9]
+
+Hole
+  id: number (0-8)
+  x: number (center x)
+  y: number (center y)
+  character: Character | null
+  state: &#39;empty&#39; | &#39;rising&#39; | &#39;visible&#39; | &#39;sinking&#39; | &#39;hit&#39;
+  stateTimer: number (ms elapsed in current state)
+
+Character
+  type: &#39;tralalero&#39; | &#39;bombardiro&#39; | &#39;tungtung&#39; | &#39;ballerina&#39; | &#39;brrbrr&#39; | &#39;lirili&#39;
+  basePoints: number
+  displayTimeMultiplier: number
+  hitboxRadius: number
+  draw(ctx, cx, cy, time): void  -- renders this character
+  getHitboxCenter(cx, cy, time): {x, y}  -- returns current hitbox center (accounts for sway etc.)
+
+ScoreDisplay
+  currentDisplay: number (animated, lerps toward actual score)
+  flashTimer: number (ms remaining for lime flash on change)
+  scaleTimer: number (ms remaining for scale pulse)
+
+ComboCounter
+  count: number
+  display: boolean (visible when count &gt; 0)
+  milestoneTriggered: number (last milestone shown, to avoid repeats)
+
+Timer
+  remaining: number (float, seconds)
+  isWarning: boolean (true when &lt; 10s)
+  paused: boolean (true when tab not visible)
+</code></pre>
+<h3>7.5 Character Drawing (Sprite Approach)</h3>
+<p>Characters are drawn entirely with Canvas 2D primitives. Each character type has a <code>draw(ctx, cx, cy, time)</code> method defined in <code>characters.js</code> that renders the character at the given center position.</p>
+<p>The <code>time</code> parameter (ms since game start) drives idle animations (bobbing, swaying, spinning propellers, wing flapping, etc.).</p>
+<p><strong>Character state rendering:</strong></p>
+<ul>
+<li><code>rising</code>: character drawn with increasing <code>clipHeight</code> from 0 to full over 200ms. Clipped by hole ellipse.</li>
+<li><code>visible</code>: character fully visible, idle animation running.</li>
+<li><code>sinking</code>: reverse of rising. <code>clipHeight</code> decreases from full to 0 over 150ms.</li>
+<li><code>hit</code>: 200ms impact animation. Character scales to 1.3x, white overlay flash (globalCompositeOperation = &#39;source-atop&#39; fill with white at 60% opacity, fading), then transitions to <code>sinking</code>.</li>
+</ul>
+<p>No sprite sheets. No image loading. Pure procedural drawing.</p>
+<h3>7.6 Audio Approach</h3>
+<p>Web Audio API oscillator synthesis. No audio files.</p>
+<p><strong>Architecture:</strong></p>
+<pre><code class="language-javascript">// audio.js exports:
+function initAudio()        // Create AudioContext (call on first user gesture)
+function playHitSound()     // Standard hit
+function playBonusSound()   // Lirili Larila hit
+function playPenaltySound() // Brr Brr Patapim hit
+function playMissSound()    // Character despawned
+function playComboSound()   // Combo milestone
+function playGameOver()     // Game over jingle
+function playHighScore()    // New high score jingle
+function toggleMute()       // Toggle master gain between 0 and 1
+function isMuted()          // Returns current mute state
+</code></pre>
+<p>Each sound function creates a new OscillatorNode, connects it to a GainNode, connects that to the master GainNode, and schedules start/stop times. Oscillators are garbage-collected after stopping.</p>
+<p><strong>AudioContext resume:</strong> On iOS/Safari, AudioContext starts in &quot;suspended&quot; state. On first <code>touchstart</code> or <code>mousedown</code> in the <code>MENU</code> state, call <code>audioCtx.resume()</code>.</p>
+<h3>7.7 Score Persistence</h3>
+<p><strong>localStorage keys:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>whackARotHighScore</code></td>
+<td>number (string)</td>
+<td>All-time high score</td>
+</tr>
+<tr>
+<td><code>whackARotRoundCount</code></td>
+<td>number (string)</td>
+<td>Total rounds played (for analytics / ad frequency)</td>
+</tr>
+<tr>
+<td><code>whackARotSoundMuted</code></td>
+<td>&#39;true&#39; | &#39;false&#39;</td>
+<td>Sound mute preference</td>
+</tr>
+</tbody></table>
+<p><strong>Read on init:</strong></p>
+<pre><code class="language-javascript">const highScore = parseInt(localStorage.getItem(&#39;whackARotHighScore&#39;) || &#39;0&#39;, 10);
+</code></pre>
+<p><strong>Write on game over:</strong></p>
+<pre><code class="language-javascript">if (score &gt; highScore) {
+  localStorage.setItem(&#39;whackARotHighScore&#39;, String(score));
+}
+</code></pre>
+<h3>7.8 Responsive Design</h3>
+<p><strong>Breakpoints and behavior:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Viewport Width</th>
+<th>Canvas CSS Width</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt; 400px</td>
+<td>100vw</td>
+<td>Canvas stretches to fill. Very small phones.</td>
+</tr>
+<tr>
+<td>400-500px</td>
+<td>100vw</td>
+<td>Optimal mobile. Canvas fills width.</td>
+</tr>
+<tr>
+<td>500-1024px</td>
+<td>500px, centered</td>
+<td>Tablet. Canvas centered with dark margin.</td>
+</tr>
+<tr>
+<td>&gt; 1024px</td>
+<td>500px, centered</td>
+<td>Desktop. Canvas centered.</td>
+</tr>
+</tbody></table>
+<p><strong>Touch targets:</strong> The minimum hitbox radius of 30px (Tung Tung Tung Sahur) at the smallest supported canvas width (320px physical on a small phone) scales to <code>30 * (320/400) = 24px</code> physical. With the tap tolerance inherent in circular hit detection, this remains tappable. All other characters have 40px radius = 32px physical minimum, well above the 24px minimum recommended for touch.</p>
+<p><strong>Viewport meta tag:</strong></p>
+<pre><code class="language-html">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot;&gt;
+</code></pre>
+<p><strong>Prevent pull-to-refresh on mobile:</strong></p>
+<pre><code class="language-css">html, body {
+  overscroll-behavior: none;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+</code></pre>
+<hr>
+<h2>8. Monetization Hooks</h2>
+<p>Ads are NOT in v1 scope. These are placement specifications for when ads are integrated.</p>
+<table>
+<thead>
+<tr>
+<th>Placement</th>
+<th>Type</th>
+<th>Trigger</th>
+<th>Frequency</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Post-round interstitial</strong></td>
+<td>Interstitial (full screen)</td>
+<td>After game-over screen dismiss</td>
+<td>Every 3rd round (<code>roundCount % 3 === 0</code>)</td>
+<td>Never after the first round. Player needs to feel the loop before seeing ads.</td>
+</tr>
+<tr>
+<td><strong>Continue rewarded video</strong></td>
+<td>Rewarded video (opt-in)</td>
+<td>&quot;watch to add 15 seconds&quot; button on game-over screen</td>
+<td>Once per round max</td>
+<td>Adds 15 seconds to the timer and resumes gameplay. High-value to player on good runs.</td>
+</tr>
+<tr>
+<td><strong>Score doubler rewarded video</strong></td>
+<td>Rewarded video (opt-in)</td>
+<td>&quot;double your aura&quot; button on game-over screen</td>
+<td>Once per round max</td>
+<td>Doubles the final score (for share purposes and high score).</td>
+</tr>
+</tbody></table>
+<p><strong>Key constraint:</strong> No ads during gameplay. The 60-second round is sacred. All ad placements are on the game-over screen or between rounds at natural pause points.</p>
+<p><strong>Integration point:</strong> <code>main.js</code> state machine checks <code>roundCount</code> on <code>GAME_OVER</code> entry and calls <code>showInterstitial()</code> if the condition is met. The ad SDK integration is a separate module (<code>ads.js</code>) that is not part of v1.</p>
+<hr>
+<h2>9. Social Sharing</h2>
+<h3>Share Button</h3>
+<p>Primary button on the game-over overlay. Label: &quot;share score&quot; (sentence case per brand guide).</p>
+<p><strong>Share text format:</strong></p>
+<pre><code>i got {score} aura in WHACK-A-ROT
+{url}
+</code></pre>
+<p>Example:</p>
+<pre><code>i got 4,250 aura in WHACK-A-ROT
+brainrotgames.com/whack-a-rot
+</code></pre>
+<p><strong>Implementation:</strong></p>
+<pre><code class="language-javascript">async function shareScore(score, url) {
+  const text = `i got ${score.toLocaleString()} aura in WHACK-A-ROT\n${url}`;
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ text });
+      return &#39;shared&#39;;
+    } catch (e) {
+      // User cancelled or API failed, fall through to clipboard
+    }
+  }
+
+  await navigator.clipboard.writeText(text);
+  return &#39;copied&#39;;
+}
+</code></pre>
+<h3>Score Card (v1 -- text only)</h3>
+<p>The share text is the v1 implementation. No canvas-rendered image card in v1.</p>
+<p><strong>Future enhancement (out of scope):</strong> Render a 1080x1920 image card with:</p>
+<ul>
+<li>Dark background (<code>#0a0a0f</code>)</li>
+<li>Game title in Bungee, Electric Lime</li>
+<li>Score in Bungee, large</li>
+<li>Character breakdown stats (Tralalero x12, Bombardiro x5, etc.)</li>
+<li>Brainrot Games logo watermark</li>
+</ul>
+<h3>Character Hit Stats</h3>
+<p>During gameplay, track hits per character type:</p>
+<pre><code class="language-javascript">const hitStats = {
+  tralalero: 0,
+  bombardiro: 0,
+  tungtung: 0,
+  ballerina: 0,
+  brrbrr: 0,   // penalty hits
+  lirili: 0
+};
+</code></pre>
+<p>Display on the game-over screen below the score as a compact row of character icons with hit counts. Each icon is a 24x24 mini rendering of the character with the count below it. This is screenshot-friendly visual data.</p>
+<hr>
+<h2>10. Analytics Events</h2>
+<p>No analytics SDK in v1. These are the event definitions for when analytics is integrated. Events fire to a <code>trackEvent(name, properties)</code> function stub that can be wired to any analytics provider.</p>
+<table>
+<thead>
+<tr>
+<th>Event Name</th>
+<th>Trigger</th>
+<th>Properties</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>game_start</code></td>
+<td>Player taps &quot;start game&quot; from menu</td>
+<td><code>{ round: number }</code></td>
+</tr>
+<tr>
+<td><code>game_over</code></td>
+<td>Timer reaches 0</td>
+<td><code>{ score, highScore, isNewHighScore, combo_max, round, wave, hits: hitStats }</code></td>
+</tr>
+<tr>
+<td><code>character_hit</code></td>
+<td>Player taps a character successfully</td>
+<td><code>{ character_type, points_awarded, combo_count }</code></td>
+</tr>
+<tr>
+<td><code>character_penalty</code></td>
+<td>Player taps Brr Brr Patapim</td>
+<td><code>{ points_lost, combo_lost }</code></td>
+</tr>
+<tr>
+<td><code>character_missed</code></td>
+<td>Character despawns without being tapped</td>
+<td><code>{ character_type }</code></td>
+</tr>
+<tr>
+<td><code>share_tap</code></td>
+<td>Player taps share button</td>
+<td><code>{ method: &#39;web_share&#39; | &#39;clipboard&#39;, score }</code></td>
+</tr>
+<tr>
+<td><code>retry</code></td>
+<td>Player taps &quot;try again&quot;</td>
+<td><code>{ previous_score, round }</code></td>
+</tr>
+<tr>
+<td><code>menu_return</code></td>
+<td>Player taps &quot;menu&quot; from game-over</td>
+<td><code>{ previous_score }</code></td>
+</tr>
+<tr>
+<td><code>mute_toggle</code></td>
+<td>Player toggles sound</td>
+<td><code>{ muted: boolean }</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>11. Scope Boundaries</h2>
+<h3>IN Scope (v1)</h3>
+<ul>
+<li>6 characters with distinct behaviors, point values, and Canvas-drawn visuals</li>
+<li>3x3 hole grid with portal-style hole rendering</li>
+<li>Tap/click hit detection with per-character hitboxes</li>
+<li>Scoring with AURA POINTS label</li>
+<li>Combo multiplier system (up to 4.0x)</li>
+<li>60-second countdown timer per round</li>
+<li>Difficulty progression via wave system (display time, spawn interval, max active, penalty frequency)</li>
+<li>Game state machine: menu -&gt; playing -&gt; game-over</li>
+<li>Menu screen with title, start button, high score display</li>
+<li>Game-over screen with score, high score, message, share button, retry button, character hit stats</li>
+<li>20 random game-over messages across 4 score tiers</li>
+<li>High score persistence via localStorage</li>
+<li>Share functionality (Web Share API with clipboard fallback)</li>
+<li>Responsive canvas scaling (mobile-first, works on desktop)</li>
+<li>Touch and mouse input handling</li>
+<li>Impact animations (scale flash, floating score text)</li>
+<li>Screen shake on penalty hit</li>
+<li>Combo milestone floating text</li>
+<li>Background with layered depth and ambient particles</li>
+<li>Character idle animations (bob, sway, spin, drum, shiver, flutter)</li>
+<li>Character rise/sink hole clipping animations</li>
+<li>All character rendering via Canvas 2D primitives (no image assets)</li>
+</ul>
+<h3>OUT of Scope (v1)</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Reason</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Sound effects</strong></td>
+<td>Nice-to-have. Game is fully playable without audio. Web Audio synthesis can be added post-launch without any structural changes since <code>audio.js</code> is already specced as a standalone module.</td>
+<td>v1.1</td>
+</tr>
+<tr>
+<td><strong>Leaderboards</strong></td>
+<td>Requires backend. Out of scope for static HTML5 game.</td>
+<td>v2</td>
+</tr>
+<tr>
+<td><strong>Daily challenges</strong></td>
+<td>Requires backend for daily seed and validation.</td>
+<td>v2</td>
+</tr>
+<tr>
+<td><strong>Character unlocks</strong></td>
+<td>Adds complexity to first version. All 6 characters available from start.</td>
+<td>v1.1</td>
+</tr>
+<tr>
+<td><strong>Boss character (Cappuccino Assassino)</strong></td>
+<td>Multi-tap mechanic adds a different interaction pattern. Defer to avoid scope creep.</td>
+<td>v1.1</td>
+</tr>
+<tr>
+<td><strong>Background scene changes per wave</strong></td>
+<td>Single static background is sufficient for v1.</td>
+<td>v1.1</td>
+</tr>
+<tr>
+<td><strong>Canvas-rendered share image card</strong></td>
+<td>Text share is sufficient for v1. Image card is a polish feature.</td>
+<td>v1.1</td>
+</tr>
+<tr>
+<td><strong>Ad integration</strong></td>
+<td>Monetization layer is separate. Hooks are specced but not implemented.</td>
+<td>v2</td>
+</tr>
+<tr>
+<td><strong>Cross-game character unlocks</strong></td>
+<td>Requires shared state layer between games.</td>
+<td>v2</td>
+</tr>
+<tr>
+<td><strong>Entrance/exit character-specific animations</strong></td>
+<td>Characters use the same generic rise/sink. Per-character animations are polish.</td>
+<td>v1.1</td>
+</tr>
+<tr>
+<td><strong>Taunt animation on miss</strong></td>
+<td>Polish feature. Character just sinks back on miss in v1.</td>
+<td>v1.1</td>
+</tr>
+</tbody></table>
+<h3>Decision Rationale</h3>
+<p>v1 ships the core loop: tap characters, earn aura, build combos, beat your score, share it. Everything that makes the game <em>work</em> is in scope. Everything that makes the game <em>better</em> is v1.1. This gets the game live and testable as fast as possible.</p>
+<hr>
+<h2>12. Shared Infrastructure Usage</h2>
+<p><strong>Target directory:</strong> <code>games/shared/</code></p>
+<p>The following shared modules are expected to be available across all Brainrot Games titles. WHACK-A-ROT uses these where they exist.</p>
+<table>
+<thead>
+<tr>
+<th>Shared Module</th>
+<th>Usage in WHACK-A-ROT</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Game shell HTML template</strong></td>
+<td><code>index.html</code> base structure: meta tags, viewport, font imports, canvas container, script loading pattern</td>
+<td>To be created with Game 01 (Flappy Tralalero) and reused</td>
+</tr>
+<tr>
+<td><strong>CSS reset / base styles</strong></td>
+<td>Body reset, dark background, font declarations, canvas container centering, responsive rules, scroll prevention</td>
+<td>To be created with Game 01 and reused</td>
+</tr>
+<tr>
+<td><strong>Share utility</strong></td>
+<td><code>sharing.js</code> — Web Share API with clipboard fallback. Identical across games, only the share text content differs.</td>
+<td>To be created. Can live in <code>games/shared/sharing.js</code></td>
+</tr>
+<tr>
+<td><strong>Audio utility</strong></td>
+<td><code>audio.js</code> — Web Audio API context management, oscillator helper, mute toggle with localStorage persistence. The sound definitions are game-specific but the synthesis engine is shared.</td>
+<td>To be created as shared. Sound definitions remain in each game&#39;s <code>audio.js</code></td>
+</tr>
+<tr>
+<td><strong>Score persistence pattern</strong></td>
+<td>localStorage read/write pattern. Not a shared module (too simple to abstract), but key naming convention is shared: <code>{gameSlug}HighScore</code>, <code>{gameSlug}RoundCount</code>, <code>{gameSlug}SoundMuted</code></td>
+<td>Convention only</td>
+</tr>
+<tr>
+<td><strong>Analytics event stub</strong></td>
+<td><code>trackEvent(name, properties)</code> no-op function that future analytics SDK wires into. Shared interface, game-specific events.</td>
+<td>To be created in <code>games/shared/analytics.js</code></td>
+</tr>
+<tr>
+<td><strong>Visual identity tokens</strong></td>
+<td>Color hex values, font names, spacing values referenced from <code>brand/visual-identity.md</code>. Not a CSS variables file in v1 — just documented constants that each game hard-codes.</td>
+<td>Convention only. CSS variables file is a v2 shared asset.</td>
+</tr>
+</tbody></table>
+<p><strong>Cross-game asset reuse with Flappy Tralalero (Game 01):</strong></p>
+<ul>
+<li>Character drawing code is NOT shared. Whack-a-Rot characters are drawn front-facing (popping up from holes). Flappy Tralalero characters are drawn side-facing (flying). Different proportions, different animations.</li>
+<li>Character color palettes and design language ARE shared (same blue for Tralalero, same green for Bombardiro, etc.) to maintain visual consistency across the universe.</li>
+<li>Sound synthesis utilities can be shared. The oscillator-based approach is identical.</li>
+</ul>
+<hr>
+<h2>Open Questions</h2>
+<p>None blocking. The following are noted for Product Head awareness:</p>
+<ol>
+<li><p><strong>Round structure vs. continuous play:</strong> This GDD specifies a 60-second timed round. The concept brief mentioned &quot;3 misses&quot; as an alternative end condition. The timed round is simpler, more predictable for ad placement, and avoids the frustration of &quot;I died because I missed 3 in a row&quot; which feels punishing in a fast-paced game. If playtesting reveals the timer feels too relaxed, a hybrid (timer + lives) can be added in v1.1.</p>
+</li>
+<li><p><strong>Effective wave carry-over across rounds:</strong> Currently, round 2 starts at effective wave 3 (harder than round 1). This means each subsequent round is noticeably harder. An alternative is to reset difficulty each round and let only the score/high-score chase drive replay. Recommend keeping the carry-over for now; it creates a natural skill ceiling where the game becomes very hard by round 3-4, which drives sharing of high scores.</p>
+</li>
+<li><p><strong>Sound as out-of-scope:</strong> The concept brief heavily features sound design. This GDD specifies it as out-of-scope for v1 but includes full synthesis specs so it can be added rapidly. The game is fully playable and fun without audio. If the team has bandwidth, sound is the highest-impact v1.1 feature.</p>
+</li>
+</ol>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

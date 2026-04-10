@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30 New Mechanics — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">research/30-new-mechanics.md</div>
+    <div class="doc-content"><h1>30 New Casual Game Mechanics Catalog</h1>
+<p><strong>Date</strong>: 2026-04-10
+<strong>Purpose</strong>: Expansion catalog of proven casual/mobile game mechanics for HTML5 Canvas + vanilla JS implementation
+<strong>Excludes</strong>: Flappy Bird, Whack-a-Mole, Idle Clicker, Endless Runner, Stack, Snake, 2048, Fruit Ninja, Breakout, Geometry Dash (already built)</p>
+<hr>
+<h2>Master Ranking Table (Sorted by Total Score Descending)</h2>
+<p>Scoring: <strong>(5 - Complexity) + Addictiveness + Monetization + Viral = Total (max 20)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Name</th>
+<th>Category</th>
+<th>Complexity</th>
+<th>Addictiveness</th>
+<th>Monetization</th>
+<th>Viral</th>
+<th><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Piano Tiles</td>
+<td>B. Timing</td>
+<td>1</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td><strong>18</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Color Switch</td>
+<td>B. Timing</td>
+<td>1</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td><strong>17</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Wordle Clone</td>
+<td>F. Word</td>
+<td>1</td>
+<td>5</td>
+<td>3</td>
+<td>5</td>
+<td><strong>17</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Memory Match</td>
+<td>A. Puzzle</td>
+<td>1</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td><strong>16</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Match-3 (Bejeweled)</td>
+<td>A. Puzzle</td>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td><strong>16</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Hangman</td>
+<td>F. Word</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Merge/Evolution</td>
+<td>E. Creative</td>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Paper Toss</td>
+<td>C. Physics</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Basketball Shot</td>
+<td>C. Physics</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Ball Bounce Timing</td>
+<td>B. Timing</td>
+<td>1</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Tetris (Falling Blocks)</td>
+<td>A. Puzzle</td>
+<td>2</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Trivia Quiz</td>
+<td>F. Word</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Slither/Grow Arena</td>
+<td>D. Survival</td>
+<td>2</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td>14</td>
+<td>Don&#39;t Touch the Line</td>
+<td>B. Timing</td>
+<td>1</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td><strong>14</strong></td>
+</tr>
+<tr>
+<td>15</td>
+<td>Type Racer</td>
+<td>F. Word</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td><strong>14</strong></td>
+</tr>
+<tr>
+<td>16</td>
+<td>Crossy Road (Frogger)</td>
+<td>B. Timing</td>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td><strong>14</strong></td>
+</tr>
+<tr>
+<td>17</td>
+<td>Bubble Shooter</td>
+<td>C. Physics</td>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+<td><strong>14</strong></td>
+</tr>
+<tr>
+<td>18</td>
+<td>Word Search</td>
+<td>F. Word</td>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td><strong>14</strong></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Minesweeper</td>
+<td>A. Puzzle</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td><strong>14</strong></td>
+</tr>
+<tr>
+<td>20</td>
+<td>Hole.io (Black Hole)</td>
+<td>D. Survival</td>
+<td>2</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td><strong>14</strong></td>
+</tr>
+<tr>
+<td>21</td>
+<td>Tycoon/Management</td>
+<td>E. Creative</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+<td><strong>13</strong></td>
+</tr>
+<tr>
+<td>22</td>
+<td>Bullet Hell Dodge</td>
+<td>D. Survival</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td><strong>13</strong></td>
+</tr>
+<tr>
+<td>23</td>
+<td>Sudoku</td>
+<td>A. Puzzle</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td>24</td>
+<td>Cooking/Recipe Rush</td>
+<td>E. Creative</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td>25</td>
+<td>Slingshot Launch (Angry Birds)</td>
+<td>C. Physics</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td>26</td>
+<td>Doodle/Draw &amp; Guess</td>
+<td>E. Creative</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td>27</td>
+<td>Rhythm Tap (Tap Tap)</td>
+<td>B. Timing</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>28</td>
+<td>Tower Defense</td>
+<td>D. Survival</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>29</td>
+<td>Pool/Billiards</td>
+<td>C. Physics</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>30</td>
+<td>Vampire Survivors (Horde)</td>
+<td>D. Survival</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td><strong>11</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Quick-Reference: Top 10 &quot;Build First&quot; Picks</h2>
+<p>These have the best ratio of low build effort to high engagement. A solo dev can ship each in 1-3 days.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Build Days</th>
+<th>Why Build It</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Piano Tiles</td>
+<td>1</td>
+<td>Trivial to build, insane replay compulsion, ad after every death</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Color Switch</td>
+<td>1</td>
+<td>200M+ downloads proved the mechanic, one-tap input</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Wordle Clone</td>
+<td>1</td>
+<td>Viral sharing built-in (emoji grid), daily retention hook</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Memory Match</td>
+<td>1</td>
+<td>Ideal for meme character showcase, universal recognition</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Paper Toss</td>
+<td>1</td>
+<td>One-gesture input, perfect ad cadence, easy theme swap</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Basketball Shot</td>
+<td>1</td>
+<td>Same arc physics as Paper Toss, different skin, high ad fit</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Hangman</td>
+<td>1</td>
+<td>Zero physics, pure word game, brainrot vocab potential</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Ball Bounce Timing</td>
+<td>1</td>
+<td>One tap, pure timing, Color Switch variant</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Trivia Quiz</td>
+<td>1</td>
+<td>Content-driven (meme trivia), high ad frequency</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Don&#39;t Touch the Line</td>
+<td>1</td>
+<td>Maze/path avoidance, instant death = instant retry</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Category A: Puzzle/Strategy (5 Mechanics)</h2>
+<hr>
+<h3>A1. Tetris (Falling Blocks / Line Clear)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Tetris / Falling Blocks</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Rotate and place falling tetrominoes to complete horizontal lines</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Piece falls -&gt; player rotates/moves -&gt; piece locks -&gt; lines clear -&gt; next piece (5-8 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (rotate), swipe left/right (move), swipe down (hard drop)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>5-15 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- grid-based rendering, piece rotation matrices, collision on a 10x20 grid. Well-documented. Dozens of open-source Canvas implementations exist.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- &quot;flow state&quot; king. Speed escalation creates perfect difficulty curve. Universally recognized.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- ad between games, rewarded video for &quot;hold piece&quot; or &quot;preview next 3&quot;, cosmetic block skins</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- high scores shareable, clutch line-clear moments are clip-worthy, Tetris Effect proved visual appeal</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Spatial reasoning under increasing time pressure. The satisfaction of a perfect 4-line clear (Tetris) triggers dopamine. Flow state emerges naturally as speed increases -- players enter a zone where conscious thought stops and muscle memory takes over.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Tetris (1984, Alexey Pajitnov) -- 520M+ copies sold across all platforms; Tetris 99 (2019, Nintendo) -- battle royale variant; Tetris Effect (2018, Enhance) -- sensory/rhythm fusion</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>A2. Match-3 (Bejeweled / Candy Crush)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Match-3 / Swap Puzzle</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Swap adjacent tiles to create rows/columns of 3+ matching items</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Scan board -&gt; spot match -&gt; swap tiles -&gt; cascade/combo -&gt; new tiles fall (5-8 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap + drag (swap adjacent), or tap two tiles sequentially</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>3-10 minutes per level, 15-30 min sessions</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- grid logic, swap animation, cascade/gravity fill, match detection algorithm (flood fill). No physics.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- pattern recognition triggers OCD-like completion drive. Cascading combos create unearned dopamine. Level gates create &quot;just one more level&quot; compulsion.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- gold standard. Lives system (wait or pay), boosters as IAP, rewarded video for extra moves, interstitial between levels. Candy Crush generates $1B+/year.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- level completion screens shareable, &quot;I&#39;m stuck on level X&quot; creates social conversation, but individual screenshots are visually repetitive</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>The brain is wired for pattern recognition -- spotting a match feels like a micro-discovery. Cascading combos create the illusion of skill from luck. The board always looks &quot;almost solved,&quot; creating perpetual near-miss motivation.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Candy Crush Saga (2012, King) -- 3B+ downloads; Bejeweled (2001, PopCap) -- genre originator; Royal Match (2021, Dream Games) -- $600M+ revenue, modernized the formula</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>A3. Sudoku / Logic Grid</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Sudoku / Number Logic</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Fill a 9x9 grid so each row, column, and 3x3 box contains digits 1-9</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Scan grid -&gt; identify constrained cell -&gt; place number -&gt; validate -&gt; repeat (8-10 sec per move)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap cell, tap number (number pad overlay)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>5-30 minutes depending on difficulty</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- pure grid rendering, no animation or physics. Input handling and puzzle generation are the main challenges. Validation logic is straightforward.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- logical deduction creates satisfying &quot;aha&quot; moments. Difficulty tiers provide long-term progression. Daily puzzle format proven by newspapers for decades.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>3/5 -- hint system (rewarded video), daily puzzles (retention), undo moves as IAP, minimal natural ad breaks (long focus sessions discourage interruption)</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>2/5 -- completion times shareable, daily puzzle leaderboards, but visually static -- hard to make exciting clips</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Pure logic with zero luck. Each solved cell narrows possibilities for others, creating a satisfying cascade of deductions. The &quot;breakthrough moment&quot; when a stuck puzzle suddenly opens up is deeply rewarding. Appeals to completionist psychology.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Sudoku.com (Easybrain) -- 300M+ downloads; Good Sudoku (Zach Gage, 2020) -- reinvented UX with smart highlighting; NYT Sudoku -- daily ritual format</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>A4. Memory / Card Matching</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Memory Match / Concentration</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Flip cards to find matching pairs; remember positions of previously revealed cards</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Flip card -&gt; see image -&gt; flip second card -&gt; match or mismatch -&gt; remember positions (4-6 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (flip card)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>1-5 minutes per round</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- grid of rectangles with flip animation (simple scale transform). No physics, no collision. Card shuffle + pair tracking. One of the simplest Canvas games to build.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- memory challenge creates personal performance pressure. Increasing grid sizes provide difficulty curve. Fast rounds encourage &quot;one more.&quot;</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- ad between rounds (high frequency, short rounds), rewarded video for &quot;peek&quot; power-up, themed card packs as IAP (meme characters).</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>4/5 -- perfect for meme content (brainrot characters on cards), &quot;can you beat my time?&quot; sharing, visually appealing card flip reveals</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Tests working memory -- a cognitive skill everyone thinks they&#39;re good at. The frustration of <em>just</em> missing a pair you saw 3 flips ago creates retry motivation. Meme character reveals create micro-surprise moments.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Concentration (classic card game); Match Pair Mania (mobile); Simon (1978, electronic memory variant)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>A5. Minesweeper</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Minesweeper</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Uncover grid tiles without hitting mines; numbers reveal adjacent mine counts</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Tap tile -&gt; see number or mine -&gt; deduce safe tiles -&gt; flag suspected mines -&gt; repeat (5-8 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (reveal), long-press or double-tap (flag mine)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>2-10 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- pure grid, numbered tiles, mine/flag states. Flood-fill reveal for zero-tiles. No animation needed. Extremely well-documented implementation.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- risk/reward tension of each click. Logical deduction satisfies puzzle brain. Instant death from wrong click creates tension. Speed-running community proves long-term engagement.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>3/5 -- ad on death (less frequent than action games), rewarded video for &quot;undo last click,&quot; hint reveals. Longer sessions mean fewer ad touchpoints.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- &quot;I survived / I died on the last tile&quot; moments are shareable. Nostalgia factor (Windows Minesweeper). Speed-run times create leaderboard competition.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Every click is a calculated risk. The tension between &quot;I know this is safe&quot; and &quot;but what if I&#39;m wrong&quot; creates constant low-grade anxiety that resolves satisfyingly. The endgame -- when only a few tiles remain -- is peak tension.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Microsoft Minesweeper (1990) -- the original, installed on billions of PCs; Minesweeper Online (browser) -- modernized version; Antimine (2025, Android) -- modern mobile adaptation</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Category B: Timing/Rhythm (5 Mechanics)</h2>
+<hr>
+<h3>B1. Piano Tiles (Don&#39;t Tap the White Tile)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Piano Tiles / Don&#39;t Tap the White Tile</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Tap black tiles as they scroll down; miss one or tap white = game over</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Tiles scroll down -&gt; identify black tile -&gt; tap -&gt; speed increases -&gt; repeat or die (2-4 sec cycle)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (multi-lane, up to 4 columns)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>1-3 minutes (high death frequency, instant restart)</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- 4-column grid, rectangles scrolling down, tap hit detection, speed increment. No physics, no complex rendering. Arguably simpler than Flappy Bird.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- speed escalation creates perfect flow ramp. Near-misses feel physical. Score shame drives retry. Sessions are so short that &quot;one more&quot; costs nothing psychologically.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- death every 30-90 seconds = high-frequency interstitial placement. Rewarded video for &quot;slow down&quot; power-up or continue. Song/theme unlocks as IAP.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>4/5 -- &quot;how fast can you go&quot; challenges are TikTok-native. Speed-run clips are visually impressive. Easy to add meme sound effects.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Primal hand-eye coordination test. The accelerating speed creates a moment where conscious processing fails and reflexes take over -- that edge-of-control feeling is addictive. The simplicity means failure feels 100% personal, not unfair.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Piano Tiles 2 (Cheetah Mobile) -- 1B+ downloads; Magic Tiles 3 (Amanotes) -- hundreds of millions of downloads, 45K+ songs; Don&#39;t Tap the White Tile (original, 2014)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>B2. Color Switch</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Color Switch</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Tap to propel a colored ball through rotating obstacles, passing only through matching-color segments</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Tap to jump -&gt; ball rises -&gt; pass through matching color segment of rotating obstacle -&gt; collect star -&gt; repeat (3-5 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (single input, timing-based)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>1-3 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- circle/arc rendering for obstacles, rotation animation, color matching on collision. Single ball physics (gravity + tap impulse). Very similar to Flappy Bird architecture.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- 200M+ downloads prove the mechanic. Color-matching adds a cognitive layer on top of timing. Rotating obstacles create mesmerizing visual patterns. Instant death = instant retry.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- fastest mobile game in history to 50M downloads. Death frequency matches Flappy Bird. 2600+ levels in the original = massive content depth. Character skins as IAP.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- colorful visual style is screenshot-friendly. &quot;What&#39;s your high score?&quot; sharing. Less clip-worthy than Piano Tiles but more visually striking.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Dual challenge: timing (when to tap) + pattern recognition (which color segment is approaching). The rotating obstacles create a hypnotic visual that masks the difficulty ramp. Color-switching mechanic means you can&#39;t just develop one rhythm -- you must constantly adapt.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Color Switch (Fortafy Games, 2015) -- 200M+ downloads, 34 modes; Color Bump 3D; Color Road (Voodoo)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>B3. Ball Bounce Timing</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Bouncing Ball / Platform Timing</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Tap to bounce a ball between platforms; miss the platform and fall to death</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Ball falls -&gt; tap to change direction/bounce -&gt; land on platform -&gt; repeat with increasing speed/gaps (3-5 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (single input, timing-only)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>1-3 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- ball with gravity, platforms as rectangles, simple collision, side-scroll or vertical-scroll. Nearly identical architecture to Flappy Bird with different visual arrangement.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- pure timing challenge with zero cognitive overhead. The ball&#39;s trajectory is always predictable, so failure is always &quot;my fault.&quot; Speed ramp creates flow state.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- frequent deaths enable interstitial placement. Continue tokens via rewarded video. Ball/platform skins as IAP. Slightly fewer ad opportunities than Piano Tiles due to marginally longer runs.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- high scores shareable, near-miss clips, but visually simple compared to more colorful games</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>The satisfying physics of a perfect bounce. The ball&#39;s arc is elegant and predictable -- mastery feels attainable but the speed keeps pushing you past your limit. It&#39;s the platonic form of &quot;easy to learn, hard to master.&quot;</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Bouncy Ball (mobile); Helix Jump (Voodoo, 2018) -- 500M+ downloads; Doodle Jump (Lima Sky, 2009) -- genre precursor with 30M+ downloads</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>B4. Crossy Road / Frogger (Endless Hopper)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Crossy Road / Frogger</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Hop forward through lanes of traffic, rivers, and trains; one wrong move = death</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Tap to hop forward -&gt; dodge car -&gt; hop -&gt; ride log -&gt; hop -&gt; dodge train -&gt; repeat (3-6 sec per danger)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (forward), swipe (directional hop: left, right, backward)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>2-5 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- lane-based obstacle spawning, simple grid movement, collision detection per lane. No complex physics. Character is grid-locked. Similar to endless runner but discretized movement.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- Crossy Road made $10M in 90 days with $0 marketing spend. Instant death + instant restart. The &quot;I could see the gap&quot; near-miss drives retries. Endless format means no skill ceiling.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- Crossy Road proved the model: 70%+ revenue from ads, 30% from character unlocks (gacha machine). Rewarded video for coins. Interstitial on death. Emotion-responsive ad triggers (show &quot;watch ad&quot; only on new high score).</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- character collection is shareable, funny death moments create clips, but visual style is specific (voxel art in original). Meme character skins increase shareability significantly.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Decision-making under time pressure. Each lane presents a new &quot;puzzle&quot; of timing. The variety of hazard types (cars, trains, rivers, eagles) prevents monotony. The &quot;just one more hop&quot; feeling -- you can always see the next safe spot but reaching it is the challenge.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Crossy Road (Hipster Whale, 2014) -- 200M+ downloads, $10M in 90 days; Frogger (Konami, 1981) -- arcade original; Crossy Road Castle (2020, Apple Arcade)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>B5. Don&#39;t Touch the Line / Maze Path</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Don&#39;t Touch the Line / Maze Runner</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Navigate a dot/character through a scrolling maze without touching the walls</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Drag/move through gap -&gt; walls scroll toward you -&gt; find next gap -&gt; pass through or die (3-5 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag (continuous touch movement) or tap to change direction</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>1-3 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- line/wall rendering, point-in-polygon or distance collision detection, auto-scroll. No physics, no complex state. Extremely minimal rendering pipeline.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- constant tension. Any wall contact = death. The continuous input means you&#39;re always engaged (no waiting). Speed escalation ramps difficulty smoothly.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- frequent deaths, short runs. Interstitial on death. Rewarded video for shield/second chance. Maze themes/skins as IAP.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- &quot;how far did you get&quot; shareable, maze designs can be visually interesting, but less clip-worthy than physics-based games</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Primal avoidance instinct. The narrowing gaps create claustrophobic tension. Continuous input (drag) creates a physical connection to the game that tap-based games lack. Every death feels like it happened by millimeters.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>ZigZag (Ketchapp, 2015); Impossible Game (FlukeDude); aa (General Adaptive Apps) -- pin-placement variant</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Category C: Physics/Trajectory (5 Mechanics)</h2>
+<hr>
+<h3>C1. Slingshot Launch (Angry Birds)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Angry Birds / Slingshot Launcher</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Pull back slingshot to launch projectiles at destructible structures to eliminate targets</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Pull slingshot -&gt; aim trajectory -&gt; release -&gt; projectile arcs -&gt; structures collapse -&gt; assess damage -&gt; next shot (6-10 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag (pull-back to aim), release (fire)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>5-15 minutes per session, 1-3 min per level</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>3/5 -- requires physics simulation (gravity, velocity, collision), destructible structures (block stacking, break thresholds), particle effects for debris. A physics library (Matter.js) simplifies this significantly but adds dependency. Custom physics is doable but takes 3-5 days.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- strategic puzzle solving with satisfying destruction physics. Star rating per level drives perfectionism. Angry Birds proved 5B+ downloads worth of engagement.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- inter-level ads, power-up birds as IAP, hint system (rewarded video to show optimal angle), level packs.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- spectacular destruction moments are clip-worthy. Solution-sharing culture. Character IP drives merchandise (proven by Angry Birds movie franchise).</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Destruction is inherently satisfying. The physics simulation makes each shot feel unique -- trajectories are predictable but outcomes are chaotic. The gap between &quot;good shot&quot; and &quot;perfect shot&quot; drives replay of levels for 3-star ratings.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Angry Birds (Rovio, 2009) -- 5B+ downloads; Crush the Castle (Armor Games, 2009) -- precursor; Angry Birds 2 (2015) -- modernized with card-based bird selection</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>C2. Bubble Shooter</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Bubble Shooter / Bust-a-Move</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Aim and shoot colored bubbles to create clusters of 3+ matching colors, clearing them from the board</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Aim -&gt; shoot bubble -&gt; bubble snaps to hex grid -&gt; match 3+ of same color -&gt; they pop -&gt; orphaned bubbles fall -&gt; next bubble (5-8 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap/drag to aim, release to shoot (angle-based aiming)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>5-15 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- hexagonal grid logic, trajectory line rendering, bubble snap-to-grid, cluster detection (BFS/flood fill), gravity for orphaned bubbles. Well-documented with full Canvas tutorials available.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- satisfying pop + cascade chain reactions. The board slowly descending adds time pressure. Easy early levels hook players before difficulty ramps. Proven engagement over 30+ years of the format.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- lives system (wait or pay), extra bubbles via rewarded video, color-change power-ups as IAP, interstitial between levels. One of the highest-monetizing casual genres.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>2/5 -- less visually dramatic than physics games, but massive install bases prove broad appeal. Cascade chain reactions are the most clip-worthy moments.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Skill expression through angle mastery. Bank shots off walls feel masterful. Chain reactions (clearing a cluster that drops orphaned bubbles that trigger more clears) create unearned &quot;genius&quot; moments. The descending ceiling creates escalating urgency.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Bust-a-Move / Puzzle Bobble (Taito, 1994) -- genre originator; Bubble Witch Saga (King); Bubble Shooter (Ilyon, mobile) -- 100M+ downloads</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>C3. Paper Toss</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Paper Toss / Throw-into-Target</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Flick/swipe to throw a paper ball into a trash can, accounting for wind</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Judge wind direction/strength -&gt; swipe to throw -&gt; ball arcs through air -&gt; lands in bin or misses -&gt; repeat (4-6 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Swipe (flick gesture determines angle and power)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>2-5 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- parabolic arc trajectory, wind offset as simple horizontal force, collision with target rectangle. Minimal rendering: ball, bin, wind indicator. One of the simplest physics games.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- satisfying &quot;swish&quot; when it goes in. Wind variation prevents memorization. Streak-based scoring (consecutive makes) adds pressure. Quick rounds = low commitment per attempt.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- extremely fast rounds mean very high ad frequency. Interstitial every few throws. Rewarded video for &quot;no wind&quot; power-up. Different rooms/environments as progression (office, airport, bathroom).</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- &quot;I made 20 in a row&quot; streak sharing. Satisfying arc physics look good in clips. Easy to meme-theme (throwing brainrot items into toilets, etc.).</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Extremely intuitive -- everyone has thrown paper into a trash can. The wind mechanic adds just enough variability to prevent skill ceiling. Streaks create &quot;don&#39;t break the chain&quot; tension. The swipe gesture feels physical and satisfying.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Paper Toss (Backflip Studios, 2009) -- 100M+ downloads; Paper.io (Voodoo); Trick Shot (gaming studios)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>C4. Basketball Shot / Arc Trajectory</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Basketball Shot / Hoop Shooter</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Flick a basketball into a hoop with the right arc, power, and angle</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Assess hoop distance/height -&gt; swipe to set arc -&gt; ball flies -&gt; swish or miss -&gt; hoop moves to new position -&gt; repeat (4-6 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Swipe/drag (arc trajectory), release to shoot</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>2-5 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- near-identical to Paper Toss. Parabolic arc, hoop collision (rim + net), ball bounce physics. Can add backboard ricochet for depth. Minimal rendering.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- &quot;nothing but net&quot; swish is deeply satisfying. Streak mechanics (consecutive baskets) create escalating tension. Moving hoops prevent memorization. Universal sports appeal.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- same fast-round model as Paper Toss. Interstitial between rounds. Rewarded video for &quot;bigger hoop&quot; or extra shots. Ball skins, court themes as IAP.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- streak clips are shareable (&quot;I made 50 in a row&quot;). Clean visual arc is aesthetically pleasing. Sports theme has broad appeal.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>The physics of a basketball arc are universally understood. The &quot;swish&quot; sound is one of the most satisfying audio cues in gaming. Progressive difficulty (hoop moves, shrinks, moves faster) prevents the game from feeling solved.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>TapTap Shots (CrazyGames); Basketball FRVR; Basket Random (RHM Interactive) -- 2-player variant</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>C5. Pool / Billiards</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Pool / 8-Ball Billiards</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Aim cue stick, set power, shoot balls into pockets using angle geometry</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Aim cue -&gt; set power -&gt; shoot -&gt; balls collide and scatter -&gt; assess table -&gt; plan next shot (8-15 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag (aim direction), pull-back (power), release (shoot)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>5-15 minutes per game</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>4/5 -- ball-to-ball elastic collision physics, ball-to-cushion bounce angles, friction/deceleration, spin mechanics (optional), pocket detection, trajectory preview line. Significantly more complex than other physics games. Achievable but takes 4-5 days.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- deep skill expression through geometry. Multi-ball planning rewards strategic thinking. 8 Ball Pool (Miniclip) proved massive engagement. Turn-based pacing works for longer sessions.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>3/5 -- longer sessions mean fewer ad touchpoints. Works better with wagering mechanics (virtual coins bet per game). Cue skins, table themes as IAP. Rewarded video for hints/trajectory preview.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- trick shots are highly clip-worthy. 8 Ball Pool is one of the most-played mobile games globally. &quot;Did you see that bank shot?&quot; sharing.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Geometry made tangible. Planning 2-3 shots ahead rewards strategic thinking. The satisfying click of ball-on-ball contact. Combo shots (potting multiple balls) create &quot;genius&quot; moments. The simplicity of the rules masks deep strategic depth.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>8 Ball Pool (Miniclip) -- 800M+ downloads, $2B+ lifetime revenue; Pool Live Pro; Billiards (FRVR) -- HTML5 browser version</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Category D: Survival/Arena (5 Mechanics)</h2>
+<hr>
+<h3>D1. Slither / Grow Arena (Agar.io Style)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Slither.io / Agar.io (Grow Arena)</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Control a growing entity in an arena; eat smaller things, avoid bigger ones</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Move around arena -&gt; eat pellets -&gt; grow bigger -&gt; encounter other player -&gt; eat or flee (5-8 sec decision cycle)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag/mouse-follow (continuous directional control), tap for boost</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>3-10 minutes per life</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- viewport camera following player, circle rendering for entities, size-based collision (big eats small), pellet spawning. AI bots can substitute for multiplayer. No complex physics.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- growth progression is inherently compelling. Risk/reward of approaching large enemies. &quot;I was THIS big and then I died&quot; creates strong retry motivation. Leaderboard position drives engagement.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- ad on death, rewarded video for size boost or speed boost at start, cosmetic skins as IAP. Moderate session length.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- &quot;I was #1 on the leaderboard&quot; screenshots. Growth timelapse clips. Dramatic death moments when a large entity gets eaten.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Power fantasy -- growing from tiny to dominant is satisfying. The arena creates natural drama: every encounter is a risk assessment. The &quot;big fish eats little fish&quot; dynamic is instinctively understood. Getting revenge on an entity that killed you in a past life is deeply satisfying.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Agar.io (Matheus Valadares, 2015) -- pioneered the .io genre; Slither.io (Steve Howse, 2016) -- 100M+ players; Hole.io (Voodoo, 2018) -- 3D variant with swallowing mechanic</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>D2. Hole.io (Black Hole Swallow)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Hole.io / Black Hole Arena</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Control a growing black hole that swallows objects and other players; biggest hole wins</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Move hole over small objects -&gt; swallow them -&gt; hole grows -&gt; swallow bigger objects -&gt; compete with other holes (3-5 sec per object)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag (continuous directional movement)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>2-5 minutes (timed rounds, typically 2 min)</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- top-down city map, circle collision with size comparison, object scaling as hole grows, simple AI for competing holes. 2D rendering is straightforward; the original is 3D but a 2D version captures the same mechanic.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- growth mechanic is inherently satisfying. Timed rounds create urgency. Swallowing a competing player&#39;s hole is a power rush. Short rounds = high replay.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- interstitial between rounds (2-min rounds = 20+ ad opportunities per hour). Rewarded video for size boost at start. Hole skins/city themes as IAP.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- &quot;I swallowed the entire city&quot; clips. Growth progression is visually dramatic. Competitive moments against other holes create drama.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Oddly satisfying consumption mechanic. The scale progression -- from swallowing lamp posts to swallowing buildings -- creates a power fantasy arc within each 2-minute round. The competitive element adds urgency beyond simple collection.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Hole.io (Voodoo, 2018) -- #1 App Store in 20+ countries; Donut County (Ben Esposito, 2018) -- narrative single-player variant; Hole and Fill (casual mobile)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>D3. Bullet Hell / Dodge Pattern</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Bullet Hell / Pattern Dodge</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Dodge dense patterns of projectiles while surviving as long as possible</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Projectiles spawn in patterns -&gt; player navigates through gaps -&gt; pattern intensifies -&gt; survive or die (continuous, 3-5 sec per wave)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag (continuous precise movement), or tap to teleport/dash</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>1-5 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- spawn projectiles in geometric patterns, move them along vectors, player hitbox collision with small circles. The art is in pattern design, not code complexity. Rendering many circles is trivial for Canvas.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- pattern memorization + reflex creates deep mastery curve. Near-misses feel dramatic. The visual spectacle of dodging dense bullet fields is inherently thrilling.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>3/5 -- ad on death (moderate frequency). Rewarded video for shield/continue. Ship/character skins as IAP. Less natural ad integration than simpler games (interrupting flow is costly).</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>4/5 -- dense bullet patterns are visually spectacular in clips. &quot;I can&#39;t believe I survived that&quot; moments. The Touhou community proves decades-long clip-sharing culture.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>The &quot;dance&quot; of weaving through seemingly impossible bullet patterns. When you&#39;re in the zone, it feels like a meditation -- pure spatial awareness. The visual contrast between the dense field of danger and the tiny safe gaps creates constant tension. Survival feels earned, not lucky.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Touhou series (ZUN, 1997+) -- genre-defining; Just Shapes &amp; Beats (Berzerk Studio); Vampire Survivors (poncle) -- reversed the formula (you&#39;re the bullet hell)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>D4. Tower Defense</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Tower Defense</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Place defensive towers along a path to destroy waves of enemies before they reach your base</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Wave starts -&gt; enemies walk path -&gt; place/upgrade tower -&gt; tower shoots enemies -&gt; earn gold -&gt; spend gold on more towers (8-15 sec per decision)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (place tower), tap (upgrade/sell), drag (some variants for aiming)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>10-30 minutes per map</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>3/5 -- pathfinding (or pre-defined paths), tower targeting logic, projectile rendering, wave spawning system, upgrade trees, resource management. More systems than most casual games but each system is simple.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- &quot;just one more wave&quot; compulsion. Strategic depth from tower placement and upgrade decisions. Failure on wave 19/20 creates strong retry motivation. Optimizing builds is endlessly replayable.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- premium tower/hero unlocks as IAP, rewarded video for bonus gold or extra life, interstitial between waves or on defeat. Speed-up button behind rewarded ad.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>2/5 -- less clip-friendly than action games. Strategy discussion and build-sharing has niche appeal. &quot;I beat impossible mode&quot; screenshots.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Strategic planning with real-time feedback. Watching your defensive network shred enemy waves is deeply satisfying. The tension of &quot;will my towers hold?&quot; as a boss enemy approaches creates dramatic moments. Each replay allows a different strategic approach.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Bloons TD 6 (Ninja Kiwi, 2018) -- genre benchmark, $100M+ revenue; Kingdom Rush (Ironhide, 2011) -- mobile classic; Plants vs. Zombies (PopCap, 2009) -- lane-defense variant</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>D5. Vampire Survivors (Horde Survival / Auto-Attack)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Vampire Survivors / Horde Survival</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Auto-attacking character vs. growing hordes; choose upgrades to survive as long as possible</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Move to dodge enemies -&gt; auto-attacks fire -&gt; collect XP gems -&gt; level up -&gt; choose upgrade from 3 options -&gt; repeat (10-15 sec between upgrades)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag/joystick (movement only; attacks are automatic)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>15-30 minutes per run</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>3/5 -- entity spawning system (hundreds of enemies), auto-targeting projectiles, XP/loot collection, upgrade system with weapon combinations, performance optimization for rendering 500+ sprites simultaneously. The enemy count is the main technical challenge.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- &quot;$7M revenue in first month&quot; proves engagement. Roguelike upgrade choices create unique runs. The power fantasy of mowing down thousands of enemies is viscerally satisfying. &quot;One more run to try this build&quot; is extremely compelling.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- character/weapon unlocks as IAP, rewarded video for bonus upgrade choice or continue, interstitial on death. Longer sessions mean fewer but higher-value ad touchpoints.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- screen-filling projectile chaos is visually spectacular. Build discussion generates content. &quot;I got the broken combo&quot; clips. Genre exploded on TikTok in 2022-2023.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>The power ramp. You start weak and fragile, and 20 minutes later you&#39;re an unstoppable force of destruction. The upgrade choices create meaningful decisions that feel impactful. The &quot;bullet heaven&quot; visual spectacle of your attacks covering the screen is uniquely satisfying. Movement-only input means low barrier to entry.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Vampire Survivors (poncle, 2022) -- $7M first month, 10M+ copies; Brotato (Blobfish); Halls of Torment -- dark fantasy variant</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Category E: Creative/Building (5 Mechanics)</h2>
+<hr>
+<h3>E1. Merge / Evolution</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Merge / Evolution Chain</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Drag identical items together to merge them into higher-tier versions; discover the evolution chain</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Spawn new item -&gt; drag onto matching item -&gt; they merge into next tier -&gt; board fills up -&gt; manage space -&gt; repeat (4-6 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag and drop</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>5-20 minutes (can run passively)</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- grid-based board, drag-and-drop mechanics, tier system (item A + item A = item B), spawn timer. No physics. Visual simplicity -- each tier just needs a different sprite/icon.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- &quot;What&#39;s the next evolution?&quot; discovery drive. Merge Dragons proves years-long engagement. The board always feels close to a breakthrough merge. Idle elements (auto-spawning) keep pulling players back.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- premium currency for instant merges, extra board space, speed-up spawning. Rewarded video for bonus items. Time-gated content (energy/hearts). One of the highest ARPU casual genres.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>2/5 -- less visually dramatic, but &quot;look what I evolved&quot; reveals have sharing appeal. Merge chains involving meme characters would be highly shareable in brainrot context.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Collection and discovery instinct. Each merge is a micro-surprise. The board management creates a constant puzzle of space optimization. The evolution chain taps into completionist psychology -- you must see the final tier. Idle elements mean progress happens even when away.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Merge Dragons! (Gram Games, 2017) -- genre pioneer; Merge Mansion (Metacore); Triple Town (Spry Fox) -- original merge mechanic</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>E2. Tycoon / Idle Management</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Tycoon / Idle Management Sim</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Build and manage a business by tapping to serve customers, upgrading facilities, and automating operations</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Customer arrives -&gt; tap to serve -&gt; earn money -&gt; spend on upgrades -&gt; unlock new areas -&gt; automate previous areas (6-10 sec active, then idle)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (serve/collect), drag (place items)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>5-15 minutes active, then checks every 1-4 hours for idle earnings</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>3/5 -- multi-area rendering, character pathing (customers walk to service points), upgrade state management, idle timer system, prestige/reset mechanics. More systems to manage than action games but each is simple.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- &quot;just one more upgrade&quot; loop. Idle earnings create check-in habit. Prestige systems (reset for permanent bonuses) add long-term depth. Watching numbers go up is inherently satisfying.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- highest monetization ceiling. Premium currency for speed-ups, ad-free offline earnings multiplier, rewarded video for 2x earnings, time-skip IAP. The idle loop creates natural &quot;impatience&quot; monetization.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>2/5 -- &quot;look at my empire&quot; screenshots. Less clip-friendly but &quot;I reached $1 Trillion&quot; milestones are shareable. Tycoon themes (meme factory, brainrot studio) add personality.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>The dopamine of optimization -- making systems run more efficiently. The numbers-going-up feedback loop. The satisfying arc from manual tapping to fully automated empire. Prestige resets create &quot;I know a better path this time&quot; motivation.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Idle Supermarket Tycoon (Codigames); Adventure Capitalist (Hyper Hippo); Idle Hotel Empire (Kolibri Games)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>E3. Cooking / Recipe Rush</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Cooking / Time Management Rush</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Prepare and serve food orders under time pressure by tapping through recipe steps</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Order appears -&gt; tap ingredients -&gt; tap cook -&gt; tap serve -&gt; collect payment -&gt; next order (5-8 sec per order)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (select ingredients, cook, serve), drag (optional for plating)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>3-10 minutes per level</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>3/5 -- multiple interactive stations, order queue UI, timer per order, multi-step recipe logic, customer patience meter, combo scoring. More UI complexity than most mechanics.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- time pressure creates flow state. Multi-order juggling ramps difficulty naturally. &quot;I almost served them all&quot; near-miss drives replay. Level-based progression provides clear goals.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- extra lives/continues via rewarded video, kitchen upgrades as IAP, interstitial between levels, ingredient boosts. Time-pressure creates &quot;just let me try again&quot; impulse purchases.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>2/5 -- less clip-friendly than action games. &quot;Chaos kitchen&quot; moments can be funny. Recipe themes with meme ingredients (skibidi sauce, sigma grindset smoothie) add shareability.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Multitasking under pressure. The satisfaction of completing a rush of orders perfectly. Overcooked proved this creates hilarious failure moments. The cooking metaphor is universally relatable. Progressive recipe complexity adds learning curve.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Overcooked (Team17, 2016) -- co-op classic; Cooking Mama (Office Create); Cooking Fever (Nordcurrent) -- 200M+ downloads</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>E4. Doodle / Draw and Guess</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Draw and Guess / Pictionary</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Draw a given word/prompt for others to guess, or guess what others are drawing</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Receive prompt -&gt; draw on canvas -&gt; others guess in real-time -&gt; points for speed -&gt; rotate drawer (15-60 sec per round)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag (drawing strokes), tap (guess letters or select answer)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>5-15 minutes per game</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>3/5 -- freeform drawing on canvas (stroke capture, line rendering, undo), word prompt system, timer, scoring. Single-player variant: draw and AI guesses, or guess what a pre-drawn image is. Multiplayer requires networking (adds significant complexity).</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- social games create laughter and memorable moments. The creative expression + guessing combo engages both sides of the brain. Skribbl.io proves long-term engagement.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>3/5 -- ad between rounds, word hint IAP, custom color/brush packs, premium word packs. Harder to monetize aggressively without breaking social flow.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>4/5 -- funny drawings are inherently shareable. Gartic Phone proved this is TikTok-native content. AI-guess variants create hilarious misinterpretation clips. Meme prompts increase shareability.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Creative expression without artistic pressure (bad drawings are funnier). The social dynamic of miscommunication creates organic comedy. Time pressure forces quick, imperfect drawings that are inherently entertaining. The &quot;how did they guess that from THIS?&quot; moments are memorable.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Skribbl.io (browser) -- millions of daily players; Gartic Phone -- telephone variant; Quick, Draw! (Google) -- AI guesses your drawing</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>E5. Sandbox Builder / Destruction</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Sandbox / Physics Playground</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Build structures from blocks/shapes, then optionally destroy them with physics forces</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Place block -&gt; stack/arrange -&gt; test stability -&gt; add force (bomb/ball/gravity) -&gt; watch destruction -&gt; rebuild (varies, 10-30 sec per build)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Drag (place blocks), tap (activate destruction), pinch (zoom, optional)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>5-20 minutes (open-ended)</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>3/5 -- physics stacking (gravity, collision), block placement grid, destruction forces (explosions, projectiles). Can range from simple (no physics, just stacking) to complex (full rigid body simulation). Basic version is 2-3 days; physics-rich version is 4-5 days.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>3/5 -- creative freedom is engaging but lacks the &quot;one more try&quot; compulsion of score-based games. Destruction satisfaction adds replay value. Challenge modes (build X with Y blocks) add structure.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>3/5 -- block/material packs as IAP, premium destruction tools, rewarded video for special blocks. Less natural ad frequency than score-based games.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>4/5 -- &quot;look what I built&quot; sharing. Spectacular destruction clips. &quot;Build and destroy&quot; format is TikTok-native (satisfying destruction videos get millions of views).</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Creative freedom + destructive satisfaction. Building something takes effort; watching it get destroyed is cathartic. The physics simulation makes each destruction unique. Open-ended play allows personal expression.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Bad Piggies (Rovio, 2012) -- vehicle building; Poly Bridge (Dry Cactus) -- bridge construction; Demolition 3D (casual mobile) -- pure destruction</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Category F: Word/Trivia (5 Mechanics)</h2>
+<hr>
+<h3>F1. Wordle Clone (Daily Word Guess)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Wordle / Daily Word Guess</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Guess a 5-letter word in 6 tries; colored feedback shows correct/misplaced/wrong letters</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Type word -&gt; submit -&gt; see green/yellow/gray feedback -&gt; narrow possibilities -&gt; guess again (15-30 sec per guess)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (on-screen keyboard)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>2-5 minutes per puzzle</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- grid of letter tiles with color states, keyboard UI, word validation against dictionary. Zero physics, zero animation needed (though flip animations add polish). Can be built with DOM instead of Canvas. The simplest game in this entire catalog.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>5/5 -- scarcity (one puzzle per day) creates anticipation. Streak maintenance drives daily return. The puzzle is always solvable with logic, creating satisfying &quot;I figured it out&quot; moments. Grew from 90 to 2M+ daily players in 2 months.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>3/5 -- daily format limits ad impressions. Endless/practice mode enables more ads. Hint system via rewarded video. Premium word packs. NYT paid $1M+ to acquire it. Lower ad frequency than action games but very high retention.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>5/5 -- the emoji-grid sharing format was a viral innovation that drove Wordle from 90 to 300K players in 2 months. Built-in sharing mechanic is the gold standard. Spoiler-free result sharing is genius. Brainrot vocabulary variant has huge meme potential.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Cognitive puzzle that rewards vocabulary AND deduction. The colored feedback creates an information cascade -- each guess teaches you something. The daily format makes it a ritual, not a grind. Solving in 2-3 guesses feels like genius. The social sharing creates community and gentle competition.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Wordle (Josh Wardle, 2021) -- acquired by NYT; Connections (NYT) -- group-finding variant; Quordle -- 4 simultaneous Wordles</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>F2. Trivia Quiz</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Trivia Quiz / Question Challenge</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Answer multiple-choice questions against a timer; streak bonuses for consecutive correct answers</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Question appears -&gt; read 4 options -&gt; tap answer -&gt; right/wrong feedback -&gt; next question (5-10 sec)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (select answer from 4 choices)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>3-10 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- text rendering, 4 button areas, timer bar, score display. The complexity is in content (questions), not code. Question database can be JSON. Simplest game to build after Wordle.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- knowledge validation is inherently satisfying (&quot;I knew that!&quot;). Streak mechanics create &quot;don&#39;t break the chain&quot; tension. Timer adds urgency to prevent deliberation. Topic variety keeps it fresh.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>5/5 -- interstitial between rounds (high frequency), rewarded video for extra life/skip question, premium topic packs as IAP, 50/50 lifeline via ad. HQ Trivia proved the model (before it collapsed for non-game reasons).</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- &quot;I got 20/20 on the Brainrot Quiz&quot; sharing. Topic-specific quizzes (meme knowledge, character identification) are highly shareable in niche communities. Challenge-a-friend format.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Knowledge validation ego boost. The timer creates tension even on easy questions. Wrong answers teach something new. Brainrot/meme-specific trivia (identify the character, name the meme, complete the catchphrase) taps directly into community identity.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>HQ Trivia (Intermedia Labs, 2017) -- live trivia with real money prizes; Trivia Crack (Etermax) -- 700M+ downloads; QuizUp (Plain Vanilla)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>F3. Word Search</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Word Search / Word Find</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Find hidden words in a grid of letters by swiping across them</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Scan grid -&gt; spot word -&gt; swipe across letters -&gt; word highlights -&gt; check word list -&gt; find next (5-10 sec per word)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Swipe/drag (across letter grid to select word)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>3-10 minutes per puzzle</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- letter grid rendering, swipe gesture detection across grid cells, word validation, highlight animation. Pure grid logic, no physics. Grid generation algorithm (place words, fill remaining with random letters) is the only non-trivial part.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>3/5 -- relaxing &quot;zen&quot; gameplay. Satisfying to find a word you missed. Less &quot;one more try&quot; compulsion than action games but strong in &quot;just one more word&quot; territory. Good for wind-down sessions.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>4/5 -- hint system (reveal first letter) via rewarded video, themed puzzle packs as IAP, interstitial between puzzles. Longer sessions than action games but consistent engagement.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>3/5 -- &quot;I found them all in 45 seconds&quot; time-sharing. Themed word searches (brainrot terms, meme character names) tap into community knowledge. Completion screenshots.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Pattern recognition in a relaxed context. The &quot;aha!&quot; moment of spotting a word hiding in plain sight. Themed puzzles create contextual fun (finding brainrot terms in a grid). Completionist satisfaction of finding every word. No failure state reduces anxiety while maintaining engagement.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Word Search Pro (Word Game Studio); Wordscapes (PeopleFun) -- crossword variant; CodyCross (Fanatee) -- themed word puzzles</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>F4. Hangman</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Hangman / Letter Guess</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Guess a hidden word one letter at a time; too many wrong guesses and the character is complete (game over)</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>See blank spaces -&gt; guess a letter -&gt; revealed or wrong -&gt; update figure -&gt; guess again (5-8 sec per guess)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Tap (letter selection from alphabet)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>1-3 minutes per word</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>1/5 -- alphabet buttons, blank word display, stick figure drawing (6-8 body parts). Zero physics, zero animation needed. Can add meme character reveal instead of stick figure. One of the simplest possible games.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- word-guessing is universally engaging. The visual death countdown creates urgency. Fast rounds encourage &quot;one more word.&quot; Brainrot vocabulary (guess meme terms) creates knowledge-flex appeal for target audience.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>3/5 -- ad between words (high frequency, short rounds), rewarded video for &quot;reveal a letter&quot; hint, themed word packs as IAP. Lower CPM potential than action games but decent frequency.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>4/5 -- &quot;I guessed SKIBIDI TOILET in 3 letters&quot; sharing. The stick figure / character drawing is visual and amusing. Brainrot vocabulary makes it a community knowledge test. Easy to screenshot and share.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Deduction from partial information. Each correct letter is a dopamine hit. Each wrong letter raises the stakes. The word reveal at game over (when you lose) teaches new vocabulary. Using meme/brainrot vocabulary transforms it from educational to cultural.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>Hangman (classic paper game); Evil Hangman (algorithmic variant that cheats); Wheel of Fortune (TV show variant with bonus letter buying)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>F5. Type Racer / Speed Typing</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Name</strong></td>
+<td>Type Racer / Typing Speed</td>
+</tr>
+<tr>
+<td><strong>One-line description</strong></td>
+<td>Type a displayed phrase as fast and accurately as possible; race against clock or opponents</td>
+</tr>
+<tr>
+<td><strong>Core loop</strong></td>
+<td>Phrase appears -&gt; type characters -&gt; correct chars highlight green -&gt; mistakes flash red -&gt; complete phrase -&gt; see WPM score (15-30 sec per phrase)</td>
+</tr>
+<tr>
+<td><strong>Input type</strong></td>
+<td>Keyboard input (physical or on-screen keyboard)</td>
+</tr>
+<tr>
+<td><strong>Session length</strong></td>
+<td>2-10 minutes</td>
+</tr>
+<tr>
+<td><strong>Canvas complexity</strong></td>
+<td>2/5 -- text rendering with per-character color states, cursor position tracking, WPM calculation, accuracy tracking, race visualization (cars/characters moving across screen based on typing speed). Keyboard input handling is the main consideration. Mobile on-screen keyboard works but is less satisfying than desktop.</td>
+</tr>
+<tr>
+<td><strong>Addictiveness</strong></td>
+<td>4/5 -- WPM score creates personal benchmark to beat. Competitive racing format adds urgency. Accuracy pressure (mistakes slow you down) creates tension. &quot;I can do better&quot; drives immediate replay.</td>
+</tr>
+<tr>
+<td><strong>Monetization fit</strong></td>
+<td>3/5 -- ad between races, premium phrase packs, rewarded video for &quot;slow motion&quot; mode or practice rounds. Less monetizable than tap games but strong in competitive context.</td>
+</tr>
+<tr>
+<td><strong>Viral potential</strong></td>
+<td>4/5 -- &quot;I type at 120 WPM&quot; is a flex worth sharing. Speed-typing clips are satisfying to watch. Meme phrase typing (type brainrot copypasta) creates community-specific content. Leaderboard competition drives engagement.</td>
+</tr>
+<tr>
+<td><strong>What makes it fun</strong></td>
+<td>Speed mastery is inherently satisfying. The race metaphor (cars/characters advancing) makes abstract skill concrete. Typing meme phrases adds cultural relevance. The WPM number is a universal benchmark everyone understands. Competitive typing has a surprisingly passionate community.</td>
+</tr>
+<tr>
+<td><strong>Best examples</strong></td>
+<td>TypeRacer (play.typeracer.com) -- original competitive typing; MonkeyType (monkeytype.com) -- modern minimalist typing test; Typer.io -- 50+ player racing</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Category Comparison Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Avg Complexity</th>
+<th>Avg Addictiveness</th>
+<th>Avg Monetization</th>
+<th>Avg Viral</th>
+<th>Avg Total</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>B. Timing</strong></td>
+<td>1.2</td>
+<td>4.8</td>
+<td>4.6</td>
+<td>3.0</td>
+<td><strong>15.6</strong></td>
+<td>High-volume quick sessions, maximum ad frequency</td>
+</tr>
+<tr>
+<td><strong>F. Word</strong></td>
+<td>1.2</td>
+<td>4.0</td>
+<td>3.6</td>
+<td>3.8</td>
+<td><strong>14.2</strong></td>
+<td>Meme vocabulary showcase, daily retention, sharing</td>
+</tr>
+<tr>
+<td><strong>A. Puzzle</strong></td>
+<td>1.6</td>
+<td>4.4</td>
+<td>3.8</td>
+<td>3.0</td>
+<td><strong>14.6</strong></td>
+<td>Longer sessions, broad demographic, proven formats</td>
+</tr>
+<tr>
+<td><strong>C. Physics</strong></td>
+<td>2.2</td>
+<td>4.2</td>
+<td>4.4</td>
+<td>2.8</td>
+<td><strong>13.4</strong></td>
+<td>Satisfying feel, sports themes, clip-worthy moments</td>
+</tr>
+<tr>
+<td><strong>D. Survival</strong></td>
+<td>2.4</td>
+<td>4.6</td>
+<td>3.8</td>
+<td>3.0</td>
+<td><strong>12.8</strong></td>
+<td>Deep engagement, competitive play, spectacle</td>
+</tr>
+<tr>
+<td><strong>E. Creative</strong></td>
+<td>2.8</td>
+<td>4.0</td>
+<td>4.0</td>
+<td>2.8</td>
+<td><strong>12.4</strong></td>
+<td>Long-term retention, high ARPU, passive play</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Build Order Recommendation</h2>
+<h3>Phase 1: Ship This Week (Complexity 1, Score 15+)</h3>
+<ol>
+<li><strong>Piano Tiles</strong> (18) -- reskin as &quot;Tap the Skibidi&quot; with brainrot sound effects</li>
+<li><strong>Color Switch</strong> (17) -- brainrot color palette, meme character as ball</li>
+<li><strong>Wordle Clone</strong> (17) -- &quot;Brainrotle&quot; with meme vocabulary dictionary</li>
+<li><strong>Memory Match</strong> (16) -- brainrot character card pairs</li>
+</ol>
+<h3>Phase 2: Next Sprint (Complexity 1-2, Score 14+)</h3>
+<ol start="5">
+<li><strong>Paper Toss</strong> (15) -- throw brainrot items into toilets</li>
+<li><strong>Basketball Shot</strong> (15) -- meme basketball variant</li>
+<li><strong>Hangman</strong> (15) -- brainrot vocabulary gallows</li>
+<li><strong>Match-3</strong> (16) -- meme character gems</li>
+<li><strong>Tetris</strong> (15) -- falling brainrot blocks</li>
+<li><strong>Trivia Quiz</strong> (15) -- &quot;How Brainrotted Are You?&quot; quiz</li>
+</ol>
+<h3>Phase 3: Depth Builders (Complexity 2-3, Score 12+)</h3>
+<p>11-20. Merge, Crossy Road, Bubble Shooter, Slither, Hole.io, Type Racer, Minesweeper, Bullet Hell, Sudoku, Word Search</p>
+<h3>Phase 4: Premium Builds (Complexity 3-4, Score 11+)</h3>
+<p>21-30. Tycoon, Cooking Rush, Slingshot, Doodle, Sandbox, Rhythm Tap, Tower Defense, Pool, Vampire Survivors, Don&#39;t Touch Line</p>
+<hr>
+<h2>Sources</h2>
+<ul>
+<li>Piano Tiles / Magic Tiles 3 -- App Store listings, 2024-2025</li>
+<li>Color Switch -- Fortafy Games, 200M+ downloads (RocketGames.io, 2025)</li>
+<li>Wordle viral growth -- Smithsonian Magazine, January 2022; CNBC, February 2022; Wikipedia</li>
+<li>Match-3 psychology -- GameRefinery analysis, 2024; Renatus Studio, 2024</li>
+<li>Tetris -- HTML5 Canvas tutorials (DEV Community, CodeProject, GitHub gists)</li>
+<li>Crossy Road revenue model -- MobileDevMemo case study; Medium (Kenneth Ng); $10M in 90 days</li>
+<li>Bubble Shooter -- Rembound HTML5 tutorial; Bust-a-Move heritage</li>
+<li>Paper Toss / Basketball -- Backflip Studios; MarketJS HTML5 games</li>
+<li>Agar.io / Slither.io -- Wikipedia; GitHub vanilla JS implementations</li>
+<li>Hole.io -- Voodoo; CrazyGames listings</li>
+<li>Vampire Survivors -- Wikipedia; BulletHaven genre analysis, 2026; $7M first month revenue</li>
+<li>Tower Defense -- HTML5 Canvas tutorials (Curtision, Chris Courses, GitHub implementations)</li>
+<li>Merge games -- Udonis market analysis, 2024; MobileFreeToPlay mechanics guide</li>
+<li>Wordle psychology -- Tufts University neuroscience analysis; Big Think; Smithsonian</li>
+<li>Trivia -- HQ Trivia Wikipedia; Sensor Tower Q2 2024 trivia report</li>
+<li>Cooking games -- Overcooked Wikipedia; Game Developer featured blog</li>
+<li>Drawing games -- Skribbl.io; Gartic Phone; DoodleDuel.ai 2026 guide</li>
+<li>Minesweeper / Memory -- GitHub implementations (zuramai, mmenavas)</li>
+<li>TypeRacer -- play.typeracer.com; Typer.io</li>
+<li>Ad monetization -- Tenjin Ad Monetization Benchmark Report 2025; CAS.ai hybrid guide 2025</li>
+<li>Viral gaming -- TikTok trending games 2025; Dead As Disco 300M+ views (GamesPress)</li>
+<li>Casual games market -- AppMagic Casual Games Report 2025; MAF top mobile games 2025</li>
+</ul>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QA REPORT — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">design-docs/QA-REPORT.md</div>
+    <div class="doc-content"><h1>QA Report: Brainrot Games v1</h1>
+<p><strong>Date:</strong> 2026-04-10
+<strong>Reviewer:</strong> Ship Agent (QA)
+<strong>Scope:</strong> Game-01 (Flappy Tralalero), Game-02 (Whack-a-Rot), shared infrastructure, landing page</p>
+<hr>
+<h2>1. Acceptance Criteria Checklist</h2>
+<h3>Game-01: Flappy Tralalero (GDD-01)</h3>
+<h4>US-01: Tap to flap</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tap applies upward velocity impulse of -7.0 px/frame</td>
+<td>PASS</td>
+<td><code>TAP_IMPULSE = -7.0</code> in constants.js, applied in <code>player.flap()</code></td>
+</tr>
+<tr>
+<td>Character falls due to gravity (0.4 px/frame^2)</td>
+<td>PASS</td>
+<td><code>GRAVITY = 0.4</code>, applied in <code>player.update()</code></td>
+</tr>
+<tr>
+<td>Ceiling collision triggers death</td>
+<td>PASS</td>
+<td><code>player.y - player.height / 2 &lt; 0</code> check in main.js</td>
+</tr>
+<tr>
+<td>Floor collision triggers death</td>
+<td>PASS</td>
+<td><code>player.y + player.height / 2 &gt; LOGICAL_HEIGHT - FLOOR_HEIGHT</code> check</td>
+</tr>
+<tr>
+<td>Input works via touchstart and mousedown</td>
+<td>PASS</td>
+<td>Handled by shared <code>input-manager.js</code></td>
+</tr>
+<tr>
+<td>Flap animation plays for 300ms</td>
+<td>PASS</td>
+<td><code>FLAP_DURATION = 300</code>, 3-frame cycle at 100ms intervals</td>
+</tr>
+<tr>
+<td>Flap sound plays on tap</td>
+<td>PASS</td>
+<td><code>playSound(&#39;flap&#39;)</code> called on tap in active state</td>
+</tr>
+</tbody></table>
+<h4>US-02: Scoring</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Score starts at 0</td>
+<td>PASS</td>
+<td><code>ScoreDisplay</code> constructor initializes score to 0, reset on <code>onStart</code></td>
+</tr>
+<tr>
+<td>Score increments by 1 when passing obstacle center</td>
+<td>PASS</td>
+<td><code>player.x &gt; obs.x</code> check, obs.x is center</td>
+</tr>
+<tr>
+<td>Score visible at top-center</td>
+<td>PASS</td>
+<td>Drawn at <code>canvasWidth / 2, 16</code> in <code>ScoreDisplay.draw()</code></td>
+</tr>
+<tr>
+<td>Pop animation (1.0 to 1.2 to 1.0, 150ms)</td>
+<td>PASS</td>
+<td>Implemented in <code>ScoreDisplay.update()</code> with lerp</td>
+</tr>
+<tr>
+<td>Score flashes Electric Lime</td>
+<td>PASS</td>
+<td><code>COLOR_SCORE_FLASH = &#39;#c8ff00&#39;</code> applied when <code>flashTimer &gt; 0</code></td>
+</tr>
+<tr>
+<td>Ding sound on score increment</td>
+<td>PASS</td>
+<td><code>playSound(&#39;score&#39;)</code> called after scoring</td>
+</tr>
+</tbody></table>
+<h4>US-03: Instant restart</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;run it back&quot; restarts within 500ms</td>
+<td>PASS</td>
+<td>Button in game-over overlay, calls <code>setState(&#39;playing&#39;)</code></td>
+</tr>
+<tr>
+<td>Score resets to 0</td>
+<td>PASS</td>
+<td>New <code>ScoreDisplay()</code> created in <code>onStart</code></td>
+</tr>
+<tr>
+<td>Obstacles cleared and regenerated</td>
+<td>PASS</td>
+<td><code>obstacles = []</code> in <code>onStart</code></td>
+</tr>
+<tr>
+<td>Character resets to start position</td>
+<td>PASS</td>
+<td><code>player.reset(LOGICAL_HEIGHT)</code> sets y to midpoint</td>
+</tr>
+<tr>
+<td>No page reload</td>
+<td>PASS</td>
+<td>Pure in-memory state reset</td>
+</tr>
+</tbody></table>
+<h4>US-04: Death messages</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Message from correct score tier</td>
+<td>PASS</td>
+<td><code>getDeathMessage()</code> selects by tier (0, 1, 6, 15, 25, 50, 100)</td>
+</tr>
+<tr>
+<td>No two consecutive identical messages</td>
+<td>PASS</td>
+<td><code>lastDeathMessage</code> tracking with re-roll</td>
+</tr>
+<tr>
+<td>Styled in Space Grotesk, text-md, Text Secondary</td>
+<td>PASS</td>
+<td>Rendered via game-shell overlay with <code>.text-secondary</code> class</td>
+</tr>
+</tbody></table>
+<h4>US-05: Score sharing</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;flex this&quot; button on game-over</td>
+<td>PASS</td>
+<td>Built by <code>_buildGameOverDOM()</code></td>
+</tr>
+<tr>
+<td>Web Share API with fallback to clipboard</td>
+<td>PASS</td>
+<td>Shared <code>share.js</code> tries <code>navigator.share()</code> then <code>navigator.clipboard</code></td>
+</tr>
+<tr>
+<td>Share text format correct</td>
+<td>PASS</td>
+<td><code>generateShareText()</code> formats as <code>i got N in GAME_TITLE\nURL</code></td>
+</tr>
+</tbody></table>
+<h4>US-06: Score persistence</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>High score in localStorage (<code>flappy-tralalero-highscore</code>)</td>
+<td>PASS</td>
+<td>Shared <code>score-manager.js</code> uses <code>${gameId}-highscore</code></td>
+</tr>
+<tr>
+<td>Loaded on init, displayed on game-over</td>
+<td>PASS</td>
+<td><code>getHighScore()</code> in <code>init()</code>, displayed in overlay</td>
+</tr>
+<tr>
+<td>New high score text with pulse in Brainrot Yellow</td>
+<td>PASS</td>
+<td><code>#gameover-newrecord</code> element with <code>.game-over-overlay__new-record</code> class</td>
+</tr>
+<tr>
+<td>Graceful fallback if localStorage unavailable</td>
+<td>PASS</td>
+<td>All localStorage calls wrapped in try/catch</td>
+</tr>
+</tbody></table>
+<h4>US-07: Character unlocks</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Unlock conditions checked on game-over</td>
+<td>PASS</td>
+<td><code>checkUnlocks(score)</code> in <code>onGameOver</code></td>
+</tr>
+<tr>
+<td>Notification on game-over screen</td>
+<td>PASS</td>
+<td>Creates <code>.unlock-notification</code> elements in <code>#gameover-extra</code></td>
+</tr>
+<tr>
+<td>Persisted in localStorage (<code>flappy-tralalero-unlocks</code>)</td>
+<td>PASS</td>
+<td>JSON object stored via <code>setData()</code></td>
+</tr>
+<tr>
+<td>Locked characters as silhouettes</td>
+<td>PASS</td>
+<td>Drawn with <code>globalAlpha = 0.3</code> in character select</td>
+</tr>
+<tr>
+<td>Character selection changes player sprite</td>
+<td>PASS</td>
+<td><code>player.characterId</code> set from <code>getSelectedCharacter()</code></td>
+</tr>
+<tr>
+<td>La Vaca unlocks on 10 title taps</td>
+<td>PASS</td>
+<td><code>setupTitleTapEasterEgg()</code> tracks count</td>
+</tr>
+</tbody></table>
+<h4>US-08: Responsive canvas</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Canvas scales to viewport width, max 480px</td>
+<td>PASS</td>
+<td><code>resize()</code> in game-shell.js</td>
+</tr>
+<tr>
+<td>9:16 aspect ratio (360:640)</td>
+<td>PASS</td>
+<td>Logical dimensions in constants</td>
+</tr>
+<tr>
+<td>Playable on 320px screens</td>
+<td>PASS</td>
+<td>CSS scaling, no fixed widths</td>
+</tr>
+<tr>
+<td>Tap targets &gt;= 48px</td>
+<td>PASS</td>
+<td>Buttons use <code>min-height: var(--min-tap-target)</code> (48px)</td>
+</tr>
+<tr>
+<td>devicePixelRatio scaling</td>
+<td>PASS</td>
+<td><code>canvas.width = logicalWidth * dpr</code>, <code>ctx.scale(dpr, dpr)</code></td>
+</tr>
+<tr>
+<td>No horizontal scrollbar</td>
+<td>PASS</td>
+<td><code>overflow: hidden</code> on body</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>Game-02: Whack-a-Rot (GDD-02)</h3>
+<h4>US-1: Tap characters for points</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AC-1.1: Hit increments score by base points * combo</td>
+<td>PASS</td>
+<td><code>combo.calculateScore(basePoints)</code> applied</td>
+</tr>
+<tr>
+<td>AC-1.2: 200ms impact animation (1.3x scale + white flash)</td>
+<td>PASS</td>
+<td><code>HIT_ANIM_DURATION = 200</code>, hitScale lerps from 1.3 to 1.0</td>
+</tr>
+<tr>
+<td>AC-1.3: Character descends after hit (150ms)</td>
+<td>PASS</td>
+<td>State transitions: hit -&gt; sinking (SINK_DURATION = 150)</td>
+</tr>
+<tr>
+<td>AC-1.4: Tapping empty area has no effect</td>
+<td>PASS</td>
+<td><code>isHit()</code> returns false when hole state is empty</td>
+</tr>
+</tbody></table>
+<h4>US-2: Different character behaviors</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AC-2.1: Tralalero at standard time, 100pts</td>
+<td>PASS</td>
+<td><code>displayTimeMultiplier: 1.0</code>, <code>basePoints: 100</code></td>
+</tr>
+<tr>
+<td>AC-2.2: Bombardiro at 60% time, 200pts</td>
+<td>PASS</td>
+<td><code>displayTimeMultiplier: 0.6</code>, <code>basePoints: 200</code></td>
+</tr>
+<tr>
+<td>AC-2.3: Tung Tung at 130% time, radius 30</td>
+<td>PASS</td>
+<td><code>displayTimeMultiplier: 1.3</code>, <code>hitboxRadius: 30</code></td>
+</tr>
+<tr>
+<td>AC-2.4: Ballerina sways +/-15px</td>
+<td>PASS</td>
+<td><code>getHitboxCenter</code> shifts by <code>15 * Math.sin(time * 0.003)</code></td>
+</tr>
+<tr>
+<td>AC-2.5: Lirili at 40% time, 500pts, wave 3+</td>
+<td>PASS</td>
+<td><code>displayTimeMultiplier: 0.4</code>, <code>appearsFromWave: 3</code></td>
+</tr>
+<tr>
+<td>AC-2.6: Visually distinct characters</td>
+<td>PASS</td>
+<td>Each has unique procedural drawing</td>
+</tr>
+</tbody></table>
+<h4>US-3: Penalty character</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AC-3.1: -200 pts (floor at 0)</td>
+<td>PASS</td>
+<td><code>score = Math.max(0, score + result.characterType.basePoints)</code></td>
+</tr>
+<tr>
+<td>AC-3.2: Combo reset on penalty hit</td>
+<td>PASS</td>
+<td><code>combo.resetCombo()</code> called</td>
+</tr>
+<tr>
+<td>AC-3.3: Screen shake on penalty</td>
+<td>PASS</td>
+<td><code>effects.startScreenShake(4, 300)</code></td>
+</tr>
+<tr>
+<td>AC-3.4: Visually distinct (red, spiky, warning)</td>
+<td>PASS</td>
+<td>Red body, 8 spikes, yellow warning triangle with &quot;!&quot;</td>
+</tr>
+<tr>
+<td>AC-3.5: Spawn weight increases with difficulty</td>
+<td>PASS</td>
+<td><code>getPenaltyWeight(effectiveWave)</code> formula applied</td>
+</tr>
+</tbody></table>
+<h4>US-4: Combo system</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AC-4.1: Consecutive hits increment combo</td>
+<td>PASS</td>
+<td><code>combo.increment()</code> on each non-penalty hit</td>
+</tr>
+<tr>
+<td>AC-4.2: Multiplier = 1 + count * 0.25, cap 4.0x</td>
+<td>PASS</td>
+<td>Formula in <code>ComboCounter.increment()</code></td>
+</tr>
+<tr>
+<td>AC-4.3: Miss resets combo to 0</td>
+<td>PASS</td>
+<td><code>combo.resetCombo()</code> on miss event</td>
+</tr>
+<tr>
+<td>AC-4.4: Combo displayed when &gt;= 1</td>
+<td>PASS</td>
+<td><code>if (this.count &lt;= 0) return</code> in <code>ComboCounter.draw()</code></td>
+</tr>
+<tr>
+<td>AC-4.5: Milestones at 5, 10, 15, 20</td>
+<td>PASS</td>
+<td><code>COMBO_MILESTONES</code> array with floating text feedback</td>
+</tr>
+</tbody></table>
+<h4>US-5: Difficulty progression</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AC-5.1: Display time formula</td>
+<td>PASS</td>
+<td><code>getDisplayTime(effectiveWave)</code> matches GDD</td>
+</tr>
+<tr>
+<td>AC-5.2: Spawn interval formula</td>
+<td>PASS</td>
+<td><code>getSpawnInterval(effectiveWave)</code> matches GDD</td>
+</tr>
+<tr>
+<td>AC-5.3: Max active formula</td>
+<td>PASS</td>
+<td><code>getMaxActive(effectiveWave)</code> matches GDD</td>
+</tr>
+<tr>
+<td>AC-5.4: Penalty weight formula</td>
+<td>PASS</td>
+<td><code>getPenaltyWeight(effectiveWave)</code> matches GDD</td>
+</tr>
+<tr>
+<td>AC-5.5: Invisible wave transitions every 15s</td>
+<td>PASS</td>
+<td><code>wave = Math.min(4, 1 + Math.floor(elapsedSeconds / WAVE_DURATION))</code></td>
+</tr>
+</tbody></table>
+<h4>US-6: High score persistence</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AC-6.1: Save when exceeding stored high score</td>
+<td>PASS</td>
+<td><code>setHighScore()</code> in game-shell <code>_enterGameOver</code></td>
+</tr>
+<tr>
+<td>AC-6.2: Game-over shows current + high score</td>
+<td>PASS</td>
+<td>Populated in <code>_enterGameOver</code> DOM update</td>
+</tr>
+<tr>
+<td>AC-6.3: &quot;NEW HIGH SCORE&quot; text on new record</td>
+<td>PASS</td>
+<td><code>#gameover-newrecord</code> element shown when <code>isNewHigh</code></td>
+</tr>
+<tr>
+<td>AC-6.4: Persists across sessions</td>
+<td>PASS</td>
+<td>localStorage via shared score-manager</td>
+</tr>
+</tbody></table>
+<h4>US-7: Share functionality</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AC-7.1: Share button on game-over</td>
+<td>PASS</td>
+<td>Built by game-shell <code>_buildGameOverDOM</code></td>
+</tr>
+<tr>
+<td>AC-7.2: Clipboard copy format</td>
+<td>PASS</td>
+<td><code>generateShareText()</code> includes score + game name + URL</td>
+</tr>
+<tr>
+<td>AC-7.3: Web Share API on mobile</td>
+<td>PASS</td>
+<td><code>navigator.share()</code> tried first in <code>shareScore()</code></td>
+</tr>
+<tr>
+<td>AC-7.4: Button text changes after share</td>
+<td>PASS</td>
+<td>Changes to &quot;copied!&quot;/&quot;shared!&quot; for 2 seconds</td>
+</tr>
+</tbody></table>
+<h4>US-8: Responsive mobile play</h4>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AC-8.1: 400x600 logical, scales to viewport</td>
+<td>PASS</td>
+<td><code>CANVAS_W=400</code>, <code>CANVAS_H=600</code>, game-shell resize handles scaling</td>
+</tr>
+<tr>
+<td>AC-8.2: Max 500px width, centered</td>
+<td>PASS</td>
+<td><code>maxDisplayWidth: 500</code> in shell config</td>
+</tr>
+<tr>
+<td>AC-8.3: Min 48px effective tap area</td>
+<td>PASS</td>
+<td>Hitbox radius 30-40px at logical scale, CSS scaling preserves physical size</td>
+</tr>
+<tr>
+<td>AC-8.4: mousedown + touchstart, preventDefault</td>
+<td>PASS</td>
+<td>Shared input-manager handles both</td>
+</tr>
+<tr>
+<td>AC-8.5: No scroll/bounce</td>
+<td>PASS</td>
+<td><code>touch-action: none</code> on canvas, <code>overflow: hidden</code> on body</td>
+</tr>
+<tr>
+<td>AC-8.6: Fits 16:9 through 19.5:9</td>
+<td>PASS</td>
+<td>2:3 ratio fits within all common phone ratios</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. Bugs Found and Fixed</h2>
+<h3>BUG-01: Obstacle spacing too wide in Flappy Tralalero [FIXED]</h3>
+<ul>
+<li><strong>Severity:</strong> Medium</li>
+<li><strong>File:</strong> <code>games/game-01/js/main.js</code>, line 133</li>
+<li><strong>Description:</strong> The obstacle spawn condition compared against <code>LOGICAL_WIDTH - currentSpacing</code> instead of <code>LOGICAL_WIDTH + OBSTACLE_WIDTH - currentSpacing</code>. Since new obstacles spawn at <code>LOGICAL_WIDTH + OBSTACLE_WIDTH</code> (420px), the distance between obstacle centers was approximately 310px instead of the intended 250px, making the game noticeably easier than designed.</li>
+<li><strong>Fix:</strong> Changed condition from <code>obstacles[obstacles.length - 1].x &lt; LOGICAL_WIDTH - currentSpacing</code> to <code>obstacles[obstacles.length - 1].x &lt; LOGICAL_WIDTH + OBSTACLE_WIDTH - currentSpacing</code>.</li>
+</ul>
+<h3>BUG-02: Missing miss sound in Whack-a-Rot [FIXED]</h3>
+<ul>
+<li><strong>Severity:</strong> Low</li>
+<li><strong>File:</strong> <code>games/game-02/js/main.js</code>, line 103</li>
+<li><strong>Description:</strong> When a character despawned without being tapped (miss), the combo was correctly reset but no audio feedback was played. The GDD specifies a subtle &quot;womp&quot; sound on miss (300Hz sine, pitch bend to 200Hz). The &#39;miss&#39; sound was correctly registered but never called.</li>
+<li><strong>Fix:</strong> Added <code>playSound(&#39;miss&#39;)</code> after <code>combo.resetCombo()</code> on miss events.</li>
+</ul>
+<h3>BUG-03: Landing page placeholder content [FIXED]</h3>
+<ul>
+<li><strong>Severity:</strong> Low</li>
+<li><strong>File:</strong> <code>/index.html</code>, lines 74-101</li>
+<li><strong>Description:</strong> Game cards on the landing page still showed &quot;GAME 01&quot; / &quot;GAME 02&quot; as titles, &quot;coming soon&quot; tags, and generic placeholder descriptions. Updated to show actual game names (&quot;FLAPPY TRALALERO&quot; / &quot;WHACK-A-ROT&quot;), &quot;live&quot; tags, and descriptive text matching each game.</li>
+<li><strong>Fix:</strong> Updated card titles, tags, and descriptions to reflect shipped games.</li>
+</ul>
+<hr>
+<h2>3. Remaining Issues / Non-Blocking Observations</h2>
+<h3>Not Implemented (Design Scope Reductions)</h3>
+<p>These items are specified in the GDDs but appear to be intentionally deferred:</p>
+<ol>
+<li><p><strong>Ad integration</strong> (GDD-01 Section 8): Interstitial ad hook (<code>window.showInterstitialAd()</code>) is not wired. No ad SDK present. This is correctly scoped out for v1.</p>
+</li>
+<li><p><strong>Rewarded video / &quot;continue&quot; feature</strong> (GDD-01 Section 8): Not implemented. Documented as out-of-scope in GDD.</p>
+</li>
+<li><p><strong>Brr Brr Patapim unlock via rewarded ads</strong> (GDD-01): The unlock condition is defined (<code>type: &#39;ads&#39;, value: 5</code>) but no ad reward flow exists. The character is effectively locked behind a non-functional unlock path. This is a known v1 limitation.</p>
+</li>
+<li><p><strong>Konami-style easter egg</strong> (GDD-01 Section 4.7.2): Not implemented. Lower priority.</p>
+</li>
+<li><p><strong>Score 69 double-pop easter egg</strong> (GDD-01 Section 4.7.3): The color flash to Hot Magenta is implemented in <code>ScoreDisplay.draw()</code>, but the double-pop and temporary &quot;nice&quot; label are not.</p>
+</li>
+<li><p><strong>Turbo Bombardiro easter egg</strong> (GDD-01 Section 4.7.4): Not implemented. Lower priority.</p>
+</li>
+<li><p><strong>Timer pause on tab visibility change</strong> (GDD-02 Section 3.7): Implemented via <code>visibilitychange</code> event handler in game-02. However, game-01 does not pause on tab switch (by design -- Flappy Bird games typically don&#39;t pause).</p>
+</li>
+</ol>
+<h3>Minor Observations</h3>
+<ol>
+<li><p><strong><code>performance.now()</code> in draw functions</strong>: Several character draw functions (Bombardiro propeller, Ohio portal ellipses, Cappuccino steam) use <code>performance.now()</code> directly instead of the game&#39;s time parameter. This means their animations run at real-time speed regardless of game state. This is cosmetic and not a gameplay issue.</p>
+</li>
+<li><p><strong>Property pollution on ctx object</strong>: <code>obstacle.js</code> line 90 sets <code>ctx._teethCount</code> on the Canvas rendering context. Harmless but non-standard.</p>
+</li>
+<li><p><strong>No &quot;how to play&quot; button</strong>: GDD-01 specifies a &quot;how to play&quot; ghost button on the menu. Not implemented. Both games are self-explanatory (Flappy: &quot;tap to flap&quot; hint; Whack: intuitive tap-to-whack).</p>
+</li>
+<li><p><strong><code>roundRect()</code> browser support</strong>: Code uses <code>ctx.roundRect()</code> which requires Chrome 99+, Firefox 112+, Safari 16+. For a 2026 release this is fine, but older browsers will crash. No polyfill present.</p>
+</li>
+</ol>
+<hr>
+<h2>4. Overall Assessment</h2>
+<p><strong>Verdict: SHIPPABLE</strong></p>
+<p>Both games are fully functional, load without errors, and meet all must-have acceptance criteria. The shared infrastructure (game-shell, input-manager, score-manager, sound-manager, share module) is well-architected with clean separation of concerns.</p>
+<p><strong>Strengths:</strong></p>
+<ul>
+<li>Zero external dependencies. No build step. Pure ES modules.</li>
+<li>All graphics procedurally drawn -- zero asset loading, instant start.</li>
+<li>Audio generated via Web Audio API -- no audio files to load.</li>
+<li>Graceful fallbacks for localStorage and Web Share API.</li>
+<li>Responsive scaling works across phone/tablet/desktop.</li>
+<li>Character designs are visually distinctive and on-brand.</li>
+<li>Both games feel polished: screen shake, floating text, combo feedback, biome transitions.</li>
+</ul>
+<p><strong>The three bugs fixed (obstacle spacing, miss sound, landing page copy) were the only issues preventing a clean ship.</strong> No critical or high-severity bugs remain.</p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Identity — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">brand/visual-identity.md</div>
+    <div class="doc-content"><h1>visual identity guide</h1>
+<h2>brainrot games</h2>
+<h3>april 2026</h3>
+<hr>
+<h2>1. color palette</h2>
+<p>dark backgrounds. electric accents. the visual language of playing games at 2am when you should be sleeping.</p>
+<p>the entire palette is built around a dark base because: (a) games look better on dark backgrounds, (b) our audience lives on Discord, TikTok dark mode, and dimmed-phone-in-bed browsing, (c) neon accents on dark surfaces create the energy this brand needs, and (d) dark backgrounds make game elements pop without competing for attention.</p>
+<h3>primary palette</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Hex</th>
+<th>Usage</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Background</strong></td>
+<td>Void</td>
+<td><code>#0a0a0f</code></td>
+<td>Page backgrounds, game canvas default</td>
+<td>Nearly black with a slight blue-purple undertone. Not pure black (#000) because that&#39;s harsh and lifeless. The undertone gives it depth — feels like a screen, not a hole.</td>
+</tr>
+<tr>
+<td><strong>Surface</strong></td>
+<td>Charcoal</td>
+<td><code>#16161f</code></td>
+<td>Cards, menus, overlays, modals</td>
+<td>One step up from void. Provides layering without leaving the dark world. The slight warmth makes UI elements feel like objects floating on the background.</td>
+</tr>
+<tr>
+<td><strong>Surface Elevated</strong></td>
+<td>Slate</td>
+<td><code>#1e1e2e</code></td>
+<td>Hovered cards, active states, input fields</td>
+<td>Third layer. Creates enough contrast hierarchy for complex menus without introducing light colors.</td>
+</tr>
+<tr>
+<td><strong>Primary</strong></td>
+<td>Electric Lime</td>
+<td><code>#c8ff00</code></td>
+<td>Primary buttons, key actions, score highlights, main accent</td>
+<td>This is the brand&#39;s signature color. Lime on dark is arresting — it vibrates. It says &quot;tap this&quot; without saying a word. Lime green reads as gaming (Xbox, Razer, Mountain Dew) and energy without being the cliche electric blue of every other tech brand. It&#39;s also unusual enough to be ownable.</td>
+</tr>
+<tr>
+<td><strong>Secondary</strong></td>
+<td>Hot Magenta</td>
+<td><code>#ff2d78</code></td>
+<td>Secondary actions, error states, health/damage, destruction themes</td>
+<td>The chaos complement to lime&#39;s energy. Magenta reads as playful and slightly dangerous. On dark backgrounds it glows. It&#39;s the &quot;you died&quot; color, the &quot;new high score&quot; color, the accent that keeps the palette from being one-note.</td>
+</tr>
+<tr>
+<td><strong>Accent</strong></td>
+<td>Cyan Pulse</td>
+<td><code>#00e5ff</code></td>
+<td>Links, info states, collectibles, ice/water themes, tertiary highlights</td>
+<td>Adds a cooler dimension to the palette. Cyan is the universal &quot;information&quot; color in gaming UI and it reads as futuristic and digital. Balances the warm-leaning primary/secondary pair.</td>
+</tr>
+<tr>
+<td><strong>Warning</strong></td>
+<td>Brainrot Yellow</td>
+<td><code>#ffd000</code></td>
+<td>Warnings, coins, XP, special items, achievement flashes</td>
+<td>Every game needs gold. This warm, saturated yellow is the &quot;you earned something&quot; color. Reads instantly as currency/reward across all gaming contexts.</td>
+</tr>
+<tr>
+<td><strong>Text Primary</strong></td>
+<td>White Smoke</td>
+<td><code>#f0f0f0</code></td>
+<td>Body text, headings</td>
+<td>Not pure white (#fff) which causes eye strain on dark backgrounds. Slightly softened for comfortable reading during long sessions.</td>
+</tr>
+<tr>
+<td><strong>Text Secondary</strong></td>
+<td>Muted</td>
+<td><code>#8888a0</code></td>
+<td>Captions, labels, inactive UI, helper text</td>
+<td>Low enough contrast to recede but still readable. The slight purple undertone keeps it feeling integrated with the palette rather than just &quot;gray.&quot;</td>
+</tr>
+<tr>
+<td><strong>Text Tertiary</strong></td>
+<td>Ghost</td>
+<td><code>#555570</code></td>
+<td>Disabled states, decorative text, watermarks</td>
+<td>For elements that need to be present but not demanding attention.</td>
+</tr>
+</tbody></table>
+<h3>the extended palette (per-game theming)</h3>
+<p>each game can introduce 1-2 additional accent colors from this approved extended palette. these are pre-tested against our dark backgrounds for contrast and energy.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Hex</th>
+<th>Suggested Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sigma Purple</td>
+<td><code>#b44dff</code></td>
+<td>Sigma/rizz themed games, premium/rare items</td>
+</tr>
+<tr>
+<td>Ohio Orange</td>
+<td><code>#ff6b2b</code></td>
+<td>Ohio themed games, fire/explosion effects</td>
+</tr>
+<tr>
+<td>Skibidi Blue</td>
+<td><code>#4d7dff</code></td>
+<td>Skibidi themed games, faction coloring</td>
+</tr>
+<tr>
+<td>Italian Red</td>
+<td><code>#ff3838</code></td>
+<td>Italian brainrot themed games, danger states</td>
+</tr>
+<tr>
+<td>Mint Aura</td>
+<td><code>#00ffaa</code></td>
+<td>Aura-themed scoring, positive streaks, healing</td>
+</tr>
+</tbody></table>
+<h3>color contrast checks (WCAG AA)</h3>
+<p>all text/background pairings meet WCAG AA minimum contrast (4.5:1 for body text, 3:1 for large text):</p>
+<ul>
+<li>White Smoke (#f0f0f0) on Void (#0a0a0f) — 17.8:1 (passes AAA)</li>
+<li>White Smoke (#f0f0f0) on Surface (#16161f) — 15.2:1 (passes AAA)</li>
+<li>Muted (#8888a0) on Void (#0a0a0f) — 5.6:1 (passes AA)</li>
+<li>Electric Lime (#c8ff00) on Void (#0a0a0f) — 14.9:1 (passes AAA)</li>
+<li>Hot Magenta (#ff2d78) on Void (#0a0a0f) — 5.1:1 (passes AA for large text, use 18px+)</li>
+<li>Cyan Pulse (#00e5ff) on Void (#0a0a0f) — 10.8:1 (passes AAA)</li>
+</ul>
+<p>note: Hot Magenta should be used at 18px+ font size or with a slight text-shadow for body text on dark backgrounds. for smaller text, pair it with the Surface background instead of Void.</p>
+<h3>light mode? no.</h3>
+<p>the brand does not have a light mode. games are played on dark backgrounds. the website uses a dark background. if a light context is ever needed (print, email templates), use Void as the text color on a #fafafa background with Electric Lime accents.</p>
+<hr>
+<h2>2. typography</h2>
+<h3>display font: Bungee</h3>
+<pre><code>Google Fonts import:
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Bungee&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+</code></pre>
+<p><strong>what it is:</strong> a blocky, all-caps display face designed by David Jonathan Ross for the Google Fonts library. originally inspired by urban signage — marquees, storefronts, gym lettering.</p>
+<p><strong>why it works for brainrot games:</strong></p>
+<ul>
+<li>it looks like an arcade cabinet had a baby with a protest sign. loud, chunky, unapologetic.</li>
+<li>all-caps by nature, which aligns with the &quot;game title screen&quot; vibe without us forcing uppercase.</li>
+<li>it has weight and presence at large sizes but doesn&#39;t try to be cute or whimsical — it&#39;s blunt.</li>
+<li>it&#39;s distinctive without being illegible. you can read &quot;BRAINROT GAMES&quot; in Bungee from across a room.</li>
+<li>it pairs naturally with neon/glow effects because the thick strokes catch light/shadow treatments.</li>
+<li>it has a subtle mechanical quality that says &quot;built&quot; not &quot;designed&quot; — matches the operator brand tone.</li>
+</ul>
+<p><strong>usage:</strong></p>
+<ul>
+<li>game titles</li>
+<li>main headings (h1, h2 on marketing pages)</li>
+<li>score displays and large numbers</li>
+<li>logo treatment (the wordmark is Bungee)</li>
+<li>button text on oversized/hero buttons ONLY (not standard UI buttons)</li>
+<li>NEVER used for body text. NEVER used below 20px. this font is a headline or nothing.</li>
+</ul>
+<h3>body font: Space Grotesk</h3>
+<pre><code>Google Fonts import:
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+</code></pre>
+<p><strong>what it is:</strong> a geometric sans-serif by Florian Karsten. proportional counterpart to Space Mono. has a slightly technical, slightly retro quality.</p>
+<p><strong>why it works:</strong></p>
+<ul>
+<li>geometric DNA makes it pair naturally with Bungee&#39;s blockiness. they share structural logic.</li>
+<li>but it&#39;s softer and more readable at small sizes — the slight humanist touches in the letterforms keep it warm.</li>
+<li>the &quot;space&quot; aesthetic gives it a vaguely digital/sci-fi feeling without being an actual monospace or pixel font.</li>
+<li>excellent weight range (400-700) gives us flexibility for UI hierarchy.</li>
+<li>renders cleanly on mobile screens at 14-16px, which is where most of our text lives.</li>
+<li>it doesn&#39;t try to be fun. that&#39;s important. the display font is the personality. the body font is the clarity.</li>
+</ul>
+<p><strong>usage:</strong></p>
+<ul>
+<li>all body text, descriptions, menu items</li>
+<li>button labels</li>
+<li>score labels (not the score number itself — that&#39;s Bungee)</li>
+<li>navigation</li>
+<li>form inputs</li>
+<li>captions, helper text, metadata</li>
+</ul>
+<h3>type scale</h3>
+<p>based on a 1.25 ratio (major third) from a 16px base. this scale gives enough differentiation between levels without getting too large too fast — important because our UI is often inside game canvases with limited real estate.</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Font</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--text-xs</code></td>
+<td>12px</td>
+<td>400</td>
+<td>Space Grotesk</td>
+<td>Fine print, timestamps, version numbers</td>
+</tr>
+<tr>
+<td><code>--text-sm</code></td>
+<td>14px</td>
+<td>400</td>
+<td>Space Grotesk</td>
+<td>Captions, helper text, secondary labels</td>
+</tr>
+<tr>
+<td><code>--text-base</code></td>
+<td>16px</td>
+<td>400</td>
+<td>Space Grotesk</td>
+<td>Body text default</td>
+</tr>
+<tr>
+<td><code>--text-md</code></td>
+<td>18px</td>
+<td>500</td>
+<td>Space Grotesk</td>
+<td>Large body, emphasized paragraphs</td>
+</tr>
+<tr>
+<td><code>--text-lg</code></td>
+<td>20px</td>
+<td>600</td>
+<td>Space Grotesk</td>
+<td>Section headings in-game, small card titles</td>
+</tr>
+<tr>
+<td><code>--text-xl</code></td>
+<td>24px</td>
+<td>700</td>
+<td>Space Grotesk or Bungee</td>
+<td>Sub-headings, menu titles</td>
+</tr>
+<tr>
+<td><code>--text-2xl</code></td>
+<td>32px</td>
+<td>—</td>
+<td>Bungee</td>
+<td>Page headings, game-over text</td>
+</tr>
+<tr>
+<td><code>--text-3xl</code></td>
+<td>40px</td>
+<td>—</td>
+<td>Bungee</td>
+<td>Hero headings, game titles</td>
+</tr>
+<tr>
+<td><code>--text-4xl</code></td>
+<td>56px</td>
+<td>—</td>
+<td>Bungee</td>
+<td>Score displays, splash text</td>
+</tr>
+<tr>
+<td><code>--text-5xl</code></td>
+<td>72px</td>
+<td>—</td>
+<td>Bungee</td>
+<td>Giant score numbers, title screens</td>
+</tr>
+</tbody></table>
+<h3>type rules</h3>
+<ol>
+<li><strong>Bungee is always uppercase.</strong> the font is designed for it. lowercase Bungee looks broken.</li>
+<li><strong>Space Grotesk body text is always sentence case.</strong> no title case on menu items, buttons, or labels. lowercase is the brand. &quot;start game&quot; not &quot;Start Game.&quot;</li>
+<li><strong>letter-spacing on Bungee: +0.02em at display sizes, +0.05em at text sizes.</strong> the tight default spacing gets muddy on dark backgrounds. a little breathing room helps.</li>
+<li><strong>line-height for body text: 1.6.</strong> generous leading is non-negotiable for readability on screens. for headings: 1.1-1.2 (tighter because Bungee is already chunky).</li>
+<li><strong>max body text width: 65ch.</strong> reading long lines on a screen is miserable. this keeps paragraphs comfortable.</li>
+<li><strong>never use font-weight below 400 for body text on dark backgrounds.</strong> thin type on dark surfaces becomes invisible.</li>
+</ol>
+<hr>
+<h2>3. logo concept</h2>
+<h3>the wordmark</h3>
+<p>the logo is the words <strong>BRAINROT GAMES</strong> set in Bungee. that&#39;s it. no symbol, no mascot, no abstract mark.</p>
+<p><strong>why text-only:</strong></p>
+<ul>
+<li>the company name IS the brand signal. &quot;Brainrot Games&quot; communicates everything instantly. a symbol adds nothing.</li>
+<li>a wordmark in Bungee is distinctive enough to function as a logo at any size.</li>
+<li>text logos are easier to render in HTML (no image assets), faster to load, and work in every context: favicon, social avatar, game splash screen, watermark.</li>
+<li>trying to design a &quot;brainrot icon&quot; would either be too literal (a melting brain) or too abstract to mean anything. the words do the work.</li>
+</ul>
+<p><strong>treatment:</strong></p>
+<ul>
+<li>always set in Bungee, always uppercase (the font&#39;s natural state)</li>
+<li>primary version: Electric Lime (#c8ff00) on dark backgrounds</li>
+<li>the text should have a subtle glow effect: <code>text-shadow: 0 0 20px rgba(200, 255, 0, 0.3)</code> — like neon signage, not like a Photoshop tutorial</li>
+<li>on very small surfaces (favicon, app icon), abbreviate to <strong>BRG</strong> in the same style</li>
+<li>the tagline &quot;your brain on memes&quot; appears below the wordmark in Space Grotesk, weight 400, Text Secondary color (#8888a0), at roughly 40% of the wordmark&#39;s size</li>
+</ul>
+<p><strong>lockup variations:</strong></p>
+<ol>
+<li><strong>full lockup</strong> — &quot;BRAINROT GAMES&quot; + tagline below. for website header, about pages, press kit.</li>
+<li><strong>compact</strong> — &quot;BRAINROT GAMES&quot; only. for game splash screens, social headers.</li>
+<li><strong>minimal</strong> — &quot;BRG&quot; monogram. for favicons, app icons, watermarks on score cards.</li>
+<li><strong>inline</strong> — &quot;brainrot games&quot; in Space Grotesk bold (not Bungee) for running text contexts where the display font would be overkill. lowercase.</li>
+</ol>
+<p><strong>clear space:</strong> maintain padding equal to the height of the &quot;B&quot; in BRAINROT on all sides. nothing crowds the wordmark.</p>
+<hr>
+<h2>4. game UI style guide</h2>
+<p>every brainrot games title should feel like it belongs to the same family while having its own flavor. this is achieved through a shared UI system with per-game theming.</p>
+<h3>4.1 buttons</h3>
+<p><strong>primary button:</strong></p>
+<ul>
+<li>background: Electric Lime (#c8ff00)</li>
+<li>text: Void (#0a0a0f) — black text on lime for maximum contrast</li>
+<li>font: Space Grotesk, 600 weight, 16px, sentence case</li>
+<li>padding: 12px 24px</li>
+<li>border-radius: 12px (--radius-md)</li>
+<li>no border</li>
+<li>hover: brightness increases slightly (filter: brightness(1.1)), subtle box-shadow glow in primary color</li>
+<li>active/pressed: scale(0.97) transform, brightness drops slightly (filter: brightness(0.9))</li>
+<li>disabled: opacity 0.4, no hover effect</li>
+<li>the primary button is the loudest element on any screen. there should be only ONE primary button visible at a time.</li>
+</ul>
+<p><strong>secondary button:</strong></p>
+<ul>
+<li>background: transparent</li>
+<li>border: 2px solid current text color (adapts to context)</li>
+<li>text: Text Primary (#f0f0f0)</li>
+<li>same font, padding, radius as primary</li>
+<li>hover: background fills to Surface Elevated (#1e1e2e), border color shifts to Electric Lime</li>
+<li>active: scale(0.97)</li>
+<li>use for: secondary actions, &quot;back,&quot; &quot;settings,&quot; &quot;how to play&quot;</li>
+</ul>
+<p><strong>icon button:</strong></p>
+<ul>
+<li>48x48px minimum tap target (mobile accessibility)</li>
+<li>circular: border-radius 50%</li>
+<li>background: Surface (#16161f)</li>
+<li>icon color: Text Secondary (#8888a0)</li>
+<li>hover: background shifts to Surface Elevated, icon color to Text Primary</li>
+<li>use for: close, mute, settings gear, share, pause</li>
+</ul>
+<p><strong>ghost button:</strong></p>
+<ul>
+<li>no background, no border</li>
+<li>text: Text Secondary (#8888a0)</li>
+<li>hover: text shifts to Text Primary</li>
+<li>use for: less important navigation, &quot;skip,&quot; &quot;maybe later&quot;</li>
+</ul>
+<h3>4.2 score / HUD display</h3>
+<p>the HUD (heads-up display) is what the player sees DURING gameplay. it must be readable at a glance without distracting from the game.</p>
+<p><strong>positioning:</strong></p>
+<ul>
+<li>score: top-center of the canvas, 16px from the top edge</li>
+<li>secondary info (lives, level, timer): top-left or top-right corners, 12px from edges</li>
+<li>pause button: top-right corner, always accessible</li>
+</ul>
+<p><strong>score number style:</strong></p>
+<ul>
+<li>font: Bungee</li>
+<li>size: --text-4xl (56px) for the primary score, scaling down on smaller screens</li>
+<li>color: Text Primary (#f0f0f0) with a subtle drop shadow for readability over game backgrounds</li>
+<li>text-shadow: <code>2px 2px 0 rgba(0,0,0,0.5)</code> — ensures readability over any game background</li>
+<li>when score changes: brief scale animation (scale up to 1.2 then back to 1.0, 150ms) + flash to Electric Lime then back to white. keeps the score feeling alive.</li>
+</ul>
+<p><strong>score label (e.g., &quot;score&quot; or &quot;aura points&quot;):</strong></p>
+<ul>
+<li>font: Space Grotesk, 500 weight</li>
+<li>size: --text-sm (14px)</li>
+<li>color: Text Secondary (#8888a0)</li>
+<li>positioned directly above or below the score number</li>
+<li>optional — if the context is obvious (it&#39;s a score, everyone knows), skip the label</li>
+</ul>
+<p><strong>lives / health:</strong></p>
+<ul>
+<li>represented as icons (hearts, character faces, etc.) not numbers</li>
+<li>max 3-5 icons, positioned top-left</li>
+<li>lost lives are ghost colored (#555570), remaining are Hot Magenta (#ff2d78)</li>
+<li>losing a life triggers a screen-edge flash in Hot Magenta (CSS only, no JS animation library needed — use a pseudo-element with animation)</li>
+</ul>
+<h3>4.3 menu screen layout</h3>
+<p>the menu screen is what players see before the game starts. it&#39;s also the first impression. it needs to load instantly and communicate &quot;tap to play&quot; within 1 second.</p>
+<p><strong>layout (top to bottom, centered):</strong></p>
+<ol>
+<li>game title — Bungee, --text-3xl, Electric Lime, centered</li>
+<li>subtitle or tagline — Space Grotesk, --text-sm, Text Secondary, centered</li>
+<li>game character or visual — centered, takes up middle 40% of screen height</li>
+<li>&quot;start game&quot; primary button — big, impossible to miss</li>
+<li>secondary actions row — &quot;how to play,&quot; &quot;leaderboard,&quot; &quot;settings&quot; as ghost buttons in a horizontal row</li>
+<li>brainrot games logo watermark — bottom center, minimal lockup, Ghost color (#555570)</li>
+</ol>
+<p><strong>rules:</strong></p>
+<ul>
+<li>no scrolling. the entire menu fits in one viewport.</li>
+<li>the primary action (start game) is in the thumb zone on mobile (lower half of screen).</li>
+<li>the game character or visual should have a subtle idle animation (CSS only — a gentle float or pulse).</li>
+<li>background: Void (#0a0a0f) with optional subtle pattern or gradient per game theme.</li>
+<li>no loading spinner is visible. if the game hasn&#39;t loaded yet, the menu still appears with the button disabled + &quot;loading...&quot; text. the player should always see something instantly.</li>
+</ul>
+<h3>4.4 game-over screen layout</h3>
+<p>this is the most important screen in the entire game because it&#39;s the screen people screenshot and share. design it for screenshots.</p>
+<p><strong>layout (centered overlay on dimmed game canvas):</strong></p>
+<ol>
+<li>&quot;game over&quot; or equivalent — Bungee, --text-2xl, Hot Magenta</li>
+<li>final score — Bungee, --text-5xl, Electric Lime, the biggest thing on screen</li>
+<li>score label (e.g., &quot;aura points&quot;) — Space Grotesk, --text-sm, Text Secondary</li>
+<li>high score — if new high score, flash &quot;NEW HIGH SCORE&quot; in Brainrot Yellow with animation. if not, show &quot;best: [X]&quot; in Text Secondary.</li>
+<li>share button — primary button style, &quot;share score&quot; or &quot;flex this.&quot; this opens share functionality (Web Share API or copy-to-clipboard with pre-written share text + score).</li>
+<li>retry button — secondary button style, &quot;try again&quot; or &quot;run it back&quot;</li>
+<li>other actions — ghost buttons: &quot;menu,&quot; &quot;other games&quot;</li>
+</ol>
+<p><strong>overlay style:</strong></p>
+<ul>
+<li>the game canvas behind the overlay should dim to ~20% brightness</li>
+<li>overlay background: Surface (#16161f) at 95% opacity, centered, max-width 400px, padded 32px, border-radius --radius-lg (16px)</li>
+<li>optional: subtle border-glow in the game&#39;s accent color</li>
+<li>animation: the overlay slides or fades in (200ms ease-out). the score counts up from 0 to final (if applicable — adds drama).</li>
+</ul>
+<p><strong>share card design:</strong>
+when a player shares, the output should be a pre-formatted text string (for platforms that don&#39;t support image sharing) or a canvas-rendered image card. the text format:</p>
+<pre><code>i got [SCORE] in [GAME NAME] 💀
+[URL]
+</code></pre>
+<p>the image card (if rendered): dark background, game title, score in Bungee, character graphic, brainrot games logo. keep it vertical (story-format ratio, 1080x1920) for Instagram/TikTok sharing.</p>
+<h3>4.5 modal / overlay style</h3>
+<p>for settings panels, &quot;how to play&quot; screens, confirmation dialogs, etc.</p>
+<ul>
+<li>background: Surface (#16161f) at 95% opacity</li>
+<li>border-radius: --radius-lg (16px)</li>
+<li>padding: 24px</li>
+<li>max-width: 420px, centered</li>
+<li>backdrop: Void at 70% opacity (dark scrim behind the modal)</li>
+<li>close button: icon button (X) in the top-right corner of the modal</li>
+<li>title: Space Grotesk, --text-lg, 600 weight, Text Primary</li>
+<li>body text: Space Grotesk, --text-base, 400 weight, Text Primary</li>
+<li>actions: at the bottom of the modal, right-aligned (or centered on mobile)</li>
+<li>entry animation: fade in + slight scale up (from 0.95 to 1.0), 200ms ease-out</li>
+<li>exit animation: fade out, 150ms</li>
+</ul>
+<h3>4.6 color usage rules</h3>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Color to Use</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Primary action (the ONE thing you want the player to do)</td>
+<td>Electric Lime</td>
+<td>It&#39;s the loudest color. One per screen.</td>
+</tr>
+<tr>
+<td>Secondary actions</td>
+<td>Transparent/border or Surface</td>
+<td>Quieter. Doesn&#39;t compete with primary.</td>
+</tr>
+<tr>
+<td>Destructive/negative (death, damage, lose life)</td>
+<td>Hot Magenta</td>
+<td>Reads as danger/loss without being boring red.</td>
+</tr>
+<tr>
+<td>Informational (tutorials, hints, tooltips)</td>
+<td>Cyan Pulse</td>
+<td>Cool, calm, &quot;here&#39;s some info.&quot;</td>
+</tr>
+<tr>
+<td>Reward/achievement (coins, XP, high scores, unlocks)</td>
+<td>Brainrot Yellow</td>
+<td>Universal &quot;you earned this&quot; color.</td>
+</tr>
+<tr>
+<td>Score / primary number displays</td>
+<td>Electric Lime or Text Primary</td>
+<td>Depends on context. Lime for emphasis, white for neutral.</td>
+</tr>
+<tr>
+<td>Background layers</td>
+<td>Void → Surface → Surface Elevated</td>
+<td>Each layer up = slightly lighter. Never more than 3 layers.</td>
+</tr>
+<tr>
+<td>Disabled elements</td>
+<td>Ghost (#555570) or 40% opacity</td>
+<td>Clearly communicates &quot;you can&#39;t interact with this.&quot;</td>
+</tr>
+<tr>
+<td>Per-game accent</td>
+<td>Pick ONE from the extended palette</td>
+<td>Games can have their own flavor but only add one extra color, not five.</td>
+</tr>
+</tbody></table>
+<p><strong>the one-primary-button rule:</strong> on any given screen, only ONE element should use Electric Lime as its background. everything else is secondary. this creates an instant visual hierarchy — the player always knows what to do.</p>
+<hr>
+<h2>5. design principles</h2>
+<p>five rules. apply them to every screen of every game.</p>
+<h3>1. readable at arm&#39;s length</h3>
+<p>73% of our players are on phones. UI text must be legible at 14px minimum. Buttons must be 48px tall minimum. Score numbers must be visible even in a shaky-hand playing-on-the-bus context. if you have to squint, it&#39;s too small.</p>
+<h3>2. every screen is a screenshot</h3>
+<p>the game-over screen, the title screen, even the gameplay itself — any of these could end up as a TikTok thumbnail, a Discord embed, or a group chat screenshot. design every screen as if it might be the image that goes viral. that means: clean composition, the score visible, the game title visible, no half-rendered UI elements.</p>
+<h3>3. dark, electric, not edgy</h3>
+<p>the brand is playful-chaotic, not grimdark. we use dark backgrounds because they make neon colors pop and games look better, not because we&#39;re trying to look like a hacker movie. the accents should feel energetic and fun. if a screen looks more like a cyberpunk dystopia than a game you&#39;d play on the toilet, pull it back.</p>
+<h3>4. one tap to the action</h3>
+<p>the fastest path from &quot;I opened this link&quot; to &quot;I&#39;m playing the game&quot; should be ONE tap. the menu exists to orient, not to gatekeep. no mandatory tutorials, no sign-up walls, no splash screens you have to wait through. load the menu, tap play, you&#39;re in. everything else (settings, leaderboards, how to play) is optional and secondary.</p>
+<h3>5. consistent skeleton, unique skin</h3>
+<p>every game shares the same structural bones: where the score goes, where the buttons go, how the game-over screen is laid out, how modals work. this means a player who&#39;s played one brainrot game instinctively knows how to navigate the next one. but each game has its own color accent, character art, and atmosphere. the skeleton is the system. the skin is the personality.</p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

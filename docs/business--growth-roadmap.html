@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth Roadmap — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">business/growth-roadmap.md</div>
+    <div class="doc-content"><h1>Growth Roadmap — Brainrot Games</h1>
+<h2>90-Day Post-Launch Plan + Long-Term Pipeline</h2>
+<h3>April 2026</h3>
+<hr>
+<h2>90-Day Post-Launch Roadmap</h2>
+<h3>Month 1: Launch &amp; Learn (Days 1-30)</h3>
+<p><strong>Week 1: Launch Sprint</strong></p>
+<ul>
+<li>Ship Flappy Tralalero and Whack-a-Rot to own domain (brainrotgames.com)</li>
+<li>Execute social media launch plan (TikTok primary, Reddit, Discord)</li>
+<li>Submit to Poki and CrazyGames developer portals</li>
+<li>Post on itch.io for indie community visibility</li>
+<li>Launch Discord server with high-score competition channel</li>
+</ul>
+<p><strong>Week 2-3: Measure &amp; Iterate</strong></p>
+<ul>
+<li>Add analytics (Plausible or Google Analytics) — track: game_start, game_over, score, share_click, session_duration</li>
+<li>Monitor metrics: DAU, session length, retry rate, share rate, bounce rate</li>
+<li>A/B test: death screen messaging, share card format, ad frequency</li>
+<li>Fix any reported bugs, polish based on feedback</li>
+<li>Submit &quot;Show HN&quot; post for Hacker News if game has a clever angle</li>
+</ul>
+<p><strong>Week 4: Optimize</strong></p>
+<ul>
+<li>Implement basic ad monetization (interstitial on every 3rd death)</li>
+<li>Optimize for mobile performance (frame rate on low-end devices)</li>
+<li>Begin development on Game 3 (Sigma Grindset Simulator)</li>
+<li>Analyze which distribution channel drives highest-quality traffic</li>
+</ul>
+<p><strong>Month 1 Targets:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Stretch</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DAU</td>
+<td>500</td>
+<td>2,000</td>
+</tr>
+<tr>
+<td>MAU</td>
+<td>5,000</td>
+<td>20,000</td>
+</tr>
+<tr>
+<td>Avg session length</td>
+<td>3+ min</td>
+<td>5+ min</td>
+</tr>
+<tr>
+<td>Share rate</td>
+<td>2%</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>D1 retention</td>
+<td>20%</td>
+<td>35%</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>Month 2: Expand &amp; Monetize (Days 31-60)</h3>
+<p><strong>Game Pipeline:</strong></p>
+<ul>
+<li>Ship Game 3: <strong>Sigma Grindset Simulator</strong> (idle clicker, 2-3 day build)</li>
+<li>Ship Game 4: <strong>Ohio Survival Run</strong> (endless runner, 3-5 day build)</li>
+<li>Update landing page with new game cards</li>
+</ul>
+<p><strong>Infrastructure Upgrades:</strong></p>
+<ul>
+<li>Add global leaderboards (Firebase Realtime Database — free tier handles 100K MAU)</li>
+<li>Implement &quot;More Games&quot; cross-promotion on all game-over screens</li>
+<li>Add daily challenge system (rotating target score for each game)</li>
+<li>Optimize ad stack: test rewarded video for &quot;continue&quot; mechanic</li>
+</ul>
+<p><strong>Distribution Expansion:</strong></p>
+<ul>
+<li>Games live on Poki and CrazyGames (if approved in Month 1)</li>
+<li>Submit to GameDistribution for licensing to portal network</li>
+<li>Begin non-exclusive licensing conversations ($200-2000 per deal)</li>
+<li>Run micro-influencer outreach campaign (20 TikTok creators, 10K-100K followers)</li>
+</ul>
+<p><strong>Month 2 Targets:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Stretch</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DAU</td>
+<td>2,000</td>
+<td>10,000</td>
+</tr>
+<tr>
+<td>MAU</td>
+<td>20,000</td>
+<td>100,000</td>
+</tr>
+<tr>
+<td>Games live</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Monthly revenue</td>
+<td>$500</td>
+<td>$3,000</td>
+</tr>
+<tr>
+<td>D7 retention</td>
+<td>10%</td>
+<td>20%</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>Month 3: Scale &amp; Diversify (Days 61-90)</h3>
+<p><strong>Game Pipeline:</strong></p>
+<ul>
+<li>Ship Game 5: <strong>Skibidi Stack</strong> (Stack game, 1-2 day build)</li>
+<li>Ship Game 6: <strong>Brainrot 2048</strong> (2048 with brainrot character tiles, 2-3 day build)</li>
+<li>Begin prototyping multiplayer for Whack-a-Rot (WebSocket real-time competitive mode)</li>
+</ul>
+<p><strong>Monetization Refinement:</strong></p>
+<ul>
+<li>Full ad stack operational: interstitials + rewarded video + Poki rev-share</li>
+<li>Evaluate cosmetic IAP for top-performing game (character skins at $0.99-1.99)</li>
+<li>First game licensing deals closed</li>
+<li>Revenue reporting dashboard (simple spreadsheet or Notion)</li>
+</ul>
+<p><strong>Platform Expansion:</strong></p>
+<ul>
+<li>Wrap best-performing game as Android TWA for Google Play</li>
+<li>Evaluate Steam launch for a premium &quot;Brainrot Collection&quot; bundle ($2.99)</li>
+<li>Community grown to 500+ Discord members</li>
+<li>UGC challenge: &quot;design a brainrot character&quot; contest</li>
+</ul>
+<p><strong>Month 3 Targets:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Stretch</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DAU</td>
+<td>5,000</td>
+<td>25,000</td>
+</tr>
+<tr>
+<td>MAU</td>
+<td>50,000</td>
+<td>250,000</td>
+</tr>
+<tr>
+<td>Games live</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Monthly revenue</td>
+<td>$2,000</td>
+<td>$15,000</td>
+</tr>
+<tr>
+<td>D30 retention</td>
+<td>3%</td>
+<td>8%</td>
+</tr>
+<tr>
+<td>Poki monthly revenue</td>
+<td>$500</td>
+<td>$5,000</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Game Pipeline: Next 5 Games</h2>
+<p>From the concept matrix (ranked by total score):</p>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Game</th>
+<th>Mechanic</th>
+<th>Theme</th>
+<th>Score</th>
+<th>Est. Build</th>
+<th>Target Ship</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>3</strong></td>
+<td><strong>Sigma Grindset Simulator</strong></td>
+<td>Idle Clicker</td>
+<td>Sigma/Rizz/Mewing</td>
+<td>23/25</td>
+<td>2-3 days</td>
+<td>Month 2, Week 1</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td><strong>Ohio Survival Run</strong></td>
+<td>Endless Runner</td>
+<td>Ohio Memes</td>
+<td>22/25</td>
+<td>3-5 days</td>
+<td>Month 2, Week 3</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td><strong>Skibidi Stack</strong></td>
+<td>Stack</td>
+<td>Skibidi Toilet</td>
+<td>21/25</td>
+<td>1-2 days</td>
+<td>Month 3, Week 1</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td><strong>Brainrot 2048</strong></td>
+<td>2048</td>
+<td>Italian Brainrot</td>
+<td>19/25</td>
+<td>2-3 days</td>
+<td>Month 3, Week 2</td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td><strong>Fanum Tax Snake</strong></td>
+<td>Snake</td>
+<td>Fanum Tax</td>
+<td>20/25</td>
+<td>2-3 days</td>
+<td>Month 3, Week 4</td>
+</tr>
+</tbody></table>
+<p><strong>Pipeline principles:</strong></p>
+<ul>
+<li>Alternate between trivial builds (1-2 days) and deeper games (3-5 days)</li>
+<li>Each game shares infrastructure, so marginal build cost decreases</li>
+<li>Theme diversity: don&#39;t release two same-theme games back-to-back</li>
+<li>Mechanical diversity: each new game should feel different to play</li>
+</ul>
+<hr>
+<h2>Feature Roadmap for Shared Infrastructure</h2>
+<h3>Phase 1 (Month 1): Foundation ✅ Built</h3>
+<ul>
+<li>Game shell with state machine</li>
+<li>Score persistence (localStorage)</li>
+<li>Input manager (touch/click/keyboard)</li>
+<li>Sound manager (Web Audio API)</li>
+<li>Social sharing</li>
+</ul>
+<h3>Phase 2 (Month 2): Engagement</h3>
+<ul>
+<li><strong>Global Leaderboards</strong> — Firebase Realtime Database<ul>
+<li>Anonymous leaderboards (no account required)</li>
+<li>Top 100 per game, updated in real-time</li>
+<li>Display name entry (3-letter arcade style or custom)</li>
+</ul>
+</li>
+<li><strong>Daily Challenges</strong> — Rotating target scores<ul>
+<li>&quot;Score 50+ in Flappy Tralalero today&quot;</li>
+<li>Streak tracking in localStorage</li>
+<li>Shared challenge results for social</li>
+</ul>
+</li>
+</ul>
+<h3>Phase 3 (Month 3): Retention</h3>
+<ul>
+<li><strong>Achievement/Badge System</strong><ul>
+<li>Per-game achievements (e.g., &quot;Score 100 in Flappy Tralalero&quot;)</li>
+<li>Cross-game achievements (e.g., &quot;Play all 6 games&quot;)</li>
+<li>Visual badge display on profile/share cards</li>
+</ul>
+</li>
+<li><strong>User Accounts</strong> (optional, low-friction)<ul>
+<li>Social login (Google) via Firebase Auth</li>
+<li>Sync scores across devices</li>
+<li>NOT required to play — always free and anonymous first</li>
+</ul>
+</li>
+</ul>
+<h3>Phase 4 (Month 4+): Growth</h3>
+<ul>
+<li><strong>Multiplayer Framework</strong><ul>
+<li>WebSocket server (Cloudflare Workers or Deno Deploy)</li>
+<li>Real-time competitive Whack-a-Rot (2-player split screen)</li>
+<li>Ghost replay for Flappy Tralalero (race against friend&#39;s run)</li>
+</ul>
+</li>
+<li><strong>Level Editor / UGC</strong><ul>
+<li>User-created obstacle patterns for Flappy</li>
+<li>Custom character submissions for Whack-a-Rot</li>
+<li>Community voting on best levels/characters</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>Scaling Plan</h2>
+<h3>When to Invest in Art (Month 3-4)</h3>
+<ul>
+<li><strong>Trigger:</strong> Any single game exceeds 50K MAU consistently</li>
+<li><strong>Investment:</strong> Commission sprite artist for character redesigns ($200-500 per character sheet)</li>
+<li><strong>Why:</strong> Canvas-drawn shapes are fine for launch but professional sprites dramatically improve perceived quality and social shareability</li>
+</ul>
+<h3>When to Invest in Sound (Month 2-3)</h3>
+<ul>
+<li><strong>Trigger:</strong> Games are live and playable, retention data shows room for improvement</li>
+<li><strong>Investment:</strong> Commission 8-bit sound effects package ($100-300 for full set)</li>
+<li><strong>Alternative:</strong> Use royalty-free packs from Kenney.nl or OpenGameArt</li>
+</ul>
+<h3>When to Consider Native App Wrappers (Month 3)</h3>
+<ul>
+<li><strong>Trigger:</strong> 100K+ MAU on web, clear demand from mobile users</li>
+<li><strong>Android first:</strong> TWA (Trusted Web Activity) — wraps the web game in an app shell. Free, no code changes. Submit to Google Play.</li>
+<li><strong>iOS:</strong> Requires actual native wrapper or Capacitor. Only invest if Android proves the model ($500-1000 for basic wrapper).</li>
+</ul>
+<h3>When to Hire (Month 4-6)</h3>
+<ul>
+<li><strong>First hire:</strong> Part-time community manager (handles Discord, social media replies) — $500-1000/month</li>
+<li><strong>Second hire:</strong> Contract game developer to parallelize game production — $2000-4000/month</li>
+<li><strong>Trigger for both:</strong> Monthly revenue consistently exceeds $5K</li>
+</ul>
+<hr>
+<h2>KPIs and Success Metrics</h2>
+<h3>Primary KPIs (Track Daily)</h3>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Definition</th>
+<th>Month 1 Target</th>
+<th>Month 3 Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>DAU</strong></td>
+<td>Unique players per day</td>
+<td>500</td>
+<td>5,000</td>
+</tr>
+<tr>
+<td><strong>MAU</strong></td>
+<td>Unique players per month</td>
+<td>5,000</td>
+<td>50,000</td>
+</tr>
+<tr>
+<td><strong>Session Length</strong></td>
+<td>Average time per visit</td>
+<td>3 min</td>
+<td>4 min</td>
+</tr>
+<tr>
+<td><strong>Sessions/User/Day</strong></td>
+<td>How often players return in one day</td>
+<td>1.5</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td><strong>Games Played/Session</strong></td>
+<td>Average rounds per visit</td>
+<td>5</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<h3>Engagement KPIs (Track Weekly)</h3>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Definition</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>D1 Retention</strong></td>
+<td>% returning next day</td>
+<td>20-35%</td>
+</tr>
+<tr>
+<td><strong>D7 Retention</strong></td>
+<td>% returning after 7 days</td>
+<td>10-20%</td>
+</tr>
+<tr>
+<td><strong>D30 Retention</strong></td>
+<td>% returning after 30 days</td>
+<td>3-8%</td>
+</tr>
+<tr>
+<td><strong>Share Rate</strong></td>
+<td>% of game-over screens that lead to a share</td>
+<td>3-5%</td>
+</tr>
+<tr>
+<td><strong>Cross-Game Rate</strong></td>
+<td>% who play both games</td>
+<td>30%</td>
+</tr>
+</tbody></table>
+<h3>Viral KPIs (Track Weekly)</h3>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Definition</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>K-Factor</strong></td>
+<td>Users acquired per existing user</td>
+<td>&gt; 0.3 (anything &gt; 1.0 = organic growth)</td>
+</tr>
+<tr>
+<td><strong>Viral Cycle Time</strong></td>
+<td>Days between share → new user → their share</td>
+<td>&lt; 3 days</td>
+</tr>
+<tr>
+<td><strong>Social Impressions</strong></td>
+<td>Views on shared content (TikTok, tweets)</td>
+<td>100K/week by Month 2</td>
+</tr>
+</tbody></table>
+<h3>Revenue KPIs (Track Monthly)</h3>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Definition</th>
+<th>Month 1 Target</th>
+<th>Month 3 Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Revenue</strong></td>
+<td>Total monthly revenue</td>
+<td>$200</td>
+<td>$2,000</td>
+</tr>
+<tr>
+<td><strong>ARPDAU</strong></td>
+<td>Revenue per daily active user</td>
+<td>$0.01</td>
+<td>$0.03</td>
+</tr>
+<tr>
+<td><strong>Monthly ARPU</strong></td>
+<td>Revenue per monthly active user</td>
+<td>$0.05</td>
+<td>$0.10</td>
+</tr>
+<tr>
+<td><strong>CPM (blended)</strong></td>
+<td>Revenue per 1000 ad impressions</td>
+<td>$3.00</td>
+<td>$5.00</td>
+</tr>
+<tr>
+<td><strong>Ad Fill Rate</strong></td>
+<td>% of ad requests that serve an ad</td>
+<td>60%</td>
+<td>80%</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Risk Mitigation</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Probability</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Italian brainrot fades before Month 3</td>
+<td>Medium</td>
+<td>High</td>
+<td>Game mechanics stand alone; new meme themes can reskin existing games in &lt;1 day</td>
+</tr>
+<tr>
+<td>Poki/CrazyGames reject our games</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Own website is primary; portals are bonus distribution</td>
+</tr>
+<tr>
+<td>TikTok banned in US</td>
+<td>Low-Medium</td>
+<td>High</td>
+<td>YouTube Shorts and Instagram Reels as backup; Reddit/Discord organic</td>
+</tr>
+<tr>
+<td>Low initial traffic</td>
+<td>High</td>
+<td>Medium</td>
+<td>Expected — most indie games start slow. Budget 3 months before judging</td>
+</tr>
+<tr>
+<td>Copycats clone our games</td>
+<td>Certain</td>
+<td>Low</td>
+<td>Speed of iteration is the moat, not IP protection. Ship faster.</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>Roadmap effective April 2026. Review and update monthly based on actual metrics.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

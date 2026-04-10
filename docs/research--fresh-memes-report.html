@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresh Memes Report — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">research/fresh-memes-report.md</div>
+    <div class="doc-content"><h1>Deep Research Report: Fresh Meme &amp; Internet Culture Themes for Game Expansion</h1>
+<p><strong>Date</strong>: 2026-04-10
+<strong>Research mode</strong>: Landscape Mapping + Comparative Analysis
+<strong>Passes completed</strong>: 5
+<strong>Total sources consulted</strong>: 48+</p>
+<hr>
+<h2>Executive Summary</h2>
+<p>Beyond the Italian Brainrot / Skibidi / Sigma ecosystem already covered by games 01-11, there is a deep bench of viable game themes spanning five categories: recent viral memes (2025-2026), anime/manga culture, gaming culture, nostalgic internet culture, and absurdist/surreal memes. This report identifies <strong>28 viable themes</strong> that meet all four criteria: not owned by a single company, culturally present, visually drawable with Canvas shapes, and funny enough to make a reskin land. The strongest immediate candidates are <strong>The Backrooms</strong> (CC-licensed, massive Gen Z/Alpha recognition, perfect for maze/survival games), <strong>Anime Power-Up / &quot;It&#39;s Over 9000&quot;</strong> (universally recognized, public-domain phrase, perfect for idle/clicker mechanics), <strong>&quot;You Died&quot; / Rage Quit culture</strong> (generic enough to avoid IP issues, pairs with any difficult game), <strong>Truck-kun / Isekai</strong> (community meme, hilarious for endless runner), and <strong>Nihilistic Penguin</strong> (brand-new 2026 virality, simple visual, great for existential humor overlays). The nostalgic 2010s meme revival (&quot;Great Meme Reset&quot; aesthetic) is also a goldmine -- the MLG montage parody aesthetic (airhorns, Doritos, Mountain Dew, 360 noscope) is community-created and pairs perfectly with shooter/precision mechanics.</p>
+<hr>
+<h2>Key Findings</h2>
+<ol>
+<li><strong>The Backrooms / Liminal Spaces</strong> are CC BY-SA licensed, massively recognized, and perfect for maze or survival mechanics. -- <strong>Confidence: High</strong> -- Sources: 5</li>
+<li><strong>Anime power-up tropes</strong> (&quot;It&#39;s Over 9000&quot;, domain expansion, transformation sequences) are universally recognized even by non-anime watchers and are generic enough to use freely. -- <strong>Confidence: High</strong> -- Sources: 6</li>
+<li><strong>&quot;You Died&quot; / Dark Souls death screen</strong> has become a universal gaming death meme, transcending the specific game into generic culture. Parody is legally defensible. -- <strong>Confidence: High</strong> -- Sources: 4</li>
+<li><strong>Truck-kun / Isekai</strong> trope is community-created, hilarious, and visually simple (truck + character + portal to another world). -- <strong>Confidence: High</strong> -- Sources: 4</li>
+<li><strong>Nihilistic Penguin</strong> is the freshest viral meme (January 2026), culturally resonant, and based on public-domain documentary footage. -- <strong>Confidence: High</strong> -- Sources: 5</li>
+<li><strong>MLG Montage Parody aesthetic</strong> (airhorns, Doritos, Mountain Dew, &quot;360 noscope&quot;, hit markers) is community-created, currently experiencing a TikTok nostalgia revival, and pairs perfectly with precision/shooter mechanics. -- <strong>Confidence: High</strong> -- Sources: 4</li>
+<li><strong>&quot;Chill Guy&quot; meme is copyrighted</strong> by artist Phillip Banks -- SKIP for commercial use without licensing. -- <strong>Confidence: High</strong> -- Sources: 5</li>
+<li><strong>Trollface is copyrighted</strong> by Carlos Ramirez and actively licensed/monetized -- SKIP for commercial use. -- <strong>Confidence: High</strong> -- Sources: 4</li>
+<li><strong>100 Men vs. 1 Gorilla</strong> debate went White-House-level viral in 2025, is fully community-created, and pairs with battle/horde mechanics. -- <strong>Confidence: High</strong> -- Sources: 4</li>
+<li><strong>Doge/Cheems</strong> remains one of the most recognized memes globally and the original Shiba Inu image (Kabosu) is widely used; no active copyright enforcement on the meme format itself. -- <strong>Confidence: Medium</strong> -- Sources: 3</li>
+</ol>
+<hr>
+<h2>Category 1: Recent Viral Memes (2025-2026)</h2>
+<h3>Theme 1: Nihilistic Penguin</h3>
+<ul>
+<li><strong>Description</strong>: An Adelie penguin from Werner Herzog&#39;s 2007 documentary &quot;Encounters at the End of the World&quot; walks alone into Antarctica&#39;s interior, away from the ocean, in what Herzog called a &quot;death march.&quot; Went mega-viral in January 2026 as a symbol of burnout, quiet rebellion, and existential exhaustion. TikTok posts reaching 1.5M+ likes.</li>
+<li><strong>Visual Elements</strong>: A small penguin (simple oval body, black/white), vast empty white/blue landscape, mountains in the distance. The penguin walks determinedly in the wrong direction.</li>
+<li><strong>Color Palette</strong>: #FFFFFF (snow white), #87CEEB (sky blue), #1A1A2E (penguin black), #FFD700 (existential crisis gold for UI elements)</li>
+<li><strong>IP Status</strong>: Based on documentary footage from 2007. The penguin is a real animal. The meme format is community-created. Werner Herzog&#39;s documentary is copyrighted but the meme concept (penguin walking away from everything) is a community interpretation. SAFE to use as an original penguin character in original art.</li>
+<li><strong>Cultural Longevity</strong>: Medium-High. Burnout/existential humor is evergreen. The specific penguin meme may fade but the vibe persists.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Any game where the character walks/runs away from something (endless runner, but the twist is you&#39;re running AWAY from help/safety). Also works as a death screen overlay: &quot;you chose to walk into the void.&quot;</li>
+</ul>
+<h3>Theme 2: 100 Men vs. 1 Gorilla</h3>
+<ul>
+<li><strong>Description</strong>: A viral thought experiment debating whether 100 unarmed men could defeat one silverback gorilla. Exploded on TikTok and Twitter in April-May 2025. The White House Twitter account referenced it. UFC fighters debated it on camera. Simulations were run. The internet was completely divided.</li>
+<li><strong>Visual Elements</strong>: Stick-figure men (100 of them, drawn tiny), one massive gorilla silhouette. Battle arena setting. Could be drawn as a simple overhead horde vs. boss scene.</li>
+<li><strong>Color Palette</strong>: #2D2D2D (gorilla dark), #FF4500 (battle red), #32CD32 (arena green), #FFD700 (championship gold)</li>
+<li><strong>IP Status</strong>: Fully community-created thought experiment. Originated from a Reddit post in 2020, went viral organically. NO ownership.</li>
+<li><strong>Cultural Longevity</strong>: Medium. The specific debate peaked in 2025 but &quot;horde vs. boss&quot; is an evergreen gaming format.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Tower defense or horde survival. Control either the gorilla (swipe to smash waves of tiny men) or command the 100 men (strategy/positioning). Could also be a whack-a-mole variant where gorilla hands swat at swarming men.</li>
+</ul>
+<h3>Theme 3: &quot;Your AI Slop Bores Me&quot;</h3>
+<ul>
+<li><strong>Description</strong>: A reaction meme from October 2025 showing a boy sitting on a throne of Pepsi cans captioned &quot;Your AI slop bores me.&quot; Became the definitive one-image shutdown for AI-generated content. Evolved into a viral game, a Kurzgesagt video (9.6M views), and a John Oliver segment. &quot;Slop&quot; was Merriam-Webster&#39;s 2025 word of the year.</li>
+<li><strong>Visual Elements</strong>: A throne made of junk/cans, a bored character sitting on it, waves of generic &quot;slop&quot; content being generated. Garbled AI-esque imagery (extra fingers, melting faces, nonsense text).</li>
+<li><strong>Color Palette</strong>: #6B4226 (slop brown), #FF6B35 (generic AI orange glow), #1A1A2E (boredom dark), #C0C0C0 (sterile AI silver)</li>
+<li><strong>IP Status</strong>: The specific image has an identifiable creator (Artists Against Generative AI Facebook page). The CONCEPT of &quot;AI slop&quot; and the phrase is community-created and widely used. SAFE to use the concept, not the specific image.</li>
+<li><strong>Cultural Longevity</strong>: High. AI content fatigue is only growing. This will be relevant for years.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Fruit Ninja variant -- swipe to destroy &quot;slop&quot; content flying at you (garbled AI images, LinkedIn posts, bot comments). Or a sorting game: real content vs. AI slop.</li>
+</ul>
+<h3>Theme 4: &quot;Very Demure, Very Mindful&quot;</h3>
+<ul>
+<li><strong>Description</strong>: TikToker Jools Lebron&#39;s August 2024 catchphrase about being &quot;very demure, very mindful&quot; in professional settings. Dictionary.com&#39;s 2024 Word of the Year. Satirizes influencer culture and the &quot;clean girl&quot; aesthetic.</li>
+<li><strong>Visual Elements</strong>: Exaggerated delicate gestures, makeup brushes, office settings. A character being overly precious and careful. Pastel pinks, pristine whites, everything is &quot;just so.&quot;</li>
+<li><strong>Color Palette</strong>: #FFB6C1 (demure pink), #FFFFFF (mindful white), #E6E6FA (lavender), #D4AF37 (subtle gold)</li>
+<li><strong>IP Status</strong>: The phrase was not trademarked by Lebron (others attempted trademark filings). The cultural concept of &quot;demure&quot; behavior is generic. SAFE to use the aesthetic and vocabulary, not Lebron&#39;s likeness.</li>
+<li><strong>Cultural Longevity</strong>: Low-Medium. The specific phrase peaked mid-2024. But the satirical &quot;try-hard professionalism&quot; vibe has legs.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Precision/balance game. Character must navigate obstacles while being &quot;demure&quot; -- too fast/aggressive = lose demure points. Or a dress-up/preparation game where you must be exactly the right level of demure.</li>
+</ul>
+<h3>Theme 5: KitKat Heist</h3>
+<ul>
+<li><strong>Description</strong>: In early 2026, over 400,000 KitKat bars were stolen during transport across Europe. The internet turned it into heist movie memes with UFC-style fight posters, Ocean&#39;s Eleven references, and dramatic speculation about the thieves.</li>
+<li><strong>Visual Elements</strong>: Chocolate bars, getaway trucks, heist movie aesthetics (lasers, vaults, masks), dramatic lighting.</li>
+<li><strong>Color Palette</strong>: #C41E3A (KitKat red), #8B4513 (chocolate brown), #FFD700 (heist gold), #1A1A2E (stealth black)</li>
+<li><strong>IP Status</strong>: &quot;KitKat&quot; is trademarked by Nestle. SKIP the brand name. But a generic &quot;chocolate bar heist&quot; theme with original candy designs is SAFE.</li>
+<li><strong>Cultural Longevity</strong>: Low. Specific event meme. But &quot;heist&quot; aesthetic is evergreen.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Snake variant (collect chocolate bars while avoiding security), or an endless runner where you&#39;re fleeing with stolen goods.</li>
+</ul>
+<h3>Theme 6: Brat Summer Aesthetic</h3>
+<ul>
+<li><strong>Description</strong>: Charli XCX&#39;s &quot;Brat&quot; album (June 2024) spawned an entire cultural movement. The lime green (#8ACE00) color, low-res font, messy party-girl chaos aesthetic. Collins Dictionary&#39;s 2024 Word of the Year. Used by the Kamala Harris campaign.</li>
+<li><strong>Visual Elements</strong>: Lime green EVERYTHING. Low-resolution blurry text. Party chaos. Smudged eyeliner energy. The &quot;brat wall&quot; painted green.</li>
+<li><strong>Color Palette</strong>: #8ACE00 (brat green -- THE color), #000000 (contrast black), #FFFFFF (blurry white text), #FF69B4 (party pink)</li>
+<li><strong>IP Status</strong>: The word &quot;brat&quot; is generic. The lime green color is not copyrightable. The specific album art font/layout is copyrightable but the &quot;brat generator&quot; aesthetic has been so widely replicated it&#39;s become a generic format. SAFE to use the aesthetic, not the album art directly.</li>
+<li><strong>Cultural Longevity</strong>: Medium. The specific &quot;brat summer&quot; moment was 2024. But the aesthetic persists as a recognizable visual language.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Any game with a wild, chaotic feel. Color Switch variant where everything is brat green. Or an idle clicker where you accumulate &quot;brat energy.&quot;</li>
+</ul>
+<hr>
+<h2>Category 2: Anime / Manga Memes</h2>
+<h3>Theme 7: &quot;It&#39;s Over 9000!&quot; / Power Level Meter</h3>
+<ul>
+<li><strong>Description</strong>: The quintessential anime meme. From Dragon Ball Z (2006 YouTube virality). Vegeta crushing his scouter while screaming about Goku&#39;s power level. Has transcended anime into universal internet vocabulary for &quot;a lot.&quot; Used in gym culture, gaming, and everyday speech for 20 years.</li>
+<li><strong>Visual Elements</strong>: A power-level meter/scouter (simple lens shape with numbers), energy aura (spiky lines radiating outward), numbers rapidly climbing, the device cracking/exploding when the number gets too high.</li>
+<li><strong>Color Palette</strong>: #FF4500 (energy red/orange), #FFD700 (super saiyan gold), #4169E1 (scouter blue), #FFFFFF (power flash white), #000000 (contrast)</li>
+<li><strong>IP Status</strong>: &quot;It&#39;s Over 9000&quot; as a phrase is not trademarnable -- it&#39;s a number. The concept of &quot;power levels&quot; is a generic anime trope not owned by anyone. Dragon Ball character designs ARE owned by Toei/Shueisha. SAFE to use the power-level meter concept, energy auras, and the phrase, with ORIGINAL character designs.</li>
+<li><strong>Cultural Longevity</strong>: Extremely High (Evergreen). 20 years and counting. The phrase has permanent internet residence.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Idle clicker (watch your power level climb). Tap to charge energy, upgrades boost multiplier. When you hit 9000, something explodes. Natural fit for the sigma/mewing clicker format but with anime theming.</li>
+</ul>
+<h3>Theme 8: Domain Expansion (Jujutsu Kaisen)</h3>
+<ul>
+<li><strong>Description</strong>: Gojo Satoru&#39;s hand seal and &quot;Domain Expansion: Infinite Void&quot; became a global pop culture phenomenon. K-pop idols, Olympic athletes, and random people on TikTok all do the hand gesture. The concept of &quot;expanding your domain&quot; has entered everyday vocabulary as a flex.</li>
+<li><strong>Visual Elements</strong>: A hand making a specific seal gesture, a sphere/bubble expanding outward, geometric patterns filling the screen, a dramatic pose. The purple/blue/cosmic color scheme.</li>
+<li><strong>Color Palette</strong>: #7C3AED (Gojo purple), #00CED1 (infinity blue), #FFFFFF (blindfold white), #000000 (void black)</li>
+<li><strong>IP Status</strong>: The specific character Gojo is owned by Shueisha/MAPPA. BUT the generic concept of &quot;domain expansion&quot; (a powerful move that transforms the battlefield) is an original game mechanic concept that can be freely used. The hand seal gesture is just a hand position. SAFE to use the CONCEPT with original art. Do NOT use Gojo&#39;s likeness.</li>
+<li><strong>Cultural Longevity</strong>: High. JJK is a cultural juggernaut. The hand seal is now a universal gesture.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Power-up mechanic in any game. Charge up a &quot;domain expansion&quot; meter through gameplay, then activate to transform the entire screen/battlefield temporarily. Works as a special ability in whack-a-mole, runner, or dash games.</li>
+</ul>
+<h3>Theme 9: Truck-kun / Isekai Reincarnation</h3>
+<ul>
+<li><strong>Description</strong>: In the isekai anime genre, characters are constantly getting hit by trucks (&quot;Truck-kun&quot;) and being reincarnated in fantasy worlds. The trope is so overused it became a massive meme. &quot;Truck-kun has the highest body count in anime history.&quot;</li>
+<li><strong>Visual Elements</strong>: A large truck (simple rectangle with wheels), a character getting hit, a portal/swirl opening, a fantasy world on the other side. Stars, sparkles, the transition from mundane (grey city) to colorful (fantasy kingdom).</li>
+<li><strong>Color Palette</strong>: #808080 (mundane city grey), #FF0000 (truck danger red), #9B59B6 (portal purple), #2ECC71 (fantasy world green), #FFD700 (isekai gold sparkle)</li>
+<li><strong>IP Status</strong>: Fully community-created meme. &quot;Truck-kun&quot; is a community nickname, not owned by any specific anime. The isekai truck trope appears in dozens of independent works. NO ownership.</li>
+<li><strong>Cultural Longevity</strong>: High. Isekai is the dominant anime genre and shows no signs of slowing. Truck-kun is eternal.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Endless runner where you ARE the truck trying to hit protagonists to &quot;isekai&quot; them (dark comedy). OR a Crossy Road variant where you&#39;re trying to cross the road WITHOUT getting isekai&#39;d. Brilliantly pairs with Frogger-style mechanics.</li>
+</ul>
+<h3>Theme 10: &quot;Omae Wa Mou Shindeiru&quot; / &quot;You Are Already Dead&quot;</h3>
+<ul>
+<li><strong>Description</strong>: From Fist of the North Star. Kenshiro delivers fatal strikes, then calmly tells his opponent &quot;You are already dead&quot; before they explode. Peaked in 2017-2018 but remains universally recognized. The call-and-response format (someone says &quot;omae wa mou shindeiru,&quot; the other says &quot;NANI?!&quot; in shock) is embedded in internet DNA.</li>
+<li><strong>Visual Elements</strong>: A calm character, a shocked opponent with bulging eyes, the &quot;NANI?!&quot; reaction face, explosive lines radiating outward, a body that hasn&#39;t realized it&#39;s been defeated yet.</li>
+<li><strong>Color Palette</strong>: #FF0000 (deadly red), #FFFFFF (flash white), #1A1A2E (ominous dark), #FFD700 (impact gold)</li>
+<li><strong>IP Status</strong>: The phrase is from a 1980s anime (Buronson/Tetsuo Hara). The PHRASE itself has become a public meme. The specific character designs are owned. SAFE to use the phrase, the &quot;NANI?!&quot; reaction concept, and the delayed-death mechanic with original art.</li>
+<li><strong>Cultural Longevity</strong>: High (Evergreen). Has been relevant for 7+ years as a meme and 40+ years as an anime moment.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: A timing-based game where you must strike at the exact right moment. Miss = &quot;NANI?!&quot; from the enemy. Hit perfectly = slow-mo &quot;omae wa mou shindeiru&quot; before the target explodes. Perfect for a precision-tap game.</li>
+</ul>
+<h3>Theme 11: Solo Leveling &quot;ARISE&quot;</h3>
+<ul>
+<li><strong>Description</strong>: Sung Jin-Woo&#39;s iconic command &quot;Arise!&quot; to summon shadow soldiers from defeated enemies. The anime adaptation and mobile game brought this to massive mainstream attention in 2024-2025. The word &quot;arise&quot; said in a deep, commanding voice has become a meme for summoning anything.</li>
+<li><strong>Visual Elements</strong>: A dark silhouette commanding shadows, purple/dark energy, shadow soldiers rising from the ground, glowing eyes in darkness.</li>
+<li><strong>Color Palette</strong>: #4A0080 (shadow purple), #1A1A1A (darkness), #00BFFF (shadow soldier blue glow), #FFD700 (eyes gold)</li>
+<li><strong>IP Status</strong>: &quot;Arise&quot; is a common English word. The specific manhwa/anime is owned by A-1 Pictures/D&amp;C Media. The CONCEPT of &quot;summoning shadows&quot; and the word &quot;arise&quot; are generic. SAFE to use the concept with original art. Do NOT replicate specific character designs.</li>
+<li><strong>Cultural Longevity</strong>: High. Solo Leveling&#39;s cultural moment is still building with Season 2 and the mobile game.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Idle clicker where you &quot;arise&quot; defeated enemies to build an army. Each tap summons a new shadow soldier. Upgrades unlock stronger summons. Natural progression mechanics.</li>
+</ul>
+<h3>Theme 12: Anime Training Arc / Tournament Arc Tropes</h3>
+<ul>
+<li><strong>Description</strong>: The universal anime narrative structure: character is weak, enters a training arc (montage of getting stronger), then enters a tournament arc (fighting increasingly tough opponents). &quot;This isn&#39;t even my final form.&quot; The tropes are so well-known they&#39;re used non-ironically in fitness, education, and career contexts.</li>
+<li><strong>Visual Elements</strong>: A progress bar labeled &quot;TRAINING ARC&quot;, a bracket tournament chart, transformation sequences (character glows, clothes change, hair spikes up), a rival standing across a battlefield.</li>
+<li><strong>Color Palette</strong>: #FF6347 (training intensity red), #4169E1 (tournament blue), #FFD700 (champion gold), #32CD32 (leveling-up green)</li>
+<li><strong>IP Status</strong>: These are GENERIC STORYTELLING TROPES used across hundreds of anime. No single owner. &quot;Training arc&quot; and &quot;tournament arc&quot; are community vocabulary. FULLY SAFE.</li>
+<li><strong>Cultural Longevity</strong>: Extremely High (Evergreen). These tropes predate the internet and will outlive it.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Meta-framing for ANY game. Label game progression as &quot;training arc.&quot; Frame difficulty increases as &quot;tournament rounds.&quot; Death screen says &quot;you need more training.&quot; Boss fights are &quot;final form&quot; encounters. This is a THEME LAYER that works on any mechanic.</li>
+</ul>
+<h3>Theme 13: Naruto Run</h3>
+<ul>
+<li><strong>Description</strong>: Running with arms stretched behind and torso leaned forward. Became globally mainstream during the 2019 Area 51 raid. A person Naruto-running behind a news reporter became one of the most iconic meme images. Used as the universal symbol for &quot;running like a weeb.&quot;</li>
+<li><strong>Visual Elements</strong>: A character leaning forward at 45 degrees, arms trailing behind, speed lines, dust clouds at feet. Very simple to draw -- it&#39;s mostly a stick figure posture.</li>
+<li><strong>Color Palette</strong>: #FF8C00 (Naruto orange), #000000 (ninja black), #4169E1 (headband blue), #FFFFFF (speed lines)</li>
+<li><strong>IP Status</strong>: The running style itself is not copyrightable -- it&#39;s a body movement. &quot;Naruto&quot; the character is owned by Shueisha. But &quot;anime run&quot; or &quot;ninja run&quot; is generic. SAFE to use the running STYLE with an original character.</li>
+<li><strong>Cultural Longevity</strong>: High (Evergreen). The Area 51 moment cemented it permanently.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Endless runner where the character runs in Naruto-run pose. Tap to dodge. The run pose IS the game aesthetic.</li>
+</ul>
+<hr>
+<h2>Category 3: Gaming Culture Memes</h2>
+<h3>Theme 14: &quot;YOU DIED&quot; / Soulslike Death Screen</h3>
+<ul>
+<li><strong>Description</strong>: The iconic Dark Souls death screen -- white text on a dark red/black background fading in with a specific font. Has become THE universal death meme for any failure in life. Used in FAIL compilations, sports highlights, and everyday situations. &quot;The Dark Souls of X&quot; is a meme for calling anything difficult.</li>
+<li><strong>Visual Elements</strong>: Large serif text reading &quot;YOU DIED&quot; fading in from darkness. Red/dark screen. The character ragdolling. Extremely simple visually.</li>
+<li><strong>Color Palette</strong>: #8B0000 (blood dark red), #000000 (death black), #FFFFFF (text white), #C0C0C0 (ghost grey)</li>
+<li><strong>IP Status</strong>: &quot;YOU DIED&quot; is a generic English phrase. The specific font and visual treatment are FromSoftware&#39;s, but the CONCEPT of a dramatic death screen is generic. Many games have created their own versions. SAFE to create an original dramatic death screen that evokes the vibe without copying the exact font/layout.</li>
+<li><strong>Cultural Longevity</strong>: Extremely High (Evergreen). Dark Souls defined modern gaming culture. The meme only grows.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Death screen overlay for ANY difficult game. But specifically pairs well with Geometry Dash / precision platformer mechanics where death is frequent and punishing. Each death triggers a dramatic &quot;YOU DIED&quot; screen with escalating insults.</li>
+</ul>
+<h3>Theme 15: &quot;Skill Issue&quot; / Git Gud</h3>
+<ul>
+<li><strong>Description</strong>: &quot;Skill issue&quot; is the ultimate dismissal -- when someone complains about difficulty, the response is simply &quot;skill issue&quot; (implying the game is fine, the player is bad). &quot;Git gud&quot; (get good) is the older version from Dark Souls culture. Used 670,000+ times monthly in mainstream contexts by January 2026.</li>
+<li><strong>Visual Elements</strong>: A smug face/character, a &quot;skill issue detected&quot; card/badge, a difficulty meter pinned to maximum, a hand-written &quot;git gud&quot; note.</li>
+<li><strong>Color Palette</strong>: #FF0000 (detected red), #FFD700 (elite gold), #000000 (harsh black), #FFFFFF (text)</li>
+<li><strong>IP Status</strong>: Fully community-created gaming slang. NO ownership. &quot;Skill issue&quot; is a phrase, not a copyrightable work.</li>
+<li><strong>Cultural Longevity</strong>: High. Gaming difficulty discourse is eternal. &quot;Skill issue&quot; has entered mainstream vocabulary.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Difficulty modifier or taunt system. After each death, the game labels it a &quot;skill issue.&quot; Score screens show &quot;skill level: none.&quot; Could be a full game theme where the UI constantly taunts you. Perfect for the Geometry Dash / precision game format.</li>
+</ul>
+<h3>Theme 16: Speedrun / &quot;Any%&quot; Culture</h3>
+<ul>
+<li><strong>Description</strong>: Speedrunning culture -- completing games as fast as possible -- has its own massive vocabulary: &quot;any%&quot; (beat the game by any means), &quot;glitchless&quot; (no exploits), &quot;world record pace,&quot; the Summoning Salt documentary format. &quot;Speedrun&quot; is now used for doing anything fast (&quot;speedrunning a breakup&quot;).</li>
+<li><strong>Visual Elements</strong>: A timer counting up in the corner, split times turning green (ahead of record) or red (behind), a character moving at absurd speed, glitchy visual effects for &quot;clipping through walls.&quot;</li>
+<li><strong>Color Palette</strong>: #00FF00 (ahead-of-pace green), #FF0000 (behind-pace red), #FFD700 (world record gold), #1A1A2E (dark background for timer visibility)</li>
+<li><strong>IP Status</strong>: Fully community-created culture. Speedrunning terminology is not owned. FULLY SAFE.</li>
+<li><strong>Cultural Longevity</strong>: High. Speedrunning is a growing community with major charity events (GDQ). Summoning Salt has 2M+ subscribers.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Timer overlay for any game. &quot;Speedrun mode&quot; where a timer tracks your pace vs. a ghost/record. Split times for each section. The UI itself becomes the content -- sharing &quot;I was on world record pace and then...&quot; screenshots. Also works as a meta-theme where ANY game can have a speedrun leaderboard.</li>
+</ul>
+<h3>Theme 17: Minecraft Creeper / &quot;Aw Man&quot;</h3>
+<ul>
+<li><strong>Description</strong>: The Minecraft Creeper is arguably gaming&#39;s most recognizable enemy. The pixelated green face is universal. &quot;Creeper, aw man&quot; from CaptainSparklez&#39;s 2011 parody song became a Discord-era meme in 2019 and was recently referenced in the 2025 Minecraft movie. The Creeper has transcended Minecraft into general gaming iconography.</li>
+<li><strong>Visual Elements</strong>: A pixelated green face (8-bit style, very simple), square body, blocky world elements. The hissing/exploding animation.</li>
+<li><strong>Color Palette</strong>: #00AA00 (creeper green), #1A1A1A (creeper face dark), #8B4513 (dirt brown), #87CEEB (Minecraft sky blue)</li>
+<li><strong>IP Status</strong>: Creeper is owned by Mojang/Microsoft. SKIP direct Creeper usage. HOWEVER, a generic &quot;pixelated green exploding block enemy&quot; that evokes the vibe without copying the design is a common indie game approach. Use with caution -- the face specifically is iconic and identifiable.</li>
+<li><strong>Cultural Longevity</strong>: Extremely High (Evergreen). Minecraft is the best-selling game of all time.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Any game where something sneaks up and explodes. The &quot;creeper mechanic&quot; (enemy approaches silently, you must react before it detonates) is a universal game design pattern. For a block-themed game, a 2048 or Stack variant with pixelated block aesthetics works.</li>
+</ul>
+<h3>Theme 18: &quot;Press F to Pay Respects&quot;</h3>
+<ul>
+<li><strong>Description</strong>: From Call of Duty: Advanced Warfare (2014), where a quick-time event at a funeral prompted &quot;Press F to pay respects.&quot; Became the universal internet expression of mourning, ironic or sincere. Chains of &quot;F&quot; appear in every comments section when something sad or embarrassing happens.</li>
+<li><strong>Visual Elements</strong>: A keyboard key labeled &quot;F&quot;, a somber/funeral scene, chains of the letter &quot;F&quot; floating across the screen. Extremely simple visually.</li>
+<li><strong>Color Palette</strong>: #2C2C2C (somber dark grey), #FFFFFF (key white), #8B0000 (mourning red), #C0C0C0 (stone grey)</li>
+<li><strong>IP Status</strong>: &quot;Press F&quot; has transcended its origin into universal internet vocabulary. The PHRASE is community-owned slang. The specific game scene is Activision&#39;s. SAFE to use the phrase and the &quot;F key&quot; visual concept.</li>
+<li><strong>Cultural Longevity</strong>: Extremely High (Evergreen). Has been in active use for 12 years with no decline.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Death screen mechanic -- when you die, prompt &quot;Press F to pay respects to yourself.&quot; Also works as a scoring label: &quot;Fs Collected&quot; instead of points. Or a rhythm game where you must press F at the right timing.</li>
+</ul>
+<hr>
+<h2>Category 4: Classic Internet Culture (Nostalgic / Meme Reset)</h2>
+<h3>Theme 19: MLG Montage Parody Aesthetic</h3>
+<ul>
+<li><strong>Description</strong>: The 2014-2016 era of montage parodies featuring airhorn blasts, &quot;360 noscope&quot;, Doritos, Mountain Dew, Snoop Dogg dancing, &quot;420 blaze it&quot;, the Illuminati triangle, dubstep drops, and hit markers. Currently experiencing a TikTok nostalgia revival (October 2023 onward, gaining momentum through 2025). The &quot;Great Meme Reset&quot; movement specifically called for MLG memes to return.</li>
+<li><strong>Visual Elements</strong>: Hit marker crosshairs (+), airhorn icon, Doritos triangle, Mountain Dew can, &quot;360&quot; spinning numbers, lens flares, excessive screen shake, the Illuminati triangle/eye, &quot;WASTED&quot; text, dubstep waveform. Everything is layered, loud, and excessive.</li>
+<li><strong>Color Palette</strong>: #FF4500 (MLG orange), #00FF00 (noscope green / hit marker), #FFD700 (Doritos gold), #FF0000 (Mountain Dew Code Red), #000000 (background for flashy overlays)</li>
+<li><strong>IP Status</strong>: The AESTHETIC is community-created. &quot;MLG&quot; itself is a brand (Major League Gaming), but the parody aesthetic is a community creation that mocks the brand. Doritos and Mountain Dew are trademarked -- use generic &quot;gaming snacks&quot; equivalents. The hit marker, airhorn, lens flare, etc. are all generic visual effects. MOSTLY SAFE with renamed snacks.</li>
+<li><strong>Cultural Longevity</strong>: High (cyclical). Currently in a nostalgia revival cycle. The aesthetic is immediately recognizable to anyone who was online 2014-2016 and to Gen Z/Alpha via the TikTok revival.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Shooting/precision game. Every successful hit triggers hit markers, airhorns, and lens flares. Combo kills trigger dubstep drops. The visual excess IS the reward. Perfect for a Fruit Ninja variant where slicing triggers MLG effects, or a tap-target game where each hit adds more screen chaos.</li>
+</ul>
+<h3>Theme 20: Doge / Cheems / Bonk</h3>
+<ul>
+<li><strong>Description</strong>: The Shiba Inu dog memes. Original Doge (2013, &quot;much wow, very game, such points&quot;) remains one of the most recognized memes in history. Cheems is the &quot;buff doge vs. cheems&quot; variant (strong character vs. weak character). &quot;Bonk&quot; is the horny-jail bat meme. Together they form a Shiba Inu meme cinematic universe.</li>
+<li><strong>Visual Elements</strong>: A Shiba Inu dog face (round, tan/cream), Comic Sans text (&quot;much&quot;, &quot;very&quot;, &quot;wow&quot;, &quot;so&quot;), the buff doge vs. regular doge format, a baseball bat for &quot;bonk.&quot;</li>
+<li><strong>Color Palette</strong>: #DEB887 (Shiba tan), #FFD700 (doge gold), #FF69B4 (Comic Sans pink text), #4169E1 (Comic Sans blue text), #FFFFFF (background)</li>
+<li><strong>IP Status</strong>: The original Doge photo of Kabosu the Shiba Inu was taken by owner Atsuko Sato. Kabosu passed away in May 2024. The meme format (dog face + Comic Sans text) has been so widely used for 13 years that it&#39;s effectively communal internet property. The &quot;Doge&quot; meme format is NOT actively enforced by any single copyright holder. Dogecoin uses the image as its logo. MOSTLY SAFE for the meme format with original dog artwork.</li>
+<li><strong>Cultural Longevity</strong>: Extremely High (Evergreen). Doge has survived 13 years, spawned a cryptocurrency, and shows no signs of fading. Cheems and Bonk are active sub-memes.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Any game with a scoring system where scores are displayed in Doge-speak (&quot;much score&quot;, &quot;very high&quot;, &quot;so points&quot;, &quot;wow&quot;). The &quot;bonk&quot; mechanic (tapping something with a bat) is perfect for whack-a-mole. Cheems vs. Buff Doge is a natural two-character format.</li>
+</ul>
+<h3>Theme 21: Rickroll / &quot;Never Gonna Give You Up&quot;</h3>
+<ul>
+<li><strong>Description</strong>: The eternal internet bait-and-switch. Link someone to Rick Astley&#39;s 1987 music video unexpectedly. 1.7 billion views on the official video as of 2026. Used in official contexts (US House committee, Indian math exams in March 2026). The meme that literally never dies.</li>
+<li><strong>Visual Elements</strong>: A play button that&#39;s actually a trick, a dancing figure, music notes, a &quot;you&#39;ve been rickrolled&quot; reveal screen. The iconic pose (arms out, dancing in a trench coat).</li>
+<li><strong>Color Palette</strong>: #FF6347 (80s coral), #4169E1 (retro blue), #FFD700 (disco gold), #FFFFFF (flash white)</li>
+<li><strong>IP Status</strong>: &quot;Never Gonna Give You Up&quot; is a copyrighted song (Stock/Aitken/Waterman). Rick Astley&#39;s image is his own. HOWEVER, the CONCEPT of a bait-and-switch reveal and the phrase &quot;rickrolled&quot; are community vocabulary. SAFE to use the CONCEPT of a musical bait-and-switch with original music, NOT the actual song or Astley&#39;s likeness.</li>
+<li><strong>Cultural Longevity</strong>: Maximum (Immortal). Has been relevant for 19 years. Used in 2026 on Indian math exams. Will outlive the internet.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Easter egg / secret mechanic. Hidden in any game -- a fake &quot;bonus level&quot; that rickrolls you. Or a whack-a-mole variant where some targets are &quot;rickrolls&quot; that, when tapped, play a jingle and freeze your screen briefly.</li>
+</ul>
+<h3>Theme 22: Nyan Cat / Rainbow Trail</h3>
+<ul>
+<li><strong>Description</strong>: A pixelated cat with a Pop-Tart body flying through space leaving a rainbow trail, set to a Japanese pop song. 2011 origin. Part of the &quot;Great Meme Reset&quot; nostalgia package. The rainbow-trail-in-space aesthetic is instantly recognizable.</li>
+<li><strong>Visual Elements</strong>: A small pixelated cat, a rainbow trail (6 colored stripes), a starfield background, pixel-art style.</li>
+<li><strong>Color Palette</strong>: #FF69B4 (cat pink), Rainbow: #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF, #1A1A2E (space background)</li>
+<li><strong>IP Status</strong>: Created by Chris Torres (PRguitarman) in 2011. Torres sold a Nyan Cat NFT for ~$600K in 2021. The character IS owned by Torres. SKIP the specific Nyan Cat character. HOWEVER, the CONCEPT of &quot;pixelated animal + rainbow trail + space&quot; is a generic aesthetic trope. SAFE to create an original pixel animal with a rainbow trail. Many games have done this.</li>
+<li><strong>Cultural Longevity</strong>: High (Legacy/Nostalgic). Everyone knows what it is. The Great Meme Reset specifically calls for its return.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Endless flyer. An original pixel animal flies through space leaving a rainbow trail, dodging obstacles. This is essentially Flappy Bird with a horizontal orientation and rainbow aesthetics.</li>
+</ul>
+<hr>
+<h2>Category 5: Absurdist / Surreal / Structural Memes</h2>
+<h3>Theme 23: The Backrooms / Liminal Spaces</h3>
+<ul>
+<li><strong>Description</strong>: An impossibly large extradimensional maze of empty office rooms with yellow wallpaper, fluorescent lights, and damp carpet. Originated from a 2019 4chan creepypasta. Has expanded into hundreds of &quot;levels&quot; with their own creatures (&quot;entities&quot;). Multiple games, short films (Kane Parsons), and a massive fandom. The original image was released into public domain. Content is CC BY-SA 3.0 licensed.</li>
+<li><strong>Visual Elements</strong>: Yellow-beige wallpaper, fluorescent ceiling lights (rectangles), beige carpet, endless repeating rooms, doorways leading to more rooms, the occasional dark corridor. Extremely simple to draw -- it&#39;s rectangles.</li>
+<li><strong>Color Palette</strong>: #DAA520 (wallpaper yellow), #F5DEB3 (carpet beige), #FFFFFF (fluorescent white), #808080 (corridor grey), #000000 (darkness where the lights don&#39;t reach)</li>
+<li><strong>IP Status</strong>: Original image: PUBLIC DOMAIN (released by photographer Bob Mazza). Wiki content: CC BY-SA 3.0. The concept is community-created and collaboratively expanded. Multiple commercial games already exist (Enter the Backrooms, Escape the Backrooms, etc.). FULLY SAFE under Creative Commons attribution.</li>
+<li><strong>Cultural Longevity</strong>: High. The Backrooms have been growing since 2019 with no decline. The concept of &quot;liminal spaces&quot; is now a recognized aesthetic category. Gen Z/Alpha are deeply familiar.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Maze/exploration game. Navigate procedurally generated rooms. Find the exit. Avoid entities. Simple top-down or first-person perspective. Also works as a theme layer for an endless runner (running through backrooms levels) or a survival game. The environment IS the content.</li>
+</ul>
+<h3>Theme 24: &quot;Is This Loss?&quot;</h3>
+<ul>
+<li><strong>Description</strong>: One of the most meta-memes in internet history. Originally a 2008 webcomic about a miscarriage, it became an absurdist meme where any four-panel image is analyzed for whether it matches the Loss pattern (|, ||, ||, |_). The minimalist version is just lines: one line, two lines, two lines, one line + one horizontal line. The humor is purely in pattern recognition -- spotting hidden Loss references.</li>
+<li><strong>Visual Elements</strong>: Four panels. The pattern: | || || |_. Can be represented with ANY objects arranged in this pattern. Extremely minimal visually.</li>
+<li><strong>Color Palette</strong>: Any -- the meme is about structure, not color. But classic internet meme colors: #000000 (lines), #FFFFFF (background)</li>
+<li><strong>IP Status</strong>: The original comic is by Tim Buckley (Ctrl+Alt+Del). The PATTERN (|, ||, ||, |_) is so abstracted from the original that it&#39;s effectively community property. The meme IS the pattern recognition, not the original art. SAFE.</li>
+<li><strong>Cultural Longevity</strong>: High (Evergreen meta-meme). Has been relevant since 2008. The joke is self-perpetuating because people keep finding new ways to hide it.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Easter egg / hidden mechanic. Hide Loss patterns in game levels. Players who spot them get bonus points. Or a puzzle game where you must arrange objects into the Loss pattern.</li>
+</ul>
+<h3>Theme 25: Deep-Fried / Distorted Meme Aesthetic</h3>
+<ul>
+<li><strong>Description</strong>: The intentional degradation of image quality through excessive filters, saturation, compression, and lens flare. Emerged mid-2010s as a rebellion against clean meme formats. The aesthetic screams &quot;this has been shared 1,000 times and each time it got worse.&quot; Related to &quot;needs more JPEG,&quot; &quot;nuked memes&quot; (even more distorted), and the &quot;moldy meme&quot; format.</li>
+<li><strong>Visual Elements</strong>: Oversaturated colors, extreme contrast, lens flare overlays, emoji spam (crying laughing face, 100, fire), red eye glow on characters, visible JPEG compression artifacts, &quot;B&quot; button emoji replacing the letter B.</li>
+<li><strong>Color Palette</strong>: #FF0000 (oversaturated red), #FFFF00 (blinding yellow), #FF4500 (nuclear orange), everything at maximum saturation and brightness</li>
+<li><strong>IP Status</strong>: Fully community-created aesthetic. Not owned by anyone. FULLY SAFE.</li>
+<li><strong>Cultural Longevity</strong>: High (aesthetic category). Deep-fried memes have been consistently produced for 8+ years.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Visual reward/punishment system. As your score increases, the game&#39;s visuals get progressively more &quot;deep fried&quot; -- more saturated, more lens flares, more emoji overlays. At maximum score, the game is nearly unplayable because the visuals are so distorted. This is the reward and the challenge simultaneously. Works on ANY game as a visual filter layer.</li>
+</ul>
+<h3>Theme 26: The Backrooms Entity / Creepypasta Monsters</h3>
+<ul>
+<li><strong>Description</strong>: Beyond the Backrooms environment itself, the community has created dozens of &quot;entities&quot; -- horrifying creatures that inhabit different levels. These include the &quot;Hound&quot; (Level 0), &quot;Skin Stealers,&quot; &quot;Smilers&quot; (entities that appear as floating smiles in darkness), and &quot;Partygoers&quot; (entities disguised as normal humans with permanent grins). The Smiler is perhaps the simplest and most iconic -- just a floating smile in the dark.</li>
+<li><strong>Visual Elements</strong>: A smile/grinning mouth floating in darkness (Smiler), humanoid figures with wrong proportions, party hats on threatening figures (Partygoer), dark corridors with glowing eyes.</li>
+<li><strong>Color Palette</strong>: #000000 (darkness), #FFFFFF (the smile), #FF0000 (danger eyes), #DAA520 (Backrooms yellow bleeding through)</li>
+<li><strong>IP Status</strong>: Same as Backrooms -- CC BY-SA 3.0 community creations. FULLY SAFE with attribution.</li>
+<li><strong>Cultural Longevity</strong>: Tied to Backrooms longevity (High).</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Enemy types in a Backrooms-themed game. Smilers appear in dark areas (player must avoid looking at them). Partygoers disguise as power-ups (trick items). Hounds chase the player. Each entity type creates a different gameplay challenge.</li>
+</ul>
+<hr>
+<h2>Bonus Themes (Strong Contenders)</h2>
+<h3>Theme 27: &quot;Rage Quit&quot; / Controller Throw</h3>
+<ul>
+<li><strong>Description</strong>: The universal gaming frustration moment. A recent meme (April 2025) of fitness influencer Ashton Hall throwing a controller became a green-screen template where people insert different games on the TV. The concept of rage-quitting is universal gaming vocabulary.</li>
+<li><strong>Visual Elements</strong>: A controller being thrown, a cracked screen, a character grabbing their head in frustration, veins popping. Simple character + broken controller.</li>
+<li><strong>Color Palette</strong>: #FF0000 (rage red), #000000 (broken screen), #808080 (controller grey), #FFD700 (the score that caused the rage)</li>
+<li><strong>IP Status</strong>: Fully community-created concept. SAFE.</li>
+<li><strong>Cultural Longevity</strong>: Extremely High (Evergreen). As long as games are hard, people will rage quit.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Meta-theme for difficult games. The game ACKNOWLEDGES your rage. Death counter prominently displayed. &quot;Rage meter&quot; fills up. When it maxes out, the game offers a &quot;rage quit&quot; button that shares your humiliating stats. Anti-achievement system: &quot;Died 47 times on level 1 -- CONTROLLER THROWN.&quot;</li>
+</ul>
+<h3>Theme 28: Anime &quot;NANI?!&quot; Reaction / Shocked Face</h3>
+<ul>
+<li><strong>Description</strong>: The exaggerated anime shock reaction. Eyes go white, mouth drops, speed lines appear, dramatic sound effect plays. Used universally for any surprising reveal. Derived from the &quot;omae wa mou shindeiru&quot; exchange but has become its own standalone reaction format applied to any context.</li>
+<li><strong>Visual Elements</strong>: Simple face with enlarged blank white eyes, dropped jaw, speed lines radiating from the face, &quot;NANI?!&quot; text. Extremely simple to draw.</li>
+<li><strong>Color Palette</strong>: #FFFFFF (shocked eyes white), #000000 (outline/speed lines), #FF0000 (dramatic background red), #FFD700 (impact flash)</li>
+<li><strong>IP Status</strong>: Generic anime visual trope. &quot;Nani&quot; is just the Japanese word for &quot;what.&quot; The exaggerated shock face is a visual language used across all anime. NO ownership.</li>
+<li><strong>Cultural Longevity</strong>: Extremely High (Evergreen). The reaction format has been in use for decades and has fully crossed into mainstream internet culture.</li>
+<li><strong>Best Game Mechanic Pairing</strong>: Reaction overlay for surprise moments in any game. When something unexpected happens (bonus item, sudden difficulty spike, trick obstacle), the screen flashes with a &quot;NANI?!&quot; reaction. Also works as a player reaction cam -- the game shows a cartoon face that reacts to your performance.</li>
+</ul>
+<hr>
+<h2>Contradictions and Contested Claims</h2>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Position A</th>
+<th>Position B</th>
+<th>Evidence Weight</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Chill Guy is usable</td>
+<td>Some sources say &quot;meme format is communal&quot;</td>
+<td>Artist Phillip Banks copyrighted it, actively DMCA-ing commercial use</td>
+<td>Position B is stronger (legal filings exist)</td>
+<td>SKIP for commercial use. The copyright is registered and actively enforced.</td>
+</tr>
+<tr>
+<td>Trollface is public domain</td>
+<td>Part of the &quot;Great Meme Reset&quot; revival, treated as communal</td>
+<td>Carlos Ramirez holds copyright, recently signed a six-figure crypto licensing deal</td>
+<td>Position B is definitive (copyright registered 2010)</td>
+<td>SKIP for commercial use. Actively monetized by owner.</td>
+</tr>
+<tr>
+<td>Nyan Cat is freely usable</td>
+<td>Treated as a communal meme for 15 years</td>
+<td>Creator Chris Torres sold NFT for $600K, maintains ownership</td>
+<td>Position B is stronger</td>
+<td>SKIP the specific character. Use the CONCEPT (pixel animal + rainbow + space) with original art.</td>
+</tr>
+<tr>
+<td>&quot;You Died&quot; is FromSoftware IP</td>
+<td>The exact visual treatment is FromSoftware&#39;s</td>
+<td>The phrase &quot;You Died&quot; and the concept of a dramatic death screen are generic</td>
+<td>Both are correct -- the phrase is generic, the specific font/layout is IP</td>
+<td>SAFE to use the concept with original visual treatment. Do NOT copy the exact Dark Souls font/style.</td>
+</tr>
+<tr>
+<td>MLG aesthetic is brand-owned</td>
+<td>&quot;MLG&quot; is Major League Gaming&#39;s brand</td>
+<td>The parody aesthetic is a community creation that MOCKS the brand</td>
+<td>Parody is legally protected; the aesthetic is community-made</td>
+<td>SAFE under parody doctrine. Just don&#39;t use the actual MLG logo.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Knowledge Gaps</h2>
+<table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Why It Matters</th>
+<th>What Would Fill It</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Specific Gen Alpha meme consumption data for April 2026</td>
+<td>Knowing exactly what 8-12 year olds are sharing RIGHT NOW would prioritize themes</td>
+<td>TikTok Creator Insights data, or surveying actual kids</td>
+</tr>
+<tr>
+<td>Anime meme recognition rates among non-anime watchers</td>
+<td>We assume some anime memes are &quot;mainstream&quot; but lack hard data on recognition rates</td>
+<td>A survey asking non-anime fans to identify memes would quantify this</td>
+</tr>
+<tr>
+<td>Legal precedent for &quot;power level&quot; / &quot;domain expansion&quot; in games</td>
+<td>We say these concepts are generic, but a strict IP lawyer might disagree</td>
+<td>Formal legal review of anime trope usage in commercial games</td>
+</tr>
+<tr>
+<td>Freshest memes from the last 2 weeks (late March - April 2026)</td>
+<td>Internet culture moves fast; something may have gone viral in the last 14 days that we missed</td>
+<td>Real-time TikTok/Twitter trend monitoring</td>
+</tr>
+<tr>
+<td>Revenue performance of meme-themed indie games in 2025-2026</td>
+<td>Which meme themes actually convert to game downloads and revenue?</td>
+<td>App store analytics for meme-themed games (Sensor Tower, App Annie)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Top 10 Recommended Themes (Ranked by Viability)</h2>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Theme</th>
+<th>Category</th>
+<th>IP Risk</th>
+<th>Longevity</th>
+<th>Visual Simplicity</th>
+<th>Humor Factor</th>
+<th>Best Mechanic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>The Backrooms</strong></td>
+<td>Surreal</td>
+<td>None (CC)</td>
+<td>High</td>
+<td>Very High (rectangles)</td>
+<td>High (existential dread)</td>
+<td>Maze/Survival</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Anime Power Levels / &quot;Over 9000&quot;</strong></td>
+<td>Anime</td>
+<td>None (generic phrase)</td>
+<td>Evergreen</td>
+<td>High (meter + aura)</td>
+<td>High (escalation humor)</td>
+<td>Idle Clicker</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Truck-kun / Isekai</strong></td>
+<td>Anime</td>
+<td>None (community meme)</td>
+<td>High</td>
+<td>High (truck + portal)</td>
+<td>Very High (dark comedy)</td>
+<td>Endless Runner / Frogger</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>MLG Montage Parody</strong></td>
+<td>Nostalgic</td>
+<td>Low (rename snacks)</td>
+<td>High (nostalgia cycle)</td>
+<td>Medium (lots of effects)</td>
+<td>Very High (sensory overload)</td>
+<td>Precision/Shooter tap</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>&quot;YOU DIED&quot; / Rage Quit</strong></td>
+<td>Gaming</td>
+<td>None (generic concept)</td>
+<td>Evergreen</td>
+<td>Very High (text on screen)</td>
+<td>High (shared suffering)</td>
+<td>Any difficult game</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>100 Men vs. Gorilla</strong></td>
+<td>Recent Viral</td>
+<td>None (community debate)</td>
+<td>Medium</td>
+<td>High (horde + boss)</td>
+<td>Very High (absurd debate)</td>
+<td>Horde/Swarm game</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Doge / Cheems / Bonk</strong></td>
+<td>Nostalgic</td>
+<td>Low (use original art)</td>
+<td>Evergreen</td>
+<td>High (simple dog face)</td>
+<td>High (such wow)</td>
+<td>Whack-a-mole / any</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Nihilistic Penguin</strong></td>
+<td>Recent Viral</td>
+<td>None (documentary clip)</td>
+<td>Medium-High</td>
+<td>Very High (penguin + snow)</td>
+<td>High (existential)</td>
+<td>Runner (walking away)</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Deep-Fried Meme Aesthetic</strong></td>
+<td>Surreal</td>
+<td>None (community aesthetic)</td>
+<td>High</td>
+<td>N/A (it&#39;s a filter)</td>
+<td>High (visual chaos)</td>
+<td>Any game (visual layer)</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>&quot;Omae Wa Mou Shindeiru&quot; / NANI</strong></td>
+<td>Anime</td>
+<td>None (generic phrase)</td>
+<td>Evergreen</td>
+<td>High (shock face + lines)</td>
+<td>Very High (call-response)</td>
+<td>Timing/Precision tap</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Methodology Notes</h2>
+<p><strong>Search Strategy</strong>: Executed 20+ web searches across five category dimensions, followed by targeted deep-dives on the 15 most promising themes. Fetched and read primary source pages (Know Your Meme, Wikipedia, NapoleonCat, Herond Blog) for detailed information. Cross-referenced IP status claims against copyright databases and news articles.</p>
+<p><strong>Limitations</strong>:</p>
+<ul>
+<li>Could not access TikTok directly to verify current trending hashtag volumes</li>
+<li>Some 2026-specific trends may be too new to have been documented by secondary sources</li>
+<li>IP assessments are research-grade, not legal opinions -- consult an attorney before commercial use of any theme</li>
+<li>The &quot;Great Meme Reset&quot; makes the nostalgia category especially time-sensitive -- what&#39;s nostalgic shifts quarterly</li>
+</ul>
+<p><strong>Question Evolution</strong>: The research revealed that many of the strongest themes are not individual memes but AESTHETIC SYSTEMS (MLG montage, deep-fried, Backrooms liminal) or NARRATIVE TROPES (isekai, training arc, power levels) that can be applied as theme layers across multiple games rather than being tied to single mechanics.</p>
+<hr>
+<h2>Source Registry</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Source</th>
+<th>Type</th>
+<th>Date</th>
+<th>Authority</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>NapoleonCat - Top Trending Memes (April 2026)</td>
+<td>Secondary</td>
+<td>2026-04</td>
+<td>Medium</td>
+<td><a href="https://napoleoncat.com/blog/trending-memes/">https://napoleoncat.com/blog/trending-memes/</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Accio - Top Trending Memes 2026</td>
+<td>Secondary</td>
+<td>2026-03</td>
+<td>Medium</td>
+<td><a href="https://www.accio.com/business/top-trending-memes-2026">https://www.accio.com/business/top-trending-memes-2026</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Know Your Meme - 100 Men vs. 1 Gorilla</td>
+<td>Primary (meme database)</td>
+<td>2025-05</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/100-men-vs-1-gorilla">https://knowyourmeme.com/memes/100-men-vs-1-gorilla</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Wikipedia - 100 men versus a gorilla</td>
+<td>Secondary</td>
+<td>2025-05</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/100_men_versus_a_gorilla">https://en.wikipedia.org/wiki/100_men_versus_a_gorilla</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Wikipedia - Chill Guy</td>
+<td>Primary</td>
+<td>2024-11</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/Chill_Guy">https://en.wikipedia.org/wiki/Chill_Guy</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Know Your Meme - Chill Guy Copyright</td>
+<td>Primary</td>
+<td>2024-11</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/news/the-chill-guy-meme-has-been-copyrighted-by-creator-phillip-banks-who-says-hes-dmca-striking-brands-using-it-for-profit">https://knowyourmeme.com/news/the-chill-guy-meme-has-been-copyrighted-by-creator-phillip-banks-who-says-hes-dmca-striking-brands-using-it-for-profit</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Herond Blog - Top Anime Memes 2025</td>
+<td>Secondary</td>
+<td>2025</td>
+<td>Medium</td>
+<td><a href="https://blog.herond.org/top-anime-memes-2025/">https://blog.herond.org/top-anime-memes-2025/</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Know Your Meme - JoJo&#39;s Pose</td>
+<td>Primary (meme database)</td>
+<td>2024</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/jojos-pose">https://knowyourmeme.com/memes/jojos-pose</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Know Your Meme - Gojo&#39;s Hand Seal</td>
+<td>Primary (meme database)</td>
+<td>2024</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/gojos-hand-seal">https://knowyourmeme.com/memes/gojos-hand-seal</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Know Your Meme - Omae Wa Mou Shindeiru</td>
+<td>Primary (meme database)</td>
+<td>2025-01</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/you-are-already-dead-omae-wa-mou-shindeiru">https://knowyourmeme.com/memes/you-are-already-dead-omae-wa-mou-shindeiru</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Wikipedia - It&#39;s Over 9000!</td>
+<td>Primary</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/It%27s_Over_9000">https://en.wikipedia.org/wiki/It%27s_Over_9000</a>!</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Wikipedia - Truck-kun</td>
+<td>Primary</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/Truck-kun">https://en.wikipedia.org/wiki/Truck-kun</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Know Your Meme - Truck-kun</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/truck-kun">https://knowyourmeme.com/memes/truck-kun</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td>Know Your Meme - The Great Meme Reset of 2026</td>
+<td>Primary (meme database)</td>
+<td>2026-01</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/the-great-meme-reset-of-2026">https://knowyourmeme.com/memes/the-great-meme-reset-of-2026</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td>Cheezburger - Great Meme Reset Analysis</td>
+<td>Secondary</td>
+<td>2026</td>
+<td>Medium</td>
+<td><a href="https://cheezburger.com/36518663/the-great-meme-reset-of-2026-might-be-the-funniest-moral-panic-the-internet-has-ever-invented">https://cheezburger.com/36518663/the-great-meme-reset-of-2026-might-be-the-funniest-moral-panic-the-internet-has-ever-invented</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td>Know Your Meme - MLG Era TikTok Revival</td>
+<td>Primary (meme database)</td>
+<td>2023-2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/mlg-era-tiktok-revival-mlg-meme-revival">https://knowyourmeme.com/memes/mlg-era-tiktok-revival-mlg-meme-revival</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td>Know Your Meme - Montage Parodies</td>
+<td>Primary (meme database)</td>
+<td>2014-2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/montage-parodies">https://knowyourmeme.com/memes/montage-parodies</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>Wikipedia - The Backrooms</td>
+<td>Primary</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/The_Backrooms">https://en.wikipedia.org/wiki/The_Backrooms</a></td>
+</tr>
+<tr>
+<td>19</td>
+<td>Backrooms Wiki - Level 0</td>
+<td>Primary (community wiki)</td>
+<td>2025</td>
+<td>Medium</td>
+<td><a href="https://backrooms-wiki.wikidot.com/level-0">https://backrooms-wiki.wikidot.com/level-0</a></td>
+</tr>
+<tr>
+<td>20</td>
+<td>Wikipedia - Liminal space (aesthetic)</td>
+<td>Primary</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/Liminal_space_(aesthetic)">https://en.wikipedia.org/wiki/Liminal_space_(aesthetic)</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td>Know Your Meme - Is This Loss?</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/is-this-loss">https://knowyourmeme.com/memes/is-this-loss</a></td>
+</tr>
+<tr>
+<td>22</td>
+<td>Know Your Meme - Deep Fried Memes</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/deep-fried-memes">https://knowyourmeme.com/memes/deep-fried-memes</a></td>
+</tr>
+<tr>
+<td>23</td>
+<td>Know Your Meme - Nihilistic Penguin</td>
+<td>Primary (meme database)</td>
+<td>2026-01</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/penguin-walking-toward-mountain-nihilist-penguin">https://knowyourmeme.com/memes/penguin-walking-toward-mountain-nihilist-penguin</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td>People and Qatar - Nihilistic Penguin Explained</td>
+<td>Secondary</td>
+<td>2026-01</td>
+<td>Medium</td>
+<td><a href="https://peopleandqatar.com/2026/01/28/nihilistic-penguin-meme-explained-why-the-viral-penguin-video-is-taking-over-in-2026/">https://peopleandqatar.com/2026/01/28/nihilistic-penguin-meme-explained-why-the-viral-penguin-video-is-taking-over-in-2026/</a></td>
+</tr>
+<tr>
+<td>25</td>
+<td>Wikipedia - Brat (internet meme)</td>
+<td>Primary</td>
+<td>2024-2025</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/Brat_Summer">https://en.wikipedia.org/wiki/Brat_Summer</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td>Wikipedia - Looking for a Man in Finance</td>
+<td>Primary</td>
+<td>2024</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/Looking_for_a_Man_in_Finance">https://en.wikipedia.org/wiki/Looking_for_a_Man_in_Finance</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td>Wikipedia - Jools Lebron (Very Demure)</td>
+<td>Primary</td>
+<td>2024-2025</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/Jools_Lebron">https://en.wikipedia.org/wiki/Jools_Lebron</a></td>
+</tr>
+<tr>
+<td>28</td>
+<td>Know Your Meme - Rickroll</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/rickroll">https://knowyourmeme.com/memes/rickroll</a></td>
+</tr>
+<tr>
+<td>29</td>
+<td>Wikipedia - Rickrolling</td>
+<td>Primary</td>
+<td>2026</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/Rickrolling">https://en.wikipedia.org/wiki/Rickrolling</a></td>
+</tr>
+<tr>
+<td>30</td>
+<td>Know Your Meme - You Died</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/you-died">https://knowyourmeme.com/memes/you-died</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td>Know Your Meme - Doge</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/doge">https://knowyourmeme.com/memes/doge</a></td>
+</tr>
+<tr>
+<td>32</td>
+<td>Wikipedia - Doge (meme)</td>
+<td>Primary</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/Doge_(meme)">https://en.wikipedia.org/wiki/Doge_(meme)</a></td>
+</tr>
+<tr>
+<td>33</td>
+<td>Wikipedia - Trollface (copyright status)</td>
+<td>Primary</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/Trollface">https://en.wikipedia.org/wiki/Trollface</a></td>
+</tr>
+<tr>
+<td>34</td>
+<td>Know Your Meme - Minecraft Creeper</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/minecraft-creeper">https://knowyourmeme.com/memes/minecraft-creeper</a></td>
+</tr>
+<tr>
+<td>35</td>
+<td>Know Your Meme - Speedrunning</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/cultures/speedrunning">https://knowyourmeme.com/memes/cultures/speedrunning</a></td>
+</tr>
+<tr>
+<td>36</td>
+<td>a2a-mcp.org - Your AI Slop Bores Me</td>
+<td>Secondary</td>
+<td>2026-03</td>
+<td>Medium</td>
+<td><a href="https://a2a-mcp.org/blog/your-ai-slop-bores-me">https://a2a-mcp.org/blog/your-ai-slop-bores-me</a></td>
+</tr>
+<tr>
+<td>37</td>
+<td>WT Trends - AI Slop Meaning</td>
+<td>Secondary</td>
+<td>2026</td>
+<td>Medium</td>
+<td><a href="https://wttrends.com/ai-slop-meaning-reaction-meme-explained/">https://wttrends.com/ai-slop-meaning-reaction-meme-explained/</a></td>
+</tr>
+<tr>
+<td>38</td>
+<td>Wikipedia - AI Slop</td>
+<td>Primary</td>
+<td>2026</td>
+<td>High</td>
+<td><a href="https://en.wikipedia.org/wiki/AI_slop">https://en.wikipedia.org/wiki/AI_slop</a></td>
+</tr>
+<tr>
+<td>39</td>
+<td>Know Your Meme - Labubu Toys</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/subcultures/labubu-toys">https://knowyourmeme.com/memes/subcultures/labubu-toys</a></td>
+</tr>
+<tr>
+<td>40</td>
+<td>Know Your Meme - Pochita (Chainsaw Man)</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/pochita">https://knowyourmeme.com/memes/pochita</a></td>
+</tr>
+<tr>
+<td>41</td>
+<td>Speequal Games - Gaming Trends 2026</td>
+<td>Secondary</td>
+<td>2026</td>
+<td>Medium</td>
+<td><a href="https://speequalgames.com/gaming-trends-2026-throughh-the-lens-of-gaming-culture/">https://speequalgames.com/gaming-trends-2026-throughh-the-lens-of-gaming-culture/</a></td>
+</tr>
+<tr>
+<td>42</td>
+<td>Slangwatch - Gaming Slang Language Evolution</td>
+<td>Secondary</td>
+<td>2025-2026</td>
+<td>Medium</td>
+<td><a href="https://www.slangwatch.com/blog/gaming-slang-language-evolution/">https://www.slangwatch.com/blog/gaming-slang-language-evolution/</a></td>
+</tr>
+<tr>
+<td>43</td>
+<td>TV Tropes - Tournament Arc</td>
+<td>Primary (trope database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/TournamentArc">https://tvtropes.org/pmwiki/pmwiki.php/Main/TournamentArc</a></td>
+</tr>
+<tr>
+<td>44</td>
+<td>TV Tropes - Attack on Titan Memes</td>
+<td>Primary (trope database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://tvtropes.org/pmwiki/pmwiki.php/Memes/AttackOnTitan">https://tvtropes.org/pmwiki/pmwiki.php/Memes/AttackOnTitan</a></td>
+</tr>
+<tr>
+<td>45</td>
+<td>Know Your Meme - Press F to Pay Respects</td>
+<td>Primary (meme database)</td>
+<td>2025</td>
+<td>High</td>
+<td><a href="https://knowyourmeme.com/memes/press-f-to-pay-respects">https://knowyourmeme.com/memes/press-f-to-pay-respects</a></td>
+</tr>
+<tr>
+<td>46</td>
+<td>Neon Music - Great Meme Reset Failed</td>
+<td>Secondary</td>
+<td>2026-01</td>
+<td>Medium</td>
+<td><a href="https://neonmusic.co.uk/great-meme-reset-2026-tiktok-failed">https://neonmusic.co.uk/great-meme-reset-2026-tiktok-failed</a></td>
+</tr>
+<tr>
+<td>47</td>
+<td>Aesthetics Wiki - Deep Fried Meme</td>
+<td>Secondary</td>
+<td>2025</td>
+<td>Medium</td>
+<td><a href="https://aesthetics.fandom.com/wiki/Deep_Fried_Meme">https://aesthetics.fandom.com/wiki/Deep_Fried_Meme</a></td>
+</tr>
+<tr>
+<td>48</td>
+<td>AnimeCx - Ultimate Guide to Anime Memes 2026</td>
+<td>Secondary</td>
+<td>2026</td>
+<td>Medium</td>
+<td><a href="https://animecx.com/anime-memes/">https://animecx.com/anime-memes/</a></td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>Report generated 2026-04-10. 28 themes identified across 5 categories. 10 themes recommended for immediate consideration. IP risks flagged for Chill Guy, Trollface, Nyan Cat, and Minecraft Creeper.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

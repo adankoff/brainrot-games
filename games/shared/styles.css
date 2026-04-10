@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Brainrot Games -- Shared Game Chrome Styles
+   Imports the design system and adds game-specific layout/chrome.
+   ========================================================================== */
+
+/* Import the design system (path relative to games/shared/) */
+@import url('../../brand/design-system.css');
+
+/* ---- Prevent scroll/bounce on game pages ---- */
+html, body {
+  overscroll-behavior: none;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Canvas centering on desktop ---- */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Game Container ---- */
+.game-container {
+  position: relative;
+  width: 100%;
+  max-width: var(--max-width-game); /* 480px */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ---- Menu Overlay ---- */
+#menu-overlay {
+  touch-action: manipulation;
+}
+
+#menu-overlay[style*="display: none"] ~ #game-canvas,
+#menu-overlay[hidden] ~ #game-canvas {
+  pointer-events: auto;
+}
+
+/* ---- Game-Over Overlay ---- */
+#gameover-overlay {
+  touch-action: manipulation;
+}
+
+/* ---- Mobile zoom/bounce prevention ---- */
+* {
+  touch-action: manipulation;
+}

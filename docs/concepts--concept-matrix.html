@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept Matrix — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">concepts/concept-matrix.md</div>
+    <div class="doc-content"><h1>Concept Matrix</h1>
+<h2>Theme x Mechanic Pairings — Scored and Ranked</h2>
+<h3>April 2026</h3>
+<hr>
+<h2>Scoring Criteria (1-5 each, 25 max)</h2>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>What It Measures</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Theme-Mechanic Fit</strong></td>
+<td>Does the theme make the mechanic funnier or more engaging than vanilla?</td>
+</tr>
+<tr>
+<td><strong>Meme Longevity</strong></td>
+<td>Will this theme still land in 6+ months? (Based on research trajectory)</td>
+</tr>
+<tr>
+<td><strong>Technical Feasibility</strong></td>
+<td>How easy to build in HTML5 Canvas + vanilla JS? (1=trivial, 5=hard)</td>
+</tr>
+<tr>
+<td><strong>Viral Shareability</strong></td>
+<td>Screenshot/clip/TikTok potential — will people share this unprompted?</td>
+</tr>
+<tr>
+<td><strong>Monetization Compatibility</strong></td>
+<td>Can ads/IAP layer in without killing the vibe?</td>
+</tr>
+</tbody></table>
+<p>Note: For Technical Feasibility, <strong>lower is better for us</strong> but we score inverted here so 5 = easiest to build, 1 = hardest. This way higher total = better pick.</p>
+<hr>
+<h2>Full Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Theme</th>
+<th>Mechanic</th>
+<th>Fit</th>
+<th>Longevity</th>
+<th>Feasibility</th>
+<th>Viral</th>
+<th>Monetization</th>
+<th><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Italian Brainrot</td>
+<td>Whack-a-Mole</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td><strong>24</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sigma/Rizz/Mewing</td>
+<td>Idle Clicker</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td>5</td>
+<td><strong>23</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Italian Brainrot</td>
+<td>Flappy Bird</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td><strong>23</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Ohio Memes</td>
+<td>Endless Runner</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+<td><strong>22</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Skibidi Toilet</td>
+<td>Stack</td>
+<td>4</td>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td><strong>21</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Fanum Tax</td>
+<td>Snake</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td><strong>20</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Italian Brainrot</td>
+<td>2048</td>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td><strong>19</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Aura Points</td>
+<td>Color Switch</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td><strong>19</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Among Us / Sus</td>
+<td>Whack-a-Mole</td>
+<td>4</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td><strong>19</strong></td>
+</tr>
+<tr>
+<td>10</td>
+<td>Grimace Shake</td>
+<td>Doodle Jump</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td><strong>17</strong></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Skibidi Toilet</td>
+<td>Geometry Dash</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td><strong>17</strong></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Sigma/Rizz/Mewing</td>
+<td>Flappy Bird</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td>3</td>
+<td><strong>19</strong></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Ohio Memes</td>
+<td>Doodle Jump</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td><strong>18</strong></td>
+</tr>
+<tr>
+<td>14</td>
+<td>Fanum Tax</td>
+<td>Idle Clicker</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td>5</td>
+<td><strong>19</strong></td>
+</tr>
+<tr>
+<td>15</td>
+<td>Grimace Shake</td>
+<td>Snake</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td><strong>14</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Rankings (Sorted by Total Score)</h2>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Pairing</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1</strong></td>
+<td><strong>Italian Brainrot x Whack-a-Mole</strong></td>
+<td><strong>24</strong></td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>Sigma/Rizz/Mewing x Idle Clicker</strong></td>
+<td><strong>23</strong></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>Italian Brainrot x Flappy Bird</strong></td>
+<td><strong>23</strong></td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td><strong>Ohio Memes x Endless Runner</strong></td>
+<td><strong>22</strong></td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td><strong>Skibidi Toilet x Stack</strong></td>
+<td><strong>21</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Fanum Tax x Snake</td>
+<td>20</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Italian Brainrot x 2048</td>
+<td>19</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Aura Points x Color Switch</td>
+<td>19</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Among Us/Sus x Whack-a-Mole</td>
+<td>19</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Sigma/Rizz/Mewing x Flappy Bird</td>
+<td>19</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Fanum Tax x Idle Clicker</td>
+<td>19</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Ohio Memes x Doodle Jump</td>
+<td>18</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Skibidi Toilet x Geometry Dash</td>
+<td>17</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Grimace Shake x Doodle Jump</td>
+<td>17</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Grimace Shake x Snake</td>
+<td>14</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Top 5 Rationales</h2>
+<h3>1. Italian Brainrot x Whack-a-Mole (24/25)</h3>
+<p><strong>Why this is the #1 pick.</strong> The Italian brainrot universe is a self-replicating roster of absurd characters (Tralalero Tralala, Bombardiro Crocodilo, Tung Tung Tung Sahur, Lirili Larila, etc.) and whack-a-mole is literally a game about targets popping up and you smacking them. Each character becomes a whack target with different point values, behaviors, and sound effects. The theme IS the mechanic. New characters meme into existence monthly — instant content updates with zero mechanic changes. Build complexity is ~100 lines of core logic. Every whack produces a reaction worth screenshotting. Death/score screens with character faces are inherently shareable. Monetization: interstitial ads between rounds (rounds are 30-60 seconds), rewarded video to continue, character unlock IAP.</p>
+<p><strong>Risk:</strong> Almost none. This is the safest first ship.</p>
+<h3>2. Sigma/Rizz/Mewing x Idle Clicker (23/25)</h3>
+<p><strong>Why this works.</strong> The sigma/rizz/mewing vocabulary is already gamified in how people talk — &quot;aura points,&quot; &quot;rizz level,&quot; &quot;sigma grindset.&quot; An idle clicker literally is that: watch a number go up. Tap to mew. Upgrade your rizz. Unlock sigma abilities. The entire progression system writes itself using existing cultural vocabulary. Idle clickers have the best retention and monetization of any mechanic. &quot;Aura Points&quot; as the in-game currency is a gift — it&#39;s a meme AND a game mechanic AND a social flex when screenshotted. Feasibility is slightly lower than whack-a-mole because idle clickers are UI-heavy (upgrade trees, prestige systems) but still straightforward.</p>
+<p><strong>Risk:</strong> Session-to-session retention depends on depth of upgrade tree. Needs more design work upfront than a tap game. But the long-term monetization ceiling is the highest of any pairing.</p>
+<h3>3. Italian Brainrot x Flappy Bird (23/25)</h3>
+<p><strong>Why this works.</strong> &quot;It&#39;s Flappy Bird but the bird is Tralalero Tralala&quot; is literally the example in the brand voice doc. It&#39;s the most obvious pairing and that&#39;s fine — obvious is good when obvious is correct. Flappy Bird is the gold standard of casual mobile games. ~200 lines of core logic. 15-45 second sessions mean dozens of ad impressions per player. The death screen (your brainrot character slamming into a pipe) is screenshot bait. Pipe obstacles can be themed as other brainrot characters. Character select screen = collect-them-all mechanic.</p>
+<p><strong>Risk:</strong> Flappy Bird clones are extremely common. We need the brainrot theming to be genuinely funny (sound effects, character animations, death reactions) to stand out from the sea of reskins already on Poki. This is a &quot;polish wins&quot; game.</p>
+<h3>4. Ohio Memes x Endless Runner (22/25)</h3>
+<p><strong>Why this works.</strong> &quot;Only in Ohio&quot; is the perfect setting for an endless runner because the entire meme is about Ohio being a surreal, dangerous wasteland. The obstacles generate themselves from the meme template: mutant corn, cursed weather, interdimensional portals, random bosses. The environment theming is endlessly generative. Endless runners have the deepest gameplay of the simple mechanics and the best monetization model (Subway Surfers = 3B downloads). Coin collection, character unlocks, and distance-based leaderboards are all built-in.</p>
+<p><strong>Risk:</strong> Endless runners are a 3/5 build complexity — the hardest on this list. Needs parallax scrolling, obstacle generation, collision detection, and character animation. This is a &quot;game 3 or 4&quot; pick, not a first ship. But it&#39;s the most likely breakout hit if executed well.</p>
+<h3>5. Skibidi Toilet x Stack (21/25)</h3>
+<p><strong>Why this works.</strong> Stack (the Ketchapp game where you drop and slice blocks) is satisfying, simple, and proven at 100M+ downloads. Theming each block as a Skibidi character (toilets stacking on toilets, cameramen on cameramen) is visually absurd in exactly the way that gets screenshotted. The faction system (Skibidi vs. Cameraman) gives the stacking a narrative — you&#39;re building a tower for your faction. Perfect-stack combos create satisfying moments worth clipping. The Skibidi IP has commercial legs through 2027 (movie in production).</p>
+<p><strong>Risk:</strong> Meme longevity is medium — Skibidi is post-peak virality. But the movie cycle gives it a second wind. Stack is also the mechanic with the smallest design surface area, meaning there&#39;s less room to differentiate through theme alone.</p>
+<hr>
+<h2>Strategic Recommendation</h2>
+<p><strong>First sprint (2 games, ship fast):</strong></p>
+<ol>
+<li><strong>Italian Brainrot x Whack-a-Mole</strong> — safest bet, fastest build, highest theme-mechanic fit</li>
+<li><strong>Italian Brainrot x Flappy Bird</strong> — second safest, shares character assets with game 1, proven viral mechanic</li>
+</ol>
+<p><strong>Second sprint (add depth):</strong>
+3. <strong>Sigma/Rizz/Mewing x Idle Clicker</strong> — retention play, deeper monetization, different session type</p>
+<p>This gives mechanical diversity (tap-target, tap-to-fly, tap-and-upgrade), shared character assets between games 1 and 2, and a progression from &quot;play once and share&quot; to &quot;come back every day.&quot;</p>
+<hr>
+<p><em>Matrix generated from: executive-research-summary.md themes and mechanics rankings, brand-strategy.md voice and persona fit.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

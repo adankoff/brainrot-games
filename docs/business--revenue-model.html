@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revenue Model — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">business/revenue-model.md</div>
+    <div class="doc-content"><h1>Revenue Model: Brainrot Games</h1>
+<h2>Financial Model for HTML5 Browser Game Monetization</h2>
+<h3>April 2026</h3>
+<hr>
+<h2>Model Purpose</h2>
+<p>This model answers: <strong>What is the realistic revenue potential for Brainrot Games across a 12-month horizon, and what is the recommended monetization strategy for a two-game HTML5 browser portfolio targeting ages 8-25?</strong></p>
+<p>The model supports decisions on: which ad networks to implement, when to add revenue streams, and what traffic thresholds must be reached for the business to sustain itself.</p>
+<h2>Methodology</h2>
+<p>Bottom-up revenue build using:</p>
+<ul>
+<li>eCPM benchmarks from industry reports (Udonis, Tenjin, Appodeal 2025 data), adjusted down 20-40% for web vs. mobile</li>
+<li>Per-user session and ad impression modeling based on casual web game behavioral benchmarks</li>
+<li>Poki/CrazyGames revenue share terms from their published developer documentation</li>
+<li>Licensing revenue ranges from HTML5 game developer case studies (Genieee 2025)</li>
+<li>Three-scenario framework (conservative, moderate, optimistic) with 6-month and 12-month cumulative projections</li>
+</ul>
+<p>All numbers are directional estimates grounded in published benchmarks. They are not predictions.</p>
+<hr>
+<h2>1. Revenue Model Analysis for HTML5 Browser Games</h2>
+<h3>1.1 Ad-Supported Revenue</h3>
+<p>Ad revenue is the primary and most accessible monetization path for free-to-play browser games. Revenue is a function of: traffic x sessions per user x ad impressions per session x eCPM.</p>
+<h4>Web Game eCPM Benchmarks (adjusted from mobile data)</h4>
+<p>Web browser eCPMs run 20-40% lower than mobile app eCPMs due to lower fill rates, less sophisticated targeting, and weaker SDK ecosystems.</p>
+<table>
+<thead>
+<tr>
+<th>Ad Format</th>
+<th>US Web eCPM</th>
+<th>Global Web eCPM</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Rewarded video</td>
+<td>$5.00-10.00</td>
+<td>$2.00-5.00</td>
+<td>Competitive landscape report; Udonis/Tenjin 2025, adjusted -30% for web</td>
+</tr>
+<tr>
+<td>Interstitial</td>
+<td>$3.00-7.00</td>
+<td>$1.00-3.00</td>
+<td>Competitive landscape report; Tenjin 2025, adjusted -30% for web</td>
+</tr>
+<tr>
+<td>Display/banner</td>
+<td>$0.30-1.00</td>
+<td>$0.10-0.50</td>
+<td>Competitive landscape report; industry standard</td>
+</tr>
+</tbody></table>
+<h4>Blended eCPM Calculation</h4>
+<p>For a game with interstitials on death (every 3rd death) + optional rewarded video for continue + persistent banner:</p>
+<table>
+<thead>
+<tr>
+<th>Traffic Mix</th>
+<th>Assumed Mix</th>
+<th>Blended eCPM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mostly US/Western</td>
+<td>60% interstitial, 25% rewarded, 15% banner</td>
+<td>$4.00-6.00</td>
+</tr>
+<tr>
+<td>Global average</td>
+<td>60% interstitial, 25% rewarded, 15% banner</td>
+<td>$1.50-3.00</td>
+</tr>
+<tr>
+<td>Realistic blend (launch)</td>
+<td>Mixed geo, 70/30 global/US</td>
+<td><strong>$2.00-4.00</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Key variable:</strong> Blended eCPM is highly sensitive to geographic mix. A game that goes viral in the US generates 2-3x the ad revenue per user of one that goes viral in Southeast Asia or Latin America. At launch, with no paid UA and organic/social distribution, expect a predominantly global audience with US representing 20-35% of traffic.</p>
+<h4>Revenue Per User Benchmarks</h4>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Casual Web Games (industry)</th>
+<th>Our Estimate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ARPDAU (ads only)</td>
+<td>$0.01-0.05</td>
+<td>$0.02-0.04</td>
+</tr>
+<tr>
+<td>Monthly ARPU (ads only)</td>
+<td>$0.05-0.30</td>
+<td>$0.08-0.20</td>
+</tr>
+<tr>
+<td>Sessions per user per month</td>
+<td>3-5</td>
+<td>3-4</td>
+</tr>
+<tr>
+<td>Ad impressions per session</td>
+<td>2-3</td>
+<td>2 (conservative to avoid churn)</td>
+</tr>
+</tbody></table>
+<p>Source: Competitive landscape report, Section 5.3</p>
+<h3>1.2 Cosmetic Microtransactions (Future v2)</h3>
+<p><strong>Feasibility assessment: Possible but not for launch.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Technical feasibility</td>
+<td>Medium. Requires account system or local storage for owned skins, payment integration (Stripe, web IAP). No server-side infrastructure currently.</td>
+</tr>
+<tr>
+<td>Revenue potential</td>
+<td>IAP conversion for casual web games: 1-3%. At 100K MAU with 1.5% conversion and $2 avg transaction: ~$3,000/month.</td>
+</tr>
+<tr>
+<td>Audience fit</td>
+<td>Ages 8-16 (core demo) have limited payment access. Conversion will be lower than mobile benchmarks where parents&#39; cards are already linked to app stores.</td>
+</tr>
+<tr>
+<td>Competitive benchmark</td>
+<td>IAP represents ~62% of all HTML5 game revenue in 2025 (industry-wide), but this is skewed by deeper games with progression systems.</td>
+</tr>
+<tr>
+<td>Implementation timeline</td>
+<td>Month 3+ at earliest. Requires: skin system, localStorage or account persistence, payment flow, content creation.</td>
+</tr>
+<tr>
+<td>Risk</td>
+<td>Adding IAP to a meme game can feel exploitative given the young audience. Keep it cosmetic-only, no pay-to-win.</td>
+</tr>
+</tbody></table>
+<p><strong>Recommendation:</strong> Design games to support skins from v1 (modular sprite system), but do not implement the purchase flow until traffic justifies the development effort. Threshold: 50K+ MAU.</p>
+<p>Potential cosmetic items:</p>
+<ul>
+<li>Character skins for Flappy Tralalero: different brainrot characters as player sprite ($0.99-1.99)</li>
+<li>Theme packs for Whack-a-Rot: seasonal or character-set-themed backgrounds ($0.99-1.99)</li>
+<li>Sound packs: meme audio clips on hit/death ($0.49-0.99)</li>
+</ul>
+<h3>1.3 Sponsorship and Brand Deals</h3>
+<p><strong>Feasibility assessment: Realistic at scale, not at launch.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Revenue Range</th>
+<th>Requirements</th>
+<th>Realistic Timeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Branded game reskin</td>
+<td>$5,000-50,000 per project</td>
+<td>Portfolio + audience proof + outbound sales</td>
+<td>Month 6+</td>
+</tr>
+<tr>
+<td>In-game sponsor integration</td>
+<td>$1,000-10,000/month</td>
+<td>100K+ MAU</td>
+<td>Month 4-6 (if traffic hits)</td>
+</tr>
+<tr>
+<td>Platform-exclusive launch deal</td>
+<td>$2,000-15,000 one-time</td>
+<td>Quality game + negotiation with Poki/CrazyGames</td>
+<td>Month 6+</td>
+</tr>
+</tbody></table>
+<p>Source: Competitive landscape report, Section 2.4</p>
+<p><strong>Honest evaluation:</strong> Brand deals require a track record and proven audience. No brand will sponsor a site with 10K MAU. At 100K+ MAU with a clear Gen Z/Alpha audience demographic, branded game reskins become realistic. The cultural specificity of Italian brainrot characters could be a selling point for brands targeting this demographic -- but this is a month 6+ play.</p>
+<h3>1.4 Premium Content (Daily Challenges, Exclusive Games)</h3>
+<p><strong>Feasibility assessment: Not recommended for this audience or scale.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Audience willingness to pay</td>
+<td>Very low. Ages 8-16, accustomed to free browser games, minimal payment access.</td>
+</tr>
+<tr>
+<td>Premium web game precedent</td>
+<td>Almost none for casual browser games. Premium works for Steam (Vampire Survivors at $4.99) and mobile app stores, not for web.</td>
+</tr>
+<tr>
+<td>Daily challenges as gated content</td>
+<td>Not viable without an account system. The zero-friction model (no signup) is a core advantage -- gating content behind accounts destroys it.</td>
+</tr>
+<tr>
+<td>Exclusive games behind paywall</td>
+<td>Contradicts the distribution model (viral sharing requires free access).</td>
+</tr>
+</tbody></table>
+<p><strong>Recommendation:</strong> Do not pursue premium content gating. If a game is good enough to charge for, put it on Steam as a separate product with additional polish. Keep the web versions free.</p>
+<h3>1.5 HTML5 Game Licensing</h3>
+<p><strong>Feasibility assessment: Viable and low-effort once games exist.</strong></p>
+<table>
+<thead>
+<tr>
+<th>License Type</th>
+<th>Revenue Range</th>
+<th>Terms</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Non-exclusive (GameDistribution, Kongregate, etc.)</td>
+<td>$200-2,000 per deal</td>
+<td>Can sell to multiple portals; game hosted on their infrastructure</td>
+</tr>
+<tr>
+<td>Revenue share via SDK (GameDistribution)</td>
+<td>Developer share of ad revenue</td>
+<td>Ongoing, traffic-dependent; lower upfront but passive</td>
+</tr>
+<tr>
+<td>Exclusive license to single portal</td>
+<td>$3,000-15,000+</td>
+<td>6-24 month exclusivity; higher upfront but limits distribution</td>
+</tr>
+</tbody></table>
+<p>Source: Competitive landscape report, Section 2.5; Genieee 2025 case studies</p>
+<p><strong>Case study context:</strong></p>
+<ul>
+<li>Solo developer earned $30,000+ from non-exclusive licenses ($500-2,000 per deal across multiple portals)</li>
+<li>3-person studio earned $80,000 in 18 months (some deals at $5,000+)</li>
+</ul>
+<p><strong>Recommendation:</strong> Pursue non-exclusive licensing via GameDistribution SDK starting month 3. Do NOT accept exclusive licenses -- multi-platform distribution is the strategy. Licensing revenue is modest per-deal but compounds across a growing game portfolio.</p>
+<hr>
+<h2>2. Revenue Projections (Monthly and Cumulative)</h2>
+<h3>Assumptions Table</h3>
+<table>
+<thead>
+<tr>
+<th>Assumption</th>
+<th>Conservative</th>
+<th>Moderate</th>
+<th>Optimistic</th>
+<th>Source</th>
+<th>Confidence</th>
+<th>Sensitivity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MAU (month 3 steady state)</td>
+<td>10,000</td>
+<td>100,000</td>
+<td>500,000</td>
+<td>Competitive benchmarks; SEO targets</td>
+<td>L</td>
+<td>H</td>
+</tr>
+<tr>
+<td>Sessions per user per month</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>Industry casual web game benchmarks</td>
+<td>M</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Ad impressions per session</td>
+<td>1.5</td>
+<td>2.5</td>
+<td>3.5</td>
+<td>Based on ad frequency (every 3rd death + rewarded)</td>
+<td>M</td>
+<td>H</td>
+</tr>
+<tr>
+<td>Blended eCPM (own site)</td>
+<td>$2.00</td>
+<td>$3.50</td>
+<td>$5.00</td>
+<td>Web eCPM benchmarks, global traffic mix</td>
+<td>M</td>
+<td>H</td>
+</tr>
+<tr>
+<td>Poki rev-share split (on Poki traffic)</td>
+<td>50/50</td>
+<td>50/50</td>
+<td>50/50</td>
+<td>Poki published terms</td>
+<td>H</td>
+<td>L</td>
+</tr>
+<tr>
+<td>Poki MAU (if accepted)</td>
+<td>0 (not accepted)</td>
+<td>25,000</td>
+<td>100,000</td>
+<td>Poki developer case studies</td>
+<td>L</td>
+<td>H</td>
+</tr>
+<tr>
+<td>CrazyGames MAU (if accepted)</td>
+<td>0</td>
+<td>10,000</td>
+<td>40,000</td>
+<td>CG audience data</td>
+<td>L</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Licensing deals per quarter</td>
+<td>0</td>
+<td>1 at $500</td>
+<td>3 at $1,000</td>
+<td>Case study benchmarks</td>
+<td>L</td>
+<td>L</td>
+</tr>
+<tr>
+<td>IAP revenue (month 6+)</td>
+<td>$0</td>
+<td>$0</td>
+<td>$500/month</td>
+<td>1% conversion, $2 avg, only at optimistic scale</td>
+<td>L</td>
+<td>L</td>
+</tr>
+<tr>
+<td>Traffic ramp</td>
+<td>Flat from month 2</td>
+<td>Linear growth, 20% MoM</td>
+<td>Viral spike month 2, plateau month 4</td>
+<td>Projection</td>
+<td>L</td>
+<td>H</td>
+</tr>
+</tbody></table>
+<h3>Conservative Scenario: 10K MAU, Basic Ad Monetization</h3>
+<p><strong>Profile:</strong> Games launch, get modest organic traffic from SEO and social posts. Not accepted to Poki. No viral moment. Typical outcome for a new indie game site.</p>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>MAU (own site)</th>
+<th>Portal MAU</th>
+<th>Ad Revenue (own site)</th>
+<th>Portal Revenue</th>
+<th>Licensing</th>
+<th>Total Monthly</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1,000</td>
+<td>0</td>
+<td>$9</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$9</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>3,000</td>
+<td>0</td>
+<td>$27</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$27</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>6,000</td>
+<td>0</td>
+<td>$54</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$54</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>8,000</td>
+<td>0</td>
+<td>$72</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$72</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>9,000</td>
+<td>0</td>
+<td>$81</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$81</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>10,000</td>
+<td>0</td>
+<td>$90</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$90</strong></td>
+</tr>
+<tr>
+<td>7-12</td>
+<td>10,000</td>
+<td>0</td>
+<td>$90</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$90/mo</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Calculation:</strong> 10,000 MAU x 3 sessions x 1.5 impressions x ($2.00/1000) = $90/month</p>
+<table>
+<thead>
+<tr>
+<th>Cumulative</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6-month total</td>
+<td><strong>$333</strong></td>
+</tr>
+<tr>
+<td>12-month total</td>
+<td><strong>$873</strong></td>
+</tr>
+</tbody></table>
+<h3>Moderate Scenario: 100K MAU, Optimized Ads + Poki Revenue Share</h3>
+<p><strong>Profile:</strong> Games get accepted to Poki and CrazyGames. Moderate organic traction from SEO (game-specific keywords ranking). One Reddit post gains traction. Steady growth, no single viral moment.</p>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>MAU (own site)</th>
+<th>Poki MAU</th>
+<th>CG MAU</th>
+<th>Ad Revenue (own)</th>
+<th>Poki Revenue</th>
+<th>CG Revenue</th>
+<th>Licensing</th>
+<th>Total Monthly</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2,000</td>
+<td>0</td>
+<td>0</td>
+<td>$35</td>
+<td>$0</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$35</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>8,000</td>
+<td>0</td>
+<td>0</td>
+<td>$140</td>
+<td>$0</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$140</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>15,000</td>
+<td>5,000</td>
+<td>2,000</td>
+<td>$263</td>
+<td>$44</td>
+<td>$14</td>
+<td>$0</td>
+<td><strong>$321</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>25,000</td>
+<td>10,000</td>
+<td>5,000</td>
+<td>$438</td>
+<td>$88</td>
+<td>$35</td>
+<td>$0</td>
+<td><strong>$561</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>35,000</td>
+<td>15,000</td>
+<td>8,000</td>
+<td>$613</td>
+<td>$131</td>
+<td>$56</td>
+<td>$250</td>
+<td><strong>$1,050</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>50,000</td>
+<td>20,000</td>
+<td>10,000</td>
+<td>$875</td>
+<td>$175</td>
+<td>$70</td>
+<td>$250</td>
+<td><strong>$1,370</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td>55,000</td>
+<td>22,000</td>
+<td>10,000</td>
+<td>$963</td>
+<td>$193</td>
+<td>$70</td>
+<td>$0</td>
+<td><strong>$1,226</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td>60,000</td>
+<td>24,000</td>
+<td>10,000</td>
+<td>$1,050</td>
+<td>$210</td>
+<td>$70</td>
+<td>$0</td>
+<td><strong>$1,330</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td>65,000</td>
+<td>25,000</td>
+<td>10,000</td>
+<td>$1,138</td>
+<td>$219</td>
+<td>$70</td>
+<td>$500</td>
+<td><strong>$1,927</strong></td>
+</tr>
+<tr>
+<td>10</td>
+<td>65,000</td>
+<td>25,000</td>
+<td>10,000</td>
+<td>$1,138</td>
+<td>$219</td>
+<td>$70</td>
+<td>$0</td>
+<td><strong>$1,427</strong></td>
+</tr>
+<tr>
+<td>11</td>
+<td>65,000</td>
+<td>25,000</td>
+<td>10,000</td>
+<td>$1,138</td>
+<td>$219</td>
+<td>$70</td>
+<td>$0</td>
+<td><strong>$1,427</strong></td>
+</tr>
+<tr>
+<td>12</td>
+<td>65,000</td>
+<td>25,000</td>
+<td>10,000</td>
+<td>$1,138</td>
+<td>$219</td>
+<td>$70</td>
+<td>$500</td>
+<td><strong>$1,927</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Calculation basis (month 6 own site):</strong> 50,000 MAU x 4 sessions x 2.5 impressions x ($3.50/1000) = $1,750; adjusted to $875 because not all MAU are monetizable sessions (bounce rate, ad blockers, ~50% effective monetization rate)</p>
+<p><strong>Poki calculation (month 6):</strong> 20,000 MAU at Poki eCPMs, 50% rev-share to developer = ~$175/month</p>
+<table>
+<thead>
+<tr>
+<th>Cumulative</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6-month total</td>
+<td><strong>$2,477</strong></td>
+</tr>
+<tr>
+<td>12-month total</td>
+<td><strong>$12,741</strong></td>
+</tr>
+</tbody></table>
+<h3>Optimistic Scenario: 500K MAU, Multiple Revenue Streams</h3>
+<p><strong>Profile:</strong> One game goes modestly viral (Show HN hits front page or TikTok pickup). Poki features the game in brainrot category. Strong SEO ranking for game-specific and some category keywords. Portfolio expands to 4+ games by month 6.</p>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>MAU (all sources)</th>
+<th>Ad Revenue (own)</th>
+<th>Portal Revenue</th>
+<th>Licensing</th>
+<th>IAP (m6+)</th>
+<th>Total Monthly</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>5,000</td>
+<td>$70</td>
+<td>$0</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$70</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>40,000</td>
+<td>$1,120</td>
+<td>$0</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$1,120</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>120,000</td>
+<td>$3,150</td>
+<td>$525</td>
+<td>$0</td>
+<td>$0</td>
+<td><strong>$3,675</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>220,000</td>
+<td>$5,775</td>
+<td>$1,313</td>
+<td>$1,000</td>
+<td>$0</td>
+<td><strong>$8,088</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>350,000</td>
+<td>$8,750</td>
+<td>$2,188</td>
+<td>$1,000</td>
+<td>$0</td>
+<td><strong>$11,938</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>500,000</td>
+<td>$12,250</td>
+<td>$3,500</td>
+<td>$1,000</td>
+<td>$500</td>
+<td><strong>$17,250</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td>450,000</td>
+<td>$11,025</td>
+<td>$3,150</td>
+<td>$0</td>
+<td>$500</td>
+<td><strong>$14,675</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td>420,000</td>
+<td>$10,290</td>
+<td>$2,940</td>
+<td>$1,000</td>
+<td>$500</td>
+<td><strong>$14,730</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td>400,000</td>
+<td>$9,800</td>
+<td>$2,800</td>
+<td>$1,000</td>
+<td>$500</td>
+<td><strong>$14,100</strong></td>
+</tr>
+<tr>
+<td>10</td>
+<td>380,000</td>
+<td>$9,310</td>
+<td>$2,660</td>
+<td>$1,000</td>
+<td>$500</td>
+<td><strong>$13,470</strong></td>
+</tr>
+<tr>
+<td>11</td>
+<td>380,000</td>
+<td>$9,310</td>
+<td>$2,660</td>
+<td>$0</td>
+<td>$500</td>
+<td><strong>$12,470</strong></td>
+</tr>
+<tr>
+<td>12</td>
+<td>380,000</td>
+<td>$9,310</td>
+<td>$2,660</td>
+<td>$1,000</td>
+<td>$500</td>
+<td><strong>$13,470</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Calculation basis (month 6 own site):</strong> 350,000 own-site MAU x 5 sessions x 3.5 impressions x ($5.00/1000) = $30,625; adjusted to $12,250 at ~40% effective monetization (ad blockers prevalent in tech-savvy audience, global eCPM dilution, not all sessions hit max impressions)</p>
+<p><strong>Note on month 7+ decline:</strong> Viral traffic decays. The optimistic scenario assumes a spike-and-settle pattern, not sustained exponential growth. Meme game traffic follows power-law decay after the viral window closes.</p>
+<table>
+<thead>
+<tr>
+<th>Cumulative</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6-month total</td>
+<td><strong>$42,141</strong></td>
+</tr>
+<tr>
+<td>12-month total</td>
+<td><strong>$125,057</strong></td>
+</tr>
+</tbody></table>
+<h3>Scenario Comparison Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Conservative</th>
+<th>Moderate</th>
+<th>Optimistic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MAU at month 6</td>
+<td>10,000</td>
+<td>80,000</td>
+<td>500,000</td>
+</tr>
+<tr>
+<td>Monthly revenue at month 6</td>
+<td>$90</td>
+<td>$1,370</td>
+<td>$17,250</td>
+</tr>
+<tr>
+<td>6-month cumulative</td>
+<td>$333</td>
+<td>$2,477</td>
+<td>$42,141</td>
+</tr>
+<tr>
+<td>12-month cumulative</td>
+<td>$873</td>
+<td>$12,741</td>
+<td>$125,057</td>
+</tr>
+<tr>
+<td>Monthly revenue at month 12</td>
+<td>$90</td>
+<td>$1,927</td>
+<td>$13,470</td>
+</tr>
+<tr>
+<td>Primary revenue source</td>
+<td>Own-site ads</td>
+<td>Own-site ads + Poki</td>
+<td>Own-site ads + portals + licensing</td>
+</tr>
+<tr>
+<td>Break-even month</td>
+<td>Never (at this scale)</td>
+<td>Month 1 (costs ~$15/yr)</td>
+<td>Month 1</td>
+</tr>
+<tr>
+<td>Annualized revenue (month 12 run rate)</td>
+<td>$1,080</td>
+<td>$23,124</td>
+<td>$161,640</td>
+</tr>
+</tbody></table>
+<p><strong>Probability weighting (subjective assessment):</strong></p>
+<ul>
+<li>Conservative: 50% likelihood. This is the most common outcome for new indie game sites.</li>
+<li>Moderate: 35% likelihood. Requires Poki acceptance + steady organic growth.</li>
+<li>Optimistic: 15% likelihood. Requires at least one viral moment + sustained execution.</li>
+<li><strong>Expected value (weighted 12-month):</strong> $873(0.50) + $12,741(0.35) + $125,057(0.15) = $437 + $4,459 + $18,759 = <strong>$23,655</strong></li>
+</ul>
+<hr>
+<h2>3. Recommended Monetization Stack</h2>
+<h3>Phase 1: Launch (Month 1)</h3>
+<p><strong>Revenue streams:</strong> Interstitial ads + rewarded video only</p>
+<table>
+<thead>
+<tr>
+<th>Implementation</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Interstitial ads</td>
+<td>Show between games, triggered on every 3rd death. NOT every death -- aggressive ad frequency drives churn in the first session. After session 3+, consider every 2nd death.</td>
+</tr>
+<tr>
+<td>Rewarded video</td>
+<td>Offer &quot;watch ad to continue&quot; after death with score &gt; 5 (or equivalent). Player-initiated, not forced. This is the highest-eCPM format ($5-10 US web).</td>
+</tr>
+<tr>
+<td>Banner ads</td>
+<td>Do NOT implement at launch. Banners earn $0.30-1.00 eCPM and degrade the visual experience. Add only if overall eCPMs underperform.</td>
+</tr>
+<tr>
+<td>Ad network</td>
+<td>Start with Google AdSense for Games (H5) as baseline. Low barrier, reliable fill. See Section 4 for network recommendations.</td>
+</tr>
+<tr>
+<td>Frequency cap</td>
+<td>Maximum 1 interstitial per 60 seconds. Maximum 3 rewarded videos per session. Industry standard to avoid policy violations.</td>
+</tr>
+</tbody></table>
+<p><strong>Expected Phase 1 revenue:</strong> Near-zero. Traffic is too low in month 1 to generate meaningful ad revenue. Focus is on getting the ad integration working and collecting eCPM data.</p>
+<h3>Phase 2: Portal Distribution (Month 2-3)</h3>
+<p><strong>Revenue streams:</strong> Phase 1 + Poki/CrazyGames revenue share</p>
+<table>
+<thead>
+<tr>
+<th>Implementation</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Poki SDK integration</td>
+<td>Separate build from own-site version. Poki handles ad serving via their SDK. Developer receives 50% of Poki-driven traffic revenue, 100% of direct-traffic revenue.</td>
+</tr>
+<tr>
+<td>CrazyGames SDK integration</td>
+<td>Similar to Poki. Rev-share terms are less transparent but competitive. Do NOT accept exclusivity terms.</td>
+</tr>
+<tr>
+<td>GameDistribution SDK</td>
+<td>Submit games for distribution to their 2,000+ publisher network. Revenue share on ads served in distributed versions.</td>
+</tr>
+<tr>
+<td>Own-site ad optimization</td>
+<td>By month 2-3, switch from AdSense alone to AdinPlay or Venatus as primary ad partner, with AdSense as backfill. Gaming-specific networks have better fill rates and higher eCPMs for game content.</td>
+</tr>
+</tbody></table>
+<p><strong>Expected Phase 2 revenue:</strong> Poki/CrazyGames acceptance is not guaranteed. If accepted, expect $50-500/month from portals. Own-site revenue depends entirely on traffic.</p>
+<h3>Phase 3: Expansion (Month 3+)</h3>
+<p><strong>Revenue streams:</strong> Phase 1 + Phase 2 + cosmetic IAP + game licensing</p>
+<table>
+<thead>
+<tr>
+<th>Implementation</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cosmetic IAP</td>
+<td>Only if MAU &gt; 50K. Implement Stripe checkout or web-based payment. Offer character skins ($0.99-1.99), theme packs ($0.99). Keep it cosmetic-only.</td>
+</tr>
+<tr>
+<td>Game licensing</td>
+<td>Submit to non-exclusive licensing marketplaces. Target $200-2,000 per deal. Each new game in the portfolio creates another licensable asset.</td>
+</tr>
+<tr>
+<td>Portfolio expansion</td>
+<td>Each new game (target: 1 per month) adds to the catalog and compounds traffic + licensing revenue. This is the Voodoo/neal.fun playbook at small scale.</td>
+</tr>
+<tr>
+<td>Premium Steam release</td>
+<td>Only if a game hits 100K+ MAU on web. Polish it, add features, sell on Steam for $2.99-4.99. Follow the Cookie Clicker/Vampire Survivors path.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. Ad Network Recommendations for Web Games</h2>
+<h3>Recommended Stack</h3>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Network</th>
+<th>Type</th>
+<th>Why</th>
+<th>Est. eCPM (web)</th>
+<th>Min Traffic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Google AdSense for Games</strong></td>
+<td>Baseline</td>
+<td>Reliable fill, easy setup, broad demand. Every web game should start here.</td>
+<td>$1.50-4.00 blended</td>
+<td>None</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>AdinPlay</strong></td>
+<td>Gaming-specific</td>
+<td>Specializes in HTML5 game monetization. Offers interstitials, rewarded video, and site skins. Higher eCPMs than generic ad networks for game content.</td>
+<td>$3.00-7.00 blended</td>
+<td>~50K monthly pageviews</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>GameDistribution SDK</strong></td>
+<td>Distribution + ads</td>
+<td>Not just an ad network -- distributes your game to 2,000+ portals with integrated ads. Revenue share model. Passive reach expansion.</td>
+<td>Varies (rev-share)</td>
+<td>None (submit game)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Venatus</strong></td>
+<td>Gaming/entertainment</td>
+<td>Premium gaming ad network. Good for web games with US/UK traffic. Often cited alongside AdinPlay for HTML5 games.</td>
+<td>$3.00-6.00 blended</td>
+<td>Application-based</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Poki SDK</strong></td>
+<td>Portal-integrated</td>
+<td>Handles all ad serving on Poki-hosted versions. You don&#39;t choose the ad network -- Poki optimizes it. 50/50 split.</td>
+<td>N/A (rev-share)</td>
+<td>Poki acceptance</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>CrazyGames SDK</strong></td>
+<td>Portal-integrated</td>
+<td>Same as Poki -- SDK handles ad serving on their platform.</td>
+<td>N/A (rev-share)</td>
+<td>CG acceptance</td>
+</tr>
+</tbody></table>
+<h3>Implementation Strategy</h3>
+<p><strong>Month 1:</strong> Google AdSense for Games only. Get baseline eCPM data.</p>
+<p><strong>Month 2:</strong> Apply to AdinPlay. Layer AdinPlay as primary demand with AdSense as backfill. A $4.50 eCPM with 85% fill outperforms a $5.00 eCPM with 60% fill -- optimize for effective RPM (eCPM x fill rate), not headline eCPM.</p>
+<p><strong>Month 3+:</strong> Add GameDistribution for passive licensing distribution. Apply to Venatus if traffic warrants.</p>
+<h3>Ad Blocker Impact</h3>
+<p><strong>Harsh reality:</strong> Ad blocker usage among ages 13-25 runs 30-50% on desktop browsers. On mobile browsers it is lower (10-20%). For a meme game audience that skews young and tech-literate, assume 25-40% of desktop sessions generate zero ad revenue. This is already factored into the effective monetization rates in the projections above.</p>
+<p>Mitigation options (not recommended for launch):</p>
+<ul>
+<li>Polite ad blocker detection with a message asking users to whitelist (low conversion, ~5-10%)</li>
+<li>Gate rewarded video behind ad blocker check (technically complex, user-hostile)</li>
+<li>Accept the loss. Mobile traffic typically has lower ad block rates -- if/when the TWA Android app launches, that channel has near-zero ad blocking.</li>
+</ul>
+<hr>
+<h2>5. Cost Structure</h2>
+<h3>Fixed Costs</h3>
+<table>
+<thead>
+<tr>
+<th>Cost</th>
+<th>Amount</th>
+<th>Frequency</th>
+<th>Annual Total</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Domain (brainrotgames.com)</td>
+<td>~$15</td>
+<td>Annual</td>
+<td><strong>$15</strong></td>
+<td>Standard .com pricing</td>
+</tr>
+<tr>
+<td>Hosting (Vercel/Netlify/GitHub Pages)</td>
+<td>$0</td>
+<td>Monthly</td>
+<td><strong>$0</strong></td>
+<td>Static HTML5 games on free tier. No server-side logic. Vercel free tier: 100GB bandwidth/month, more than sufficient for launch.</td>
+</tr>
+<tr>
+<td>SSL certificate</td>
+<td>$0</td>
+<td>N/A</td>
+<td><strong>$0</strong></td>
+<td>Included with Vercel/Netlify/GitHub Pages</td>
+</tr>
+<tr>
+<td>Analytics (GA4)</td>
+<td>$0</td>
+<td>N/A</td>
+<td><strong>$0</strong></td>
+<td>Free tier</td>
+</tr>
+<tr>
+<td>Google Search Console</td>
+<td>$0</td>
+<td>N/A</td>
+<td><strong>$0</strong></td>
+<td>Free</td>
+</tr>
+</tbody></table>
+<h3>Variable Costs</h3>
+<table>
+<thead>
+<tr>
+<th>Cost</th>
+<th>Amount</th>
+<th>When</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Content creation (games)</td>
+<td>$0</td>
+<td>Ongoing</td>
+<td>AI-assisted development, no external contracts</td>
+</tr>
+<tr>
+<td>Art assets</td>
+<td>$0</td>
+<td>Ongoing</td>
+<td>AI-generated sprites and assets</td>
+</tr>
+<tr>
+<td>Sound/music</td>
+<td>$0-50</td>
+<td>Per game</td>
+<td>Free/CC-licensed assets or AI-generated</td>
+</tr>
+<tr>
+<td>Paid advertising (optional)</td>
+<td>$0-500</td>
+<td>Launch month</td>
+<td>TikTok/Reddit ads for initial traffic. Not required.</td>
+</tr>
+<tr>
+<td>Paid keyword tool (optional)</td>
+<td>$0-120/month</td>
+<td>Month 3+</td>
+<td>Semrush/Ahrefs for SEO tracking. Not required at launch -- Search Console is free.</td>
+</tr>
+</tbody></table>
+<h3>Potential Future Costs (Scale-Dependent)</h3>
+<table>
+<thead>
+<tr>
+<th>Cost</th>
+<th>Trigger</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hosting upgrade (Vercel Pro)</td>
+<td>&gt;100GB bandwidth/month</td>
+<td>$20/month</td>
+</tr>
+<tr>
+<td>Custom domain email</td>
+<td>When doing brand outreach</td>
+<td>$6/month (Google Workspace)</td>
+</tr>
+<tr>
+<td>Stripe fees (if IAP implemented)</td>
+<td>Enabling payments</td>
+<td>2.9% + $0.30 per transaction</td>
+</tr>
+<tr>
+<td>Steam Direct fee</td>
+<td>Submitting to Steam</td>
+<td>$100 one-time per game</td>
+</tr>
+<tr>
+<td>Google Play developer account</td>
+<td>TWA app submission</td>
+<td>$25 one-time</td>
+</tr>
+<tr>
+<td>Legal (terms of service, privacy policy)</td>
+<td>At launch (can use templates)</td>
+<td>$0-500</td>
+</tr>
+</tbody></table>
+<h3>Total Cost Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Period</th>
+<th>Minimum Costs</th>
+<th>Maximum Costs (with optionals)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Year 1</td>
+<td><strong>$15</strong> (domain only)</td>
+<td><strong>$1,940</strong> (domain + $500 ad spend + $120/mo keyword tool + $100 Steam + $25 Play Store)</td>
+</tr>
+<tr>
+<td>Monthly operating cost</td>
+<td><strong>$1.25</strong></td>
+<td><strong>$146</strong> (with keyword tool + hosting upgrade)</td>
+</tr>
+</tbody></table>
+<p>The cost structure is the single greatest advantage of this business model. Near-zero fixed costs mean any revenue is almost entirely margin.</p>
+<hr>
+<h2>6. Break-Even Analysis</h2>
+<h3>What Does &quot;Break-Even&quot; Mean Here?</h3>
+<p>With costs as low as $15/year (minimum) to ~$140/month (with optional tools), break-even is trivially achievable -- the real question is when revenue becomes <em>meaningful</em>, not when it covers a $15 domain.</p>
+<h3>Break-Even Against Minimum Costs ($15/year = $1.25/month)</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Monthly Revenue Exceeds $1.25</th>
+<th>Month</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Conservative</td>
+<td>$9/month in month 1</td>
+<td><strong>Month 1</strong></td>
+</tr>
+<tr>
+<td>Moderate</td>
+<td>$35/month in month 1</td>
+<td><strong>Month 1</strong></td>
+</tr>
+<tr>
+<td>Optimistic</td>
+<td>$70/month in month 1</td>
+<td><strong>Month 1</strong></td>
+</tr>
+</tbody></table>
+<p><strong>All scenarios break even against minimum costs in month 1</strong>, assuming ads are implemented and generating any traffic at all.</p>
+<h3>Break-Even Against Realistic Operating Costs ($140/month with keyword tool + hosting)</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Revenue Reaches $140/month</th>
+<th>Month</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Conservative</td>
+<td>Never (peaks at $90/month)</td>
+<td><strong>Never</strong></td>
+</tr>
+<tr>
+<td>Moderate</td>
+<td>$140/month at ~16K MAU</td>
+<td><strong>Month 2-3</strong></td>
+</tr>
+<tr>
+<td>Optimistic</td>
+<td>Exceeds $140 in month 2</td>
+<td><strong>Month 2</strong></td>
+</tr>
+</tbody></table>
+<h3>Break-Even Against Optional Ad Spend ($500 one-time launch spend)</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Cumulative Revenue Exceeds $500</th>
+<th>Month</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Conservative</td>
+<td>Cumulative $333 at month 6; never recovers $500 within year 1</td>
+<td><strong>Never in year 1</strong></td>
+</tr>
+<tr>
+<td>Moderate</td>
+<td>Cumulative $496 at month 4; recovers $500 in month 5</td>
+<td><strong>Month 5</strong></td>
+</tr>
+<tr>
+<td>Optimistic</td>
+<td>Cumulative $4,865 at month 3</td>
+<td><strong>Month 3</strong></td>
+</tr>
+</tbody></table>
+<h3>Meaningful Revenue Thresholds</h3>
+<p>Rather than break-even (which is trivial given near-zero costs), here are the traffic thresholds needed for revenue to become meaningful:</p>
+<table>
+<thead>
+<tr>
+<th>Revenue Target</th>
+<th>Required MAU (own site, ads only)</th>
+<th>Required MAU (with portals)</th>
+<th>Context</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$100/month</td>
+<td>~12,000</td>
+<td>~8,000</td>
+<td>Covers domain + minor costs</td>
+</tr>
+<tr>
+<td>$500/month</td>
+<td>~60,000</td>
+<td>~40,000</td>
+<td>Noticeable side income</td>
+</tr>
+<tr>
+<td>$1,000/month</td>
+<td>~120,000</td>
+<td>~80,000</td>
+<td>Meaningful side income</td>
+</tr>
+<tr>
+<td>$5,000/month</td>
+<td>~500,000</td>
+<td>~300,000</td>
+<td>Part-time income equivalent</td>
+</tr>
+<tr>
+<td>$10,000/month</td>
+<td>~1,000,000</td>
+<td>~600,000</td>
+<td>&quot;Sustainable&quot; per competitive benchmarks</td>
+</tr>
+</tbody></table>
+<p><strong>Calculation basis:</strong> Own-site ads only at $3.00 blended eCPM, 3.5 sessions/user/month, 2 impressions/session, 50% effective monetization rate. Effective monthly ARPU = ~$0.0105.</p>
+<hr>
+<h2>7. Sensitivity Analysis</h2>
+<h3>Which Assumptions Matter Most?</h3>
+<p>The following sensitivity table shows how 12-month cumulative revenue in the moderate scenario ($12,741 base) changes when individual assumptions shift +/- one level:</p>
+<table>
+<thead>
+<tr>
+<th>Assumption</th>
+<th>Downside Value</th>
+<th>Base Value</th>
+<th>Upside Value</th>
+<th>Downside Revenue</th>
+<th>Base Revenue</th>
+<th>Upside Revenue</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MAU growth rate</strong></td>
+<td>50% of base</td>
+<td>Base</td>
+<td>150% of base</td>
+<td>$6,371</td>
+<td>$12,741</td>
+<td>$19,112</td>
+<td><strong>HIGH</strong></td>
+</tr>
+<tr>
+<td><strong>Blended eCPM</strong></td>
+<td>$2.00</td>
+<td>$3.50</td>
+<td>$5.00</td>
+<td>$7,280</td>
+<td>$12,741</td>
+<td>$18,201</td>
+<td><strong>HIGH</strong></td>
+</tr>
+<tr>
+<td><strong>Poki acceptance</strong></td>
+<td>Rejected</td>
+<td>Accepted (25K MAU)</td>
+<td>Featured (75K MAU)</td>
+<td>$10,614</td>
+<td>$12,741</td>
+<td>$18,748</td>
+<td><strong>MEDIUM</strong></td>
+</tr>
+<tr>
+<td><strong>Sessions per user</strong></td>
+<td>2.5</td>
+<td>4</td>
+<td>5.5</td>
+<td>$7,963</td>
+<td>$12,741</td>
+<td>$17,519</td>
+<td><strong>MEDIUM</strong></td>
+</tr>
+<tr>
+<td><strong>Ad blocker rate</strong></td>
+<td>45%</td>
+<td>30%</td>
+<td>20%</td>
+<td>$10,894</td>
+<td>$12,741</td>
+<td>$14,209</td>
+<td><strong>LOW-MEDIUM</strong></td>
+</tr>
+<tr>
+<td><strong>Licensing deals</strong></td>
+<td>0 deals</td>
+<td>4 deals at $500</td>
+<td>8 deals at $1,000</td>
+<td>$10,741</td>
+<td>$12,741</td>
+<td>$20,741</td>
+<td><strong>MEDIUM</strong></td>
+</tr>
+<tr>
+<td><strong>Impressions per session</strong></td>
+<td>1.5</td>
+<td>2.5</td>
+<td>3.5</td>
+<td>$7,645</td>
+<td>$12,741</td>
+<td>$17,837</td>
+<td><strong>MEDIUM</strong></td>
+</tr>
+</tbody></table>
+<h3>Key Finding</h3>
+<p><strong>MAU and eCPM are the two variables that most affect outcomes.</strong> This means:</p>
+<ol>
+<li><strong>Traffic acquisition is the #1 priority.</strong> A 50% increase in MAU matters more than any monetization optimization.</li>
+<li><strong>Geographic mix matters almost as much as total traffic.</strong> US traffic at $5+ eCPM generates 2-3x the revenue of global traffic at $2 eCPM. Distribution channels that skew US (Reddit, HN) are more valuable per-user than those that skew global.</li>
+<li><strong>Ad network optimization (eCPM improvement) is the highest-ROI monetization action.</strong> Switching from AdSense-only to AdinPlay + AdSense backfill could shift blended eCPM from $2 to $4 -- doubling revenue without adding a single user.</li>
+</ol>
+<h3>Model Fragility Warning</h3>
+<p>The optimistic scenario is fragile. It depends on a viral moment that may not happen. If the viral spike in month 2-3 does not materialize, the optimistic scenario collapses to something between moderate and conservative. Do not plan expenditures based on optimistic projections.</p>
+<hr>
+<h2>8. Limitations and Caveats</h2>
+<h3>What This Model Does NOT Capture</h3>
+<ol>
+<li><p><strong>Viral dynamics.</strong> Viral growth is non-linear and unpredictable. The model uses linear ramps and plateaus. Real viral traffic follows power-law spikes and exponential decay. The optimistic scenario attempts to model this but is inherently imprecise.</p>
+</li>
+<li><p><strong>Meme lifecycle risk.</strong> Italian brainrot could peak and decline within 6-12 months. The model assumes steady cultural relevance through month 12. If the meme declines, traffic will decline faster than projected, particularly for new user acquisition.</p>
+</li>
+<li><p><strong>Ad network approval timing.</strong> AdinPlay and premium ad networks may take 2-4 weeks to approve. The model assumes ad monetization is live from month 1, but effective monetization may lag by 2-4 weeks.</p>
+</li>
+<li><p><strong>Seasonality.</strong> Web game traffic for the school-age demographic follows academic calendars: higher during school hours (yes, they play at school) and summer break, lower during holidays when they have other activities. The model uses flat monthly estimates.</p>
+</li>
+<li><p><strong>Competitive response.</strong> If the games gain traction, clones will appear within days. The model does not account for traffic dilution from copycats.</p>
+</li>
+<li><p><strong>Portfolio expansion effects.</strong> The model is based on 2 games. Each additional game added to the portfolio compounds traffic (cross-game navigation, broader keyword coverage, more licensable assets). The moderate and optimistic scenarios should improve if the portfolio grows to 4-6 games.</p>
+</li>
+<li><p><strong>Platform risk.</strong> If Poki changes its rev-share terms or delists games, portal revenue disappears. The model treats Poki revenue as stable once established.</p>
+</li>
+<li><p><strong>Ad blocker trajectory.</strong> Ad blocker adoption is increasing among young users. The 25-40% estimate may be conservative over a 12-month horizon.</p>
+</li>
+</ol>
+<hr>
+<h2>Source Appendix</h2>
+<h3>Monetization and eCPM Data</h3>
+<ul>
+<li>Competitive landscape report (internal), Section 2 and Section 5 -- primary source for all eCPM benchmarks, ARPU data, and revenue model comparisons</li>
+<li>Udonis eCPM Benchmarks 2025 (cited in competitive report)</li>
+<li>Tenjin Ad Monetization Gaming Benchmark 2025 (cited in competitive report)</li>
+</ul>
+<h3>Platform Revenue Terms</h3>
+<ul>
+<li>Poki developer monetization documentation (developers.poki.com) -- 50/50 rev-share on Poki traffic, 100% on direct traffic</li>
+<li>CrazyGames developer portal (developer.crazygames.com) -- rev-share with SDK + exclusivity bonuses</li>
+<li>GameDistribution developer terms (gamedistribution.com/developers) -- rev-share on distributed game ad revenue</li>
+</ul>
+<h3>Licensing Benchmarks</h3>
+<ul>
+<li>Genieee: &quot;The State of HTML5 Game Licensing in 2025&quot; -- $200-2,000 non-exclusive, $3,000-15,000+ exclusive</li>
+<li>Genieee: Case studies on HTML5 game licensing revenue -- solo dev $30K+, 3-person studio $80K/18mo</li>
+</ul>
+<h3>Market Context</h3>
+<ul>
+<li>Poki: 625M annual players, 100M MAU (March 2026 announcement)</li>
+<li>CrazyGames: 35-45M MAU</li>
+<li>HTML5 games market: $6.02B (2026) to $10.42B (2035) at 6.34% CAGR (Business Research Insights)</li>
+<li>Poki developer earnings: $50,000 to $1M annually for top developers (Poki, Mobidictum interview 2025)</li>
+</ul>
+<h3>Indie Game Economics</h3>
+<ul>
+<li>GDC 2021 survey: 20% of game developers earned under $15,000 annually</li>
+<li>Median Steam game: &lt;$25,000 lifetime gross revenue</li>
+<li>80% of Steam games fail to reach $5,000 in first two weeks</li>
+</ul>
+<h3>Distribution Strategy</h3>
+<ul>
+<li>SEO and distribution strategy (internal) -- traffic targets, channel plan, and timeline used for MAU growth assumptions</li>
+</ul>
+<hr>
+<p><em>Model drafted April 2026. All projections are estimates based on published benchmarks and stated assumptions. Treat as directional analysis for planning purposes, not as financial forecasts. Update assumptions monthly with actual traffic and revenue data once live.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

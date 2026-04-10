@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GDD 01 — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">design-docs/GDD-01.md</div>
+    <div class="doc-content"><h1>Game Design Document: FLAPPY TRALALERO</h1>
+<h2>GDD-01 | Brainrot Games | April 2026</h2>
+<hr>
+<h2>1. Overview</h2>
+<p><strong>Game name:</strong> FLAPPY TRALALERO</p>
+<p><strong>Elevator pitch:</strong> It&#39;s Flappy Bird but you&#39;re Tralalero Tralala -- the three-legged Nike-wearing shark from Italian brainrot -- kicking your way through gaps between Skibidi Toilets, mewing jawlines, and Bombardiro jaws. Every death is the funniest thing you&#39;ve seen today.</p>
+<p><strong>Platform:</strong> HTML5 web (Canvas), mobile-first, playable in any modern browser. No download, no install, no signup.</p>
+<p><strong>Target session:</strong> 15-45 seconds per attempt. 2-5 minutes per session (multiple attempts). Death-to-restart in under 2 seconds.</p>
+<p><strong>URL path:</strong> <code>brainrotgames.com/games/game-01/</code></p>
+<p><strong>Per-game accent color:</strong> Italian Red (<code>#ff3838</code>) via <code>data-theme=&quot;italian-brainrot&quot;</code> on the body element.</p>
+<hr>
+<h2>2. Core Gameplay Loop</h2>
+<p>The loop runs on a ~10-15 second cycle:</p>
+<ol>
+<li><strong>MENU</strong> -- Player sees title screen with Tralalero Tralala floating idle. Taps &quot;start game&quot; or taps anywhere on the canvas.</li>
+<li><strong>READY</strong> -- Canvas transitions to gameplay view. Tralalero hovers in place. Score reads 0. Text reads &quot;tap to flap.&quot; No obstacles yet. This state lasts until the player&#39;s first tap.</li>
+<li><strong>TAP</strong> -- Player taps the screen. Tralalero receives an upward velocity impulse. His legs kick. A flap sound plays.</li>
+<li><strong>FALL</strong> -- Gravity pulls Tralalero downward every frame. Velocity increases until terminal velocity. Player must tap again to stay airborne.</li>
+<li><strong>NAVIGATE</strong> -- Obstacles scroll from right to left. Each obstacle pair has a gap. Player must fly through the gap without touching the top obstacle, bottom obstacle, ceiling, or floor.</li>
+<li><strong>SCORE</strong> -- When Tralalero&#39;s x-position passes the center of an obstacle pair, score increments by 1. Score number pops (scale to 1.2, back to 1.0 over 150ms). A pass-through sound plays.</li>
+<li><strong>DIE</strong> -- Collision with any obstacle, the floor, or the ceiling triggers death. Screen shakes (4px, 200ms). Tralalero ragdolls downward with rotation. A death sound plays.</li>
+<li><strong>GAME OVER</strong> -- Game-over overlay appears with: score, high score, brainrot death message, share button, retry button. If score triggers a character unlock, an unlock notification appears.</li>
+<li><strong>RESTART</strong> -- Player taps &quot;try again&quot; (or taps canvas). Immediate reset to step 2. Under 2 seconds from death to gameplay.</li>
+</ol>
+<p><strong>Ad insertion point:</strong> After every 3rd death, show an interstitial ad BEFORE the game-over overlay transition. The overlay appears after the ad closes. This keeps the restart loop under 2 seconds for non-ad deaths.</p>
+<hr>
+<h2>3. Game Mechanics</h2>
+<h3>3.1 Physics Model</h3>
+<p>All values assume a logical canvas of <strong>360 x 640 pixels</strong> (see Section 7 for scaling).</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Gravity</strong></td>
+<td><code>0.4 px/frame</code> (added to velocity each frame at 60fps)</td>
+<td>Standard Flappy Bird gravity. At 60fps this equals ~24 px/sec^2 acceleration. Feels weighty but not sluggish.</td>
+</tr>
+<tr>
+<td><strong>Tap impulse</strong></td>
+<td><code>-7.0 px/frame</code> (set velocity to this value, not additive)</td>
+<td>Sets velocity directly to -7.0 on tap. This prevents &quot;turbo tapping&quot; from launching the character off screen. Rise rate is ~420 px/sec initially.</td>
+</tr>
+<tr>
+<td><strong>Terminal velocity</strong></td>
+<td><code>10.0 px/frame</code> (max downward velocity)</td>
+<td>Prevents absurd fall speed. Gives player a window to recover from long falls.</td>
+</tr>
+<tr>
+<td><strong>Horizontal scroll speed</strong></td>
+<td><code>2.5 px/frame</code> base (increases with score, see 3.4)</td>
+<td>Obstacles and background move left at this rate. Player&#39;s x-position is fixed on screen.</td>
+</tr>
+<tr>
+<td><strong>Player x-position</strong></td>
+<td><code>80 px</code> from left edge (fixed)</td>
+<td>~22% of canvas width. Gives enough reaction time to see incoming obstacles.</td>
+</tr>
+<tr>
+<td><strong>Player hitbox</strong></td>
+<td><code>30 x 30 px</code> centered on character (AABB)</td>
+<td>Character is drawn at ~40x40 but the hitbox is 25% smaller than the visual sprite. This is the &quot;forgiveness margin&quot; that makes Flappy Bird playable.</td>
+</tr>
+<tr>
+<td><strong>Rotation</strong></td>
+<td><code>velocity * 3</code> degrees, clamped to <code>[-30, 90]</code></td>
+<td>Character tilts up when rising, tilts down when falling. Nose-dives on death (90 degrees). Visual only -- does not affect hitbox.</td>
+</tr>
+</tbody></table>
+<p><strong>Frame timing:</strong> The game loop uses <code>requestAnimationFrame</code> with delta-time normalization. All physics values above are per-frame at 60fps. The update function multiplies by <code>dt / 16.67</code> to normalize across refresh rates.</p>
+<pre><code>// per frame:
+velocity += GRAVITY * dt
+velocity = min(velocity, TERMINAL_VELOCITY)
+y += velocity * dt
+
+// on tap:
+velocity = TAP_IMPULSE
+</code></pre>
+<h3>3.2 Scoring System</h3>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Points</th>
+<th>Visual Feedback</th>
+<th>Audio Feedback</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pass through obstacle gap</td>
+<td>+1</td>
+<td>Score pops (scale 1.0 -&gt; 1.2 -&gt; 1.0, 150ms). Flash to Electric Lime then back to white.</td>
+<td>&quot;ding&quot; tone + character reaction</td>
+</tr>
+<tr>
+<td>Die</td>
+<td>0</td>
+<td>Screen shake (4px displacement, 200ms decay)</td>
+<td>Character-specific death sound</td>
+</tr>
+</tbody></table>
+<p><strong>Combo mechanics:</strong> None. Keeping it pure Flappy Bird. One point per pipe. Simplicity is the feature. The score IS the flex.</p>
+<p><strong>High score:</strong> Stored in <code>localStorage</code>. Displayed on the game-over screen. If the current score exceeds the stored high score, display &quot;NEW HIGH SCORE&quot; in Brainrot Yellow (<code>#ffd000</code>) with pulse animation.</p>
+<h3>3.3 Obstacle Generation</h3>
+<p><strong>Obstacle structure:</strong> Each obstacle is a pair -- a top element and a bottom element with a gap between them. They scroll from right to left.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Formula</th>
+<th>Example at Score 0</th>
+<th>Example at Score 50</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Gap size</strong></td>
+<td><code>max(130, 200 - score * 1.4) px</code></td>
+<td>200 px (31% of canvas)</td>
+<td>130 px (20% of canvas)</td>
+</tr>
+<tr>
+<td><strong>Gap position</strong></td>
+<td>Random Y between <code>gapSize/2 + 60</code> and <code>canvasHeight - gapSize/2 - 60</code></td>
+<td>Range: 160-480</td>
+<td>Range: 125-515</td>
+</tr>
+<tr>
+<td><strong>Obstacle spacing</strong></td>
+<td><code>max(180, 250 - score * 1.5) px</code> horizontal distance between centers</td>
+<td>250 px</td>
+<td>180 px</td>
+</tr>
+<tr>
+<td><strong>Obstacle width</strong></td>
+<td><code>60 px</code></td>
+<td>Fixed</td>
+<td>Fixed</td>
+</tr>
+</tbody></table>
+<p><strong>Gap minimum (130px):</strong> At the minimum gap, the player hitbox (30px) has 50px of clearance above and below. This is tight but fair -- the original Flappy Bird had similar ratios.</p>
+<p><strong>Obstacle type selection:</strong> Each obstacle pair is randomly assigned one of 5 types (equal probability). Obstacle type affects visuals and pass-through sound only -- hitbox is always AABB rectangular.</p>
+<h3>3.4 Difficulty Progression</h3>
+<p>Difficulty scales linearly with score, with hard caps to prevent impossibility.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Formula</th>
+<th>Min</th>
+<th>Max</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Scroll speed</strong></td>
+<td><code>2.5 + score * 0.03 px/frame</code></td>
+<td>2.5</td>
+<td>4.0</td>
+<td>Capped at score ~50. Barely noticeable per-point but cumulative.</td>
+</tr>
+<tr>
+<td><strong>Gap size</strong></td>
+<td><code>max(130, 200 - score * 1.4) px</code></td>
+<td>130</td>
+<td>200</td>
+<td>Reaches minimum at score ~50.</td>
+</tr>
+<tr>
+<td><strong>Obstacle spacing</strong></td>
+<td><code>max(180, 250 - score * 1.5) px</code></td>
+<td>180</td>
+<td>250</td>
+<td>Tighter gaps mean less recovery time.</td>
+</tr>
+</tbody></table>
+<p><strong>Difficulty plateau:</strong> After score ~50, all parameters are at their caps. Further progression is pure player skill vs. constant difficulty. This is intentional -- the original Flappy Bird did the same thing. The &quot;endgame&quot; is surviving at max difficulty.</p>
+<h3>3.5 Collision Detection</h3>
+<p><strong>Approach: AABB (Axis-Aligned Bounding Box)</strong></p>
+<p>Rationale: The obstacles are rectangular. The player&#39;s effective hitbox is a rectangle (even though the character is drawn with curves). AABB is:</p>
+<ul>
+<li>Trivial to implement (~5 lines of code)</li>
+<li>Zero performance cost (simple comparisons, no square roots)</li>
+<li>Sufficient precision given the forgiveness margin (hitbox is 75% of visual size)</li>
+</ul>
+<p>Circle-based collision would require distance calculations per obstacle edge and offers no benefit for rectangular obstacles. AABB is the correct choice.</p>
+<pre><code>function collides(player, obstacle) {
+  return (
+    player.x &lt; obstacle.x + obstacle.width &amp;&amp;
+    player.x + player.width &gt; obstacle.x &amp;&amp;
+    player.y &lt; obstacle.y + obstacle.height &amp;&amp;
+    player.y + player.height &gt; obstacle.y
+  );
+}
+</code></pre>
+<p>Additionally check:</p>
+<ul>
+<li><strong>Floor collision:</strong> <code>player.y + player.height &gt; canvasHeight</code></li>
+<li><strong>Ceiling collision:</strong> <code>player.y &lt; 0</code></li>
+</ul>
+<h3>3.6 Character Variants</h3>
+<p>7 playable characters. All share identical physics (gravity, impulse, terminal velocity, hitbox size). Differences are visual and audio only.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Character</th>
+<th>Unlock Condition</th>
+<th>Draw Description</th>
+<th>Flap Animation</th>
+<th>Death Sound Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Tralalero Tralala</strong></td>
+<td>Default (free)</td>
+<td>Blue-gray shark body (ellipse), 3 thick legs with white Nike swooshes, tiny fins, big round eye</td>
+<td>Legs kick outward rapidly (3-frame cycle)</td>
+<td>Descending pitch &quot;TRALALERO&quot; -- oscillator sweep from 400Hz to 100Hz over 500ms</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Bombardiro Crocodilo</strong></td>
+<td>Score 10+</td>
+<td>Green crocodile body (ellipse), airplane wings, propeller nose, toothy grin</td>
+<td>Whole body spins 360 degrees per flap</td>
+<td>Explosion burst (white noise 200ms) + ascending &quot;BOMBARDIRO&quot; tone 200Hz to 600Hz</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Lirili Larila</strong></td>
+<td>Score 25+</td>
+<td>Pink/purple butterfly body (small circle), large ornate wings (two arcs per side), sparkle trail</td>
+<td>Wings flutter rapidly (4-frame cycle, wings go from spread to closed)</td>
+<td>High-pitched descending &quot;oh no&quot; -- 800Hz to 400Hz sine wave, 300ms, quiet</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Tung Tung Tung Sahur</strong></td>
+<td>Score 50+</td>
+<td>Black cylindrical body (tall rect with rounded top), two drumstick arms, wide eyes</td>
+<td>Drumstick arms flail up and down alternately</td>
+<td>Drum roll (rapid oscillator at 200Hz, 400ms) then crash cymbal (white noise burst 150ms)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Cappuccino Assassino</strong></td>
+<td>Score 100+</td>
+<td>Brown coffee cup body (trapezoid), assassin mask (black band across eyes), steam wisps above</td>
+<td>Espresso squirts downward (brown particles below) as thrust visual</td>
+<td>Machine grinding sound -- sawtooth wave 150Hz with rapid frequency modulation, 400ms</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Brr Brr Patapim</strong></td>
+<td>Watch 5 ad reward videos (cumulative, tracked in localStorage)</td>
+<td>Blue shivering blob (wobbly circle), chattering teeth, icicle accents</td>
+<td>Whole body shivers/vibrates, moves in a wobbly sine wave pattern</td>
+<td>Sad descending &quot;patapim&quot; -- triangle wave 300Hz to 80Hz, 600ms, with vibrato</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>La Vaca Saturno Saturnita</strong></td>
+<td>Hidden: tap the game title text on the menu screen 10 times</td>
+<td>White cow body (large ellipse), Saturn ring around midsection (tilted ellipse), purple spots, floating pose</td>
+<td>Cow floats upward serenely, Saturn ring tilts on each flap</td>
+<td>Space reverb moo -- low square wave 80Hz, 800ms, with echo effect (delayed repeat at 50% volume)</td>
+</tr>
+</tbody></table>
+<p><strong>Unlock persistence:</strong> Character unlock state stored in <code>localStorage</code> as a JSON object. Key: <code>flappy-tralalero-unlocks</code>. Value: <code>{ &quot;bombardiro&quot;: true, &quot;lirili&quot;: false, ... }</code>.</p>
+<p><strong>Character select:</strong> Accessible from the menu screen. A row of character icons (circles with mini character faces). Locked characters show as silhouettes with the unlock condition as tooltip text. Selected character is highlighted with Electric Lime border.</p>
+<hr>
+<h2>4. Brainrot Theme Integration</h2>
+<h3>4.1 Player Character: Tralalero Tralala (Default)</h3>
+<p><strong>Canvas drawing spec (all primitives, no images):</strong></p>
+<p>The character is drawn at a base size of 40x40 pixels, centered on the entity position.</p>
+<pre><code>Body:
+- Ellipse: cx=0, cy=0, rx=18, ry=14
+- Fill: #6B7B8D (blue-gray)
+- Stroke: #4A5568, lineWidth=2
+
+Eye:
+- Circle: cx=10, cy=-4, r=5
+- Fill: #FFFFFF
+- Pupil circle: cx=12, cy=-4, r=2.5
+- Fill: #0a0a0f
+
+Mouth:
+- Arc: cx=12, cy=4, r=4, startAngle=0, endAngle=PI
+- Stroke: #0a0a0f, lineWidth=1.5 (menacing grin)
+
+Dorsal fin:
+- Triangle: points at (-8,-14), (-4,-22), (0,-14)
+- Fill: #5A6A7D
+
+Legs (3 total, the signature feature):
+- Left leg: Line from (-8, 12) to (-12, 28), lineWidth=4, stroke=#6B7B8D
+  - Foot: Rect at (-16, 26), 8x4, fill=#FFFFFF (Nike shoe)
+  - Swoosh: Small arc on shoe, stroke=#ff3838, lineWidth=1
+- Center leg: Line from (0, 14) to (0, 30), lineWidth=4, stroke=#6B7B8D
+  - Foot: Rect at (-4, 28), 8x4, fill=#FFFFFF
+  - Swoosh: Same as left
+- Right leg: Line from (8, 12) to (12, 28), lineWidth=4, stroke=#6B7B8D
+  - Foot: Rect at (8, 26), 8x4, fill=#FFFFFF
+  - Swoosh: Same as left
+
+Flap animation (3 frames, cycle every 100ms during flap):
+- Frame 1: Legs at rest (as above)
+- Frame 2: Legs splay outward (left to -18,24; right to 18,24; center stays)
+- Frame 3: Legs kick inward (left to -4,26; right to 4,26; center tucks)
+</code></pre>
+<p><strong>Rotation:</strong> The entire character drawing rotates around cx=0, cy=0 based on velocity. Apply <code>ctx.rotate(angle)</code> before drawing. The kick animation continues independent of rotation.</p>
+<h3>4.2 Obstacles</h3>
+<p>Each obstacle pair is one of 5 themed types. The hitbox is always a 60px-wide rectangle regardless of visual decoration.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Top Obstacle</th>
+<th>Bottom Obstacle</th>
+<th>Pass-Through Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Bombardiro Jaws</strong></td>
+<td>Green crocodile upper jaw pointing down. Draw: green rect (60px wide) + triangular teeth along bottom edge (zigzag path, fill white).</td>
+<td>Lower jaw pointing up, mirrored. Same teeth pattern along top edge.</td>
+<td>Small explosion particles (3-4 orange circles, expand and fade, 300ms)</td>
+</tr>
+<tr>
+<td><strong>Mewing Jawlines</strong></td>
+<td>Jawline silhouette in profile facing left. Draw: flesh-colored rect + angular jaw contour along bottom edge (strong square jaw shape).</td>
+<td>Mirror jawline, chin pointing up. The gap is between two chins &quot;mewing.&quot;</td>
+<td>Brief glow outline in Sigma Purple (<code>#b44dff</code>), 200ms</td>
+</tr>
+<tr>
+<td><strong>Skibidi Toilets</strong></td>
+<td>Stack of toilet shapes. Draw: white rect body + gray rect tank on top + small gray semicircle lid, repeated vertically to fill height.</td>
+<td>Same toilet stack, inverted (lids face down into the gap).</td>
+<td>Swirl particle effect (2-3 small white circles orbit briefly, 250ms)</td>
+</tr>
+<tr>
+<td><strong>Ohio Portals</strong></td>
+<td>Dark purple rect with swirling void effect. Draw: dark rect + 2-3 concentric ellipses in decreasing opacity (#b44dff at 0.6, 0.3, 0.1), slowly rotating.</td>
+<td>Matching dark portal below.</td>
+<td>Screen briefly tints purple (overlay flash, 150ms) + character wobbles for 0.5s</td>
+</tr>
+<tr>
+<td><strong>Fanum Hands</strong></td>
+<td>Large hand reaching down. Draw: flesh-colored rect + five finger rects at bottom, slightly spread.</td>
+<td>Hand reaching up from below, mirrored. Fingers point up into gap.</td>
+<td>&quot;Taxed!&quot; text floats up from gap position in Brainrot Yellow, fades over 500ms</td>
+</tr>
+</tbody></table>
+<p><strong>Type selection:</strong> <code>obstacleTypes[Math.floor(Math.random() * 5)]</code> for each new pair. No weighting, no sequencing rules.</p>
+<h3>4.3 Background (Parallax)</h3>
+<p>Three layers scrolling left at different speeds, creating depth.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Speed (relative to obstacle scroll)</th>
+<th>Content</th>
+<th>Colors</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Far (Layer 1)</strong></td>
+<td>0.15x obstacle speed</td>
+<td>City skyline silhouette. Draw: series of rectangles at varying heights along the bottom 30% of canvas. Some with dome tops (Italian architecture). Simple geometric shapes.</td>
+<td>Fill: <code>#12121a</code> (slightly lighter than Void). Against the <code>#0a0a0f</code> sky.</td>
+</tr>
+<tr>
+<td><strong>Mid (Layer 2)</strong></td>
+<td>0.4x obstacle speed</td>
+<td>Ground-level buildings and occasional brainrot character silhouettes (small, recognizable shapes walking/standing). Hills terrain as a wavy line with solid fill.</td>
+<td>Fill: <code>#1a1a28</code>. Character silhouettes: <code>#222238</code>.</td>
+</tr>
+<tr>
+<td><strong>Near (Layer 3)</strong></td>
+<td>1.0x (same as obstacles)</td>
+<td>The gameplay layer -- obstacles, player, floor. The floor is a flat rectangle at the bottom of the canvas with a simple repeating pattern (dashes or lines to convey motion).</td>
+<td>Floor fill: <code>#1e1e2e</code>. Floor line pattern: <code>#2a2a3e</code>.</td>
+</tr>
+</tbody></table>
+<p><strong>Sky / canvas background:</strong> Solid <code>#0a0a0f</code> (Void).</p>
+<p><strong>Biome shifts:</strong> Every 25 points, the far and mid layer colors shift slightly to indicate a new &quot;zone.&quot; This is cosmetic only -- no gameplay change. Implemented as a color tint that transitions over 2 seconds.</p>
+<table>
+<thead>
+<tr>
+<th>Score Range</th>
+<th>Biome</th>
+<th>Far Layer Tint</th>
+<th>Mid Layer Tint</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0-24</td>
+<td>Italian Piazza</td>
+<td>Default (blue-dark)</td>
+<td>Default</td>
+</tr>
+<tr>
+<td>25-49</td>
+<td>Ohio Wasteland</td>
+<td>Greenish tint (<code>#121a12</code>)</td>
+<td>(<code>#1a281a</code>)</td>
+</tr>
+<tr>
+<td>50-74</td>
+<td>Sigma Gym</td>
+<td>Purple tint (<code>#1a1220</code>)</td>
+<td>(<code>#281a30</code>)</td>
+</tr>
+<tr>
+<td>75-99</td>
+<td>Skibidi Battlefield</td>
+<td>Blue tint (<code>#121220</code>)</td>
+<td>(<code>#1a1a38</code>)</td>
+</tr>
+<tr>
+<td>100+</td>
+<td>Meme Void</td>
+<td>Slowly cycling hue (rotate through all tints, one per 10 frames)</td>
+<td>Same cycling</td>
+</tr>
+</tbody></table>
+<h3>4.4 Sound Effects (Web Audio API Oscillator Synthesis)</h3>
+<p>All sounds are generated procedurally using the Web Audio API. No audio files to load. Each sound is a function that creates oscillator nodes, sets parameters, and auto-disconnects after playback.</p>
+<p><strong>Audio context:</strong> Created on first user interaction (tap/click) to comply with browser autoplay policies. Stored as a singleton.</p>
+<table>
+<thead>
+<tr>
+<th>Sound</th>
+<th>Trigger</th>
+<th>Oscillator Config</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Flap</strong></td>
+<td>Player taps</td>
+<td>Type: <code>square</code>. Frequency: <code>580Hz -&gt; 620Hz</code> sweep over <code>60ms</code>. Gain: <code>0.12</code>. Short chirp -- the classic 8-bit jump sound.</td>
+</tr>
+<tr>
+<td><strong>Score ding</strong></td>
+<td>Pass through gap</td>
+<td>Type: <code>sine</code>. Frequency: <code>880Hz</code> for <code>80ms</code>, then <code>1100Hz</code> for <code>80ms</code> (two-tone rising ding). Gain: <code>0.15</code>. Clean, satisfying.</td>
+</tr>
+<tr>
+<td><strong>Death thud</strong></td>
+<td>Hit obstacle/floor</td>
+<td>Type: <code>sawtooth</code>. Frequency: <code>200Hz -&gt; 50Hz</code> sweep over <code>300ms</code>. Gain: <code>0.2</code>. Add white noise burst (via <code>createBuffer</code> with random samples) at <code>0.15</code> gain for <code>100ms</code>. Crunchy impact.</td>
+</tr>
+<tr>
+<td><strong>Death voice</strong></td>
+<td>200ms after death thud</td>
+<td>Character-specific (see character table). Default Tralalero: <code>square</code> wave, <code>400Hz -&gt; 100Hz</code> sweep over <code>500ms</code>, gain <code>0.2</code>.</td>
+</tr>
+<tr>
+<td><strong>Menu select</strong></td>
+<td>Button tap</td>
+<td>Type: <code>sine</code>. Frequency: <code>660Hz</code> for <code>40ms</code>. Gain: <code>0.1</code>. Subtle confirmation blip.</td>
+</tr>
+<tr>
+<td><strong>High score</strong></td>
+<td>New record achieved</td>
+<td>Type: <code>sine</code>. Arpeggio: <code>523Hz -&gt; 659Hz -&gt; 784Hz -&gt; 1047Hz</code>, each note <code>100ms</code>, gain <code>0.15</code>. Rising major chord.</td>
+</tr>
+<tr>
+<td><strong>Unlock</strong></td>
+<td>Character unlocked</td>
+<td>Same as high score but with added <code>triangle</code> wave one octave below for richness. Duration <code>500ms</code>. Gain <code>0.18</code>.</td>
+</tr>
+</tbody></table>
+<p><strong>Master volume:</strong> Controlled by a <code>GainNode</code> between the oscillators and <code>AudioContext.destination</code>. Default: <code>0.5</code>. Stored in <code>localStorage</code> key <code>flappy-tralalero-volume</code>.</p>
+<p><strong>Mute toggle:</strong> Icon button (speaker icon) in the top-right of the menu screen. Toggles master gain between stored value and <code>0</code>. State stored in <code>localStorage</code> key <code>flappy-tralalero-muted</code>.</p>
+<h3>4.5 UI Theming</h3>
+<p>All UI follows the design system (<code>brand/design-system.css</code>) with <code>data-theme=&quot;italian-brainrot&quot;</code> applied to the body, which overrides <code>--color-primary</code> to Italian Red (<code>#ff3838</code>).</p>
+<p><strong>Menu screen (follows <code>.menu-screen</code> layout from design system):</strong></p>
+<ol>
+<li>Title: &quot;FLAPPY TRALALERO&quot; in Bungee, <code>--text-3xl</code>, Italian Red, with <code>text-shadow: 0 0 30px rgba(255, 56, 56, 0.3)</code></li>
+<li>Subtitle: &quot;tap. die. share. repeat.&quot; in Space Grotesk, <code>--text-sm</code>, Text Secondary</li>
+<li>Visual: Tralalero Tralala character drawn on canvas, floating with <code>animate-float</code> CSS class (gentle 3s up/down)</li>
+<li>Character select row: horizontal scroll of 7 circular icons (40px diameter). Unlocked = character face. Locked = <code>#555570</code> silhouette with lock icon. Selected = Italian Red border ring.</li>
+<li>Primary button: &quot;start game&quot; -- <code>.btn.btn-primary.btn-lg</code></li>
+<li>Secondary row: &quot;how to play&quot; (ghost button) | mute toggle (icon button)</li>
+<li>Watermark: &quot;BRAINROT GAMES&quot; in <code>--text-xs</code>, Ghost color, bottom center</li>
+</ol>
+<p><strong>HUD (during gameplay):</strong></p>
+<ul>
+<li>Score: top-center, 16px from top. Bungee, <code>--text-4xl</code>. White with <code>text-shadow: 2px 2px 0 rgba(0,0,0,0.5)</code>. Pops on increment.</li>
+<li>No other HUD elements needed. Flappy Bird&#39;s genius is its clean screen.</li>
+</ul>
+<p><strong>Game-over screen (follows <code>.game-over-overlay</code> layout):</strong></p>
+<ol>
+<li>Brainrot message (see 4.6): Space Grotesk, <code>--text-md</code>, <code>500</code> weight, Text Secondary. Positioned above the title.</li>
+<li>&quot;GAME OVER&quot; in Bungee, <code>--text-2xl</code>, Hot Magenta (<code>#ff2d78</code>)</li>
+<li>Final score: Bungee, <code>--text-5xl</code>, Electric Lime (<code>#c8ff00</code>), with glow shadow. Counts up from 0 to final over <code>score * 30ms</code> (capped at 1500ms).</li>
+<li>Score label: &quot;aura points&quot; in Space Grotesk, <code>--text-sm</code>, Text Secondary</li>
+<li>High score line: &quot;best: [N]&quot; in Space Grotesk, <code>--text-sm</code>, Text Secondary. OR &quot;NEW HIGH SCORE&quot; in Bungee, <code>--text-lg</code>, Brainrot Yellow, with <code>animate-pulse</code>.</li>
+<li>Character unlock notification (if triggered): &quot;UNLOCKED: [CHARACTER NAME]&quot; in Bungee, <code>--text-md</code>, Mint Aura (<code>#00ffaa</code>), with brief scale animation.</li>
+<li>Share button: <code>.btn.btn-primary</code> -- &quot;flex this&quot;</li>
+<li>Retry button: <code>.btn.btn-secondary</code> -- &quot;run it back&quot;</li>
+<li>Secondary row: &quot;menu&quot; (ghost button) | &quot;other games&quot; (ghost button, links to <code>/</code>)</li>
+</ol>
+<h3>4.6 Death Screen Messages</h3>
+<p>Randomly selected from the pool matching the player&#39;s score tier. One message per death.</p>
+<p><strong>Score 0:</strong></p>
+<ul>
+<li>&quot;certified NPC moment&quot;</li>
+<li>&quot;skill issue detected&quot;</li>
+<li>&quot;you literally didn&#39;t even try&quot;</li>
+<li>&quot;0 aura. absolute 0 aura.&quot;</li>
+</ul>
+<p><strong>Score 1-5:</strong></p>
+<ul>
+<li>&quot;you tried. that&#39;s... something&quot;</li>
+<li>&quot;participation trophy incoming&quot;</li>
+<li>&quot;the mewing wasn&#39;t strong enough&quot;</li>
+<li>&quot;even Tralalero is embarrassed&quot;</li>
+</ul>
+<p><strong>Score 6-14:</strong></p>
+<ul>
+<li>&quot;not terrible. not great. mid.&quot;</li>
+<li>&quot;your aura is... detectable&quot;</li>
+<li>&quot;a humble beginning to a mediocre career&quot;</li>
+<li>&quot;the skibidi toilet claims another victim&quot;</li>
+</ul>
+<p><strong>Score 15-24:</strong></p>
+<ul>
+<li>&quot;okay that was lowkey decent&quot;</li>
+<li>&quot;slight aura detected&quot;</li>
+<li>&quot;Bombardiro would be mildly impressed&quot;</li>
+<li>&quot;you&#39;re starting to lock in&quot;</li>
+</ul>
+<p><strong>Score 25-49:</strong></p>
+<ul>
+<li>&quot;actual rizz detected&quot;</li>
+<li>&quot;the sigma grindset is working&quot;</li>
+<li>&quot;Tralalero salutes you from beyond&quot;</li>
+<li>&quot;that was genuinely not terrible&quot;</li>
+</ul>
+<p><strong>Score 50-99:</strong></p>
+<ul>
+<li>&quot;the aura is immeasurable&quot;</li>
+<li>&quot;okay you&#39;re actually goated&quot;</li>
+<li>&quot;Cappuccino Assassino tips his cup to you&quot;</li>
+<li>&quot;certified sigma. the grind is real.&quot;</li>
+</ul>
+<p><strong>Score 100+:</strong></p>
+<ul>
+<li>&quot;you need to go outside&quot;</li>
+<li>&quot;this is no longer a game. this is a lifestyle.&quot;</li>
+<li>&quot;what Tralalero Tralala would&#39;ve wanted&quot;</li>
+<li>&quot;bro thinks he&#39;s a professional flappy player&quot;</li>
+<li>&quot;touch grass immediately&quot;</li>
+</ul>
+<h3>4.7 Easter Eggs</h3>
+<ol>
+<li><p><strong>La Vaca unlock:</strong> Tapping the title text &quot;FLAPPY TRALALERO&quot; on the menu screen 10 times reveals La Vaca Saturno Saturnita with a space sound effect (low reverb moo) and a brief Saturn ring animation around the title. A toast notification reads: &quot;la vaca has been summoned.&quot;</p>
+</li>
+<li><p><strong>Konami sequence:</strong> On the menu screen, if the player taps a specific pattern (top-top-bottom-bottom-left-right-left-right on the canvas quadrants, then taps twice), all obstacle types for the next run become Ohio Portals only, and the background immediately starts at the &quot;Meme Void&quot; biome. A toast reads: &quot;only in ohio.&quot; Resets on death.</p>
+</li>
+<li><p><strong>Score 69:</strong> When the player&#39;s score hits exactly 69, the score briefly flashes Hot Magenta and the score pop animation plays twice. The score label temporarily changes to &quot;nice&quot; for 1 second before reverting to &quot;aura points.&quot;</p>
+</li>
+<li><p><strong>Bombardiro propeller:</strong> If playing as Bombardiro Crocodilo and the player taps more than 8 times per second (detected via tap timestamp tracking), a small propeller sound effect plays (oscillating <code>triangle</code> wave, 300Hz with 20Hz modulation) and the character&#39;s spin animation doubles in speed for 2 seconds. A toast reads: &quot;TURBO BOMBARDIRO.&quot;</p>
+</li>
+</ol>
+<hr>
+<h2>5. User Stories</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Story</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>US-01</td>
+<td>As a player, I want to tap the screen to make my character fly upward so that I can navigate through obstacles.</td>
+<td>Must have</td>
+</tr>
+<tr>
+<td>US-02</td>
+<td>As a player, I want to see my score increase each time I pass through a gap so that I know how well I&#39;m doing.</td>
+<td>Must have</td>
+</tr>
+<tr>
+<td>US-03</td>
+<td>As a player, I want to restart instantly after dying so that I can try again without friction.</td>
+<td>Must have</td>
+</tr>
+<tr>
+<td>US-04</td>
+<td>As a player, I want to see a funny brainrot-themed death message so that dying feels entertaining rather than frustrating.</td>
+<td>Must have</td>
+</tr>
+<tr>
+<td>US-05</td>
+<td>As a player, I want to share my score from the game-over screen so that I can challenge my friends.</td>
+<td>Must have</td>
+</tr>
+<tr>
+<td>US-06</td>
+<td>As a player, I want my high score saved between sessions so that I can track my progress over time.</td>
+<td>Must have</td>
+</tr>
+<tr>
+<td>US-07</td>
+<td>As a player, I want to unlock new characters by reaching score milestones so that I have a reason to keep improving.</td>
+<td>Should have</td>
+</tr>
+<tr>
+<td>US-08</td>
+<td>As a player, I want the game to look and play correctly on my phone regardless of screen size so that I get a consistent experience.</td>
+<td>Must have</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>6. Acceptance Criteria</h2>
+<h3>US-01: Tap to flap</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Tapping the canvas applies an upward velocity impulse of -7.0 px/frame to the character</li>
+<li><input disabled="" type="checkbox"> Character falls due to gravity (0.4 px/frame^2) when not tapping</li>
+<li><input disabled="" type="checkbox"> Character does not rise above the top of the canvas (ceiling collision triggers death)</li>
+<li><input disabled="" type="checkbox"> Character does not fall below the bottom of the canvas (floor collision triggers death)</li>
+<li><input disabled="" type="checkbox"> Tap input works via both <code>touchstart</code> and <code>mousedown</code> events</li>
+<li><input disabled="" type="checkbox"> Flap animation plays on the character for 300ms after each tap</li>
+<li><input disabled="" type="checkbox"> Flap sound effect plays on each tap</li>
+</ul>
+<h3>US-02: Scoring</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Score starts at 0 when a run begins</li>
+<li><input disabled="" type="checkbox"> Score increments by 1 when the player character&#39;s x-center passes the x-center of an obstacle pair</li>
+<li><input disabled="" type="checkbox"> Score display is visible at top-center of the canvas during gameplay</li>
+<li><input disabled="" type="checkbox"> Score number plays a pop animation (scale 1.0 -&gt; 1.2 -&gt; 1.0, 150ms) and flashes Electric Lime on each increment</li>
+<li><input disabled="" type="checkbox"> A &quot;ding&quot; sound plays on each score increment</li>
+</ul>
+<h3>US-03: Instant restart</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Tapping &quot;run it back&quot; on the game-over screen restarts gameplay within 500ms</li>
+<li><input disabled="" type="checkbox"> Score resets to 0 on restart</li>
+<li><input disabled="" type="checkbox"> Obstacles are cleared and regenerated from scratch</li>
+<li><input disabled="" type="checkbox"> Character position resets to starting position (x=80, y=canvas midpoint)</li>
+<li><input disabled="" type="checkbox"> No page reload occurs -- state resets in memory</li>
+</ul>
+<h3>US-04: Death messages</h3>
+<ul>
+<li><input disabled="" type="checkbox"> A death message from the correct score tier appears on every game-over screen</li>
+<li><input disabled="" type="checkbox"> Messages are randomly selected from the tier pool (no two consecutive identical messages)</li>
+<li><input disabled="" type="checkbox"> Messages are displayed in Space Grotesk, --text-md, Text Secondary color</li>
+</ul>
+<h3>US-05: Score sharing</h3>
+<ul>
+<li><input disabled="" type="checkbox"> A &quot;flex this&quot; button appears on the game-over screen</li>
+<li><input disabled="" type="checkbox"> Tapping the button triggers the Web Share API (if available) with text: <code>i got [SCORE] in FLAPPY TRALALERO\n[URL]</code></li>
+<li><input disabled="" type="checkbox"> If Web Share API is unavailable, the share text is copied to clipboard and a toast reads &quot;copied to clipboard&quot;</li>
+<li><input disabled="" type="checkbox"> The share URL is <code>https://brainrotgames.com/games/game-01/</code></li>
+</ul>
+<h3>US-06: Score persistence</h3>
+<ul>
+<li><input disabled="" type="checkbox"> High score is stored in <code>localStorage</code> under key <code>flappy-tralalero-highscore</code></li>
+<li><input disabled="" type="checkbox"> High score is loaded on game init and displayed on the game-over screen as &quot;best: [N]&quot;</li>
+<li><input disabled="" type="checkbox"> When a new high score is achieved, the stored value updates and &quot;NEW HIGH SCORE&quot; text appears with pulse animation in Brainrot Yellow</li>
+<li><input disabled="" type="checkbox"> If localStorage is unavailable, the game still functions (high score shows as 0, no errors thrown)</li>
+</ul>
+<h3>US-07: Character unlocks</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Unlock conditions are checked on every game-over (comparing run score to thresholds)</li>
+<li><input disabled="" type="checkbox"> Newly unlocked characters trigger a notification on the game-over screen</li>
+<li><input disabled="" type="checkbox"> Unlock state persists in <code>localStorage</code> under key <code>flappy-tralalero-unlocks</code></li>
+<li><input disabled="" type="checkbox"> Locked characters appear as silhouettes on the character select screen</li>
+<li><input disabled="" type="checkbox"> Selecting an unlocked character changes the player sprite and associated sounds for the next run</li>
+<li><input disabled="" type="checkbox"> La Vaca Saturno Saturnita unlocks when the title text is tapped 10 times (tracked per session, resets on page reload)</li>
+</ul>
+<h3>US-08: Responsive canvas</h3>
+<ul>
+<li><input disabled="" type="checkbox"> The canvas scales to fill the viewport width up to a maximum of 480px</li>
+<li><input disabled="" type="checkbox"> The canvas maintains a 9:16 aspect ratio (360:640 logical)</li>
+<li><input disabled="" type="checkbox"> The game is playable on screens as small as 320px wide</li>
+<li><input disabled="" type="checkbox"> All tap targets (buttons) are at least 48px tall</li>
+<li><input disabled="" type="checkbox"> Canvas rendering uses <code>devicePixelRatio</code> scaling for sharp rendering on high-DPI screens</li>
+<li><input disabled="" type="checkbox"> No horizontal scrollbar appears at any viewport size</li>
+</ul>
+<hr>
+<h2>7. Technical Spec</h2>
+<h3>7.1 Canvas Size and Scaling</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Logical width</strong></td>
+<td>360 px</td>
+</tr>
+<tr>
+<td><strong>Logical height</strong></td>
+<td>640 px</td>
+</tr>
+<tr>
+<td><strong>Aspect ratio</strong></td>
+<td>9:16 (0.5625)</td>
+</tr>
+<tr>
+<td><strong>Max display width</strong></td>
+<td>480 px (<code>--max-width-game</code> from design system)</td>
+</tr>
+<tr>
+<td><strong>Scaling approach</strong></td>
+<td>CSS sets canvas display size to <code>min(100vw, 480px)</code> width and <code>height: auto</code>. Canvas internal resolution is <code>360 * devicePixelRatio</code> x <code>640 * devicePixelRatio</code>. <code>ctx.scale(dpr, dpr)</code> applied once on init. All game logic uses the 360x640 logical coordinate system.</td>
+</tr>
+</tbody></table>
+<p><strong>Responsive behavior:</strong></p>
+<ul>
+<li>On phones (&lt; 480px wide): Canvas fills the full viewport width. Height determined by aspect ratio. If viewport is shorter than the canvas (landscape orientation), the canvas shrinks to fit height and centers horizontally.</li>
+<li>On tablets/desktop (&gt;= 480px): Canvas is 480px wide, centered on screen with Void-colored background on either side.</li>
+</ul>
+<h3>7.2 Game State Machine</h3>
+<pre><code>                    +--------+
+          +---------+  MENU  +&lt;----------+
+          |         +----+---+           |
+          |  (tap start) |               |
+          |              v               |
+          |         +--------+           |
+          |         | READY  |           |
+          |         +----+---+           |
+          |  (first tap) |               |
+          |              v               |
+          |        +---------+           |
+          |        | PLAYING |           |
+          |        +----+----+           |
+          |  (collision) |               |
+          |              v               |
+          |       +-----------+          |
+          +-------+ GAME_OVER +----------+
+           (menu)  +----------+ (retry)
+</code></pre>
+<p>States:</p>
+<ul>
+<li><strong>MENU</strong>: Title screen visible. Canvas draws idle character + background. Listens for &quot;start game&quot; tap.</li>
+<li><strong>READY</strong>: Gameplay view visible. Character hovers at start position. &quot;tap to flap&quot; text visible. Obstacles not moving. Waits for first tap.</li>
+<li><strong>PLAYING</strong>: Game loop active. Physics, obstacles, scoring, collision all running. Listens for tap input.</li>
+<li><strong>GAME_OVER</strong>: Overlay visible. Score displayed. Listens for retry or menu tap.</li>
+</ul>
+<p>No pause state. Flappy Bird games don&#39;t need pause -- runs are 15-45 seconds. Reducing scope.</p>
+<h3>7.3 File Structure</h3>
+<pre><code>games/game-01/
+  index.html          -- Entry point. Loads CSS + JS. Contains canvas element and UI overlay divs.
+  style.css           -- Game-specific CSS (imports design-system.css). Overlay positioning, canvas sizing.
+  js/
+    main.js           -- Entry point. Initializes canvas, state machine, game loop. Wires up input.
+    game.js           -- Core game class. Update + render loop. Owns state machine transitions.
+    player.js         -- Player entity. Position, velocity, physics, hitbox, draw method, animation state.
+    obstacle.js       -- Obstacle pair entity. Position, gap, type, draw method, scroll logic.
+    background.js     -- Parallax background. Three layers, scroll speeds, biome tinting.
+    characters.js     -- Character definitions. Array of 7 objects with draw functions, sounds, unlock conditions.
+    audio.js          -- Web Audio API wrapper. Sound effect functions. Master volume, mute toggle.
+    ui.js             -- DOM-based UI. Menu screen, game-over overlay, character select, share button, toasts.
+    storage.js        -- localStorage wrapper. High score, unlocks, volume, mute state. Graceful fallback.
+    constants.js      -- All magic numbers. Physics values, colors, dimensions, score thresholds, messages.
+</code></pre>
+<p><strong>Total: 1 HTML + 1 CSS + 10 JS files.</strong></p>
+<p>Each JS file is a module (<code>type=&quot;module&quot;</code> on the script tag in <code>index.html</code>). No build step. No bundler. Raw ES modules loaded by the browser.</p>
+<h3>7.4 Entity Model</h3>
+<h4>Player</h4>
+<pre><code>class Player {
+  // Properties
+  x: number           // Fixed at 80 (logical px)
+  y: number           // Vertical position (starts at canvasHeight / 2)
+  width: number       // Hitbox width: 30
+  height: number      // Hitbox height: 30
+  velocity: number    // Current vertical velocity (px/frame, positive = down)
+  rotation: number    // Visual rotation in degrees, derived from velocity
+  character: string   // Current character ID (e.g., &quot;tralalero&quot;)
+  animFrame: number   // Current animation frame (0-2 for flap cycle)
+  animTimer: number   // ms since last frame change
+  alive: boolean      // false after collision
+
+  // Methods
+  flap()              // Set velocity to TAP_IMPULSE, reset animFrame to 0, play flap sound
+  update(dt)          // Apply gravity, clamp velocity, update position, update rotation, advance animation
+  draw(ctx)           // Delegate to character-specific draw function from characters.js
+  reset()             // Reset position, velocity, rotation, alive state for new run
+  getHitbox()         // Returns {x, y, width, height} for collision checks (centered on visual)
+}
+</code></pre>
+<h4>Obstacle (one pair = one instance)</h4>
+<pre><code>class Obstacle {
+  // Properties
+  x: number           // Horizontal position (starts off-screen right at canvasWidth + 60)
+  gapY: number        // Center Y of the gap
+  gapSize: number     // Height of the gap in px
+  width: number       // Always 60
+  type: string        // One of: &quot;bombardiro&quot;, &quot;mewing&quot;, &quot;skibidi&quot;, &quot;ohio&quot;, &quot;fanum&quot;
+  scored: boolean     // Has this obstacle already been scored (prevents double-count)
+
+  // Methods
+  update(dt, speed)   // Move left by speed * dt. Mark for removal when x &lt; -width.
+  draw(ctx)           // Draw top and bottom obstacle based on type. Top: rect from y=0 to gapY - gapSize/2. Bottom: rect from gapY + gapSize/2 to canvasHeight.
+  getTopHitbox()      // Returns {x, y: 0, width, height: gapY - gapSize/2}
+  getBottomHitbox()   // Returns {x, y: gapY + gapSize/2, width, height: canvasHeight - (gapY + gapSize/2)}
+}
+</code></pre>
+<h4>Background</h4>
+<pre><code>class Background {
+  // Properties
+  layers: Array&lt;{offset: number, speed: number, drawFn: Function}&gt;
+  biome: number       // Current biome index (0-4), derived from score
+
+  // Methods
+  update(dt, speed)   // Scroll each layer by its speed ratio * base speed * dt. Wrap offset at tile width.
+  draw(ctx)           // Draw each layer. Layer 1 (far) first, then layer 2 (mid). Layer 3 is the floor only.
+  setBiome(score)     // Calculate biome from score. Transition tint colors over 2 seconds if biome changed.
+}
+</code></pre>
+<h4>ScoreDisplay</h4>
+<pre><code>class ScoreDisplay {
+  // Properties
+  score: number
+  displayScore: number  // For count-up animation on game-over
+  popTimer: number      // Remaining ms of pop animation
+  flashTimer: number    // Remaining ms of lime flash
+
+  // Methods
+  increment()           // score++, trigger pop and flash timers, play ding sound
+  update(dt)            // Decay pop and flash timers. On game-over, animate displayScore toward score.
+  draw(ctx)             // Draw score number at top-center. Apply scale transform if popTimer &gt; 0. Apply lime color if flashTimer &gt; 0.
+  reset()               // Score = 0, displayScore = 0, clear timers
+}
+</code></pre>
+<h3>7.5 Sprite Approach</h3>
+<p>All characters and obstacles are drawn with Canvas 2D primitives:</p>
+<ul>
+<li><code>fillRect</code>, <code>strokeRect</code> for rectangular shapes</li>
+<li><code>arc</code>, <code>ellipse</code> for circular/rounded shapes</li>
+<li><code>beginPath</code>, <code>moveTo</code>, <code>lineTo</code>, <code>closePath</code>, <code>fill</code> for triangles and custom polygons</li>
+<li><code>ctx.save()</code> / <code>ctx.restore()</code> with <code>ctx.translate()</code> and <code>ctx.rotate()</code> for character rotation</li>
+</ul>
+<p>No sprite sheets. No image loading. No emoji rendering (removed to keep cross-platform consistency). This means:</p>
+<ul>
+<li>Zero asset loading time</li>
+<li>No CORS issues</li>
+<li>Consistent rendering across all browsers and devices</li>
+<li>Easy to modify character designs by changing draw function parameters</li>
+</ul>
+<h3>7.6 Audio Approach</h3>
+<p><strong>Web Audio API oscillator synthesis.</strong> All sounds generated at runtime. No audio files.</p>
+<p>Architecture:</p>
+<pre><code>AudioManager (singleton)
+  audioCtx: AudioContext     // Created on first user gesture
+  masterGain: GainNode       // Connected to audioCtx.destination
+  muted: boolean
+
+  playFlap(character)        // Create oscillator, apply character-specific params, connect to masterGain, start, stop after duration
+  playScore()                // Two-tone rising ding
+  playDeath(character)       // Thud + character voice
+  playUIClick()              // Menu blip
+  playHighScore()            // Arpeggio
+  playUnlock()               // Rich arpeggio
+
+  setVolume(val)             // Set masterGain.gain.value, persist to localStorage
+  toggleMute()               // Toggle muted, persist to localStorage
+  resume()                   // Call audioCtx.resume() (for browsers that suspend context)
+</code></pre>
+<p>Each <code>play*</code> method creates fresh oscillator nodes (they&#39;re lightweight and auto-garbage-collected after stopping). No pooling needed for a game with this few simultaneous sounds.</p>
+<h3>7.7 Score Persistence</h3>
+<table>
+<thead>
+<tr>
+<th>localStorage Key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>flappy-tralalero-highscore</code></td>
+<td><code>number</code> (stored as string)</td>
+<td><code>0</code></td>
+<td>All-time high score</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-unlocks</code></td>
+<td><code>JSON string</code></td>
+<td><code>{&quot;tralalero&quot;:true,&quot;bombardiro&quot;:false,&quot;lirili&quot;:false,&quot;tungtung&quot;:false,&quot;cappuccino&quot;:false,&quot;brrbrr&quot;:false,&quot;lavaca&quot;:false}</code></td>
+<td>Character unlock states</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-selected</code></td>
+<td><code>string</code></td>
+<td><code>&quot;tralalero&quot;</code></td>
+<td>Currently selected character ID</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-volume</code></td>
+<td><code>number</code> (stored as string)</td>
+<td><code>0.5</code></td>
+<td>Master volume (0.0 - 1.0)</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-muted</code></td>
+<td><code>boolean</code> (stored as string)</td>
+<td><code>&quot;false&quot;</code></td>
+<td>Mute state</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-deaths</code></td>
+<td><code>number</code> (stored as string)</td>
+<td><code>0</code></td>
+<td>Total death count (for ad frequency and Brr Brr Patapim unlock)</td>
+</tr>
+<tr>
+<td><code>flappy-tralalero-ad-views</code></td>
+<td><code>number</code> (stored as string)</td>
+<td><code>0</code></td>
+<td>Rewarded ad views count (for Brr Brr Patapim unlock -- 5 needed)</td>
+</tr>
+</tbody></table>
+<p>All reads wrapped in try/catch. If localStorage is unavailable (private browsing, storage full), the game functions with in-memory defaults. No errors surfaced to the player.</p>
+<h3>7.8 Responsive Strategy</h3>
+<pre><code>// On init and on window resize:
+const maxWidth = 480;
+const aspectRatio = 640 / 360; // 1.778
+const dpr = window.devicePixelRatio || 1;
+
+let displayWidth = Math.min(window.innerWidth, maxWidth);
+let displayHeight = displayWidth * aspectRatio;
+
+// If taller than viewport, constrain by height
+if (displayHeight &gt; window.innerHeight) {
+  displayHeight = window.innerHeight;
+  displayWidth = displayHeight / aspectRatio;
+}
+
+canvas.style.width = displayWidth + &#39;px&#39;;
+canvas.style.height = displayHeight + &#39;px&#39;;
+canvas.width = 360 * dpr;
+canvas.height = 640 * dpr;
+ctx.scale(dpr, dpr);
+</code></pre>
+<p>All game logic operates in the 360x640 logical space. Input coordinates are converted from screen space to logical space:</p>
+<pre><code>function getLogicalPosition(event) {
+  const rect = canvas.getBoundingClientRect();
+  const touch = event.touches ? event.touches[0] : event;
+  return {
+    x: (touch.clientX - rect.left) * (360 / rect.width),
+    y: (touch.clientY - rect.top) * (640 / rect.height)
+  };
+}
+</code></pre>
+<hr>
+<h2>8. Monetization Hooks</h2>
+<h3>Interstitial Ads</h3>
+<p><strong>Trigger:</strong> Every 3rd death. Tracked via an in-memory counter (<code>deathsSinceLastAd</code>), reset to 0 after showing an ad.</p>
+<p><strong>Placement:</strong> After the death animation completes (200ms) and BEFORE the game-over overlay appears. The ad provider&#39;s interstitial takes over the screen. On ad close/skip, the game-over overlay appears normally.</p>
+<p><strong>Frequency math:</strong> Average attempt is 15 seconds. Every 3rd death = one ad per ~45 seconds of play. A 5-minute session = ~6-7 ad impressions.</p>
+<p><strong>Implementation stub:</strong> The game calls <code>window.showInterstitialAd()</code> (a function the ad SDK will provide). If the function doesn&#39;t exist or fails, the game-over overlay appears immediately. The game never breaks because of ad infrastructure.</p>
+<h3>Rewarded Video (Future -- Out of Scope for v1)</h3>
+<p><strong>Design spec for future implementation:</strong></p>
+<ul>
+<li>&quot;Continue&quot; option on game-over: &quot;watch ad to continue from where you died.&quot; One continue per run.</li>
+<li>&quot;Unlock character&quot; option on character select: &quot;watch 3 ads to unlock [character].&quot; Alternative to score-based unlock.</li>
+<li>Brr Brr Patapim requires 5 rewarded ad views (tracked in localStorage).</li>
+</ul>
+<p>These are designed but not implemented in v1. The UI space for the &quot;continue&quot; button is reserved in the game-over layout (between the score and the action buttons).</p>
+<hr>
+<h2>9. Social Sharing</h2>
+<h3>Share Button</h3>
+<p>Located on the game-over overlay. Primary button style. Label: &quot;flex this.&quot;</p>
+<p><strong>Implementation:</strong></p>
+<pre><code class="language-javascript">async function shareScore(score, url) {
+  const text = `i got ${score} in FLAPPY TRALALERO\n${url}`;
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ text, url });
+      trackEvent(&#39;share_click&#39;, { method: &#39;native&#39;, score });
+    } catch (e) {
+      // User cancelled -- not an error
+    }
+  } else {
+    await navigator.clipboard.writeText(text);
+    showToast(&#39;copied to clipboard&#39;);
+    trackEvent(&#39;share_click&#39;, { method: &#39;clipboard&#39;, score });
+  }
+}
+</code></pre>
+<h3>Share Text Template</h3>
+<pre><code>i got [SCORE] in FLAPPY TRALALERO
+https://brainrotgames.com/games/game-01/
+</code></pre>
+<p>Lowercase. No emoji. Matches brand voice (deadpan, short, assumes the reader knows what Tralalero is).</p>
+<h3>Score Card (Future -- Out of Scope for v1)</h3>
+<p><strong>Design spec for future implementation:</strong> A canvas-rendered image (1080x1920, story format) with:</p>
+<ul>
+<li>Dark background (<code>#0a0a0f</code>)</li>
+<li>&quot;FLAPPY TRALALERO&quot; title in Italian Red</li>
+<li>Score in Bungee, Electric Lime, giant</li>
+<li>Character graphic</li>
+<li>Death message</li>
+<li>&quot;BRAINROT GAMES&quot; watermark</li>
+<li>Shareable via Web Share API <code>files</code> parameter</li>
+</ul>
+<p>Not in v1 because image generation adds complexity. The text share is sufficient for launch.</p>
+<hr>
+<h2>10. Analytics Events</h2>
+<p>All events fire to a <code>trackEvent(name, properties)</code> function in <code>main.js</code>. The implementation of <code>trackEvent</code> is a stub in v1 (console.log). The ad/analytics SDK will replace it.</p>
+<table>
+<thead>
+<tr>
+<th>Event Name</th>
+<th>Properties</th>
+<th>When Fired</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>game_start</code></td>
+<td><code>{ character: string }</code></td>
+<td>Player transitions from READY to PLAYING (first tap)</td>
+</tr>
+<tr>
+<td><code>game_over</code></td>
+<td><code>{ score: number, character: string, highScore: number, isNewHighScore: boolean, obstacleType: string }</code></td>
+<td>Collision detected</td>
+</tr>
+<tr>
+<td><code>share_click</code></td>
+<td><code>{ method: &quot;native&quot; | &quot;clipboard&quot;, score: number }</code></td>
+<td>Share button tapped</td>
+</tr>
+<tr>
+<td><code>character_select</code></td>
+<td><code>{ character: string, wasLocked: boolean }</code></td>
+<td>Player selects a character on the menu</td>
+</tr>
+<tr>
+<td><code>character_unlock</code></td>
+<td><code>{ character: string, method: &quot;score&quot; | &quot;ad&quot; | &quot;easter_egg&quot; }</code></td>
+<td>Character unlock condition met</td>
+</tr>
+<tr>
+<td><code>ad_shown</code></td>
+<td><code>{ type: &quot;interstitial&quot;, deathCount: number }</code></td>
+<td>Ad displayed</td>
+</tr>
+<tr>
+<td><code>menu_view</code></td>
+<td><code>{}</code></td>
+<td>Menu screen shown (including on page load)</td>
+</tr>
+<tr>
+<td><code>retry</code></td>
+<td><code>{ previousScore: number }</code></td>
+<td>&quot;run it back&quot; tapped</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>11. Scope Boundaries</h2>
+<h3>In Scope (v1 ship)</h3>
+<ul>
+<li>Core Flappy Bird gameplay: gravity, tap-to-flap, obstacle scrolling, collision, scoring</li>
+<li>Tralalero Tralala as default playable character (fully drawn with Canvas primitives)</li>
+<li>2 additional launch characters: Bombardiro Crocodilo (unlock at score 10) and Lirili Larila (unlock at score 25) -- the rest unlock but the draw functions can ship as simplified silhouettes/shapes in v1</li>
+<li>5 obstacle visual types (all with AABB hitbox)</li>
+<li>3-layer parallax background with biome tinting</li>
+<li>Difficulty progression (speed, gap, spacing scaling with score)</li>
+<li>Game-over overlay with score, high score, death message, share button, retry</li>
+<li>Score persistence (localStorage)</li>
+<li>Character unlock persistence (localStorage)</li>
+<li>Social sharing (Web Share API with clipboard fallback)</li>
+<li>Responsive canvas scaling (320px to 480px wide)</li>
+<li>Interstitial ad hook (stub function, every 3rd death)</li>
+<li>Analytics event stubs (console.log)</li>
+<li>Italian brainrot theme (Italian Red accent, brainrot death messages, themed obstacles)</li>
+</ul>
+<h3>Out of Scope (v1)</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Why Deferred</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Sound/audio</strong></td>
+<td>Nice to have. The game is fully playable without sound. Audio implementation (Web Audio API oscillators) is designed in this doc and ready to build, but the developer should ship gameplay first and layer sound in as a fast-follow if time permits. Not blocking launch.</td>
+</tr>
+<tr>
+<td><strong>Leaderboards</strong></td>
+<td>Requires backend. v1 is static files only. Future consideration with a serverless function.</td>
+</tr>
+<tr>
+<td><strong>User accounts</strong></td>
+<td>Same as leaderboards. Not needed for core loop.</td>
+</tr>
+<tr>
+<td><strong>Multiplayer</strong></td>
+<td>Not applicable to Flappy Bird mechanic.</td>
+</tr>
+<tr>
+<td><strong>Score card image generation</strong></td>
+<td>Canvas-to-image adds complexity. Text share is sufficient for launch.</td>
+</tr>
+<tr>
+<td><strong>Rewarded video ads</strong></td>
+<td>Requires ad SDK integration. Interstitial stub is enough for v1.</td>
+</tr>
+<tr>
+<td><strong>Background music</strong></td>
+<td>Lower priority than SFX. Can be added later as a looping oscillator pattern.</td>
+</tr>
+<tr>
+<td><strong>Animated obstacle parts</strong></td>
+<td>Bombardiro jaws snapping, Fanum hands reaching. v1 obstacles are static. Moving parts are a polish pass.</td>
+</tr>
+<tr>
+<td><strong>Cross-game unlocks</strong></td>
+<td>Requires a shared unlock system across game-01 and game-02. Design later when both games ship.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>12. Shared Infrastructure Usage</h2>
+<p>The game uses utilities from <code>games/shared/</code> to avoid reinventing common patterns. These shared modules are designed to be used across all Brainrot Games titles.</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Path</th>
+<th>Usage in Flappy Tralalero</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>game-shell</strong></td>
+<td><code>games/shared/game-shell.js</code></td>
+<td>State machine framework. Provides <code>GameShell</code> class with <code>setState(name)</code>, <code>onEnter(state, fn)</code>, <code>onUpdate(state, fn)</code>, <code>onRender(state, fn)</code> hooks. Flappy Tralalero registers 4 states: <code>menu</code>, <code>ready</code>, <code>playing</code>, <code>gameover</code>. The shell owns the <code>requestAnimationFrame</code> loop and delta-time calculation.</td>
+</tr>
+<tr>
+<td><strong>input-manager</strong></td>
+<td><code>games/shared/input-manager.js</code></td>
+<td>Unified input handling. Normalizes <code>touchstart</code>, <code>mousedown</code>, and <code>keydown</code> (spacebar) into a single <code>onTap(callback)</code> interface. Handles coordinate conversion from screen space to logical canvas space. Prevents default on touch events to avoid scroll/zoom.</td>
+</tr>
+<tr>
+<td><strong>collision</strong></td>
+<td><code>games/shared/collision.js</code></td>
+<td>AABB collision detection utility. Exports <code>aabbCollides(a, b)</code> taking two <code>{x, y, width, height}</code> objects. Used for player-vs-obstacle and player-vs-bounds checks.</td>
+</tr>
+<tr>
+<td><strong>score-manager</strong></td>
+<td><code>games/shared/score-manager.js</code></td>
+<td>localStorage wrapper for score persistence. Exports <code>ScoreManager</code> class with <code>getHighScore(gameId)</code>, <code>setHighScore(gameId, score)</code>, <code>getUnlocks(gameId)</code>, <code>setUnlock(gameId, characterId)</code>. Handles try/catch, JSON parsing, and graceful fallback. All localStorage keys are namespaced by <code>gameId</code> (e.g., <code>flappy-tralalero-highscore</code>).</td>
+</tr>
+<tr>
+<td><strong>share</strong></td>
+<td><code>games/shared/share.js</code></td>
+<td>Share utility. Exports <code>shareScore({ text, url })</code> which tries <code>navigator.share()</code> first, falls back to <code>navigator.clipboard.writeText()</code>, and returns <code>{ method: &quot;native&quot; | &quot;clipboard&quot; | &quot;failed&quot; }</code>.</td>
+</tr>
+<tr>
+<td><strong>analytics</strong></td>
+<td><code>games/shared/analytics.js</code></td>
+<td>Analytics stub. Exports <code>trackEvent(name, properties)</code> which logs to console in dev. The ad/analytics SDK replaces this function at integration time.</td>
+</tr>
+</tbody></table>
+<p><strong>Game-specific code</strong> (player, obstacles, characters, background, audio, UI) lives entirely in <code>games/game-01/js/</code>. Shared modules are imported via relative path: <code>import { GameShell } from &#39;../../shared/game-shell.js&#39;</code>.</p>
+<hr>
+<h2>Open Questions</h2>
+<p>None blocking. The following are noted for future consideration but do not require answers before development begins:</p>
+<ol>
+<li><strong>Ad SDK selection:</strong> Which ad provider (AdSense, AdMob web, GameDistribution)? The interstitial hook is provider-agnostic -- just a function call. Decision can be made post-ship.</li>
+<li><strong>Domain and hosting:</strong> Is the game served from <code>brainrotgames.com/games/game-01/</code> or a subdomain? Affects share URL. Defaulting to the path-based URL per <code>index.html</code> link structure.</li>
+<li><strong>Cross-game character unlocks:</strong> The concept doc mentions unlocking characters across games. This requires a shared localStorage schema or a lightweight backend. Deferring to when game-02 ships.</li>
+</ol>
+<hr>
+<p><em>This document is the single source of truth for Flappy Tralalero development. A developer should be able to build the complete game from this spec without asking questions. If something is ambiguous, the simplest interpretation is correct.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

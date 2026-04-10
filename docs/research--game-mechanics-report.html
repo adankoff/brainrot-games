@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Mechanics Report — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">research/game-mechanics-report.md</div>
+    <div class="doc-content"><h1>Research Brief: Proven Casual Game Mechanics for Brainrot/Meme Reskins</h1>
+<p><strong>Requested by</strong>: Self-initiated / Founder
+<strong>Date</strong>: 2026-04-10
+<strong>Research mode</strong>: Topic Research</p>
+<hr>
+<h2>Key Findings</h2>
+<ul>
+<li><strong>Flappy Bird, Snake, Whack-a-Mole, Idle Clicker, and Stack are the top 5 recommended mechanics</strong> for a meme game studio building HTML5 Canvas games -- they combine the lowest implementation complexity with the highest addictiveness and strongest monetization fit.</li>
+<li><strong>The &quot;one more try&quot; compulsion is strongest in timing/reflex games</strong> (Flappy Bird, Geometry Dash, Color Switch) where near-misses and instant death create powerful retry loops. These mechanics align perfectly with short-form meme content -- a failed run is itself shareable content.</li>
+<li><strong>Brainrot/meme theming is a proven accelerator</strong>: Steal a Brainrot on Roblox hit 20M peak concurrent users in August 2025, surpassing Fortnite&#39;s all-time record. The meme-to-market pipeline is now a formalized strategy in mobile gaming (Source: Mi3, December 2025; Wikipedia, Steal a Brainrot).</li>
+<li><strong>HTML5 Canvas + vanilla JS is a proven stack for all 15 mechanics</strong>: One developer documented building 120 HTML5 games using pure Canvas with no frameworks. Flappy Bird clones have been built in as few as 25 lines of code (Source: DEV Community; meetupfeed.io).</li>
+<li><strong>Hybrid monetization (40-60% ads / 40-60% IAP) is the 2025-2026 standard</strong> for casual games. Pure ad-only models are declining. Layering cosmetic IAP (meme character unlocks) on top of rewarded video ads is the optimal approach for this studio&#39;s positioning (Source: Tenjin Ad Monetization Benchmark Report 2025).</li>
+</ul>
+<hr>
+<h2>Detailed Analysis: 15 Game Mechanics</h2>
+<hr>
+<h3>1. Flappy Bird (Tap to Fly Through Gaps)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Player taps screen to make character flap upward against gravity. Each tap provides a brief upward impulse. The character must pass through narrow gaps between vertically scrolling pipe obstacles. One collision = instant death. The loop is: tap, glide, judge gap distance, tap again, pass through or die.</p>
+<p><strong>Average Session Length</strong>
+2-4 minutes. Sessions are extremely short due to high death frequency. Players typically die within 10-30 seconds per attempt, but chain multiple attempts back-to-back. Total engagement sessions run 2-5 minutes of continuous retry.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Near-miss psychology</strong>: The gap between &quot;almost made it&quot; and &quot;made it&quot; is razor-thin, triggering frustration-driven motivation (Source: The Week; Scientific American, &quot;Flow in Game Design&quot;)</li>
+<li><strong>Flow state</strong>: Theoretical simplicity + executional difficulty creates the optimal flow channel per Csikszentmihalyi&#39;s framework (Source: Scientific American)</li>
+<li><strong>Partial reinforcement effect</strong>: Sporadic, unpredictable success creates stronger behavioral loops than consistent rewards (Source: The Conversation)</li>
+<li><strong>Dopamine + noradrenaline interplay</strong>: Dopamine spikes on success, noradrenaline spikes on failure -- the competing systems extend play beyond intended duration (Source: The Conversation)</li>
+<li><strong>Score anchoring</strong>: Players are embarrassed by low scores and compelled to beat them (Source: GameSkinny)</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Excellent. Natural ad insertion points after every death (high frequency). Rewarded video ads for &quot;continue&quot; or score multiplier. Cosmetic character skins (meme characters) as IAP. Crossy Road proved this model generates $10M in 90 days with 70%+ revenue from ads (Source: Medium, Kenneth Ng).</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 1/5</strong>
+Minimal implementation -- as few as 25 lines of JS for a functional clone. Core components: gravity physics (single variable), tap input (single event listener), rectangle collision detection, pipe spawning on interval. No complex state management, no AI, no pathfinding. The most-documented HTML5 Canvas tutorial game (Source: meetupfeed.io; DEV Community).</p>
+<p><strong>&quot;One More Try&quot; Factor: 5/5</strong>
+The single strongest retry compulsion of any casual game. Instant death + instant restart + score shame = near-zero friction between attempts.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Flappy Bird (Dong Nguyen, 2013) -- the original, 50M+ downloads before removal</li>
+<li>Flappy Royale (2019) -- battle royale variant with 100 simultaneous players</li>
+<li>Piou Piou vs. Cactus -- predecessor that proved the mechanic</li>
+</ul>
+<hr>
+<h3>2. Snake (Grow While Avoiding Yourself)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Player directs a continuously moving snake using directional input. Snake eats food items that appear randomly on the grid, growing longer with each item consumed. The player must avoid colliding with the snake&#39;s own body or the walls. Loop: steer toward food, eat, grow, navigate tighter spaces, repeat.</p>
+<p><strong>Average Session Length</strong>
+3-7 minutes. Sessions scale with skill -- beginners die quickly, experienced players sustain longer runs. The growing difficulty (longer snake = less free space) creates a natural session arc.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Self-generated difficulty curve</strong>: The player literally creates their own obstacles by succeeding. Each food item makes the game harder (Source: AppKart Studio)</li>
+<li><strong>Spatial pattern recognition</strong>: The brain engages in continuous pathfinding optimization, triggering flow state (Source: AppKart Studio)</li>
+<li><strong>Dopamine micro-hits</strong>: Each food item consumed delivers a small reward signal. The &quot;gobbling&quot; sound/visual is satisfying feedback (Source: AppKart Studio)</li>
+<li><strong>Loss aversion</strong>: Long snakes represent accumulated progress -- losing a long snake stings more than losing a short one</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Good. Death screens for interstitial ads. Rewarded video for &quot;continue from where you died.&quot; Cosmetic snake skins/themes as IAP. Power-ups (speed boost, invincibility) as rewarded ad triggers. Leaderboards drive competitive engagement.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 1/5</strong>
+One of the simplest Canvas games to implement. Grid-based movement (no continuous physics), array-based snake body tracking, simple collision detection (head position vs. body positions and walls), random food placement. Abundant tutorials available -- buildable in 10 steps (Source: C# Corner; Thoughtbot).</p>
+<p><strong>&quot;One More Try&quot; Factor: 4/5</strong>
+Strong retry pull, especially when the snake was &quot;almost&quot; at a record length. Slightly lower than Flappy Bird because sessions are longer, so the investment-per-attempt is higher.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Nokia Snake (1998) -- the original that shipped on 400M+ phones</li>
+<li>Slither.io (2016) -- multiplayer variant, 67M monthly users at peak</li>
+<li>Snake.io -- modern mobile iteration with competitive multiplayer</li>
+</ul>
+<hr>
+<h3>3. 2048 (Slide to Merge Tiles)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Player swipes in one of four directions. All tiles on a 4x4 grid slide in that direction. Matching adjacent tiles merge (2+2=4, 4+4=8, etc.). A new tile (2 or 4) spawns in a random empty cell after each move. Goal: create the 2048 tile. Loss condition: no valid moves remaining.</p>
+<p><strong>Average Session Length</strong>
+8-15 minutes. Significantly longer than reflex games. The cognitive engagement and strategic planning create deeper sessions. Players often play during commutes or waiting periods (Source: Gamigion, &quot;Popularity on Flights&quot;).</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Variable reward schedule</strong>: Unpredictable merge opportunities create anticipation (Source: 2048game.net)</li>
+<li><strong>Zeigarnik effect</strong>: The unfinished task of reaching 2048 creates persistent cognitive tension -- players feel compelled to complete what they started (Source: 2048game.net)</li>
+<li><strong>Cognitive flow</strong>: Pattern recognition + strategic planning + decision-making induces deep flow (Source: 2048games.com)</li>
+<li><strong>Dopamine on merge</strong>: Every successful merge triggers a micro-reward. Higher-value merges (256+512=1024) trigger proportionally larger satisfaction (Source: 2048game.net)</li>
+<li><strong>&quot;Almost&quot; moments</strong>: Getting close to 2048 but running out of space is a powerful retry trigger</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Moderate. Longer sessions mean fewer natural ad break points. Rewarded ads for &quot;undo last move&quot; or &quot;clear a tile&quot; are natural fits. Cosmetic tile themes as IAP. The strategic depth supports a premium/$1.99 paid version model. Banner ads during gameplay are feasible given the low-reflex nature.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 2/5</strong>
+Moderate -- the grid logic and merge rules require careful state management. Core components: 2D array for grid state, directional slide/merge algorithm, tile spawning logic, win/loss detection, and smooth slide animations. Can be built with Canvas or HTML/CSS Grid + JS. The merge algorithm is the trickiest part -- handling cascading merges and preventing double-merges in a single move (Source: DEV Community; The Coding Train).</p>
+<p><strong>&quot;One More Try&quot; Factor: 4/5</strong>
+Strong, especially for puzzle-oriented players. The Zeigarnik effect is powerful -- players who get close to 2048 will absolutely try again. Lower than pure reflex games because the cognitive investment per session is higher.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>2048 (Gabriele Cirulli, 2014) -- open source, spawned 1000+ variants</li>
+<li>Threes! (2014) -- the original inspiration, more polished design</li>
+<li>2048 Cupcakes, Doge 2048 -- meme reskins that proved the theming concept</li>
+</ul>
+<hr>
+<h3>4. Crossy Road (Dodge Traffic on Endless Road)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Player taps to hop forward one space. Swipes move laterally. The character navigates across lanes of traffic, rivers (with logs), and train tracks. Each lane is a timing puzzle -- the player watches patterns and taps at the right moment. Staying still too long triggers a pursuing eagle. Loop: observe lane, time the hop, cross, repeat with increasing speed.</p>
+<p><strong>Average Session Length</strong>
+3-6 minutes. Similar to Flappy Bird in structure -- quick deaths, fast restarts. Hipster Whale reported spending &quot;a third to half&quot; of development time optimizing retention and re-engagement loops (Source: PocketGamer.biz).</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Variable obstacle patterns</strong>: Procedurally generated lanes mean each run is unique</li>
+<li><strong>Character collection</strong>: 150+ unlockable characters create a metagame progression layer</li>
+<li><strong>Near-miss design</strong>: Barely avoiding a car is viscerally satisfying</li>
+<li><strong>Social sharing</strong>: High scores and character collections drive competitive sharing</li>
+<li><strong>Low friction restart</strong>: Death to new game in &lt;1 second</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Excellent -- Crossy Road is the gold standard for casual game monetization. $10M in 90 days. 70%+ revenue from video ads. Key innovations: showing &quot;Watch Ad for Coins&quot; only after new high scores (when player engagement peaks), character lottery funded by rewarded video ads, most expensive IAP is $3.99 coin doubler (Source: Medium, Kenneth Ng; MobileDevMemo; Sensor Tower).</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 3/5</strong>
+Moderate-to-high. Requires: lane-based procedural generation, multiple obstacle types with distinct movement patterns, pseudo-3D isometric rendering (or simplified top-down), character animation, river/log floating mechanics, and the pursuing eagle timer. More complex than single-mechanic games but well-documented in tutorials.</p>
+<p><strong>&quot;One More Try&quot; Factor: 4/5</strong>
+Strong. The combination of short sessions, character collection goals, and pattern-based gameplay creates a solid retry loop. Slightly lower than Flappy Bird because the character collection gives a &quot;consolation prize&quot; even on failed runs.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Crossy Road (Hipster Whale, 2014) -- 200M+ downloads, $10M in 3 months</li>
+<li>Frogger (1981) -- the arcade predecessor</li>
+<li>Disney Crossy Road -- licensed reskin proving the theme flexibility</li>
+</ul>
+<hr>
+<h3>5. Doodle Jump (Bounce Upward on Platforms)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Character automatically bounces upward on contact with platforms. Player tilts device (or uses arrow keys) to steer left/right. Platforms scroll downward as the character ascends. Player must land on the next platform or fall to death. Power-ups (jetpacks, springs) provide temporary boosts. Enemies and hazards appear at higher altitudes. Loop: bounce, steer to next platform, avoid hazards, collect power-ups.</p>
+<p><strong>Average Session Length</strong>
+5-8 minutes. Google&#39;s data shows an average session length of 8 minutes across 2 billion+ plays. The gradual difficulty ramp supports longer sessions than pure reflex games (Source: playdoodlejumpgame.com).</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Flow state</strong>: Gradually increasing difficulty maintains the challenge-skill balance that defines flow (Source: ahay.org, Doodle Jump Analysis)</li>
+<li><strong>Vertical progress visualization</strong>: Players can literally see how high they&#39;ve climbed -- progress is spatial and intuitive</li>
+<li><strong>Platform variety</strong>: Static, moving, breakable, disappearing platforms create varied micro-challenges</li>
+<li><strong>Power-up anticipation</strong>: Random power-up appearances create variable reward schedules</li>
+<li><strong>Score-as-altitude</strong>: The score directly corresponds to height climbed, making it viscerally meaningful</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Good. Death screen interstitials. Rewarded video for &quot;platform safety net&quot; or jetpack boost. Character skins as IAP. Theme/world packs. The long session length supports mid-session banner ads since the game doesn&#39;t require full-screen focus during every moment.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 2/5</strong>
+Moderate-low. Core components: platform generation algorithm (random but playable placement), basic physics (gravity + bounce), accelerometer/keyboard input, scrolling camera that follows the player upward, collision detection between character and platforms, and basic enemy AI (horizontal movement). The platform placement algorithm needs tuning to ensure playability -- too far apart = impossible, too close = boring.</p>
+<p><strong>&quot;One More Try&quot; Factor: 4/5</strong>
+Strong. The vertical progress metaphor makes &quot;I was so close to my record&quot; especially compelling. Power-up teases (seeing a jetpack you couldn&#39;t reach) add to retry motivation.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Doodle Jump (Lima Sky, 2009) -- 2B+ plays, defined the genre</li>
+<li>Icy Tower (2001) -- PC predecessor</li>
+<li>Mega Jump -- power-up focused variant</li>
+</ul>
+<hr>
+<h3>6. Fruit Ninja (Swipe to Slice Objects)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Objects are tossed upward from the bottom of the screen in arcing trajectories. Player swipes finger/mouse across the screen to create a slicing motion. Slicing fruit scores points. Slicing bombs ends the game. Multiple fruits sliced in a single swipe = combo bonus. Loop: watch fruit trajectories, swipe to slice, avoid bombs, chase combos.</p>
+<p><strong>Average Session Length</strong>
+2-5 minutes. Sessions are short but highly tactile. The game&#39;s three modes (Classic, Arcade, Zen) offer different session structures. Classic mode (3 missed fruits = game over) runs 1-3 minutes. Arcade mode (60-second timer) is fixed at ~1 minute.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Tactile satisfaction</strong>: The swipe-to-slice gesture is inherently satisfying -- physical, immediate, visceral (Source: Referral Candy)</li>
+<li><strong>Combo chasing</strong>: Multi-fruit slices reward skill and create a &quot;mastery&quot; pursuit</li>
+<li><strong>Immediate feedback</strong>: Fruit explodes on contact with juice splatter effects -- no delay between input and reward</li>
+<li><strong>Low cognitive load</strong>: No strategy, pure reaction -- perfect for flow state entry</li>
+<li><strong>Sensory design</strong>: Visual splatter + audio cues create multi-sensory satisfaction (Source: Wikipedia, Fruit Ninja)</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Good. Between-round interstitials. Cosmetic blade skins, dojo backgrounds, and fruit effects as IAP. Rewarded ads for bonus power-ups (freeze, frenzy). Fruit Ninja reached 1 billion downloads by 2015 (Source: Referral Candy). Monetization favors non-disruptive cosmetic options.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 3/5</strong>
+Moderate. The core challenge is swipe/touch gesture detection and trail rendering. Components: touch/mouse event tracking for swipe paths, physics for fruit toss trajectories (parabolic arcs), intersection detection between swipe line and fruit hitboxes, particle effects for slice feedback, and multi-touch support for simultaneous slices. The gesture detection and trail rendering are the hardest parts -- requires tracking touch points over time and computing intersections (Source: GitHub, aa-ayushadhikari; bencentra.com).</p>
+<p><strong>&quot;One More Try&quot; Factor: 3/5</strong>
+Moderate. The tactile satisfaction drives replays, but the lack of a strong &quot;almost&quot; moment (compared to Flappy Bird&#39;s near-miss pipes) slightly reduces retry urgency. Combo-chasing provides the main retry hook.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Fruit Ninja (Halfbrick Studios, 2010) -- 1B+ downloads</li>
+<li>Fruit Ninja 2 -- multiplayer evolution</li>
+<li>Veggie Samurai -- thematic variant</li>
+</ul>
+<hr>
+<h3>7. Temple Run / Endless Runner</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Character runs automatically at increasing speed along a path. Player swipes to turn at intersections, swipes up to jump over obstacles, swipes down to slide under barriers, and tilts to move between lanes. Coins line the path for collection. Power-ups appear periodically. Loop: react to upcoming obstacle, swipe/tilt, collect coins, react to next obstacle.</p>
+<p><strong>Average Session Length</strong>
+4-8 minutes. Longer than Flappy Bird due to lower death frequency and the coin collection metagame. RPG-like upgrade systems extend the session arc across multiple runs. Top 25% of games in this genre see 8-9 minute sessions (Source: Udonis, Mobile Gaming Statistics).</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Speed escalation</strong>: The gradually increasing speed pushes players to the edge of their reaction ability -- classic flow state design (Source: Logic Simplified)</li>
+<li><strong>Dopamine loops</strong>: Every close call, coin string, and power-up activation fires reward signals (Source: ScreenWise)</li>
+<li><strong>No natural stopping point</strong>: The endless format means there&#39;s never a &quot;level complete&quot; moment that gives permission to stop -- making these games specifically hard to put down (Source: ScreenWise)</li>
+<li><strong>Progression metagame</strong>: Coins earned persist across runs. Upgrades (magnet, shield, multiplier) give each run a purpose beyond the immediate score</li>
+<li><strong>Procedural variety</strong>: Randomized paths ensure no two runs are identical</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Excellent. The most proven monetization model in casual gaming. Coin currency creates a natural economy: earn slowly through gameplay or watch ads/buy IAP to accelerate. Rewarded video for &quot;revive after death&quot; is the genre&#39;s signature monetization moment. Character skins, power-up upgrades, and coin packs as IAP. Temple Run 2 generated $1M/day at peak (Source: various industry reports).</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 3/5</strong>
+Moderate. For a simplified 2D side-scrolling version: procedural terrain generation, multiple obstacle types, lane-based or continuous movement, swipe input handling, coin/power-up spawning, and a persistent upgrade system. For a pseudo-3D perspective (like Temple Run): significantly more complex rendering. A 2D side-scroller variant is much more feasible for HTML5 Canvas (Source: GitHub, straker/endless-runner-html5-game; blog.sklambert.com).</p>
+<p><strong>&quot;One More Try&quot; Factor: 4/5</strong>
+Strong. The coin collection metagame means every run contributes to permanent progress, reducing the sting of death. But the &quot;I was going so fast&quot; adrenaline creates strong retry impulse. The revive mechanic (watch ad to continue) is a monetization-aligned retry hook.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Temple Run (Imangi Studios, 2011) -- 1B+ downloads</li>
+<li>Subway Surfers (2012) -- most downloaded mobile game of all time (3B+)</li>
+<li>Temple Run 2 -- evolved version with better graphics/mechanics</li>
+</ul>
+<hr>
+<h3>8. Geometry Dash (Rhythm-Based Platformer)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Character auto-scrolls rightward at constant speed. Player taps to jump (or hold for continuous actions depending on the current vehicle mode). Obstacles are precisely timed to the music beat. One collision = restart from the beginning. The character transforms between modes (cube, ship, ball, UFO, wave) via portals, each with different jump/flight physics. Loop: listen to beat, tap in rhythm, survive obstacle sequence, transform, adapt to new physics.</p>
+<p><strong>Average Session Length</strong>
+5-20 minutes. Highly variable. Easy levels take 30 seconds to complete. Hard levels involve hundreds of attempts. The &quot;practice mode&quot; (with checkpoints) supports longer sessions. Community-created levels extend content infinitely.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Music synchronization</strong>: Rhythm-based tasks activate brain regions associated with reward and motivation. Dopamine increases when players successfully hit beats (Source: jenniejohnson.com, Psychology of Rhythm Games; Frontiers in Human Neuroscience, cited therein)</li>
+<li><strong>Percentage-based progress</strong>: The game shows exactly how far you got (e.g., &quot;78%&quot;). Dying at 95% is devastating -- and creates an irresistible retry compulsion</li>
+<li><strong>Mastery through repetition</strong>: Each attempt encodes the level layout deeper into muscle memory. Players feel themselves getting better with each try</li>
+<li><strong>Community content</strong>: 80M+ user-created levels create infinite replayability</li>
+<li><strong>Social competition</strong>: Leaderboards and the &quot;demon level&quot; difficulty rating system create aspirational goals</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Moderate. The core audience is more &quot;gamer&quot; than &quot;casual&quot; -- aggressive ads risk alienating players. Cosmetic icon/color customization as IAP is natural. Level packs as premium content. Rewarded ads for practice mode hints or extra attempts. The game works well as a premium ($1.99-$3.99) product with optional IAP.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 4/5</strong>
+High. The rhythm synchronization is the hard part: obstacles must be precisely placed relative to audio timestamps, requiring tight audio-visual sync. Components: audio playback with precise timing API, level data format mapping obstacles to beat positions, multiple character physics modes, smooth camera scrolling, pixel-perfect collision detection, and a level editor if supporting user content. Audio sync on web is notoriously tricky due to browser audio API latency (Source: Playgama Blog; CodePal).</p>
+<p><strong>&quot;One More Try&quot; Factor: 5/5</strong>
+Maximum. The percentage-based progress indicator is one of the most powerful retry mechanics ever designed. &quot;I died at 94%&quot; is an almost unbearable near-miss. Combined with muscle memory improvement, each attempt feels closer to completion.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Geometry Dash (RobTop Games, 2013) -- 130M+ downloads, $50M+ revenue</li>
+<li>The Impossible Game (2009) -- spiritual predecessor</li>
+<li>Beat Saber (VR) -- rhythm + action mechanic in a different medium</li>
+</ul>
+<hr>
+<h3>9. Color Switch (Timing Through Color Gates)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+A colored ball bounces upward when the player taps. Rotating obstacles with colored segments block the path. The ball can only pass through segments matching its current color. The ball&#39;s color changes at checkpoints. Loop: tap to bounce, wait for the matching color to rotate into position, time the tap, pass through, repeat with faster/more complex obstacles.</p>
+<p><strong>Average Session Length</strong>
+2-4 minutes. Very similar to Flappy Bird in session structure -- high death frequency, instant restart. The waiting-for-rotation mechanic adds a patience element that slightly extends per-attempt duration.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Timing precision</strong>: The gap between success and failure is milliseconds -- classic near-miss psychology</li>
+<li><strong>Pattern recognition under pressure</strong>: Players must track rotation speed and color position simultaneously</li>
+<li><strong>Escalating complexity</strong>: Obstacles evolve from simple circles to squares, triangles, and multi-layered rotating structures</li>
+<li><strong>&quot;One more try&quot; loop</strong>: Designed explicitly around the hyper-casual retry compulsion (Source: kami.com.ph)</li>
+<li><strong>Star collection</strong>: Collectible stars between obstacles add variable reward moments</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Good. High death frequency = many ad insertion points. Rewarded video for &quot;continue from checkpoint.&quot; Ball skin unlocks via stars or IAP. The game reached millions of downloads through its hyper-casual ad-supported model. Daily challenge bonuses drive retention (Source: BagoGames).</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 2/5</strong>
+Moderate-low. Core components: circle/arc rendering with rotation transforms, color matching logic, basic tap-to-bounce physics, rotating obstacle generation with increasing complexity, and checkpoint/color-change triggers. The rotating obstacles are the main visual challenge -- requires understanding Canvas rotation transforms and arc drawing. Collision detection is color-based (check if ball&#39;s position overlaps with a non-matching colored arc segment), which is slightly more complex than simple rectangle collision.</p>
+<p><strong>&quot;One More Try&quot; Factor: 5/5</strong>
+Very high. The combination of instant death, instant restart, and millisecond-precision timing creates one of the strongest retry loops in hyper-casual gaming. Comparable to Flappy Bird.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Color Switch (Fortafy Games, 2015) -- 150M+ downloads</li>
+<li>Helix Jump (Voodoo, 2018) -- descended mechanic with 500M+ downloads</li>
+<li>Color Bump 3D -- 3D variant of color-matching obstacle navigation</li>
+</ul>
+<hr>
+<h3>10. Stack (Drop Blocks to Build Tower)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+A block slides back and forth horizontally across the screen. Player taps to drop it onto the growing tower. Any portion of the block that overhangs the previous block is sliced off. The remaining block becomes progressively smaller with each imperfect placement. A perfect placement triggers a &quot;streak&quot; that grows the block back. Loop: watch sliding block, time the tap, stack, repeat.</p>
+<p><strong>Average Session Length</strong>
+2-4 minutes. Among the shortest session games. Rounds end quickly as blocks shrink to nothing. The satisfaction of tall towers or perfect streaks drives immediate replays.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Precision satisfaction</strong>: A perfect stack (zero overhang) is deeply satisfying -- both visually and through haptic/audio feedback</li>
+<li><strong>Visible degradation</strong>: Each imperfect tap makes the remaining block smaller, creating visible consequences and tension</li>
+<li><strong>Streak mechanic</strong>: Three consecutive perfect placements grow the block, creating a powerful &quot;keep the streak alive&quot; compulsion</li>
+<li><strong>Immediate legibility</strong>: The tower is both the score and the gameplay -- no abstraction between progress and play</li>
+<li><strong>Anxiety ramp</strong>: As the block shrinks, each tap becomes more critical -- natural difficulty escalation</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Excellent for hyper-casual. Very high game-over frequency = maximum ad impressions per session. Rewarded video for &quot;continue with current tower&quot; or &quot;start with larger block.&quot; Cosmetic block color themes and background unlocks as IAP. The game&#39;s simplicity makes interstitial ads feel natural between rounds.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 1/5</strong>
+Very simple. Components: rectangle rendering, horizontal oscillation (sine wave or linear bounce), tap input, simple subtraction to calculate overhang, rectangle slicing (basic arithmetic), and stacking logic (new block y-position = previous block y-position minus block height). No physics engine needed, no complex collision detection, no AI. One of the simplest games to implement on Canvas.</p>
+<p><strong>&quot;One More Try&quot; Factor: 4/5</strong>
+Strong. The visual tower provides a clear &quot;I can do better&quot; signal. Perfect streaks that break create a &quot;but I was on a roll&quot; retry impulse. Short sessions mean low commitment per retry.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Stack (Ketchapp, 2016) -- among the most downloaded hyper-casual games</li>
+<li>Tower Bloxx -- predecessor with physics-based block dropping</li>
+<li>Stack Ball -- 3D variant with breaking platforms</li>
+</ul>
+<hr>
+<h3>11. Idle Clicker (Tap to Increment, Buy Upgrades)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Player taps a central element to generate currency. Currency is spent on upgrades that increase per-tap yield or generate passive income. As income scales exponentially, new upgrade tiers unlock. &quot;Prestige&quot; mechanics allow resetting progress in exchange for permanent multipliers. Loop: tap, earn, buy upgrade, watch numbers go up, tap more or go idle, return to collect accumulated wealth.</p>
+<p><strong>Average Session Length</strong>
+6-8 minutes per active session, but with 5.3 sessions per day on average. Idle games have higher daily engagement than hyper-casual (5.3 vs. 4.6 sessions/day) because players return to collect accumulated idle resources (Source: GameAnalytics). Total daily engagement can reach 30-40 minutes across sessions.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Operant conditioning</strong>: The most direct implementation of Skinnerian reward schedules in gaming. Tap = reward, every single time (Source: Wikipedia, Incremental Games; Clicker Heroes blog)</li>
+<li><strong>Exponential number growth</strong>: Numbers going from hundreds to millions to billions creates a sense of escalating achievement. &quot;Number go up&quot; is a powerful psychological hook</li>
+<li><strong>Prestige/rebirth loop</strong>: Voluntarily resetting creates a meta-layer of progress that makes each cycle feel meaningful</li>
+<li><strong>Idle accumulation</strong>: Players return to find accumulated resources -- returning to the game is itself a reward</li>
+<li><strong>Low effort, high reward</strong>: The game requires minimal skill or attention, making it accessible to everyone and ideal for background play</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Excellent -- idle games are a monetization powerhouse. 60-70% of revenue from ads, 30-40% from IAP (Source: adjoe.io; PubScale). Rewarded video for &quot;speed boost&quot; (2x production for 30 min), premium currency for instant upgrades, remove-ads IAP, and time-skip purchases. The prestige mechanic creates natural &quot;I need a boost&quot; moments that drive spending. Multiple ad touchpoints per session without disrupting gameplay.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 2/5</strong>
+Moderate-low. The visual rendering is simple (a tappable element, number displays, upgrade buttons). The complexity is in the game economy: exponential growth curves, upgrade cost balancing, prestige multiplier math, and idle calculation (computing accumulated resources since last session). Requires localStorage or backend for progress persistence. No physics, no real-time collision detection, no animation complexity. The math and balancing are harder than the code (Source: GDC Vault; TheMindStudios).</p>
+<p><strong>&quot;One More Try&quot; Factor: 3/5</strong>
+Moderate as a single-session metric (there&#39;s no &quot;failure&quot; to retry from). However, the return-to-game compulsion is extremely high -- the &quot;I wonder how much accumulated while I was away&quot; pull drives 5+ daily sessions. Reframed as &quot;one more check,&quot; this is a 5/5.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Cookie Clicker (Orteil, 2013) -- the genre-definer, still active with dedicated community</li>
+<li>Adventure Capitalist (2015) -- polished idle with prestige system</li>
+<li>Clicker Heroes (2014) -- idle RPG hybrid</li>
+</ul>
+<hr>
+<h3>12. Merge Games (Combine Items to Level Up)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Player drags identical items together on a grid/board to merge them into a higher-level item. New low-level items spawn periodically or from a source. The board has limited space, requiring strategic merging to avoid filling up. Higher-level items may unlock new content, complete quests, or generate resources. Loop: drag item to match, merge, clear space, plan next merge, repeat.</p>
+<p><strong>Average Session Length</strong>
+8-15 minutes. Merge games drive longer sessions due to strategic planning and the satisfaction of long merge chains. Day-30 retention above 25% (Source: Liftoff 2025 Casual Gaming Apps Report, via AppLovin).</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Completion effect</strong>: Organizing chaos into order provides deep psychological satisfaction (Source: APKafe)</li>
+<li><strong>Triple dopamine hit per merge</strong>: (1) tactile feedback of dragging, (2) visual transformation animation, (3) psychological reward of visible progress (Source: APKafe)</li>
+<li><strong>Discovery motivation</strong>: Players want to see what the next tier item looks like -- curiosity drives continued play</li>
+<li><strong>Board management tension</strong>: Limited space creates pressure to merge efficiently, adding strategic depth</li>
+<li><strong>Cross-genre appeal</strong>: Merge mechanics are being blended with RPGs, farming sims, and narrative games in 2025 (Source: APKafe; Playgama Blog)</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Excellent. Merge games are among the highest ARPDAU casual genres. Energy/timer systems that limit play (refill via ads or IAP). Premium currency for instant-spawn high-level items. Board expansion as IAP. Rewarded video for extra spawns or merge hints. The genre naturally supports &quot;patience or pay&quot; mechanics without feeling unfair.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 3/5</strong>
+Moderate. Core components: grid-based item placement, drag-and-drop input handling, merge detection (adjacent matching items), item tier system (progression from level 1 to N), spawn mechanics (timed or action-triggered), board capacity management, and merge chain animations. The merge logic itself is straightforward, but the UX polish (smooth dragging, satisfying merge animations, item discovery reveals) is what separates good merge games from forgettable ones.</p>
+<p><strong>&quot;One More Try&quot; Factor: 3/5</strong>
+Moderate. Merge games don&#39;t have a &quot;death&quot; state -- engagement is more about &quot;one more merge chain&quot; than retry. The discovery mechanic (&quot;what&#39;s the next item?&quot;) and the satisfaction loop drive continued play rather than retry compulsion. Session-to-session return is high (25%+ D30 retention).</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Merge Dragons (Gram Games, 2017) -- genre pioneer</li>
+<li>Merge Mansion (Metacore, 2020) -- narrative-driven merge</li>
+<li>Triple Match 3D -- physical merge variant with massive downloads in 2024-2025</li>
+</ul>
+<hr>
+<h3>13. Wordle-Style (Daily Word/Pattern Guess)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Player enters a 5-letter word guess. The game reveals which letters are correct (green), present but misplaced (yellow), or absent (gray). Player uses this feedback to narrow down possibilities and enters the next guess. Six attempts maximum. One puzzle per day for all players. Loop: analyze feedback, form hypothesis, enter guess, refine, repeat.</p>
+<p><strong>Average Session Length</strong>
+3-5 minutes. Deliberately short by design -- the single daily puzzle limits session length. CNBC reported that players spend &quot;only three minutes&quot; per day (Source: CNBC, &quot;Bite-sized fun&quot;). This is a feature, not a bug -- it creates anticipation for the next day&#39;s puzzle.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Scarcity</strong>: One puzzle per day creates artificial scarcity that increases perceived value. Players can&#39;t binge -- they must wait (Source: UX Magazine)</li>
+<li><strong>Streak mechanic</strong>: Daily play streaks drive habitual return. Duolingo and Wordle both prove streaks increase DAU (Source: UX Magazine)</li>
+<li><strong>Social sharing</strong>: The emoji grid result (no spoilers) is one of the most viral game mechanics ever designed. Players share to prove competence (Source: Medium, Aman Singhaal)</li>
+<li><strong>Cognitive engagement</strong>: Activates all three working memory components simultaneously: language, visual-spatial, and executive function (Source: Tufts Now)</li>
+<li><strong>Variable reward (green squares)</strong>: Each correctly placed letter delivers a dopamine hit. The unpredictability of which letters turn green creates a variable reward schedule (Source: UX Magazine)</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Low-to-moderate as a standalone. The daily limit means very few impressions per user per day. Works best as: (1) a retention anchor that drives daily opens for a larger game portfolio, (2) part of a daily puzzle bundle (Wordle + Connections + etc.), or (3) premium subscription for archive access, statistics, and ad removal. The NYT model (bundled into a $6.99/mo games subscription) is the proven path. For a meme studio, Wordle-style works as a daily engagement hook, not a primary revenue driver.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 2/5</strong>
+Moderate-low. Can be built entirely with DOM/CSS (no Canvas needed), but a Canvas implementation is also straightforward. Core components: word dictionary/validation, letter-position matching algorithm (green/yellow/gray logic), keyboard input handling, animation for tile reveals, streak tracking (localStorage), and shareable result generation. The hardest part is curating a good word list and the yellow-letter logic (handling duplicate letters correctly). No physics, no real-time gameplay.</p>
+<p><strong>&quot;One More Try&quot; Factor: 2/5</strong>
+Low in the traditional sense -- you get one attempt per day, and there&#39;s no &quot;retry.&quot; The daily return compulsion is high (streak anxiety), but the within-session retry loop doesn&#39;t exist. If offering unlimited puzzles (non-daily mode), retry is moderate (3/5) as players want to solve the next one.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Wordle (Josh Wardle / NYT, 2021) -- 2M+ daily players at peak</li>
+<li>Connections (NYT, 2023) -- category-grouping variant</li>
+<li>Contexto -- semantic distance variant</li>
+</ul>
+<hr>
+<h3>14. Breakout / Brick Breaker</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+A ball bounces around the screen. Player moves a paddle left/right along the bottom to redirect the ball upward. The ball destroys bricks on contact. When all bricks are cleared, the level is complete. Power-ups drop from destroyed bricks (multi-ball, wider paddle, laser, etc.). Loop: track ball trajectory, move paddle to intercept, angle the rebound toward remaining bricks, catch power-ups.</p>
+<p><strong>Average Session Length</strong>
+5-10 minutes. Level-based structure creates natural session segments. Players often play 3-5 levels per session. The power-up variety and increasing level complexity sustain longer sessions than pure reflex games.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Trajectory satisfaction</strong>: Angling the ball precisely to clear a difficult brick cluster is deeply satisfying</li>
+<li><strong>Progressive destruction</strong>: Watching the brick wall crumble provides continuous visual reward</li>
+<li><strong>Power-up excitement</strong>: Random power-up drops create variable reward moments -- the multi-ball power-up is especially satisfying</li>
+<li><strong>Speed escalation</strong>: Ball speed increases as bricks are cleared, creating a natural difficulty ramp</li>
+<li><strong>Level completion</strong>: Unlike endless games, completing a level provides a definitive achievement moment (Source: Hero Concept; GameWinter, Arkanoid)</li>
+<li><strong>Audio-visual feedback</strong>: The satisfying &quot;thunk&quot; of each brick hit is a core engagement driver (Source: GameWinter)</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Good. Level completion screens for interstitial ads. Rewarded video for &quot;power-up selection&quot; at level start or &quot;extra life.&quot; Level packs as IAP. Cosmetic paddle/ball themes. The level-based structure naturally supports gated content (free levels 1-50, IAP for 51-100). Banner ads are feasible during gameplay since paddle movement is along one axis.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 2/5</strong>
+Moderate-low. This is literally the MDN Canvas tutorial game -- it&#39;s one of the most documented HTML5 Canvas implementations available (Source: MDN, &quot;2D Breakout game using pure JavaScript&quot;). Core components: ball physics (velocity, angle of reflection), paddle movement (keyboard/touch), rectangle collision detection (ball vs. bricks, ball vs. paddle, ball vs. walls), brick grid rendering, power-up system, and level data (brick layouts). The physics are simple (reflection angles), and collision detection is well-documented.</p>
+<p><strong>&quot;One More Try&quot; Factor: 3/5</strong>
+Moderate. The level-based structure provides clear &quot;I almost beat that level&quot; retry moments, but the retry compulsion is lower than instant-death games. The satisfaction of level completion partially resolves the tension that drives retries.</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Breakout (Atari, 1976) -- the original</li>
+<li>Arkanoid (Taito, 1986) -- the genre-defining evolution with power-ups</li>
+<li>Brick Breaker (BlackBerry) -- popularized the mechanic on mobile</li>
+</ul>
+<hr>
+<h3>15. Whack-a-Mole (Tap Targets Before They Disappear)</h3>
+<p><strong>Core Gameplay Loop (5-10 seconds)</strong>
+Targets (moles) pop up from holes/positions at random intervals and locations. Player must tap/click them before they disappear. Some targets are decoys or penalties (bombs, friendly characters). Speed and frequency of targets increase over time. Scoring is based on successful hits within a time limit. Loop: scan for target, react, tap, score, scan again.</p>
+<p><strong>Average Session Length</strong>
+1-3 minutes. Among the shortest session lengths of all casual games. Timer-based rounds (typically 30-60 seconds) create fixed session lengths. Players chain 2-4 rounds per sitting.</p>
+<p><strong>What Makes It Addictive</strong></p>
+<ul>
+<li><strong>Pure reaction</strong>: No strategy, no planning -- just reflexes. This makes it universally accessible (Source: Drimify)</li>
+<li><strong>Speed escalation</strong>: Targets appear faster and stay visible for less time, pushing players to their reaction limits</li>
+<li><strong>Pattern unpredictability</strong>: Random target positions prevent memorization -- each round is genuinely different</li>
+<li><strong>Immediate feedback</strong>: Every hit is instantly satisfying (visual squash, sound, score increment)</li>
+<li><strong>Competitive scoring</strong>: Reaction-based scoring is easy to compare, driving &quot;I can beat that&quot; motivation (Source: Drimify)</li>
+<li><strong>Cognitive training appeal</strong>: The Go/No-Go discrimination (hit moles, avoid bombs) engages inhibition, response time, and task switching (Source: CogniFit)</li>
+</ul>
+<p><strong>Monetization Compatibility</strong>
+Good. Short round duration = frequent interstitial opportunities. Rewarded video for &quot;extra time&quot; or &quot;slow motion power-up.&quot; Character/mallet cosmetics as IAP. The mechanic works exceptionally well for branded/themed versions (meme characters as targets). Seasonal themes drive limited-time IAP. The short session length means players see proportionally more ads per minute of play.</p>
+<p><strong>HTML5 Canvas Implementation Complexity: 1/5</strong>
+Very simple. Core components: grid of positions, random target selection, timer-based target visibility, tap/click hit detection, score tracking, and a game timer. No physics, no continuous movement, no complex collision detection. The &quot;hole&quot; positions are fixed -- the only dynamic element is which holes have active targets and for how long. Sprite animation (mole popping up/down) adds polish but isn&#39;t required for function.</p>
+<p><strong>&quot;One More Try&quot; Factor: 4/5</strong>
+Strong. The fixed timer means every round is a complete experience with a score. The &quot;I was so close to my high score&quot; feeling is powerful. The short round length (30-60 seconds) means retrying costs almost nothing. The reaction-based nature means players genuinely believe they can do better &quot;if I just focus more.&quot;</p>
+<p><strong>Best Examples</strong></p>
+<ul>
+<li>Whac-A-Mole (Bob&#39;s Space Racers, 1976) -- the original arcade cabinet</li>
+<li>Whack-a-Mole apps (various) -- mobile adaptations</li>
+<li>Pie Attack / Bop It -- reaction-based variants in different formats</li>
+</ul>
+<hr>
+<h2>Comparison Tables</h2>
+<h3>Core Metrics Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Mechanic</th>
+<th>Session Length</th>
+<th>Implementation Complexity (1-5)</th>
+<th>&quot;One More Try&quot; Factor (1-5)</th>
+<th>Monetization Fit (1-5)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Flappy Bird</td>
+<td>2-4 min</td>
+<td>1</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Snake</td>
+<td>3-7 min</td>
+<td>1</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2048</td>
+<td>8-15 min</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Crossy Road</td>
+<td>3-6 min</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Doodle Jump</td>
+<td>5-8 min</td>
+<td>2</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Fruit Ninja</td>
+<td>2-5 min</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Endless Runner</td>
+<td>4-8 min</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Geometry Dash</td>
+<td>5-20 min</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Color Switch</td>
+<td>2-4 min</td>
+<td>2</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Stack</td>
+<td>2-4 min</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Idle Clicker</td>
+<td>6-8 min (x5.3/day)</td>
+<td>2</td>
+<td>3*</td>
+<td>5</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Merge Games</td>
+<td>8-15 min</td>
+<td>3</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Wordle-Style</td>
+<td>3-5 min</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Breakout</td>
+<td>5-10 min</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Whack-a-Mole</td>
+<td>1-3 min</td>
+<td>1</td>
+<td>4</td>
+<td>4</td>
+</tr>
+</tbody></table>
+<p>*Idle Clicker &quot;one more try&quot; is low for single sessions but daily return compulsion is 5/5.</p>
+<h3>Combined Ranking: Ease + Addictiveness + Monetization</h3>
+<p>Scoring method: Ease of Implementation (inverted complexity: 6 minus complexity rating) + &quot;One More Try&quot; Factor + Monetization Fit. Maximum possible score = 15.</p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Mechanic</th>
+<th>Ease (6-complexity)</th>
+<th>Addictiveness</th>
+<th>Monetization</th>
+<th><strong>Total Score</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>Flappy Bird</strong></td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td><strong>15</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Stack</strong></td>
+<td>5</td>
+<td>4</td>
+<td>5</td>
+<td><strong>14</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Snake</strong></td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td><strong>13</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Whack-a-Mole</strong></td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td><strong>13</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Idle Clicker</strong></td>
+<td>4</td>
+<td>3</td>
+<td>5</td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Color Switch</strong></td>
+<td>4</td>
+<td>5</td>
+<td>4</td>
+<td><strong>13</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Doodle Jump</strong></td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Breakout</strong></td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>2048</strong></td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Endless Runner</strong></td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Crossy Road</strong></td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td><strong>12</strong></td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Fruit Ninja</strong></td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td><strong>10</strong></td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>Merge Games</strong></td>
+<td>3</td>
+<td>3</td>
+<td>5</td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>Wordle-Style</strong></td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+<td><strong>8</strong></td>
+</tr>
+<tr>
+<td>15</td>
+<td><strong>Geometry Dash</strong></td>
+<td>2</td>
+<td>5</td>
+<td>3</td>
+<td><strong>10</strong></td>
+</tr>
+</tbody></table>
+<h3>Sorted by Total Score</h3>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Mechanic</th>
+<th>Total Score</th>
+<th>Key Advantage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Flappy Bird</td>
+<td>15</td>
+<td>Perfect trifecta: trivial to build, maximum retry compulsion, proven ad model</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Stack</td>
+<td>14</td>
+<td>Simplest possible mechanic, high ad frequency, streak psychology</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Snake</td>
+<td>13</td>
+<td>Universal recognition, dead-simple implementation, strong cosmetic IAP potential</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Whack-a-Mole</td>
+<td>13</td>
+<td>Lowest barrier to entry, ideal for meme character showcasing, pure reaction</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Color Switch</td>
+<td>13</td>
+<td>Flappy Bird-tier retry compulsion with minimal additional complexity</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Idle Clicker</td>
+<td>12</td>
+<td>Highest daily engagement (5.3 sessions/day), monetization machine</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Doodle Jump</td>
+<td>12</td>
+<td>Strong flow state, accelerometer input differentiates from tap-only games</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Crossy Road</td>
+<td>12</td>
+<td>Gold-standard monetization model ($10M in 90 days), proven reskin potential</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Endless Runner</td>
+<td>12</td>
+<td>Most commercially proven genre (Subway Surfers = most downloaded game ever)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2048</td>
+<td>11</td>
+<td>Deepest cognitive engagement, longest sessions, proven meme reskin (Doge 2048)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Breakout</td>
+<td>11</td>
+<td>Well-documented Canvas implementation (MDN tutorial), level-based structure</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Merge Games</td>
+<td>11</td>
+<td>Highest ARPDAU potential, strongest long-term retention (25%+ D30)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Fruit Ninja</td>
+<td>10</td>
+<td>Unique tactile appeal, but swipe detection adds implementation complexity</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Geometry Dash</td>
+<td>10</td>
+<td>Maximum addictiveness, but audio sync on web is technically challenging</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Wordle-Style</td>
+<td>8</td>
+<td>Great retention anchor, but poor standalone monetization</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Top 5 Recommended Mechanics for a Meme Game Studio Building HTML5 Games</h2>
+<h3>1. Flappy Bird Clone (Score: 15/15)</h3>
+<p><strong>Why it&#39;s #1</strong>: The perfect first game for a brainrot game studio. Implementation takes hours, not days. The meme reskin potential is limitless -- any meme character can be the &quot;bird,&quot; any meme object can be the &quot;pipes.&quot; The death-and-retry loop generates massive ad impression volume. Flappy Bird has already proven that novelty skins drive virality (Flappy Bird itself was a cultural event). Start here.</p>
+<p><strong>Meme angle</strong>: Skibidi Toilet flying through pipe gaps, Italian Brainrot characters as obstacles, meme audio on death.</p>
+<h3>2. Stack (Score: 14/15)</h3>
+<p><strong>Why it&#39;s #2</strong>: Even simpler than Flappy Bird visually. The stacking mechanic is hypnotic and works in portrait mode (critical for mobile web). The streak mechanic creates organic &quot;clip moments&quot; for TikTok/social sharing. Meme themes can change every block layer. The ad frequency (game over every 15-30 seconds for average players) is exceptional for revenue.</p>
+<p><strong>Meme angle</strong>: Stack brainrot characters on top of each other, custom meme skins per block, satisfying meme audio on perfect stacks.</p>
+<h3>3. Snake (Score: 13/15)</h3>
+<p><strong>Why it&#39;s #3</strong>: Universal recognition -- everyone knows Snake. The meme reskin writes itself (snake becomes a chain of meme characters). Slither.io proved that multiplayer snake is a massive hit (67M monthly users). For HTML5 Canvas, the grid-based movement is the simplest possible game loop. The &quot;grow your meme chain&quot; mechanic is inherently shareable.</p>
+<p><strong>Meme angle</strong>: Collect brainrot characters that form a conga line. Each food item is a different meme. The snake body is a parade of meme characters.</p>
+<h3>4. Whack-a-Mole (Score: 13/15)</h3>
+<p><strong>Why it&#39;s #4</strong>: Possibly the best mechanic specifically for meme theming. The entire point is recognizing and tapping characters -- meme characters as targets is a natural fit. Implementation is trivial. The reaction-based gameplay creates genuine excitement. New meme characters can be rotated in as &quot;seasonal content&quot; with zero engine changes. Short sessions mean high ad frequency.</p>
+<p><strong>Meme angle</strong>: Whack-a-Brainrot. Meme characters pop up, player taps them. Different meme characters have different point values. Bonus rounds with trending memes.</p>
+<h3>5. Idle Clicker (Score: 12/15)</h3>
+<p><strong>Why it&#39;s #5</strong>: The monetization is unmatched -- 60-70% from ads, 30-40% from IAP, across 5.3 daily sessions. The &quot;number go up&quot; psychology pairs perfectly with meme culture&#39;s absurdism (accumulating brainrot is the mechanic AND the joke). Idle games retain players for months, not minutes. The implementation is simple in code but requires careful economy balancing. This is the long-term revenue engine while the reflex games drive initial virality.</p>
+<p><strong>Meme angle</strong>: Tap to generate brainrot. Buy upgrades like &quot;Skibidi Toilet Factory&quot; and &quot;Italian Brainrot Generator.&quot; The meta-humor of an idle game about generating brainrot content is self-aware in a way that resonates with the target audience.</p>
+<hr>
+<h2>Contrarian or Surprising Findings</h2>
+<ol>
+<li><p><strong>Wordle is a terrible standalone game for a meme studio, but an excellent retention anchor.</strong> Conventional wisdom says &quot;make a Wordle clone.&quot; The data says one-puzzle-per-day generates almost zero ad revenue. However, a daily brainrot-themed puzzle (guess the meme character from emoji clues?) could drive daily opens for a game portfolio. Use it as the hook, not the product.</p>
+</li>
+<li><p><strong>Geometry Dash has the highest addictiveness ceiling but the worst HTML5 fit.</strong> Web Audio API latency makes rhythm-sync unreliable across browsers. The mechanic is phenomenally addictive (percentage-based progress is a masterclass in near-miss design) but technically risky for HTML5 Canvas. Consider a simplified version without strict rhythm sync -- just a hard platformer with a soundtrack.</p>
+</li>
+<li><p><strong>Merge games have the highest long-term revenue potential but the worst meme fit.</strong> Merge games achieve 25%+ Day-30 retention and top ARPDAU, but the slow, strategic gameplay clashes with brainrot culture&#39;s fast, chaotic energy. If the studio matures beyond hyper-casual, merge is the genre to graduate into.</p>
+</li>
+<li><p><strong>The meme-to-market pipeline is now formalized.</strong> Steal a Brainrot on Roblox hit 20M peak CCU in 2025, surpassing Fortnite. By 2026, developers are integrating social listening and agile content pipelines into core game operations (Source: Gamers Forem). The implication: a meme game studio needs a rapid reskin capability more than a deep game engine. Build simple mechanics that accept theme swaps.</p>
+</li>
+<li><p><strong>Ad-only monetization is declining.</strong> Publisher-side eCPMs dropped 20-30% in 2024 while ad networks took more margin (Source: Tenjin Benchmark Report 2025). Studios relying purely on interstitial ads will see revenue erode. Layering even light IAP (cosmetic meme character unlocks at $0.99-$2.99) materially changes the revenue model. The idle clicker is the strongest mechanic for hybrid monetization.</p>
+</li>
+<li><p><strong>Session length is inversely correlated with retry compulsion in this dataset.</strong> The games with the strongest &quot;one more try&quot; factor (Flappy Bird, Color Switch, Stack) all have the shortest sessions (1-4 minutes). This is not coincidental -- the low cost of retrying (only a few seconds lost) is what enables the compulsion. Longer-session games like 2048 and Merge have lower retry urgency because each failed attempt costs more time.</p>
+</li>
+</ol>
+<hr>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://theweek.com/articles/450939/what-makes-games-like-flappy-bird-addictive">What makes games like Flappy Bird so addictive? -- The Week</a> -- 2014 -- secondary</li>
+<li><a href="https://www.scientificamerican.com/article/be-one-with-flappy-bird-the-science-of-flow-in-game-design/">Be one with Flappy Bird: The science of flow in game design -- Scientific American</a> -- 2014 -- primary</li>
+<li><a href="https://theconversation.com/flappy-bird-obsession-is-not-necessarily-an-addiction-22638">Flappy Bird obsession is not necessarily an addiction -- The Conversation</a> -- 2014 -- primary (academic source)</li>
+<li><a href="https://www.gameskinny.com/culture/the-magic-of-making-people-mad-why-you-cant-stop-playing-flappy-bird/">The Magic of Making People Mad: Why you Can&#39;t Stop Playing Flappy Bird -- GameSkinny</a> -- 2014 -- secondary</li>
+<li><a href="https://yukaichou.com/gamificationnews/flappy-bird-game-addiction-octalysis/">Flappy Bird Addiction Through the Octalysis Lens -- Yu-kai Chou</a> -- 2014 -- secondary</li>
+<li><a href="https://appkartstudio.com/psychology-behind-snake-game/">The Psychology Behind Snake Game -- AppKart Studio</a> -- 2024 -- secondary</li>
+<li><a href="https://2048game.net/the-science-of-addiction-why-the-2048-game-keeps-you-coming-back">The Science of Addiction: Why the 2048 Game Keeps You Coming Back -- 2048game.net</a> -- 2024 -- secondary</li>
+<li><a href="https://www.2048games.com/articles/the_psychology_of_2048_why_we_cant_stop_playing">The Psychology of 2048: Why We Can&#39;t Stop Playing -- 2048games.com</a> -- 2024 -- secondary</li>
+<li><a href="https://medium.com/kennethlng/10-million-in-3-months-the-crossy-road-phenomenon-db475e2dbf74">$10 Million in 3 Months: the Crossy Road Phenomenon -- Kenneth Ng / Medium</a> -- 2015 -- secondary</li>
+<li><a href="https://mobiledevmemo.com/crossy-road-a-case-study-in-mobile-ad-monetization/">Crossy Road: A case study in mobile ad monetization -- MobileDevMemo</a> -- 2015 -- primary (industry analysis)</li>
+<li><a href="https://sensortower.com/blog/crossy-road-revenue-10-million">Crossy Road Revenue Hops Past $10 Million -- Sensor Tower</a> -- 2015 -- primary (data provider)</li>
+<li><a href="https://www.pocketgamer.biz/stateside/60697/what-can-you-learn-from-crossy-road/">What can you learn from Crossy Road&#39;s smart monetization layers? -- PocketGamer.biz</a> -- 2015 -- primary (industry)</li>
+<li><a href="https://ahay.org/wiki/Doodle_Jump:_An_Analysis_Of_Game_Mechanics_And_Player_Engagement">Doodle Jump: An Analysis Of Game Mechanics And Player Engagement -- ahay.org</a> -- undated -- secondary</li>
+<li><a href="https://www.referralcandy.com/blog/fruit-ninja-marketing-strategy">How Fruit Ninja Achieved 1 Billion Downloads Over 5 Years -- Referral Candy</a> -- 2016 -- secondary</li>
+<li><a href="https://en.wikipedia.org/wiki/Fruit_Ninja">Fruit Ninja -- Wikipedia</a> -- ongoing -- secondary</li>
+<li><a href="https://screenwiseapp.com/guides/endless-runner-games">Endless Runner Games: Are They Harmless Fun or Designed to Addict? -- ScreenWise</a> -- 2024 -- secondary</li>
+<li><a href="https://logicsimplified.com/newgames/endless-runner-games-core-mechanics-and-top-titles/">Endless Runner Games - Core Mechanics and Top Titles -- Logic Simplified</a> -- 2024 -- secondary</li>
+<li><a href="https://jenniejohnson.com/bestjobs/the-psychology-of-rhythm-games-why">The Psychology of Geometry Dash: Understanding Its Allure -- jenniejohnson.com</a> -- 2024 -- secondary</li>
+<li><a href="https://medium.com/illumination-gaming/geometry-dash-gaming-or-addiction-feat-a-top-player-4b210e32ab71">Geometry Dash: Gaming or Addiction? -- Medium / Illumination Gaming</a> -- 2024 -- secondary</li>
+<li><a href="https://www.vanas.ca/en/blog/why-the-video-game-geometry-dash-is-so-popular">Why The Video Game Geometry Dash is so Popular -- VANAS</a> -- 2024 -- secondary</li>
+<li><a href="https://bagogames.com/color-switch-flash-game-review-colors-bouncing/">Color Switch Flash Game Review -- BagoGames</a> -- 2017 -- secondary</li>
+<li><a href="https://games.themindstudios.com/post/idle-clicker-game-design-and-monetization/">Idle Clicker Games: Best Practices for Design and Monetization -- TheMindStudios</a> -- 2024 -- secondary</li>
+<li><a href="https://www.gdcvault.com/play/1022065/Idle-Games-The-Mechanics-and">Idle Games: The Mechanics and Monetization of Self-Playing Games -- GDC Vault</a> -- 2015 -- primary (industry conference)</li>
+<li><a href="https://blog.clickerheroes.com/why-clicker-games-are-so-popular-insights-from-clicker-heroes-and-top-titles/">Why Clicker Games Are So Popular -- Clicker Heroes Blog</a> -- 2024 -- primary (developer perspective)</li>
+<li><a href="https://adjoe.io/glossary/idle-games-mobile/">Idle Games: Definition, Demographics &amp; Monetization -- adjoe</a> -- 2024 -- primary (ad platform data)</li>
+<li><a href="https://pubscale.com/glossary/idle-games-monetization">Idle Games Monetization -- PubScale</a> -- 2024 -- secondary</li>
+<li><a href="https://apkafe.com/why-merge-games-are-the-hottest-mobile-trend-in-2025/">Why Merge Games Are the Hottest Mobile Trend in 2025 -- APKafe</a> -- 2025 -- secondary</li>
+<li><a href="https://www.applovin.com/blog/best-practices-ads-for-merge-games/">Best Practices for Merge Games -- AppLovin</a> -- 2024 -- primary (ad platform)</li>
+<li><a href="https://medium.com/@singhaalworld07/the-psychology-behind-wordle-why-were-all-obsessed-and-how-to-win-more-often-1128b29894d2">The Psychology Behind Wordle -- Medium / Aman Singhaal</a> -- 2024 -- secondary</li>
+<li><a href="https://now.tufts.edu/2022/01/27/what-our-brains-do-when-we-play-wordle">What Our Brains Do When We Play Wordle -- Tufts Now</a> -- 2022 -- primary (university research)</li>
+<li><a href="https://uxmag.com/articles/the-fascinating-psychology-tricks-that-make-wordle-so-addictive">The Fascinating Psychology Tricks That Make WORDLE So Addictive -- UX Magazine</a> -- 2022 -- secondary</li>
+<li><a href="https://www.cnbc.com/2022/02/15/bite-sized-fun-the-psychology-behind-your-sudden-wordle-obsession.html">Bite-sized fun: The psychology behind your sudden Wordle obsession -- CNBC</a> -- 2022 -- secondary</li>
+<li><a href="https://www.heroconcept.com/a-brief-history-of-brick-breaker-video-games/">A Brief History of Brick Breaker Video Games -- Hero Concept</a> -- 2023 -- secondary</li>
+<li><a href="https://www.gamewinter.com/arkanoid-and-the-reinvention-of-breakout/">Arkanoid and the Reinvention of Breakout -- GameWinter</a> -- 2024 -- secondary</li>
+<li><a href="https://drimify.com/en/resources/whack-mole-reflex-games-user-engagement/">What&#39;s whack a mole? Reflex games for better user engagement -- Drimify</a> -- 2024 -- secondary</li>
+<li><a href="https://blog.cognifit.com/reaction-field/">Reaction Field: Smack Those Sneaky Moles -- CogniFit</a> -- 2024 -- secondary</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript">2D breakout game using pure JavaScript -- MDN</a> -- ongoing -- primary (documentation)</li>
+<li><a href="https://dev.to/cannan_david/i-built-120-html5-games-using-pure-canvas-no-frameworks-gdm">I Built 120 HTML5 Games Using Pure Canvas (No Frameworks) -- DEV Community</a> -- 2024 -- primary (developer experience)</li>
+<li><a href="https://tenjin.com/blog/ad-mon-gaming-2025/">Ad Monetization in Mobile Games - Benchmark Report 2025 -- Tenjin</a> -- 2025 -- primary (data provider)</li>
+<li><a href="https://gameanalytics.com/news/hyper-casual-vs-idle-games/">Hyper-Casual vs Idle: The Latest Trends in Mobile Games -- GameAnalytics</a> -- 2024 -- primary (analytics provider)</li>
+<li><a href="https://www.blog.udonis.co/mobile-marketing/mobile-games/mobile-gaming-statistics">200+ Mobile Gaming Market Statistics 2026 Report -- Udonis</a> -- 2026 -- primary (data aggregator)</li>
+<li><a href="https://gg.forem.com/foxdata/from-meme-to-market-what-game-developers-can-learn-from-tiktoks-italian-brainrot-o8k">From Meme to Market: What Game Developers Can Learn from TikTok&#39;s Italian Brainrot -- Gamers Forem</a> -- 2025 -- secondary</li>
+<li><a href="https://www.mi-3.com.au/17-12-2025/roblox-garden-brainrot-games-set-new-records-2025-unprecedented-player-engagement">Roblox garden, brainrot games set new records in 2025 -- Mi3</a> -- 2025 -- primary (industry reporting)</li>
+<li><a href="https://ejaw.net/top-10-hyper-casual-mechanics/">Top 10 Hyper-Casual Game Mechanics: Developer Guide 2025 -- EJAW</a> -- 2025 -- secondary</li>
+<li><a href="https://playgama.com/blog/game-faqs/how-can-i-create-a-geometry-dash-game-using-html5/">How can I create a Geometry Dash game using HTML5? -- Playgama Blog</a> -- 2024 -- secondary</li>
+<li><a href="https://meetupfeed.io/talk/flappy-bird-javascript">Flappy Bird in JavaScript with 25 Lines of Code -- meetupfeed.io</a> -- 2023 -- primary (developer talk)</li>
+<li><a href="https://en.wikipedia.org/wiki/Steal_a_Brainrot">Steal a Brainrot -- Wikipedia</a> -- 2025 -- secondary</li>
+<li><a href="https://www.adjust.com/blog/how-to-make-an-idle-game/">How to Make an Idle Game -- Adjust</a> -- 2024 -- primary (attribution platform)</li>
+</ul>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

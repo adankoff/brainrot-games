@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Concept 01 — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">concepts/game-concept-01.md</div>
+    <div class="doc-content"><h1>Game Concept 01: Brainrot Whack-a-Mole</h1>
+<h2>Game Title</h2>
+<p><strong>WHACK-A-ROT</strong></p>
+<p>Alternate titles considered: Bonk-a-Rot, Smack the Brainrot, Mole Patrol: Ohio Edition. &quot;Whack-a-Rot&quot; wins because it&#39;s instantly parseable, sounds vaguely threatening, and the pun actually works.</p>
+<hr>
+<h2>Elevator Pitch</h2>
+<p>It&#39;s whack-a-mole but the moles are Italian brainrot characters popping out of holes and you slap them back to whatever cursed dimension they came from.</p>
+<hr>
+<h2>Base Mechanic</h2>
+<p><strong>Whack-a-Mole.</strong> Targets appear in a grid of holes. Tap/click them before they disappear. Score points. Miss too many and the game ends. ~100 lines of core logic. Proven since 1976 (literal arcade cabinets), proven on mobile since 2010.</p>
+<hr>
+<h2>Brainrot Twist</h2>
+<p>This is where it goes from &quot;another whack-a-mole&quot; to &quot;I need to send this to everyone I know.&quot;</p>
+<h3>Characters (each has unique behavior and point values)</h3>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Points</th>
+<th>Behavior</th>
+<th>Sound on Whack</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tralalero Tralala</strong></td>
+<td>100</td>
+<td>Standard pop-up, medium speed</td>
+<td>&quot;TRALALERO!&quot; (distorted)</td>
+</tr>
+<tr>
+<td><strong>Bombardiro Crocodilo</strong></td>
+<td>200</td>
+<td>Pops up fast, disappears fast — hard to hit</td>
+<td>Explosion SFX + &quot;BOMBARDIRO!&quot;</td>
+</tr>
+<tr>
+<td><strong>Tung Tung Tung Sahur</strong></td>
+<td>150</td>
+<td>Pops up and drums on the hole edge for 2 sec</td>
+<td>Drum sound effect</td>
+</tr>
+<tr>
+<td><strong>Lirili Larila</strong></td>
+<td>300</td>
+<td>Appears rarely, tiny hitbox, flies upward out of hole</td>
+<td>Butterfly wing flutter + squeak</td>
+</tr>
+<tr>
+<td><strong>Brr Brr Patapim</strong></td>
+<td>-200</td>
+<td>PENALTY target. Looks cute. Whacking costs points.</td>
+<td>Sad &quot;patapim...&quot; + screen shake</td>
+</tr>
+<tr>
+<td><strong>Cappuccino Assassino</strong></td>
+<td>500</td>
+<td>BOSS. Appears every 10th round. Takes 3 taps.</td>
+<td>Espresso machine sounds, gets angrier each tap</td>
+</tr>
+</tbody></table>
+<h3>Visual Gags</h3>
+<ul>
+<li>Characters don&#39;t just &quot;pop up&quot; — they have unique entrance animations (Bombardiro flies in on a crocodile, Tralalero moonwalks out of the hole)</li>
+<li>Whacking a character produces a cartoonish impact effect with the character&#39;s catchphrase as floating text</li>
+<li>Miss a character and it does a taunt animation before ducking back down</li>
+<li>The background changes every 5 rounds (Italian piazza, surreal void, Ohio for some reason)</li>
+<li>Score counter labeled &quot;AURA POINTS&quot; instead of &quot;SCORE&quot;</li>
+</ul>
+<h3>Sound Design</h3>
+<ul>
+<li>Every character has their theme sound bite (the actual meme audio, compressed and distorted)</li>
+<li>Combo multiplier triggers increasingly unhinged audio mashups</li>
+<li>At 10x combo: all character sounds play simultaneously (pure chaos, extremely clippable)</li>
+</ul>
+<hr>
+<h2>Core Loop (every 10 seconds)</h2>
+<ol>
+<li>Characters pop out of 6-9 holes in a grid</li>
+<li>Player taps/clicks to whack them (touch or mouse — works on both)</li>
+<li>Different characters = different points, speeds, and behaviors</li>
+<li>Avoid penalty characters (Brr Brr Patapim)</li>
+<li>Combo counter builds on consecutive hits, resets on miss</li>
+<li>Round ends after ~45 seconds or 3 misses (configurable)</li>
+<li>Score screen with AURA POINTS, personal best, and share button</li>
+</ol>
+<p>The player is making ~2-3 decisions per second: which character to prioritize, whether to risk hitting the penalty target, whether to chase the rare high-value target or play safe.</p>
+<hr>
+<h2>Target Session Length</h2>
+<p><strong>30-60 seconds per round.</strong> A full session (play, die, see score, play again) is 45-90 seconds. Players will typically do 3-5 rounds before either sharing or closing — total engagement window of 3-5 minutes.</p>
+<p>This is &quot;waiting for the bus&quot; gaming. &quot;Sitting on the toilet&quot; gaming. &quot;Teacher turned around for 30 seconds&quot; gaming.</p>
+<hr>
+<h2>Viral Hook</h2>
+<p><strong>The share-worthy moments, ranked:</strong></p>
+<ol>
+<li><p><strong>Score card with character breakdown.</strong> End screen shows which characters you whacked, how many, and your total AURA POINTS. Visual, screenshot-ready, includes brainrot character art. &quot;I got 4,200 aura. bet you can&#39;t beat that.&quot;</p>
+</li>
+<li><p><strong>The 10x combo chaos moment.</strong> When the audio mashup kicks in and the screen goes unhinged. This is TikTok content waiting to happen — someone recording their screen while the game descends into madness.</p>
+</li>
+<li><p><strong>The Brr Brr Patapim grief.</strong> Getting baited into whacking the penalty character is funny every time. &quot;I LOST 200 AURA TO BRR BRR PATAPIM&quot; is a sentence someone will type in a group chat.</p>
+</li>
+<li><p><strong>New character additions.</strong> Every time a new Italian brainrot character memes into existence, we add it to the game. This creates recurring social moments: &quot;they added [new character] to whack-a-rot.&quot;</p>
+</li>
+<li><p><strong>The URL itself.</strong> brainrotgames.com/whack-a-rot is funny to send with zero context. The recipient clicks, sees Italian brainrot characters popping out of holes, and immediately understands.</p>
+</li>
+</ol>
+<hr>
+<h2>Monetization Angle</h2>
+<h3>Ads (primary revenue)</h3>
+<ul>
+<li><strong>Interstitial ad on death screen</strong> — after every 2-3 rounds. Player just died, they&#39;re already looking at the screen, natural pause point. Not after EVERY round — that kills retention. Every 2-3 keeps them playing.</li>
+<li><strong>Rewarded video for continue</strong> — &quot;watch ad to erase your last miss.&quot; Opt-in, player-initiated, high engagement rate.</li>
+<li><strong>Rewarded video for character unlock</strong> — &quot;watch 3 ads to unlock Cappuccino Assassino.&quot; Gives free players a path to collection.</li>
+</ul>
+<h3>IAP (secondary revenue)</h3>
+<ul>
+<li><strong>Character pack unlocks</strong> — $0.99-1.99 to unlock a themed character pack (e.g., &quot;Full Italian Collection,&quot; &quot;Boss Pack&quot;).</li>
+<li><strong>No-ads pass</strong> — $2.99 one-time. Standard.</li>
+<li><strong>Cosmetic hammers</strong> — different whacking tools (flyswatter, Italian flag, rubber chicken). Pure cosmetic, $0.99 each.</li>
+</ul>
+<h3>Key constraint</h3>
+<p>Ads must never interrupt mid-round. The game is 30-60 seconds — interrupting that kills the flow. All ad placements are between rounds at natural pause points.</p>
+<hr>
+<h2>Difficulty Curve</h2>
+<h3>How it gets harder</h3>
+<ul>
+<li><strong>Speed ramp:</strong> Characters pop up faster and stay visible for shorter durations as rounds progress</li>
+<li><strong>More holes:</strong> Grid expands from 6 to 9 holes at round 5</li>
+<li><strong>More penalty characters:</strong> Brr Brr Patapim appears more frequently at higher rounds</li>
+<li><strong>Character mixing:</strong> Early rounds have 1-2 character types. By round 5, all characters appear with their unique behaviors</li>
+<li><strong>Boss rounds:</strong> Every 10th round, Cappuccino Assassino appears and requires 3 taps while other characters continue spawning</li>
+</ul>
+<h3>What keeps players coming back</h3>
+<ul>
+<li><strong>Personal best chasing</strong> — &quot;I got 4,200 aura&quot; creates a target to beat</li>
+<li><strong>Character collection</strong> — not all characters are unlocked from the start. Playing unlocks new targets with new behaviors.</li>
+<li><strong>Daily high score</strong> — simple leaderboard concept, even just local-storage-based</li>
+<li><strong>New characters</strong> — when new Italian brainrot characters trend, adding them to the game brings players back</li>
+</ul>
+<h3>Skill ceiling</h3>
+<p>The game is easy to pick up (tap the things) but has genuine skill expression through combo management, penalty avoidance, and target prioritization. A skilled player can 3-4x a casual player&#39;s score, which creates competitive sharing.</p>
+<hr>
+<h2>Estimated Complexity</h2>
+<p><strong>Build complexity: 1.5/5 (trivial to low)</strong></p>
+<h3>Core engine (~100-150 lines)</h3>
+<ul>
+<li>Canvas rendering of hole grid</li>
+<li>Character spawn timing and randomization</li>
+<li>Tap/click hit detection</li>
+<li>Score tracking with combo multiplier</li>
+<li>Round timer and miss counter</li>
+</ul>
+<h3>Character system (~100 lines)</h3>
+<ul>
+<li>Character definitions (sprite, points, speed, behavior, sound)</li>
+<li>Spawn weighting per round (rarity system)</li>
+<li>Penalty character logic</li>
+<li>Boss character multi-tap logic</li>
+</ul>
+<h3>Polish layer (~150-200 lines)</h3>
+<ul>
+<li>Entrance/exit animations</li>
+<li>Whack impact effects and floating text</li>
+<li>Sound effect playback</li>
+<li>Score screen with character breakdown</li>
+<li>Share button (copy score card or generate image)</li>
+</ul>
+<h3>Assets needed</h3>
+<ul>
+<li>6-8 character sprites (can be simple/stylized — matches brainrot aesthetic)</li>
+<li>Hole/ground sprites</li>
+<li>Impact effect sprites</li>
+<li>6-8 short audio clips (character sound bites)</li>
+<li>Background images (2-3 variants)</li>
+</ul>
+<h3>Total estimate</h3>
+<p>A competent developer (or Claude Code agent) should have a playable prototype in <strong>2-4 hours</strong> and a polished, shippable version in <strong>1-2 days</strong>. The character system is data-driven, so adding new characters is a config change, not a code change.</p>
+<hr>
+<p><em>This is the recommended first ship. Fastest to build, highest theme-mechanic fit, shared character assets reusable across future Italian brainrot games.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>

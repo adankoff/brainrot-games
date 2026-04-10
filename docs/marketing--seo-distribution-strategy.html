@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Distribution Strategy — Brainrot Games Docs</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0f;
+  color: #e0e0e0;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #c8ff00; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.back-link { display: inline-block; margin-bottom: 1.5rem; font-size: 0.9rem; opacity: 0.7; }
+.back-link:hover { opacity: 1; }
+
+/* Index page */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; color: #c8ff00; letter-spacing: -0.02em; }
+.hero p { color: #888; margin-top: 0.5rem; font-size: 1.1rem; }
+.section-group { margin-bottom: 2.5rem; }
+.section-group h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8ff00;
+  border-bottom: 1px solid #1a1a2e;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.doc-list { list-style: none; }
+.doc-list li { margin-bottom: 0.75rem; }
+.doc-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: #111122;
+  border-radius: 8px;
+  border: 1px solid #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.doc-list a:hover {
+  border-color: #c8ff00;
+  background: #15152a;
+  text-decoration: none;
+}
+.doc-list .title { font-weight: 600; color: #fff; }
+.doc-list .desc { font-size: 0.85rem; color: #666; margin-top: 0.25rem; }
+.doc-list .path { font-size: 0.75rem; color: #444; font-family: monospace; margin-top: 0.2rem; }
+.play-links { display: flex; gap: 1rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.play-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #c8ff00;
+  color: #0a0a0f;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.play-btn:hover { background: #d4ff33; text-decoration: none; }
+
+/* Document page */
+.doc-content h1 { font-size: 2rem; color: #c8ff00; margin-bottom: 0.5rem; line-height: 1.3; }
+.doc-content h2 { font-size: 1.5rem; color: #fff; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid #1a1a2e; }
+.doc-content h3 { font-size: 1.2rem; color: #ddd; margin-top: 2rem; margin-bottom: 0.5rem; }
+.doc-content h4 { font-size: 1rem; color: #bbb; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.doc-content p { margin-bottom: 1rem; }
+.doc-content ul, .doc-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.doc-content li { margin-bottom: 0.4rem; }
+.doc-content strong { color: #fff; }
+.doc-content em { color: #aaa; }
+.doc-content code {
+  background: #1a1a2e;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #c8ff00;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.doc-content pre {
+  background: #111122;
+  border: 1px solid #1a1a2e;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+.doc-content pre code {
+  background: none;
+  padding: 0;
+  color: #ccc;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.doc-content th {
+  background: #1a1a2e;
+  color: #c8ff00;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.doc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a1a2e;
+  vertical-align: top;
+}
+.doc-content tr:hover td { background: #0d0d1a; }
+.doc-content blockquote {
+  border-left: 3px solid #c8ff00;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  color: #999;
+}
+.doc-content hr { border: none; border-top: 1px solid #1a1a2e; margin: 2rem 0; }
+.doc-content img { max-width: 100%; border-radius: 8px; }
+.meta { color: #555; font-size: 0.85rem; margin-bottom: 2rem; font-family: monospace; }
+.nav-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #1a1a2e; display: flex; justify-content: space-between; font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .container { padding: 1rem; }
+  .hero h1 { font-size: 1.8rem; }
+  .doc-content h1 { font-size: 1.5rem; }
+  .doc-content table { font-size: 0.8rem; }
+  .doc-content th, .doc-content td { padding: 0.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="index.html" class="back-link">&larr; back to index</a>
+
+    <div class="meta">marketing/seo-distribution-strategy.md</div>
+    <div class="doc-content"><h1>SEO and Distribution Strategy</h1>
+<h2>Brainrot Games | April 2026</h2>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#1-seo-keyword-research-and-opportunity-analysis">SEO Keyword Research and Opportunity Analysis</a></li>
+<li><a href="#2-on-page-seo-meta-tags-structured-data-and-html-implementation">On-Page SEO: Meta Tags, Structured Data, and HTML Implementation</a></li>
+<li><a href="#3-distribution-channel-plan">Distribution Channel Plan</a></li>
+<li><a href="#4-aso-prep-notes-for-google-play-twa">ASO Prep Notes for Google Play TWA</a></li>
+</ol>
+<hr>
+<h2>1. SEO Keyword Research and Opportunity Analysis</h2>
+<h3>1.1 Search Landscape Context</h3>
+<p>The &quot;brainrot games&quot; category is in a rapid growth phase. Poki has a dedicated <code>/brainrot</code> category page serving 90M+ monthly players. CrazyGames, Y8, Playhop, and others have all created brainrot-specific landing pages. Steal a Brainrot on Roblox hit 25.4M CCU and drives massive related search volume. The Italian brainrot sub-niche (Tralalero Tralala, Bombardiro Crocodilo, etc.) has spawned dozens of games across Steam, mobile, and web.</p>
+<p>This means two things: (1) search demand is real and growing, and (2) the SERP is competitive, with established portals holding most page-one positions. Our advantage is the exact-match domain (brainrotgames.com) and the ability to rank for game-specific long-tail queries that portals can&#39;t target as precisely.</p>
+<h3>1.2 Keyword Universe</h3>
+<h4>Primary Keywords (Category-Level)</h4>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Est. Monthly Volume</th>
+<th>Competition</th>
+<th>Current SERP Owners</th>
+<th>AI Overview?</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>brainrot games</td>
+<td>90K-150K</td>
+<td>HIGH</td>
+<td>Poki, CrazyGames, Steam, Play Store</td>
+<td>Yes - lists game portals</td>
+<td>P0 - must own</td>
+</tr>
+<tr>
+<td>brainrot games online</td>
+<td>30K-50K</td>
+<td>HIGH</td>
+<td>Poki, Playhop, Play-Games.com</td>
+<td>Yes</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>play brainrot games</td>
+<td>20K-35K</td>
+<td>MEDIUM-HIGH</td>
+<td>Poki, CrazyGames</td>
+<td>Partial</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>Italian brainrot game</td>
+<td>15K-25K</td>
+<td>MEDIUM</td>
+<td>CrazyGames, Playgama, SayGames</td>
+<td>Yes</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>brainrot games free</td>
+<td>25K-40K</td>
+<td>HIGH</td>
+<td>Poki, mobile app stores</td>
+<td>Yes</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>play brainrot games online</td>
+<td>10K-20K</td>
+<td>MEDIUM</td>
+<td>Portals dominate</td>
+<td>Partial</td>
+<td>P1</td>
+</tr>
+</tbody></table>
+<p><strong>Strategy note:</strong> We will not outrank Poki for &quot;brainrot games&quot; in the short term. They have domain authority, a dedicated category page, and 625M annual players. Our play is to (a) rank for our specific game names, (b) capture long-tail queries, (c) become the cited source in AI Overviews for specific games, and (d) build topical authority over 6-12 months that lets us compete for category terms.</p>
+<h4>Game-Specific Keywords (Our Best Opportunity)</h4>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Est. Monthly Volume</th>
+<th>Competition</th>
+<th>AI Overview?</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>flappy tralalero</td>
+<td>1K-5K (growing)</td>
+<td>LOW</td>
+<td>No</td>
+<td>P0 - own this</td>
+</tr>
+<tr>
+<td>flappy tralalero game</td>
+<td>500-2K</td>
+<td>LOW</td>
+<td>No</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>play flappy tralalero</td>
+<td>500-1.5K</td>
+<td>LOW</td>
+<td>No</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>whack a rot</td>
+<td>&lt;500 (new)</td>
+<td>VERY LOW</td>
+<td>No</td>
+<td>P0 - own this</td>
+</tr>
+<tr>
+<td>whack a rot game</td>
+<td>&lt;500 (new)</td>
+<td>VERY LOW</td>
+<td>No</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>whack a mole brainrot</td>
+<td>2K-5K</td>
+<td>LOW-MEDIUM</td>
+<td>No</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>brainrot whack a mole</td>
+<td>1K-3K</td>
+<td>LOW-MEDIUM</td>
+<td>No</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>tralalero tralala game</td>
+<td>10K-20K</td>
+<td>MEDIUM</td>
+<td>Yes - lists multiple games</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>tralalero tralala play online</td>
+<td>3K-8K</td>
+<td>MEDIUM</td>
+<td>Partial</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>bombardiro crocodilo game</td>
+<td>5K-10K</td>
+<td>MEDIUM</td>
+<td>Yes</td>
+<td>P2</td>
+</tr>
+</tbody></table>
+<p><strong>Strategy note:</strong> Game-specific keywords are where we win. Nobody else has a game called &quot;Flappy Tralalero&quot; or &quot;Whack-a-Rot.&quot; We should own page one for these terms within weeks of launch with basic on-page SEO. The compound keywords like &quot;whack a mole brainrot&quot; are high-value because they match search intent precisely and have low competition from major portals.</p>
+<h4>Long-Tail Keywords (Content and SEO Capture)</h4>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Est. Monthly Volume</th>
+<th>Competition</th>
+<th>Search Intent</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>free brainrot games online no download</td>
+<td>5K-10K</td>
+<td>LOW-MEDIUM</td>
+<td>Transactional (play now)</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>Italian brainrot characters game</td>
+<td>2K-5K</td>
+<td>LOW</td>
+<td>Commercial (looking for specific theme)</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>brainrot games to play in class</td>
+<td>8K-15K</td>
+<td>MEDIUM</td>
+<td>Transactional (play now, stealth context)</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>brainrot games unblocked</td>
+<td>15K-30K</td>
+<td>HIGH</td>
+<td>Transactional (school/work bypass)</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>play brainrot games on phone</td>
+<td>3K-6K</td>
+<td>LOW-MEDIUM</td>
+<td>Transactional (mobile)</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>brainrot meme games 2026</td>
+<td>1K-3K</td>
+<td>LOW</td>
+<td>Informational/commercial</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>tralalero tralala online free</td>
+<td>3K-8K</td>
+<td>MEDIUM</td>
+<td>Transactional</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>best brainrot games to play right now</td>
+<td>2K-5K</td>
+<td>MEDIUM</td>
+<td>Commercial (comparison)</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>what is brainrot games</td>
+<td>5K-10K</td>
+<td>MEDIUM</td>
+<td>Informational</td>
+<td>P2</td>
+</tr>
+</tbody></table>
+<p><strong>Strategy note:</strong> &quot;brainrot games unblocked&quot; is high-volume because the primary audience (ages 8-16) plays at school. We should not brand as an &quot;unblocked games&quot; site (this signals low quality to Google), but we should ensure our games work without requiring anything schools typically block (WebSockets, specific CDNs, etc.). The &quot;no download&quot; long-tail is perfect for us -- that is literally our product.</p>
+<h4>Competitor Keywords (Adjacent Capture)</h4>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Est. Monthly Volume</th>
+<th>Competition</th>
+<th>Why Target</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>skibidi toilet game</td>
+<td>50K-100K</td>
+<td>HIGH</td>
+<td>Adjacent meme audience, massive volume</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>skibidi games online</td>
+<td>20K-40K</td>
+<td>HIGH</td>
+<td>Same demographic, overlapping interest</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>meme games online free</td>
+<td>10K-20K</td>
+<td>MEDIUM</td>
+<td>Broad category capture</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>meme games browser</td>
+<td>3K-6K</td>
+<td>LOW-MEDIUM</td>
+<td>Exact format match</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>flappy bird meme version</td>
+<td>2K-5K</td>
+<td>LOW</td>
+<td>Direct mechanic comparison</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>free browser games no download</td>
+<td>20K-40K</td>
+<td>HIGH</td>
+<td>Broad but high-intent for our format</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>neal fun games</td>
+<td>10K-20K</td>
+<td>MEDIUM</td>
+<td>Audience overlap, similar distribution model</td>
+<td>P3</td>
+</tr>
+</tbody></table>
+<p><strong>Strategy note:</strong> We should not try to rank for &quot;skibidi toilet game&quot; directly -- that SERP is owned by dedicated skibidi game sites. Instead, we capture this audience through content like &quot;if you like skibidi toilet games, try these Italian brainrot games&quot; and through social distribution where the audiences overlap. Competitor keywords are a content play, not a direct ranking play.</p>
+<h3>1.3 Keyword Clusters (Topical Authority Map)</h3>
+<p><strong>Cluster 1: Brand + Games Hub</strong> (Homepage)</p>
+<ul>
+<li>brainrot games, play brainrot games, brainrot games online, free brainrot games, brainrot games no download</li>
+</ul>
+<p><strong>Cluster 2: Flappy Tralalero</strong> (Game 01 page + supporting content)</p>
+<ul>
+<li>flappy tralalero, flappy tralalero game, play flappy tralalero, tralalero tralala flappy bird, flappy bird brainrot</li>
+</ul>
+<p><strong>Cluster 3: Whack-a-Rot</strong> (Game 02 page + supporting content)</p>
+<ul>
+<li>whack a rot, whack a mole brainrot, brainrot whack a mole, whack brainrot characters, Italian brainrot whack game</li>
+</ul>
+<p><strong>Cluster 4: Italian Brainrot Characters</strong> (Future content hub)</p>
+<ul>
+<li>Italian brainrot characters, tralalero tralala, bombardiro crocodilo, Italian brainrot memes, brainrot character list</li>
+</ul>
+<p><strong>Cluster 5: Meme Games Category</strong> (Blog/content)</p>
+<ul>
+<li>meme games online, browser meme games, best meme games 2026, free meme games no download</li>
+</ul>
+<h3>1.4 AI Overview Optimization Strategy</h3>
+<p>Google AI Overviews are triggering for category-level brainrot queries. The AI pulls from:</p>
+<ul>
+<li>Portal listing pages (Poki, CrazyGames)</li>
+<li>Wikipedia and Fandom wiki pages</li>
+<li>Game review/list articles from gaming blogs</li>
+</ul>
+<p><strong>Our play for AI Overview citations:</strong></p>
+<ol>
+<li>Ensure each game page has a clear, factual opening paragraph that AI can extract: &quot;Flappy Tralalero is a free browser game where you play as Tralalero Tralala -- the three-legged Italian brainrot shark -- in a Flappy Bird-style obstacle course.&quot;</li>
+<li>Use FAQ schema on game pages (see Section 2) so Google can pull Q&amp;A pairs.</li>
+<li>Build a characters/about page that becomes the authoritative reference for our specific games -- this is what AI will cite when someone asks &quot;what is Flappy Tralalero?&quot;</li>
+<li>Structure content with clear, declarative sentences at the top of each section. AI Overviews favor statements, not marketing copy.</li>
+</ol>
+<hr>
+<h2>2. On-Page SEO: Meta Tags, Structured Data, and HTML Implementation</h2>
+<h3>2.1 Homepage (brainrotgames.com)</h3>
+<h4>Title Tag</h4>
+<pre><code class="language-html">&lt;title&gt;brainrot games -- play free meme games online | no download&lt;/title&gt;
+</code></pre>
+<ul>
+<li>60 characters. Hits primary keyword (&quot;brainrot games&quot;), action keyword (&quot;play&quot;), qualifiers (&quot;free,&quot; &quot;online,&quot; &quot;no download&quot;).</li>
+<li>Lowercase is intentional and on-brand. Google renders it as-is in the SERP.</li>
+</ul>
+<h4>Meta Description</h4>
+<pre><code class="language-html">&lt;meta name=&quot;description&quot; content=&quot;play free brainrot games in your browser. Italian brainrot characters, zero downloads, zero signups. featuring Flappy Tralalero, Whack-a-Rot, and more meme games that are bad for you in all the right ways.&quot;&gt;
+</code></pre>
+<ul>
+<li>195 characters. Within the safe display range. Includes: primary keyword, game names (for brand search), key differentiators (free, browser, no download), and a brand voice line.</li>
+</ul>
+<h4>Canonical URL</h4>
+<pre><code class="language-html">&lt;link rel=&quot;canonical&quot; href=&quot;https://brainrotgames.com/&quot;&gt;
+</code></pre>
+<h4>Open Graph (Updated)</h4>
+<pre><code class="language-html">&lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;brainrot games -- play free meme games online&quot;&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;meme-themed browser games. Italian brainrot characters, proven mechanics, zero attention span required. play now, no download.&quot;&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;https://brainrotgames.com/&quot;&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;https://brainrotgames.com/brand/og-image.png&quot;&gt;
+&lt;meta property=&quot;og:image:width&quot; content=&quot;1200&quot;&gt;
+&lt;meta property=&quot;og:image:height&quot; content=&quot;630&quot;&gt;
+&lt;meta property=&quot;og:image:alt&quot; content=&quot;brainrot games - play free meme games online&quot;&gt;
+&lt;meta property=&quot;og:site_name&quot; content=&quot;brainrot games&quot;&gt;
+&lt;meta property=&quot;og:locale&quot; content=&quot;en_US&quot;&gt;
+</code></pre>
+<h4>Twitter Card (Updated)</h4>
+<pre><code class="language-html">&lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
+&lt;meta name=&quot;twitter:title&quot; content=&quot;brainrot games -- play free meme games online&quot;&gt;
+&lt;meta name=&quot;twitter:description&quot; content=&quot;meme-themed browser games. Italian brainrot characters, zero downloads, zero attention span required.&quot;&gt;
+&lt;meta name=&quot;twitter:image&quot; content=&quot;https://brainrotgames.com/brand/og-image.png&quot;&gt;
+&lt;meta name=&quot;twitter:image:alt&quot; content=&quot;brainrot games - play free meme games online&quot;&gt;
+&lt;meta name=&quot;twitter:site&quot; content=&quot;@brainrotgames&quot;&gt;
+</code></pre>
+<h4>Structured Data: JSON-LD (Homepage)</h4>
+<pre><code class="language-html">&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;WebSite&quot;,
+  &quot;name&quot;: &quot;Brainrot Games&quot;,
+  &quot;alternateName&quot;: &quot;BRG&quot;,
+  &quot;url&quot;: &quot;https://brainrotgames.com&quot;,
+  &quot;description&quot;: &quot;Free meme-themed browser games featuring Italian brainrot characters. Play instantly, no download required.&quot;,
+  &quot;potentialAction&quot;: {
+    &quot;@type&quot;: &quot;SearchAction&quot;,
+    &quot;target&quot;: &quot;https://brainrotgames.com/?q={search_term_string}&quot;,
+    &quot;query-input&quot;: &quot;required name=search_term_string&quot;
+  },
+  &quot;publisher&quot;: {
+    &quot;@type&quot;: &quot;Organization&quot;,
+    &quot;name&quot;: &quot;Brainrot Games&quot;,
+    &quot;url&quot;: &quot;https://brainrotgames.com&quot;,
+    &quot;logo&quot;: {
+      &quot;@type&quot;: &quot;ImageObject&quot;,
+      &quot;url&quot;: &quot;https://brainrotgames.com/brand/logo.png&quot;
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<p><strong>ItemList schema</strong> (for the games grid -- helps Google display rich results for our game catalog):</p>
+<pre><code class="language-html">&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;ItemList&quot;,
+  &quot;name&quot;: &quot;Brainrot Games Collection&quot;,
+  &quot;description&quot;: &quot;Free meme-themed browser games featuring Italian brainrot characters&quot;,
+  &quot;numberOfItems&quot;: 2,
+  &quot;itemListElement&quot;: [
+    {
+      &quot;@type&quot;: &quot;ListItem&quot;,
+      &quot;position&quot;: 1,
+      &quot;item&quot;: {
+        &quot;@type&quot;: &quot;VideoGame&quot;,
+        &quot;name&quot;: &quot;Flappy Tralalero&quot;,
+        &quot;url&quot;: &quot;https://brainrotgames.com/games/game-01/&quot;,
+        &quot;description&quot;: &quot;A Flappy Bird-style game where you play as Tralalero Tralala, the three-legged Italian brainrot shark with Nikes. Tap to fly, dodge pipes, chase your high score.&quot;,
+        &quot;genre&quot;: [&quot;Casual&quot;, &quot;Meme&quot;, &quot;Arcade&quot;],
+        &quot;gamePlatform&quot;: &quot;Web Browser&quot;,
+        &quot;applicationCategory&quot;: &quot;Game&quot;,
+        &quot;operatingSystem&quot;: &quot;Any (browser-based)&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;price&quot;: &quot;0&quot;,
+          &quot;priceCurrency&quot;: &quot;USD&quot;
+        },
+        &quot;playMode&quot;: &quot;SinglePlayer&quot;,
+        &quot;numberOfPlayers&quot;: {
+          &quot;@type&quot;: &quot;QuantitativeValue&quot;,
+          &quot;value&quot;: 1
+        }
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;ListItem&quot;,
+      &quot;position&quot;: 2,
+      &quot;item&quot;: {
+        &quot;@type&quot;: &quot;VideoGame&quot;,
+        &quot;name&quot;: &quot;Whack-a-Rot&quot;,
+        &quot;url&quot;: &quot;https://brainrotgames.com/games/game-02/&quot;,
+        &quot;description&quot;: &quot;A whack-a-mole game featuring Italian brainrot meme characters. Whack Tralalero Tralala, Bombardiro Crocodilo, and more to earn aura points and chase combos.&quot;,
+        &quot;genre&quot;: [&quot;Casual&quot;, &quot;Meme&quot;, &quot;Arcade&quot;],
+        &quot;gamePlatform&quot;: &quot;Web Browser&quot;,
+        &quot;applicationCategory&quot;: &quot;Game&quot;,
+        &quot;operatingSystem&quot;: &quot;Any (browser-based)&quot;,
+        &quot;offers&quot;: {
+          &quot;@type&quot;: &quot;Offer&quot;,
+          &quot;price&quot;: &quot;0&quot;,
+          &quot;priceCurrency&quot;: &quot;USD&quot;
+        },
+        &quot;playMode&quot;: &quot;SinglePlayer&quot;,
+        &quot;numberOfPlayers&quot;: {
+          &quot;@type&quot;: &quot;QuantitativeValue&quot;,
+          &quot;value&quot;: 1
+        }
+      }
+    }
+  ]
+}
+&lt;/script&gt;
+</code></pre>
+<h4>Additional Meta Tags (Homepage)</h4>
+<pre><code class="language-html">&lt;meta name=&quot;robots&quot; content=&quot;index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1&quot;&gt;
+&lt;meta name=&quot;theme-color&quot; content=&quot;#0a0a0a&quot;&gt;
+&lt;link rel=&quot;alternate&quot; hreflang=&quot;en&quot; href=&quot;https://brainrotgames.com/&quot;&gt;
+</code></pre>
+<hr>
+<h3>2.2 Flappy Tralalero Page (brainrotgames.com/games/game-01/)</h3>
+<h4>Title Tag</h4>
+<pre><code class="language-html">&lt;title&gt;Flappy Tralalero -- play free online | brainrot games&lt;/title&gt;
+</code></pre>
+<ul>
+<li>56 characters. Game name first (brand search), action keyword, brand suffix.</li>
+</ul>
+<h4>Meta Description</h4>
+<pre><code class="language-html">&lt;meta name=&quot;description&quot; content=&quot;play Flappy Tralalero free in your browser. it&#39;s Flappy Bird but you&#39;re Tralalero Tralala -- the three-legged Italian brainrot shark with Nikes. tap, dodge pipes, die, share your score. no download needed.&quot;&gt;
+</code></pre>
+<ul>
+<li>207 characters. Slightly over the safe 160, but Google will truncate gracefully. Includes: game name, mechanic description, character name, format (free, browser, no download). The extra length is worth it for the keyword density.</li>
+</ul>
+<h4>Canonical URL</h4>
+<pre><code class="language-html">&lt;link rel=&quot;canonical&quot; href=&quot;https://brainrotgames.com/games/game-01/&quot;&gt;
+</code></pre>
+<h4>Open Graph</h4>
+<pre><code class="language-html">&lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;Flappy Tralalero -- play free online&quot;&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;it&#39;s Flappy Bird but you&#39;re a three-legged Italian brainrot shark with Nikes. tap. die. share. repeat.&quot;&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;https://brainrotgames.com/games/game-01/&quot;&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;https://brainrotgames.com/games/game-01/og-image.png&quot;&gt;
+&lt;meta property=&quot;og:image:width&quot; content=&quot;1200&quot;&gt;
+&lt;meta property=&quot;og:image:height&quot; content=&quot;630&quot;&gt;
+&lt;meta property=&quot;og:image:alt&quot; content=&quot;Flappy Tralalero - free brainrot game&quot;&gt;
+&lt;meta property=&quot;og:site_name&quot; content=&quot;brainrot games&quot;&gt;
+</code></pre>
+<h4>Twitter Card</h4>
+<pre><code class="language-html">&lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
+&lt;meta name=&quot;twitter:title&quot; content=&quot;Flappy Tralalero -- play free online&quot;&gt;
+&lt;meta name=&quot;twitter:description&quot; content=&quot;it&#39;s Flappy Bird but you&#39;re a three-legged Italian brainrot shark. tap. die. share. repeat.&quot;&gt;
+&lt;meta name=&quot;twitter:image&quot; content=&quot;https://brainrotgames.com/games/game-01/og-image.png&quot;&gt;
+&lt;meta name=&quot;twitter:image:alt&quot; content=&quot;Flappy Tralalero gameplay&quot;&gt;
+&lt;meta name=&quot;twitter:site&quot; content=&quot;@brainrotgames&quot;&gt;
+</code></pre>
+<h4>Structured Data: JSON-LD (Game 01)</h4>
+<pre><code class="language-html">&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;VideoGame&quot;,
+  &quot;name&quot;: &quot;Flappy Tralalero&quot;,
+  &quot;alternateName&quot;: [&quot;Flappy Tralalero Tralala&quot;, &quot;Flappy Bird Brainrot&quot;],
+  &quot;url&quot;: &quot;https://brainrotgames.com/games/game-01/&quot;,
+  &quot;description&quot;: &quot;Flappy Tralalero is a free browser game where you play as Tralalero Tralala -- the iconic three-legged Italian brainrot shark with Nikes -- in a Flappy Bird-style obstacle course. Tap to fly, dodge pipes, and try not to die.&quot;,
+  &quot;image&quot;: &quot;https://brainrotgames.com/games/game-01/og-image.png&quot;,
+  &quot;genre&quot;: [&quot;Casual&quot;, &quot;Meme&quot;, &quot;Arcade&quot;],
+  &quot;gamePlatform&quot;: [&quot;Web Browser&quot;, &quot;Mobile Browser&quot;],
+  &quot;applicationCategory&quot;: &quot;Game&quot;,
+  &quot;applicationSubCategory&quot;: &quot;Arcade Game&quot;,
+  &quot;operatingSystem&quot;: &quot;Any (browser-based)&quot;,
+  &quot;inLanguage&quot;: &quot;en&quot;,
+  &quot;isFamilyFriendly&quot;: true,
+  &quot;offers&quot;: {
+    &quot;@type&quot;: &quot;Offer&quot;,
+    &quot;price&quot;: &quot;0&quot;,
+    &quot;priceCurrency&quot;: &quot;USD&quot;,
+    &quot;availability&quot;: &quot;https://schema.org/InStock&quot;
+  },
+  &quot;playMode&quot;: &quot;SinglePlayer&quot;,
+  &quot;numberOfPlayers&quot;: {
+    &quot;@type&quot;: &quot;QuantitativeValue&quot;,
+    &quot;value&quot;: 1
+  },
+  &quot;author&quot;: {
+    &quot;@type&quot;: &quot;Organization&quot;,
+    &quot;name&quot;: &quot;Brainrot Games&quot;,
+    &quot;url&quot;: &quot;https://brainrotgames.com&quot;
+  },
+  &quot;datePublished&quot;: &quot;2026-04-10&quot;,
+  &quot;keywords&quot;: &quot;flappy tralalero, tralalero tralala game, Italian brainrot game, flappy bird brainrot, free browser game, meme game&quot;
+}
+&lt;/script&gt;
+</code></pre>
+<p><strong>FAQ Schema</strong> (add below the game canvas, both for SEO and AI Overview capture):</p>
+<pre><code class="language-html">&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;FAQPage&quot;,
+  &quot;mainEntity&quot;: [
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;What is Flappy Tralalero?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Flappy Tralalero is a free browser game based on the Flappy Bird mechanic, where you play as Tralalero Tralala -- the three-legged Italian brainrot shark meme character wearing Nikes. Tap to fly through pipes and try to beat your high score. No download or signup required.&quot;
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;How do you play Flappy Tralalero?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Tap or click anywhere on the screen to make Tralalero Tralala flap upward. Avoid the pipes. Each pipe you pass earns one point. The game ends when you hit a pipe or the ground. Try to beat your high score and share it with friends.&quot;
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;Is Flappy Tralalero free?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Yes. Flappy Tralalero is completely free to play in your web browser. No download, no app install, no account signup. Just open the link and play.&quot;
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;Who is Tralalero Tralala?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Tralalero Tralala is a character from Italian brainrot meme culture -- a three-legged shark wearing Nike shoes. The character originated from AI-generated Italian meme content that went viral on TikTok and social media in 2025.&quot;
+      }
+    }
+  ]
+}
+&lt;/script&gt;
+</code></pre>
+<p><strong>Visible SEO content block</strong> (add below the game container as a lightweight text section -- essential for giving Google crawlable content on a page that is otherwise just a canvas element):</p>
+<pre><code class="language-html">&lt;section class=&quot;game-info&quot; style=&quot;padding: 2rem; max-width: 640px; margin: 0 auto;&quot;&gt;
+  &lt;h1&gt;Flappy Tralalero&lt;/h1&gt;
+  &lt;p&gt;Flappy Tralalero is a free browser game where you play as Tralalero Tralala -- the iconic three-legged Italian brainrot shark with Nikes -- dodging pipes in a Flappy Bird-style challenge. Tap to fly, try not to die, share your score.&lt;/p&gt;
+  &lt;h2&gt;How to Play&lt;/h2&gt;
+  &lt;p&gt;Tap or click to flap. Pass through pipes to score points. Hit a pipe and it&#39;s game over. Beat your high score, screenshot it, send it to your group chat. That&#39;s the whole game.&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/&quot;&gt;More brainrot games&lt;/a&gt; | &lt;a href=&quot;/games/game-02/&quot;&gt;Play Whack-a-Rot&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<hr>
+<h3>2.3 Whack-a-Rot Page (brainrotgames.com/games/game-02/)</h3>
+<h4>Title Tag</h4>
+<pre><code class="language-html">&lt;title&gt;Whack-a-Rot -- brainrot whack-a-mole game | play free online&lt;/title&gt;
+</code></pre>
+<ul>
+<li>62 characters. Includes game name, mechanic keyword (&quot;whack-a-mole&quot;), and action qualifiers.</li>
+</ul>
+<h4>Meta Description</h4>
+<pre><code class="language-html">&lt;meta name=&quot;description&quot; content=&quot;play Whack-a-Rot free in your browser. a whack-a-mole game with Italian brainrot meme characters -- Tralalero Tralala, Bombardiro Crocodilo, and more. whack them, earn aura points, chase combos. no download.&quot;&gt;
+</code></pre>
+<ul>
+<li>209 characters. Includes game name, mechanic, character names (keyword-rich), and format.</li>
+</ul>
+<h4>Canonical URL</h4>
+<pre><code class="language-html">&lt;link rel=&quot;canonical&quot; href=&quot;https://brainrotgames.com/games/game-02/&quot;&gt;
+</code></pre>
+<h4>Open Graph</h4>
+<pre><code class="language-html">&lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;
+&lt;meta property=&quot;og:title&quot; content=&quot;Whack-a-Rot -- brainrot whack-a-mole game | play free&quot;&gt;
+&lt;meta property=&quot;og:description&quot; content=&quot;whack Italian brainrot meme characters. earn aura points. chase combos. flex your score.&quot;&gt;
+&lt;meta property=&quot;og:url&quot; content=&quot;https://brainrotgames.com/games/game-02/&quot;&gt;
+&lt;meta property=&quot;og:image&quot; content=&quot;https://brainrotgames.com/games/game-02/og-image.png&quot;&gt;
+&lt;meta property=&quot;og:image:width&quot; content=&quot;1200&quot;&gt;
+&lt;meta property=&quot;og:image:height&quot; content=&quot;630&quot;&gt;
+&lt;meta property=&quot;og:image:alt&quot; content=&quot;Whack-a-Rot - brainrot whack-a-mole game&quot;&gt;
+&lt;meta property=&quot;og:site_name&quot; content=&quot;brainrot games&quot;&gt;
+</code></pre>
+<h4>Twitter Card</h4>
+<pre><code class="language-html">&lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
+&lt;meta name=&quot;twitter:title&quot; content=&quot;Whack-a-Rot -- brainrot whack-a-mole game&quot;&gt;
+&lt;meta name=&quot;twitter:description&quot; content=&quot;whack Italian brainrot characters. earn aura. flex your score. no download.&quot;&gt;
+&lt;meta name=&quot;twitter:image&quot; content=&quot;https://brainrotgames.com/games/game-02/og-image.png&quot;&gt;
+&lt;meta name=&quot;twitter:image:alt&quot; content=&quot;Whack-a-Rot gameplay&quot;&gt;
+&lt;meta name=&quot;twitter:site&quot; content=&quot;@brainrotgames&quot;&gt;
+</code></pre>
+<h4>Structured Data: JSON-LD (Game 02)</h4>
+<pre><code class="language-html">&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;VideoGame&quot;,
+  &quot;name&quot;: &quot;Whack-a-Rot&quot;,
+  &quot;alternateName&quot;: [&quot;Whack a Rot&quot;, &quot;Brainrot Whack-a-Mole&quot;],
+  &quot;url&quot;: &quot;https://brainrotgames.com/games/game-02/&quot;,
+  &quot;description&quot;: &quot;Whack-a-Rot is a free whack-a-mole browser game featuring Italian brainrot meme characters. Whack Tralalero Tralala, Bombardiro Crocodilo, and other brainrot characters as they pop up. Earn aura points, chase combos, and share your score.&quot;,
+  &quot;image&quot;: &quot;https://brainrotgames.com/games/game-02/og-image.png&quot;,
+  &quot;genre&quot;: [&quot;Casual&quot;, &quot;Meme&quot;, &quot;Arcade&quot;],
+  &quot;gamePlatform&quot;: [&quot;Web Browser&quot;, &quot;Mobile Browser&quot;],
+  &quot;applicationCategory&quot;: &quot;Game&quot;,
+  &quot;applicationSubCategory&quot;: &quot;Arcade Game&quot;,
+  &quot;operatingSystem&quot;: &quot;Any (browser-based)&quot;,
+  &quot;inLanguage&quot;: &quot;en&quot;,
+  &quot;isFamilyFriendly&quot;: true,
+  &quot;offers&quot;: {
+    &quot;@type&quot;: &quot;Offer&quot;,
+    &quot;price&quot;: &quot;0&quot;,
+    &quot;priceCurrency&quot;: &quot;USD&quot;,
+    &quot;availability&quot;: &quot;https://schema.org/InStock&quot;
+  },
+  &quot;playMode&quot;: &quot;SinglePlayer&quot;,
+  &quot;numberOfPlayers&quot;: {
+    &quot;@type&quot;: &quot;QuantitativeValue&quot;,
+    &quot;value&quot;: 1
+  },
+  &quot;author&quot;: {
+    &quot;@type&quot;: &quot;Organization&quot;,
+    &quot;name&quot;: &quot;Brainrot Games&quot;,
+    &quot;url&quot;: &quot;https://brainrotgames.com&quot;
+  },
+  &quot;datePublished&quot;: &quot;2026-04-10&quot;,
+  &quot;keywords&quot;: &quot;whack a rot, whack a mole brainrot, Italian brainrot game, brainrot whack a mole, free browser game, meme game&quot;
+}
+&lt;/script&gt;
+</code></pre>
+<p><strong>FAQ Schema (Game 02):</strong></p>
+<pre><code class="language-html">&lt;script type=&quot;application/ld+json&quot;&gt;
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;FAQPage&quot;,
+  &quot;mainEntity&quot;: [
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;What is Whack-a-Rot?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Whack-a-Rot is a free browser whack-a-mole game featuring Italian brainrot meme characters. Characters like Tralalero Tralala and Bombardiro Crocodilo pop up from holes, and you tap or click to whack them before they disappear. Earn aura points and chase combos for a high score.&quot;
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;How do you play Whack-a-Rot?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Tap or click on the brainrot characters as they pop up from holes. Different characters are worth different aura points. Chain hits together for combo multipliers. Miss too many and the game ends. Share your score with friends to see who earns the most aura.&quot;
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;What brainrot characters are in Whack-a-Rot?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Whack-a-Rot features popular Italian brainrot meme characters including Tralalero Tralala (the three-legged shark), Bombardiro Crocodilo, and other fan-favorite brainrot characters. Each character has different point values and behavior patterns.&quot;
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;Is Whack-a-Rot free to play?&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;Yes. Whack-a-Rot is completely free to play in your web browser on desktop or mobile. No download, no app install, no account needed.&quot;
+      }
+    }
+  ]
+}
+&lt;/script&gt;
+</code></pre>
+<p><strong>Visible SEO content block (Game 02):</strong></p>
+<pre><code class="language-html">&lt;section class=&quot;game-info&quot; style=&quot;padding: 2rem; max-width: 640px; margin: 0 auto;&quot;&gt;
+  &lt;h1&gt;Whack-a-Rot&lt;/h1&gt;
+  &lt;p&gt;Whack-a-Rot is a free browser whack-a-mole game starring Italian brainrot meme characters. Tralalero Tralala, Bombardiro Crocodilo, and other brainrot favorites pop up from holes -- tap them to earn aura points and chain combos for a high score.&lt;/p&gt;
+  &lt;h2&gt;How to Play&lt;/h2&gt;
+  &lt;p&gt;Tap or click the brainrot characters when they appear. Different characters are worth different points. Chain hits for combo multipliers. Share your final score to flex on your friends.&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/&quot;&gt;More brainrot games&lt;/a&gt; | &lt;a href=&quot;/games/game-01/&quot;&gt;Play Flappy Tralalero&lt;/a&gt;&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<h3>2.4 Technical SEO Checklist</h3>
+<p>These items apply to all three pages and should be verified before launch:</p>
+<p><strong>Indexability:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Submit XML sitemap to Google Search Console (brainrotgames.com/sitemap.xml)</li>
+<li><input disabled="" type="checkbox"> Verify no <code>noindex</code> directives are accidentally set</li>
+<li><input disabled="" type="checkbox"> Ensure each page has a unique canonical URL</li>
+<li><input disabled="" type="checkbox"> Add <code>robots.txt</code> allowing all crawlers access to game pages</li>
+</ul>
+<p><strong>Performance (Core Web Vitals):</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> LCP (Largest Contentful Paint): under 2.5 seconds -- critical for game pages where the canvas is the LCP element</li>
+<li><input disabled="" type="checkbox"> CLS (Cumulative Layout Shift): under 0.1 -- no layout shift from ad loading or canvas resize</li>
+<li><input disabled="" type="checkbox"> INP (Interaction to Next Paint): under 200ms -- game input is already optimized for this</li>
+<li><input disabled="" type="checkbox"> Set explicit width/height on canvas and image elements to prevent CLS</li>
+</ul>
+<p><strong>Mobile:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Viewport meta tag is set (already in place)</li>
+<li><input disabled="" type="checkbox"> Game canvas is responsive and touch-friendly</li>
+<li><input disabled="" type="checkbox"> Text content below game is readable without pinch-zoom</li>
+<li><input disabled="" type="checkbox"> Tap targets are at least 48x48px</li>
+</ul>
+<p><strong>Crawlability of Game Pages:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Game pages MUST have visible HTML text content (the SEO content blocks above), not just a canvas element. Googlebot cannot play or read a canvas game. Without text, these pages are effectively empty to the crawler.</li>
+<li><input disabled="" type="checkbox"> Internal links between game pages and homepage (cross-linking added in SEO content blocks above)</li>
+<li><input disabled="" type="checkbox"> Breadcrumb markup if navigation is added later</li>
+</ul>
+<p><strong>Sitemap (brainrotgames.com/sitemap.xml):</strong></p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://brainrotgames.com/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-04-10&lt;/lastmod&gt;
+    &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://brainrotgames.com/games/game-01/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-04-10&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;0.9&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://brainrotgames.com/games/game-02/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-04-10&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;0.9&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;
+</code></pre>
+<p><strong>robots.txt:</strong></p>
+<pre><code>User-agent: *
+Allow: /
+Sitemap: https://brainrotgames.com/sitemap.xml
+</code></pre>
+<hr>
+<h2>3. Distribution Channel Plan</h2>
+<p>Channels ranked by priority. Priority is determined by: (revenue potential x audience fit x effort required x speed to impact).</p>
+<hr>
+<h3>Priority 1: Own Website (brainrotgames.com)</h3>
+<p><strong>Why #1:</strong> Full ad revenue (no 50% split), full brand control, SEO compounds over time, shareable URLs that drive organic growth. Every other channel ultimately should funnel players back here.</p>
+<p><strong>Action Items:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Owner</th>
+<th>Timeline</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Implement all on-page SEO from Section 2 (meta tags, structured data, SEO content blocks)</td>
+<td>Dev</td>
+<td>Week 1 (Apr 10-17)</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Register brainrotgames.com with Google Search Console</td>
+<td>Dev</td>
+<td>Week 1</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Submit sitemap.xml</td>
+<td>Dev</td>
+<td>Week 1</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Set up Google Analytics 4 with game-specific events (game_start, game_over, score_share)</td>
+<td>Dev</td>
+<td>Week 1</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Create robots.txt</td>
+<td>Dev</td>
+<td>Week 1</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Implement ad monetization (rewarded video between rounds, banner below game)</td>
+<td>Dev</td>
+<td>Week 2 (Apr 17-24)</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Create game-specific OG images (1200x630) for social sharing</td>
+<td>Design</td>
+<td>Week 2</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Add score-sharing feature (shareable card image with score + game branding)</td>
+<td>Dev</td>
+<td>Week 2</td>
+<td>Not started</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Monitor Search Console for indexation and first impressions</td>
+<td>Ongoing</td>
+<td>Week 3+</td>
+<td>Not started</td>
+</tr>
+</tbody></table>
+<p><strong>Expected Impact:</strong></p>
+<ul>
+<li>Weeks 1-4: Indexed by Google, appearing for brand-name queries (&quot;brainrot games,&quot; &quot;flappy tralalero&quot;)</li>
+<li>Months 2-3: Ranking on page 1 for game-specific keywords, page 2-3 for category keywords</li>
+<li>Months 4-6: If content velocity continues (new games, blog posts), competing for category terms</li>
+<li>Revenue: $0 initially, scaling with traffic. At 50K MAU with ads: ~$900-2,000/month</li>
+</ul>
+<hr>
+<h3>Priority 2: Poki</h3>
+<p><strong>Why #2:</strong> 100M MAU, dedicated brainrot category page already exists, 50/50 rev-share on Poki-driven traffic but 100% on direct traffic. Being on Poki validates the game and drives discovery from the exact demographic we target.</p>
+<p><strong>Action Items:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Timeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Create developer account at developers.poki.com</td>
+<td>Week 1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Read and implement Poki SDK requirements (sdk.poki.com/requirements.html) -- remove debug code, implement progress saving, meet performance standards</td>
+<td>Week 2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Integrate Poki SDK into game builds (separate build from own-site version)</td>
+<td>Week 2-3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Submit Flappy Tralalero first (simpler game, faster review)</td>
+<td>Week 3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Submit Whack-a-Rot once Flappy Tralalero is accepted or in review</td>
+<td>Week 3-4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>If accepted: optimize game thumbnails and descriptions for Poki&#39;s search/browse</td>
+<td>Week 4-5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Monitor Poki analytics dashboard for player counts and revenue</td>
+<td>Ongoing</td>
+</tr>
+</tbody></table>
+<p><strong>Key Requirements (from Poki docs):</strong></p>
+<ul>
+<li>Games must be HTML5, responsive, and performant</li>
+<li>Must remove all development tools, debug code, and testing artifacts</li>
+<li>Must implement progress saving where appropriate</li>
+<li>Poki is curated -- they review every submission and may reject. Not guaranteed acceptance.</li>
+<li>SDK integration required for ad monetization on their platform</li>
+</ul>
+<p><strong>Expected Impact:</strong></p>
+<ul>
+<li>If accepted: 10K-100K monthly players within first 2 months (Poki drives discovery)</li>
+<li>Revenue: $50-2,000/month depending on player volume (50% of ad revenue)</li>
+<li>Secondary benefit: Poki backlink to game page improves domain authority</li>
+</ul>
+<p><strong>Risk:</strong> Rejection. Poki is curated and may not accept every submission. Mitigation: ensure games meet all technical requirements before submitting. If rejected, iterate on feedback and resubmit.</p>
+<hr>
+<h3>Priority 3: CrazyGames</h3>
+<p><strong>Why #3:</strong> 35-45M MAU, already has an &quot;Italian Brainrot Clicker&quot; on the platform so the category has proven demand. Lower barrier to entry than Poki. Rev-share model with bonuses for SDK integration and exclusivity.</p>
+<p><strong>Action Items:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Timeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Create developer account at developer.crazygames.com</td>
+<td>Week 1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Review CrazyGames SDK requirements and ad integration</td>
+<td>Week 2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Prepare CrazyGames-specific builds (SDK integration)</td>
+<td>Week 2-3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Submit both games (CrazyGames reviews faster than Poki)</td>
+<td>Week 3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Do NOT accept exclusivity -- we need multi-platform distribution</td>
+<td>Ongoing</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Optimize listings with screenshots, descriptions, and tags</td>
+<td>Week 4</td>
+</tr>
+</tbody></table>
+<p><strong>Expected Impact:</strong></p>
+<ul>
+<li>If accepted: 5K-50K monthly players within first 2 months</li>
+<li>Revenue: $25-1,000/month</li>
+<li>Lower ceiling than Poki but more likely to accept</li>
+</ul>
+<hr>
+<h3>Priority 4: itch.io</h3>
+<p><strong>Why #4:</strong> Indie credibility, near-zero friction to publish, 90%+ revenue to developer, and the indie/gaming press regularly discovers games through itch.io. Not a volume play -- it&#39;s a credibility and discoverability play.</p>
+<p><strong>Action Items:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Timeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Create itch.io developer page (brainrotgames.itch.io)</td>
+<td>Week 1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Upload Flappy Tralalero as a free HTML5 game</td>
+<td>Week 1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Upload Whack-a-Rot</td>
+<td>Week 1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Write itch.io descriptions in authentic dev voice (not marketing speak -- itch.io audience hates that)</td>
+<td>Week 1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Tag appropriately: brainrot, meme, casual, browser, free, Italian-brainrot, flappy-bird, whack-a-mole</td>
+<td>Week 1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Add devlog post about the games (behind-the-scenes, what inspired them)</td>
+<td>Week 2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Participate in relevant game jams to build visibility</td>
+<td>Ongoing</td>
+</tr>
+</tbody></table>
+<p><strong>itch.io Description Tone (example for Flappy Tralalero):</strong></p>
+<blockquote>
+<p>it&#39;s Flappy Bird but you&#39;re Tralalero Tralala -- the three-legged Italian brainrot shark with Nikes. we made this because we thought it was funny and we were right. play it in your browser, try to beat 10 (you won&#39;t), and send it to someone who should be studying.</p>
+<p>made by brainrot games. we make games that are bad for you in all the right ways.</p>
+</blockquote>
+<p><strong>Expected Impact:</strong></p>
+<ul>
+<li>Volume: 500-5,000 plays in first month (itch.io is not a traffic machine)</li>
+<li>Revenue: Minimal (free game, optional tips)</li>
+<li>Real value: backlink from itch.io, potential pickup by indie game press, credibility signal, discoverability by content creators</li>
+</ul>
+<hr>
+<h3>Priority 5: Reddit</h3>
+<p><strong>Target subreddits:</strong></p>
+<ul>
+<li>r/WebGames (890K members) -- primary target. This sub exists for exactly what we make.</li>
+<li>r/IndieGaming (390K members) -- dev-focused, good for behind-the-scenes content</li>
+<li>r/InternetIsBeautiful (16M+ members) -- massive reach, very high bar for content, nuclear option</li>
+</ul>
+<p><strong>Action Items:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Timeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Create a Reddit account NOW if you don&#39;t have one with karma. Reddit requires account age and karma to post in many subs. Do not use a brand-new account.</td>
+<td>Immediate</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Research each subreddit&#39;s posting rules (self-promotion limits, flair requirements, link vs. text post preferences)</td>
+<td>Week 1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Post Flappy Tralalero to r/WebGames with a direct link and short description. Lead with gameplay, not marketing.</td>
+<td>Week 2 (after site SEO is live)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Post Whack-a-Rot to r/WebGames 5-7 days later (don&#39;t spam both at once)</td>
+<td>Week 3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Post a dev story / behind-the-scenes to r/IndieGaming (the &quot;I made Flappy Bird but brainrot&quot; angle)</td>
+<td>Week 3</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Attempt r/InternetIsBeautiful only if the games gain traction first -- this sub is brutal on self-promotion</td>
+<td>Month 2+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Engage authentically in comments. Answer questions. Don&#39;t be a brand. Be a person who made a thing.</td>
+<td>Ongoing</td>
+</tr>
+</tbody></table>
+<p><strong>Reddit Post Formats That Work:</strong></p>
+<ul>
+<li>r/WebGames: <code>[Game] Flappy Tralalero -- it&#39;s Flappy Bird but you&#39;re Tralalero Tralala</code> + direct link</li>
+<li>r/IndieGaming: <code>I made a Flappy Bird clone where you&#39;re the Italian brainrot shark and I&#39;m unreasonably proud of it</code> + GIF/video + link in comments</li>
+<li>r/InternetIsBeautiful: Only if the site has a &quot;wow&quot; factor beyond a single game. Better to wait until there are 4+ games and the site itself is interesting.</li>
+</ul>
+<p><strong>Expected Impact:</strong></p>
+<ul>
+<li>r/WebGames: 2K-20K visits per post if it gains traction, with a long tail as the post ages</li>
+<li>r/IndieGaming: 500-5K visits, but higher quality engagement (feedback, press attention)</li>
+<li>r/InternetIsBeautiful: 10K-100K visits if it hits, but high risk of removal or downvotes if perceived as self-promotion</li>
+<li>No direct revenue, but strong traffic spikes that feed into SEO signals (backlinks, time on site, direct traffic)</li>
+</ul>
+<hr>
+<h3>Priority 6: Discord Gaming Servers</h3>
+<p><strong>Why:</strong> Discord is where the target audience (ages 8-25) actually hangs out. Not a traffic driver like Reddit, but a retention and community play.</p>
+<p><strong>Action Items:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Timeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Create a Brainrot Games Discord server with channels: #play-now, #scores, #feedback, #announcements</td>
+<td>Week 2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Add Discord link to game-over screens (natural placement -- &quot;join the discord, flex your score&quot;)</td>
+<td>Week 2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Identify 5-10 active gaming/meme Discord servers where sharing a browser game link would be welcome (not spam)</td>
+<td>Week 3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Share games in appropriate channels (#game-sharing, #memes, etc.) of those servers -- only where it&#39;s allowed</td>
+<td>Week 3-4</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Use the Discord server for playtesting new games before full launch</td>
+<td>Ongoing</td>
+</tr>
+</tbody></table>
+<p><strong>Expected Impact:</strong></p>
+<ul>
+<li>Low direct traffic (hundreds, not thousands)</li>
+<li>High retention value: players who join Discord come back for new game launches</li>
+<li>Community feedback accelerates game iteration</li>
+<li>Discord members become organic sharers</li>
+</ul>
+<hr>
+<h3>Priority 7: Hacker News (Show HN)</h3>
+<p><strong>Why:</strong> A single front-page Show HN can drive 50K+ visits in a day. The audience is tech-savvy, appreciates clever web projects, and shares widely. neal.fun, The Password Game, and other viral web games have launched here. The &quot;Your AI Slop Bores Me&quot; game went viral via Show HN in 2026.</p>
+<p><strong>Action Items:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Timeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Prepare a Show HN post with a technical angle. HN values craft, not memes. Frame it as: &quot;Show HN: I built browser games themed around Italian brainrot memes&quot;</td>
+<td>Week 3-4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Post between 8-10am ET on a Tuesday or Wednesday (highest engagement window for HN)</td>
+<td>Week 3-4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Be ready to answer technical questions in comments (what stack, how you built it, what&#39;s the architecture)</td>
+<td>Day of post</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Have the site performing well -- HN traffic is a spike, not a trickle. If the site is slow, you lose the moment.</td>
+<td>Pre-launch</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Do NOT game votes. HN detects and penalizes vote rings. Let it succeed or fail organically.</td>
+<td>Firm rule</td>
+</tr>
+</tbody></table>
+<p><strong>Show HN Title Options (pick one):</strong></p>
+<ul>
+<li><code>Show HN: Brainrot Games -- free browser games themed around Italian brainrot memes</code></li>
+<li><code>Show HN: I made Flappy Bird but you&#39;re a three-legged Italian brainrot shark</code></li>
+<li><code>Show HN: Browser games for the brainrot generation -- HTML5, no download, meme-themed</code></li>
+</ul>
+<p><strong>Expected Impact:</strong></p>
+<ul>
+<li>Front page: 20K-80K visits in 24-48 hours. Massive SEO signal (HN backlink has high DA).</li>
+<li>Does not hit front page: 200-2K visits. Still valuable for the backlink.</li>
+<li>Audience skews older (25-45, developers/tech) -- not the core target demo, but they share with younger people and the traffic/backlink value is significant.</li>
+<li>Timing matters: only attempt this once, with the best version of the site. You don&#39;t get a second Show HN for the same project.</li>
+</ul>
+<hr>
+<h3>Priority 8: Product Hunt</h3>
+<p><strong>Why:</strong> Tech early adopters, potential press coverage, and a &quot;launched&quot; badge that adds credibility. But: Product Hunt changed its algorithm in 2024, and only ~10% of submissions get featured. It requires 50-120 hours of prep for a proper launch. This is a nice-to-have, not a must-have.</p>
+<p><strong>Action Items:</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Timeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Create a Product Hunt maker profile</td>
+<td>Month 1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Prepare launch assets: logo, tagline, 4-6 screenshots, a demo GIF, maker comment</td>
+<td>Month 2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Find a hunter with a following to submit the product (improves visibility)</td>
+<td>Month 2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Launch on a Tuesday or Wednesday at 12:01 AM PT (Product Hunt resets daily)</td>
+<td>Month 2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Engage with every comment on launch day</td>
+<td>Day of launch</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Share the Product Hunt link across all other channels for upvotes</td>
+<td>Day of launch</td>
+</tr>
+</tbody></table>
+<p><strong>Expected Impact:</strong></p>
+<ul>
+<li>Featured: 2K-10K visits, potential tech press pickup, &quot;Product of the Day&quot; badge</li>
+<li>Not featured: 200-1K visits, still a backlink and credibility marker</li>
+<li>Do not over-invest here. The ROI is uncertain compared to Reddit and HN.</li>
+</ul>
+<hr>
+<h3>Distribution Timeline Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Channel Actions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Week 1 (Apr 10-17)</strong></td>
+<td>Implement all on-page SEO. Register Search Console, submit sitemap. Create accounts on Poki, CrazyGames, itch.io. Upload to itch.io. Start Reddit account karma-building if needed.</td>
+</tr>
+<tr>
+<td><strong>Week 2 (Apr 17-24)</strong></td>
+<td>Create OG images. Implement ads. Set up score sharing. Integrate Poki/CrazyGames SDKs. Create Discord server. First Reddit post (r/WebGames).</td>
+</tr>
+<tr>
+<td><strong>Week 3 (Apr 24-May 1)</strong></td>
+<td>Submit to Poki and CrazyGames. Second Reddit post. r/IndieGaming post. Attempt Show HN (if site is performing well). Discord community seeding.</td>
+</tr>
+<tr>
+<td><strong>Week 4 (May 1-8)</strong></td>
+<td>Monitor Poki/CrazyGames review status. Engage on Reddit/HN threads. Analyze first Search Console data.</td>
+</tr>
+<tr>
+<td><strong>Month 2 (May-Jun)</strong></td>
+<td>Product Hunt launch. Iterate on Poki/CrazyGames feedback. r/InternetIsBeautiful attempt if traction warrants. Begin keyword ranking tracking.</td>
+</tr>
+<tr>
+<td><strong>Month 3+ (Jun+)</strong></td>
+<td>Optimize based on data. Pursue GameDistribution licensing. Begin TWA wrapper for Google Play (see Section 4). Content marketing if blog is built.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. ASO Prep Notes for Google Play TWA</h2>
+<p>When the best-performing game is wrapped in a Trusted Web Activity (TWA) for Google Play, the app store listing becomes a separate SEO surface with its own keyword strategy.</p>
+<h3>4.1 TWA Keyword Strategy</h3>
+<p><strong>App Title (30 character limit):</strong></p>
+<ul>
+<li>Flappy Tralalero: <code>Flappy Tralalero: Brainrot</code> (26 chars)</li>
+<li>Whack-a-Rot: <code>Whack-a-Rot: Brainrot Game</code> (27 chars)</li>
+</ul>
+<p><strong>Short Description (80 character limit):</strong></p>
+<ul>
+<li>Flappy Tralalero: <code>Flappy Bird meets Italian brainrot. play as Tralalero Tralala. free, no ads.</code> (76 chars)</li>
+<li>Whack-a-Rot: <code>whack-a-mole with Italian brainrot characters. earn aura. free to play.</code> (72 chars)</li>
+</ul>
+<p><strong>Full Description Keyword Targets</strong> (4,000 character limit -- front-load keywords in first 2 lines):</p>
+<p>For Flappy Tralalero:</p>
+<pre><code>Flappy Tralalero is a free Flappy Bird-style game where you play as Tralalero Tralala -- the three-legged Italian brainrot shark wearing Nikes. Tap to fly, dodge pipes, and try to beat your high score.
+
+From the makers of brainrot games -- meme-themed browser games that are bad for you in all the right ways.
+
+FEATURES:
+- Classic Flappy Bird mechanics with Italian brainrot theme
+- Play as Tralalero Tralala, the iconic brainrot meme character
+- One-tap gameplay -- easy to learn, impossible to master
+- Share your score card with friends
+- No signup, no account needed, just play
+- Free with optional rewarded videos for extra lives
+
+ABOUT BRAINROT GAMES:
+We make free meme games featuring your favorite brainrot characters. Italian brainrot, Tralalero Tralala, Bombardiro Crocodilo, and more. All games are instant-play -- open and start playing in seconds.
+
+Also check out Whack-a-Rot, our brainrot whack-a-mole game.
+</code></pre>
+<p><strong>Play Store Keyword Fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Flappy Tralalero Keywords</th>
+<th>Whack-a-Rot Keywords</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Primary</td>
+<td>flappy tralalero, brainrot game</td>
+<td>whack a rot, brainrot whack a mole</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>tralalero tralala game, Italian brainrot, flappy bird meme</td>
+<td>Italian brainrot game, whack mole meme, brainrot characters</td>
+</tr>
+<tr>
+<td>Long-tail</td>
+<td>free brainrot game no download, meme flappy bird, tralalero tralala play</td>
+<td>brainrot meme game free, whack Italian brainrot, aura points game</td>
+</tr>
+<tr>
+<td>Competitor</td>
+<td>skibidi toilet game, meme games free, brainrot games online</td>
+<td>meme games free, brainrot games, casual meme game</td>
+</tr>
+</tbody></table>
+<h3>4.2 ASO Technical Notes</h3>
+<ul>
+<li><strong>TWA wrapper</strong> preserves the web game experience inside a native Android shell. No separate native codebase needed.</li>
+<li><strong>Performance matters for ASO:</strong> Play Store ranks apps partly by ANR (Application Not Responding) rate and crash rate. TWAs inherit web performance, so Core Web Vitals optimization directly impacts ASO.</li>
+<li><strong>Ratings and reviews</strong> are the #1 ASO factor. Prompt for ratings after a good score (not after a frustrating death). Timing the prompt matters more than the prompt copy.</li>
+<li><strong>Screenshot strategy:</strong> 4-6 screenshots showing actual gameplay, score cards, and character variety. First screenshot is the most important -- it should show the game in action with the character visible.</li>
+<li><strong>Category:</strong> Games &gt; Casual (not Arcade -- Casual has broader browse traffic for this type of game).</li>
+<li><strong>Content rating:</strong> IARC questionnaire will likely land at &quot;Everyone&quot; or &quot;Everyone 10+&quot; given the cartoon/meme content. No violence, no mature content.</li>
+<li><strong>Do NOT submit to Apple App Store</strong> via PWA/TWA wrapper. Apple rejects PWA wrappers. iOS distribution would require a native wrapper (Capacitor, or similar) or staying web-only. Revisit this decision only if revenue justifies the native development cost.</li>
+</ul>
+<h3>4.3 ASO Timeline</h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Action</th>
+<th>Timeline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Prep</td>
+<td>Identify which game to wrap first (pick the one with better retention data from web analytics)</td>
+<td>Month 3</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>Generate TWA wrapper using Bubblewrap CLI or PWABuilder</td>
+<td>Month 3</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>Internal testing track on Play Console, verify performance</td>
+<td>Month 3-4</td>
+</tr>
+<tr>
+<td>Launch</td>
+<td>Publish to Play Store with optimized listing copy</td>
+<td>Month 4</td>
+</tr>
+<tr>
+<td>Iterate</td>
+<td>A/B test screenshots and descriptions based on Play Console data</td>
+<td>Month 4-6</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Appendix: Measurement Framework</h2>
+<h3>Key Metrics to Track Weekly</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Tool</th>
+<th>Target (Month 1)</th>
+<th>Target (Month 3)</th>
+<th>Target (Month 6)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Organic impressions</td>
+<td>Google Search Console</td>
+<td>5K</td>
+<td>50K</td>
+<td>200K</td>
+</tr>
+<tr>
+<td>Organic clicks</td>
+<td>Google Search Console</td>
+<td>500</td>
+<td>5K</td>
+<td>25K</td>
+</tr>
+<tr>
+<td>Average position (brand keywords)</td>
+<td>Search Console</td>
+<td>Top 5</td>
+<td>Top 3</td>
+<td>Top 1-2</td>
+</tr>
+<tr>
+<td>Average position (game-specific keywords)</td>
+<td>Search Console</td>
+<td>Top 10</td>
+<td>Top 5</td>
+<td>Top 3</td>
+</tr>
+<tr>
+<td>Average position (category keywords)</td>
+<td>Search Console</td>
+<td>Not ranking</td>
+<td>Top 20</td>
+<td>Top 10</td>
+</tr>
+<tr>
+<td>Total site sessions</td>
+<td>GA4</td>
+<td>2K</td>
+<td>20K</td>
+<td>100K</td>
+</tr>
+<tr>
+<td>Poki monthly players (if accepted)</td>
+<td>Poki dashboard</td>
+<td>--</td>
+<td>10K</td>
+<td>50K</td>
+</tr>
+<tr>
+<td>CrazyGames monthly players (if accepted)</td>
+<td>CG dashboard</td>
+<td>--</td>
+<td>5K</td>
+<td>25K</td>
+</tr>
+<tr>
+<td>Reddit referral traffic</td>
+<td>GA4</td>
+<td>1K</td>
+<td>500/month steady</td>
+<td>500/month steady</td>
+</tr>
+<tr>
+<td>Pages indexed</td>
+<td>Search Console</td>
+<td>3</td>
+<td>5+</td>
+<td>10+</td>
+</tr>
+<tr>
+<td>Backlinks</td>
+<td>Ahrefs/Search Console</td>
+<td>5</td>
+<td>25</td>
+<td>100</td>
+</tr>
+</tbody></table>
+<h3>When to Reassess This Strategy</h3>
+<ul>
+<li><strong>If Poki/CrazyGames reject both games:</strong> Double down on own-site SEO and Reddit/social distribution. Revisit portal submissions after improving games based on feedback.</li>
+<li><strong>If a Show HN post hits front page:</strong> Capitalize immediately. The traffic spike is 24-48 hours. Have everything (ads, analytics, share features) working before posting.</li>
+<li><strong>If a game goes viral on TikTok/social organically:</strong> Shift all effort to site performance and uptime. Viral traffic kills unprepared servers. Scale first, optimize later.</li>
+<li><strong>If search rankings plateau after 3 months:</strong> Consider adding a blog/content hub with articles like &quot;Best Brainrot Games 2026&quot; and &quot;All Italian Brainrot Characters Explained&quot; to build topical authority.</li>
+<li><strong>If Google algorithm update impacts rankings:</strong> Audit E-E-A-T signals, check for thin content flags, and review Search Console for manual actions. Do not panic-change anything for 2 weeks after an update -- rankings often fluctuate before settling.</li>
+</ul>
+<hr>
+<p><em>Strategy drafted April 2026. All search volume estimates are directional based on SERP analysis, competitor visibility, and category growth trends -- not from a paid keyword tool. Validate with Semrush or Ahrefs data when accounts are set up. Revisit this document monthly.</em></p>
+</div>
+    <div class="nav-footer">
+      <a href="index.html">&larr; index</a>
+    </div>
+  
+</div>
+</body>
+</html>
