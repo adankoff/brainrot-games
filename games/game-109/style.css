@@ -1,0 +1,14 @@
+/* MEME COPTER -- Game-specific styles */
+
+[data-theme="memecopter"] {
+  --color-bg: #0a0a1a;
+  --color-accent: #00ff88;
+}
+
+body[data-theme="memecopter"] {
+  background: #0a0a1a;
+}
+
+.game-container {
+  background: #0a0a1a;
+}

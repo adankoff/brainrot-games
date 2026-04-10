@@ -1,0 +1,14 @@
+/* ==========================================================================
+   KNIFE HIT -- Game-specific styles
+   ========================================================================== */
+
+[data-theme="knifehit"] {
+  --accent: #ff6b35;
+  --accent-dim: #993f20;
+  --bg-dark: #0d0d1a;
+  --bg-card: #1a1a2e;
+}
+
+body[data-theme="knifehit"] {
+  background: var(--bg-dark);
+}

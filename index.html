@@ -65,7 +65,7 @@
     <section class="section" id="games">
       <div class="section__header">
         <h2 class="section__title">GAME CATALOG</h2>
-        <p class="section__subtitle">41 game mechanics, 105 playable games. all procedurally generated. filter, sort, play.</p>
+        <p class="section__subtitle">47 game mechanics, 111 playable games. all procedurally generated. filter, sort, play.</p>
       </div>
 
       <!-- Filters -->
@@ -510,11 +510,71 @@
               <td class="catalog-td catalog-td--versions"><a href="games/game-105/">Meme Type</a></td>
               <td class="catalog-td catalog-td--play"><a href="games/game-105/" class="play-link">play</a></td>
             </tr>
+            <tr data-category="arcade" data-input="tap" data-session="3m" data-difficulty="1" data-variants="1" data-mechanic="Bubble Shooter">
+              <td class="catalog-td catalog-td--mechanic">Bubble Shooter</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--arcade">arcade</span></td>
+              <td class="catalog-td">tap</td>
+              <td class="catalog-td">~3m</td>
+              <td class="catalog-td"><span class="diff diff--easy">easy</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-106/">Meme Bubbles</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-106/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="action" data-input="tap" data-session="60s" data-difficulty="2" data-variants="1" data-mechanic="Missile Command">
+              <td class="catalog-td catalog-td--mechanic">Missile Command</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--action">action</span></td>
+              <td class="catalog-td">tap</td>
+              <td class="catalog-td">~60s</td>
+              <td class="catalog-td"><span class="diff diff--med">medium</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-107/">Meme Defense</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-107/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="action" data-input="keyboard / swipe" data-session="60s" data-difficulty="1" data-variants="1" data-mechanic="Frogger">
+              <td class="catalog-td catalog-td--mechanic">Frogger</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--action">action</span></td>
+              <td class="catalog-td">keyboard / swipe</td>
+              <td class="catalog-td">~60s</td>
+              <td class="catalog-td"><span class="diff diff--easy">easy</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-108/">Meme Frogger</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-108/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="reflex" data-input="tap / hold" data-session="30s" data-difficulty="1" data-variants="1" data-mechanic="Helicopter Cave">
+              <td class="catalog-td catalog-td--mechanic">Helicopter Cave</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--reflex">reflex</span></td>
+              <td class="catalog-td">tap / hold</td>
+              <td class="catalog-td">~30s</td>
+              <td class="catalog-td"><span class="diff diff--easy">easy</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-109/">Meme Copter</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-109/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="reflex" data-input="tap" data-session="30s" data-difficulty="1" data-variants="1" data-mechanic="Reaction Time">
+              <td class="catalog-td catalog-td--mechanic">Reaction Time</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--reflex">reflex</span></td>
+              <td class="catalog-td">tap</td>
+              <td class="catalog-td">~30s</td>
+              <td class="catalog-td"><span class="diff diff--easy">easy</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-110/">Meme React</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-110/" class="play-link">play</a></td>
+            </tr>
+            <tr data-category="reflex" data-input="tap" data-session="60s" data-difficulty="1" data-variants="1" data-mechanic="Knife Hit">
+              <td class="catalog-td catalog-td--mechanic">Knife Hit</td>
+              <td class="catalog-td"><span class="cat-tag cat-tag--reflex">reflex</span></td>
+              <td class="catalog-td">tap</td>
+              <td class="catalog-td">~60s</td>
+              <td class="catalog-td"><span class="diff diff--easy">easy</span></td>
+              <td class="catalog-td catalog-td--num">1</td>
+              <td class="catalog-td catalog-td--versions"><a href="games/game-111/">Knife Hit</a></td>
+              <td class="catalog-td catalog-td--play"><a href="games/game-111/" class="play-link">play</a></td>
+            </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="catalog-count" id="catalog-count">showing 41 of 41 mechanics (105 total game variants)</p>
+      <p class="catalog-count" id="catalog-count">showing 47 of 47 mechanics (111 total game variants)</p>
     </section>
 
     <!-- Catalog interactivity: sort, filter, search -->
@@ -610,9 +670,9 @@
           }
         });
 
-        countEl.textContent = visible === 41
-          ? 'showing 41 of 41 mechanics (105 total game variants)'
-          : `showing ${visible} of 41 mechanics (${totalVariants} game variants)`;
+        countEl.textContent = visible === 47
+          ? 'showing 47 of 47 mechanics (111 total game variants)'
+          : `showing ${visible} of 47 mechanics (${totalVariants} game variants)`;
       }
     })();
     </script>

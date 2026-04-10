@@ -1,0 +1,14 @@
+/* MEME DEFENSE -- Game-specific styles */
+
+[data-theme="memedefense"] {
+  --color-bg: #0a0a1a;
+  --color-accent: #ff4444;
+}
+
+body[data-theme="memedefense"] {
+  background: #0a0a1a;
+}
+
+#game-canvas {
+  background: #0a0a1a;
+}

@@ -1,0 +1,28 @@
+/* MEME BUBBLES -- Game-specific styles */
+
+[data-theme="memebubbles"] {
+  --color-bg: #1a0a2e;
+  --color-surface: #2d1b4e;
+  --color-primary: #ff6ec7;
+  --color-secondary: #7b68ee;
+  --color-text: #f0e6ff;
+  --color-text-secondary: #b8a9d4;
+  --color-accent: #00ffcc;
+}
+
+[data-theme="memebubbles"] .menu-screen__title {
+  background: linear-gradient(135deg, #ff6ec7, #7b68ee, #00ffcc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="memebubbles"] .btn-primary {
+  background: linear-gradient(135deg, #ff6ec7, #7b68ee);
+  color: #fff;
+  border: none;
+}
+
+[data-theme="memebubbles"] .btn-primary:hover {
+  background: linear-gradient(135deg, #ff85d2, #8f7ef5);
+}
