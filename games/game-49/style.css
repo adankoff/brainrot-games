@@ -1,0 +1,13 @@
+/* ==========================================================================
+   WHACK-A-ROT -- Game-Specific Styles
+   Minimal overrides on top of shared/styles.css + design-system.css.
+   Theme: data-theme="italian-brainrot" (set on body)
+   ========================================================================== */
+
+/* ---- Game container positions overlays relative to canvas ---- */
+.game-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -96,26 +96,49 @@
 
 ---
 
+## Session 2 — April 10, 2026
+
+### Batch 5: Games 24-30 — New Mechanics (7 games built via agent swarm)
+- Game 24: Meme Piano (piano tiles) — Skibidi Beat, Sigma Grind, Rizz Rush
+- Game 25: Brainrot Color Switch — Skibidi Spectrum, Ohio Rainbow, Aura Shift
+- Game 26: Brainrotle (wordle clone) — daily brainrot word challenge, 70 answer words
+- Game 27: Meme Memory (memory match) — Brainrot Classics, Anime Icons, Cat Memes
+- Game 28: Meme Hangman — 84 words/phrases across brainrot, memes, slang, anime, gaming
+- Game 29: YEET (paper toss) — Skibidi Yeet, Sigma Toss, Touch Grass
+- Game 30: Meme IQ Test (trivia) — 63 questions across 5 categories, 3 difficulty levels
+
+### Infrastructure
+- Landing page updated with 7 new game cards (games 24-30)
+- All games use shared GameShell, InputManager, SoundManager, ScoreManager infrastructure
+- 7 new unique game mechanics: piano tiles, color switch, wordle, memory match, hangman, paper toss, trivia quiz
+
+### Stats
+- 30 playable HTML5 games (up from 23)
+- 17 unique game mechanics implemented (up from 10)
+- 7 games built in parallel using agent swarm
+
+---
+
 ## TODO — Next Sessions
 
 ### High Priority
-- [ ] **Playtest all 23 games** — open each in browser, verify they load and play correctly
+- [ ] **Playtest all 30 games** — open each in browser, verify they load and play correctly
 - [ ] **Fix broken games** — some cloned games may have import path or API issues
 - [ ] **Add real meme images** — replace Canvas-drawn shapes with actual image sprites (PNG/SVG)
 - [ ] **Add analytics** — Plausible or Google Analytics on all pages
 - [ ] **Add ad integration** — interstitial ads on death screens
 
 ### New Game Mechanics to Build (Top 10 from research)
-- [ ] Piano Tiles (score 18/20, 1 day build)
-- [ ] Color Switch (score 17/20, 1 day)
-- [ ] Wordle Clone / "Brainrotle" (score 17/20, 1 day)
-- [ ] Memory Match (score 16/20, 1 day)
+- [x] Piano Tiles (score 18/20) — Game 24: Meme Piano
+- [x] Color Switch (score 17/20) — Game 25: Brainrot Color Switch
+- [x] Wordle Clone / "Brainrotle" (score 17/20) — Game 26: Brainrotle
+- [x] Memory Match (score 16/20) — Game 27: Meme Memory
 - [ ] Match-3 / Candy Crush style (score 16/20, 2 days)
-- [ ] Hangman with meme vocabulary (score 15/20, 1 day)
-- [ ] Paper Toss (score 15/20, 1 day)
+- [x] Hangman with meme vocabulary (score 15/20) — Game 28: Meme Hangman
+- [x] Paper Toss (score 15/20) — Game 29: YEET
 - [ ] Basketball Shot (score 15/20, 1 day)
 - [ ] Tetris / falling blocks (score 15/20, 2 days)
-- [ ] Trivia Quiz — meme trivia (score 15/20, 1 day)
+- [x] Trivia Quiz — meme trivia (score 15/20) — Game 30: Meme IQ Test
 
 ### Art & Assets
 - [ ] Source or generate meme character sprites (PNG with transparency)

@@ -1,0 +1,448 @@
+/**
+ * ANIME TRIVIA -- Question Bank (auto-generated)
+ */
+
+export const questions = [
+  {
+    question: "What is Goku's Saiyan birth name?",
+    answers: ["Kakarot", "Bardock", "Raditz", "Broly"],
+    correct: 0,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What is Luffy's Devil Fruit power?",
+    answers: ["Fire", "Rubber", "Lightning", "Ice"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What village is Naruto from?",
+    answers: ["Sand Village", "Mist Village", "Hidden Leaf Village", "Cloud Village"],
+    correct: 2,
+    difficulty: 1,
+    category: "locations",
+  },
+  {
+    question: "What is Jotaro's Stand called?",
+    answers: ["The World", "Star Platinum", "Crazy Diamond", "Gold Experience"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "How many Dragon Balls are there?",
+    answers: ["5", "6", "7", "9"],
+    correct: 2,
+    difficulty: 1,
+    category: "items",
+  },
+  {
+    question: "What does Saitama train with to become strong?",
+    answers: ["100 push-ups, sit-ups, squats and 10km run", "Weighted clothing", "Spirit training", "A special diet"],
+    correct: 0,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What anime features Titans attacking humanity?",
+    answers: ["One Piece", "Naruto", "Attack on Titan", "Bleach"],
+    correct: 2,
+    difficulty: 1,
+    category: "series",
+  },
+  {
+    question: "What is the name of Naruto's signature jutsu?",
+    answers: ["Chidori", "Rasengan", "Fireball Jutsu", "Shadow Clone Jutsu"],
+    correct: 3,
+    difficulty: 1,
+    category: "attacks",
+  },
+  {
+    question: "What is Vegeta's royal title?",
+    answers: ["King of Saiyans", "Prince of all Saiyans", "Emperor of Saiyans", "Lord Saiyan"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "Who wrote Death Note the manga?",
+    answers: ["Eiichiro Oda", "Tsugumi Ohba", "Masashi Kishimoto", "Akira Toriyama"],
+    correct: 1,
+    difficulty: 2,
+    category: "series",
+  },
+  {
+    question: "What is the One Piece world's most dangerous sea route?",
+    answers: ["East Blue", "The Grand Line", "North Blue", "Calm Belt"],
+    correct: 1,
+    difficulty: 1,
+    category: "locations",
+  },
+  {
+    question: "What does Tanjiro use to fight demons?",
+    answers: ["Guns", "Nichirin Sword", "Magic spells", "Bare fists"],
+    correct: 1,
+    difficulty: 1,
+    category: "items",
+  },
+  {
+    question: "What is Gojo's Infinity technique based on?",
+    answers: ["Speed", "Convergent mathematical series", "Brute force", "Time manipulation"],
+    correct: 1,
+    difficulty: 3,
+    category: "attacks",
+  },
+  {
+    question: "Which anime character has the catchphrase 'Plus Ultra'?",
+    answers: ["Goku", "Naruto", "All Might", "Luffy"],
+    correct: 2,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What race is Goku?",
+    answers: ["Human", "Namekian", "Saiyan", "Android"],
+    correct: 2,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What is the name of Luffy's pirate crew?",
+    answers: ["Red Hair Pirates", "Straw Hat Pirates", "Heart Pirates", "Blackbeard Pirates"],
+    correct: 1,
+    difficulty: 1,
+    category: "series",
+  },
+  {
+    question: "Who is known as the 'Copy Ninja'?",
+    answers: ["Naruto", "Sasuke", "Kakashi", "Itachi"],
+    correct: 2,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What transformation turns a Saiyan's hair golden?",
+    answers: ["Kaioken", "Ultra Instinct", "Super Saiyan", "Great Ape"],
+    correct: 2,
+    difficulty: 1,
+    category: "attacks",
+  },
+  {
+    question: "In Bleach, what are the enemy spirits called?",
+    answers: ["Titans", "Demons", "Hollows", "Curses"],
+    correct: 2,
+    difficulty: 1,
+    category: "series",
+  },
+  {
+    question: "What is Eren Yeager's Titan form called?",
+    answers: ["Colossal Titan", "Armored Titan", "Attack Titan", "Beast Titan"],
+    correct: 2,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What does 'Nakama' mean in anime culture?",
+    answers: ["Enemy", "Teacher", "Comrade/friend", "Power"],
+    correct: 2,
+    difficulty: 2,
+    category: "series",
+  },
+  {
+    question: "Which character says 'Omae wa mou shindeiru'?",
+    answers: ["Goku", "Kenshiro", "Jotaro", "Vegeta"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "How many swords does Zoro use?",
+    answers: ["1", "2", "3", "4"],
+    correct: 2,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What is Deku's real name?",
+    answers: ["Katsuki Bakugo", "Shoto Todoroki", "Izuku Midoriya", "Tenya Iida"],
+    correct: 2,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "Which anime is set in a world where Quirks are superpowers?",
+    answers: ["One Piece", "Dragon Ball", "My Hero Academia", "Naruto"],
+    correct: 2,
+    difficulty: 1,
+    category: "series",
+  },
+  {
+    question: "What is the Hyperbolic Time Chamber?",
+    answers: ["A cooking device", "A place where 1 day = 1 year of training", "A prison", "A teleporter"],
+    correct: 1,
+    difficulty: 2,
+    category: "locations",
+  },
+  {
+    question: "Who is the main villain in Jujutsu Kaisen?",
+    answers: ["Mahito", "Sukuna", "Geto", "Kenjaku"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What breathing style does Tanjiro primarily use?",
+    answers: ["Flame Breathing", "Water Breathing", "Thunder Breathing", "Wind Breathing"],
+    correct: 1,
+    difficulty: 2,
+    category: "attacks",
+  },
+  {
+    question: "What is Zoro's dream?",
+    answers: ["Find One Piece", "Become Pirate King", "Become the World's Greatest Swordsman", "Find All Blue"],
+    correct: 2,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What is a Zanpakuto?",
+    answers: ["A demon", "A soul reaper's sword", "A type of ramen", "A martial art"],
+    correct: 1,
+    difficulty: 2,
+    category: "items",
+  },
+  {
+    question: "Which Straw Hat crew member is the cook?",
+    answers: ["Zoro", "Usopp", "Sanji", "Franky"],
+    correct: 2,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What does the Sharingan eye do?",
+    answers: ["Grants super strength", "Copies techniques and sees through illusions", "Controls time", "Heals wounds"],
+    correct: 1,
+    difficulty: 2,
+    category: "items",
+  },
+  {
+    question: "Who created Dragon Ball?",
+    answers: ["Eiichiro Oda", "Masashi Kishimoto", "Akira Toriyama", "Hajime Isayama"],
+    correct: 2,
+    difficulty: 1,
+    category: "series",
+  },
+  {
+    question: "What is the strongest form Goku achieves in Dragon Ball Super?",
+    answers: ["Super Saiyan 4", "Super Saiyan Blue", "Ultra Instinct", "Kaioken x20"],
+    correct: 2,
+    difficulty: 2,
+    category: "attacks",
+  },
+  {
+    question: "What organization does Itachi belong to?",
+    answers: ["Anbu", "Akatsuki", "Root", "Sound Five"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "In One Piece, what is the name of the legendary treasure?",
+    answers: ["Grand Prize", "World Gold", "One Piece", "Pirate's Dream"],
+    correct: 2,
+    difficulty: 1,
+    category: "items",
+  },
+  {
+    question: "What type of demon is Nezuko?",
+    answers: ["Upper Moon", "Lower Moon", "She resists becoming evil", "She controls others"],
+    correct: 2,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What is Gojo's Domain Expansion called?",
+    answers: ["Infinite Void", "Malevolent Shrine", "Chimera Shadow Garden", "Coffin of the Iron Mountain"],
+    correct: 0,
+    difficulty: 3,
+    category: "attacks",
+  },
+  {
+    question: "What planet was Goku born on?",
+    answers: ["Earth", "Namek", "Planet Vegeta", "Planet Sadala"],
+    correct: 2,
+    difficulty: 2,
+    category: "locations",
+  },
+  {
+    question: "Who taught Naruto the Rasengan?",
+    answers: ["Kakashi", "Iruka", "Jiraiya", "Minato"],
+    correct: 2,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What is the name of the demon sealed inside Naruto?",
+    answers: ["Shukaku", "Kurama", "Matatabi", "Gyuki"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "Which anime features alchemy and a Philosopher's Stone?",
+    answers: ["Bleach", "Fullmetal Alchemist", "Soul Eater", "Black Clover"],
+    correct: 1,
+    difficulty: 1,
+    category: "series",
+  },
+  {
+    question: "What is the name of the Colossal Titan's human form?",
+    answers: ["Reiner Braun", "Bertholdt Hoover", "Annie Leonhart", "Zeke Yeager"],
+    correct: 1,
+    difficulty: 3,
+    category: "characters",
+  },
+  {
+    question: "In JoJo, what is DIO's Stand called?",
+    answers: ["Star Platinum", "The World", "Killer Queen", "King Crimson"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What is the highest rank a ninja can achieve in Naruto?",
+    answers: ["Jonin", "Anbu", "Hokage", "Sannin"],
+    correct: 2,
+    difficulty: 2,
+    category: "series",
+  },
+  {
+    question: "What fruit did Luffy eat?",
+    answers: ["Flame Flame Fruit", "Gum Gum Fruit", "Dark Dark Fruit", "Chop Chop Fruit"],
+    correct: 1,
+    difficulty: 1,
+    category: "items",
+  },
+  {
+    question: "Who is the protagonist of Death Note?",
+    answers: ["L", "Light Yagami", "Ryuk", "Misa Amane"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What is Sukuna's Domain Expansion?",
+    answers: ["Infinite Void", "Chimera Shadow Garden", "Malevolent Shrine", "Horizon of the Captivating Skandha"],
+    correct: 2,
+    difficulty: 3,
+    category: "attacks",
+  },
+  {
+    question: "Which wall fell first in Attack on Titan?",
+    answers: ["Wall Rose", "Wall Sina", "Wall Maria", "Wall Sheena"],
+    correct: 2,
+    difficulty: 2,
+    category: "locations",
+  },
+  {
+    question: "How many Hokage were there before Naruto became Hokage?",
+    answers: ["5", "6", "7", "4"],
+    correct: 1,
+    difficulty: 3,
+    category: "series",
+  },
+  {
+    question: "What does Kaioken multiply?",
+    answers: ["Speed only", "Fighting power", "Intelligence", "Defense"],
+    correct: 1,
+    difficulty: 2,
+    category: "attacks",
+  },
+  {
+    question: "What is the name of Ichigo's Bankai?",
+    answers: ["Senbonzakura Kageyoshi", "Tensa Zangetsu", "Daiguren Hyorinmaru", "Konjiki Ashisogi Jizo"],
+    correct: 1,
+    difficulty: 3,
+    category: "attacks",
+  },
+  {
+    question: "Who are the Hashira in Demon Slayer?",
+    answers: ["Demon lords", "Top ranked demon slayers", "Village elders", "Spirit guides"],
+    correct: 1,
+    difficulty: 2,
+    category: "series",
+  },
+  {
+    question: "What is Gear Fifth in One Piece?",
+    answers: ["A ship upgrade", "Luffy's awakened Devil Fruit form", "A weapon", "A new crew member"],
+    correct: 1,
+    difficulty: 2,
+    category: "attacks",
+  },
+  {
+    question: "Who killed Goku's father Bardock?",
+    answers: ["Cell", "Vegeta", "Frieza", "Buu"],
+    correct: 2,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What is the name of Naruto's son?",
+    answers: ["Minato", "Boruto", "Konohamaru", "Shinki"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "In Hunter x Hunter, what is Nen?",
+    answers: ["A weapon", "Life energy technique", "A monster", "A country"],
+    correct: 1,
+    difficulty: 2,
+    category: "series",
+  },
+  {
+    question: "What anime has the quote 'It's over 9000!'?",
+    answers: ["One Piece", "Naruto", "Dragon Ball Z", "Bleach"],
+    correct: 2,
+    difficulty: 1,
+    category: "series",
+  },
+  {
+    question: "Who is the strongest hero in One Punch Man?",
+    answers: ["Genos", "Blast", "Saitama", "King"],
+    correct: 2,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What does 'Shonen' mean?",
+    answers: ["Girl", "Boy", "Warrior", "Ghost"],
+    correct: 1,
+    difficulty: 2,
+    category: "series",
+  },
+];
+
+/**
+ * Fisher-Yates shuffle.
+ */
+export function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/**
+ * Build a question queue ordered by difficulty (easy first).
+ */
+export function buildQuestionQueue() {
+  const easy = shuffle(questions.filter(q => q.difficulty === 1));
+  const med = shuffle(questions.filter(q => q.difficulty === 2));
+  const hard = shuffle(questions.filter(q => q.difficulty === 3));
+  return [...easy, ...med, ...hard];
+}

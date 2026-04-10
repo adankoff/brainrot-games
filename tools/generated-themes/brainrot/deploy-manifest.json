@@ -1,0 +1,109 @@
+{
+  "packId": "brainrot",
+  "packName": "BRAINROT",
+  "startGame": 31,
+  "games": [
+    {
+      "number": 31,
+      "folder": "game-31",
+      "name": "BRAINROT FLAPPY BIRD",
+      "mechanic": "Flappy Bird"
+    },
+    {
+      "number": 32,
+      "folder": "game-32",
+      "name": "BRAINROT WHACK-A-MOLE",
+      "mechanic": "Whack-a-Mole"
+    },
+    {
+      "number": 33,
+      "folder": "game-33",
+      "name": "BRAINROT IDLE CLICKER",
+      "mechanic": "Idle Clicker"
+    },
+    {
+      "number": 34,
+      "folder": "game-34",
+      "name": "BRAINROT ENDLESS RUNNER",
+      "mechanic": "Endless Runner"
+    },
+    {
+      "number": 35,
+      "folder": "game-35",
+      "name": "BRAINROT STACK",
+      "mechanic": "Stack"
+    },
+    {
+      "number": 36,
+      "folder": "game-36",
+      "name": "BRAINROT SNAKE",
+      "mechanic": "Snake"
+    },
+    {
+      "number": 37,
+      "folder": "game-37",
+      "name": "BRAINROT 2048",
+      "mechanic": "2048"
+    },
+    {
+      "number": 38,
+      "folder": "game-38",
+      "name": "BRAINROT FRUIT NINJA",
+      "mechanic": "Fruit Ninja"
+    },
+    {
+      "number": 39,
+      "folder": "game-39",
+      "name": "BRAINROT BREAKOUT",
+      "mechanic": "Breakout"
+    },
+    {
+      "number": 40,
+      "folder": "game-40",
+      "name": "BRAINROT GEOMETRY DASH",
+      "mechanic": "Geometry Dash"
+    },
+    {
+      "number": 41,
+      "folder": "game-41",
+      "name": "BRAINROT PIANO TILES",
+      "mechanic": "Piano Tiles"
+    },
+    {
+      "number": 42,
+      "folder": "game-42",
+      "name": "BRAINROT COLOR SWITCH",
+      "mechanic": "Color Switch"
+    },
+    {
+      "number": 43,
+      "folder": "game-43",
+      "name": "BRAINROT WORDLE",
+      "mechanic": "Wordle"
+    },
+    {
+      "number": 44,
+      "folder": "game-44",
+      "name": "BRAINROT MEMORY MATCH",
+      "mechanic": "Memory Match"
+    },
+    {
+      "number": 45,
+      "folder": "game-45",
+      "name": "BRAINROT HANGMAN",
+      "mechanic": "Hangman"
+    },
+    {
+      "number": 46,
+      "folder": "game-46",
+      "name": "BRAINROT PAPER TOSS",
+      "mechanic": "Paper Toss"
+    },
+    {
+      "number": 47,
+      "folder": "game-47",
+      "name": "BRAINROT TRIVIA QUIZ",
+      "mechanic": "Trivia Quiz"
+    }
+  ]
+}

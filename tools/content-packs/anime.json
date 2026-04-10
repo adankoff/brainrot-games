@@ -1,0 +1,345 @@
+{
+  "id": "anime",
+  "name": "ANIME",
+  "tagline": "believe it",
+  "bodyTheme": "anime",
+  "shareUrl": "https://brainrotgames.com/packs/anime/",
+
+  "characters": {
+    "protagonist": {
+      "name": "Son Goku",
+      "shortName": "Goku",
+      "emoji": "🐉",
+      "drawFn": "drawGoku"
+    },
+    "antagonist": {
+      "name": "Frieza",
+      "shortName": "Frieza",
+      "emoji": "👿",
+      "drawFn": "drawFrieza"
+    },
+    "supporting": [
+      { "name": "Naruto Uzumaki", "shortName": "Naruto", "emoji": "🍥", "drawFn": "drawNaruto", "tier": 1 },
+      { "name": "Monkey D. Luffy", "shortName": "Luffy", "emoji": "🏴‍☠️", "drawFn": "drawLuffy", "tier": 1 },
+      { "name": "Jotaro Kujo", "shortName": "Jotaro", "emoji": "🧢", "drawFn": "drawJotaro", "tier": 1 },
+      { "name": "Saitama", "shortName": "Saitama", "emoji": "👊", "drawFn": "drawSaitama", "tier": 1 },
+      { "name": "Tanjiro Kamado", "shortName": "Tanjiro", "emoji": "🔥", "drawFn": "drawTanjiro", "tier": 2 },
+      { "name": "Satoru Gojo", "shortName": "Gojo", "emoji": "👁️", "drawFn": "drawGojo", "tier": 2 },
+      { "name": "Eren Yeager", "shortName": "Eren", "emoji": "⚔️", "drawFn": "drawEren", "tier": 2 },
+      { "name": "Vegeta", "shortName": "Vegeta", "emoji": "👑", "drawFn": "drawVegeta", "tier": 2 },
+      { "name": "Roronoa Zoro", "shortName": "Zoro", "emoji": "🗡️", "drawFn": "drawZoro", "tier": 3 },
+      { "name": "Izuku Midoriya", "shortName": "Deku", "emoji": "💚", "drawFn": "drawDeku", "tier": 3 }
+    ]
+  },
+
+  "items": {
+    "collectible": { "name": "Dragon Ball", "emoji": "🟠", "drawFn": "drawDragonBall" },
+    "collectibles": [
+      { "name": "Ramen Bowl", "emoji": "🍜", "drawFn": "drawRamen" },
+      { "name": "Senzu Bean", "emoji": "🫘", "drawFn": "drawSenzu" },
+      { "name": "Kunai", "emoji": "🔪", "drawFn": "drawKunai" },
+      { "name": "Devil Fruit", "emoji": "🍇", "drawFn": "drawDevilFruit" },
+      { "name": "Power Scroll", "emoji": "📜", "drawFn": "drawScroll" }
+    ],
+    "obstacles": [
+      { "name": "Curse Mark", "emoji": "🔴", "drawFn": "drawCurseMark" },
+      { "name": "Hollow Mask", "emoji": "👹", "drawFn": "drawHollowMask" },
+      { "name": "Death Note", "emoji": "📓", "drawFn": "drawDeathNote" }
+    ],
+    "projectile": { "name": "Spirit Bomb", "emoji": "🔮", "drawFn": "drawSpiritBomb" },
+    "target": { "name": "Training Dummy", "emoji": "🎯", "drawFn": "drawTrainingDummy" }
+  },
+
+  "palette": {
+    "primary": "#FF6600",
+    "secondary": "#1E90FF",
+    "bgTop": "#1a0d00",
+    "bgBottom": "#0a0500",
+    "surface": "rgba(255, 102, 0, 0.08)",
+    "surfaceBorder": "rgba(255, 102, 0, 0.2)",
+    "text": "#f0f0f0",
+    "textSecondary": "#b08050",
+    "textTertiary": "#705030",
+    "glow": "rgba(255, 102, 0, 0.3)",
+    "colorSwitchSegments": ["#FF6600", "#1E90FF", "#FF3366", "#00CC66"],
+    "colorSwitchNames": ["orange", "blue", "red", "green"],
+    "blockColors": ["#FF6600", "#1E90FF", "#FF3366", "#00CC66", "#FFD700"],
+    "tileColors": [
+      "#e0c8a0", "#d8b888", "#d0a870", "#c89858",
+      "#c08840", "#ff9900", "#ff8000", "#ff6600",
+      "#ff4400", "#ff2200", "#FFD700"
+    ],
+    "sky": "#0d0a1a",
+    "skyGradient": "#050310",
+    "ground": "#8B4513",
+    "groundAccent": "#FF6600",
+    "groundLine": "#c07020",
+    "gridColor": "rgba(255, 102, 0, 0.06)",
+    "floorColor": "#2a1508",
+    "wallColor": "#1a0d04"
+  },
+
+  "copy": {
+    "scoreLabel": "score",
+    "currencyName": "POWER LEVEL",
+    "currencyShort": "PWR",
+    "prestigeName": "ULTRA INSTINCT",
+    "prestigeAction": "Go Ultra Instinct",
+    "deathMessages": [
+      "omae wa mou shindeiru",
+      "your power level is... pathetic",
+      "even yamcha lasted longer",
+      "you need more training arcs",
+      "that was your filler episode",
+      "this isn't even your final form... oh wait it is",
+      "the talk no jutsu failed",
+      "you got isekai'd to the shadow realm"
+    ],
+    "winMessages": [
+      "plus ultra!",
+      "this is the power of friendship",
+      "your training arc paid off",
+      "you surpassed your limits"
+    ],
+    "comboMessages": [
+      { "threshold": 3, "text": "power up!" },
+      { "threshold": 5, "text": "KAMEHAME..." },
+      { "threshold": 10, "text": "KAMEHAMEHA!" },
+      { "threshold": 20, "text": "PLUS ULTRA!" },
+      { "threshold": 35, "text": "BANKAI!" },
+      { "threshold": 50, "text": "ULTRA INSTINCT" }
+    ],
+    "catchphrases": [
+      "believe it!",
+      "plus ultra!",
+      "ora ora ora!",
+      "gomu gomu no!",
+      "kamehameha!"
+    ],
+    "floatingSymbols": ["🐉", "🍥", "⚡", "🔥", "👊"]
+  },
+
+  "sounds": {
+    "tap": { "notes": [{ "type": "sine", "frequency": 440, "endFrequency": 660, "duration": 0.05, "gain": 0.12 }] },
+    "death": { "notes": [{ "type": "sawtooth", "frequency": 250, "endFrequency": 60, "duration": 0.35, "gain": 0.2 }] }
+  },
+
+  "mechanics": {
+    "clicker": {
+      "upgrades": [
+        { "name": "Basic Training", "baseCost": 10, "baseProduction": 1 },
+        { "name": "Gravity Chamber", "baseCost": 100, "baseProduction": 5 },
+        { "name": "Sage Mode", "baseCost": 1000, "baseProduction": 25 },
+        { "name": "Bankai Release", "baseCost": 10000, "baseProduction": 100 },
+        { "name": "Ultra Instinct", "baseCost": 100000, "baseProduction": 500 }
+      ]
+    },
+    "tiles2048": {
+      "tiers": {
+        "2": { "name": "Genin" },
+        "4": { "name": "Chunin" },
+        "8": { "name": "Jonin" },
+        "16": { "name": "Captain" },
+        "32": { "name": "Bankai" },
+        "64": { "name": "Saiyan" },
+        "128": { "name": "Super Saiyan" },
+        "256": { "name": "SSJ God" },
+        "512": { "name": "SSJ Blue" },
+        "1024": { "name": "Ultra Ego" },
+        "2048": { "name": "ULTRA INSTINCT" }
+      }
+    },
+    "memoryMatch": {
+      "pairs": [
+        { "emoji": "🐉", "label": "Goku" },
+        { "emoji": "👿", "label": "Frieza" },
+        { "emoji": "🍥", "label": "Naruto" },
+        { "emoji": "🏴‍☠️", "label": "Luffy" },
+        { "emoji": "🧢", "label": "Jotaro" },
+        { "emoji": "👊", "label": "Saitama" },
+        { "emoji": "🔥", "label": "Tanjiro" },
+        { "emoji": "👁️", "label": "Gojo" }
+      ],
+      "cardBackSymbol": "?"
+    },
+    "whack": {
+      "roster": [
+        { "id": "naruto", "name": "Naruto", "emoji": "🍥", "basePoints": 10, "isBonus": false, "isPenalty": false },
+        { "id": "luffy", "name": "Luffy", "emoji": "🏴‍☠️", "basePoints": 10, "isBonus": false, "isPenalty": false },
+        { "id": "jotaro", "name": "Jotaro", "emoji": "🧢", "basePoints": 15, "isBonus": false, "isPenalty": false },
+        { "id": "saitama", "name": "Saitama", "emoji": "👊", "basePoints": 20, "isBonus": false, "isPenalty": false },
+        { "id": "frieza", "name": "Frieza", "emoji": "👿", "basePoints": 100, "isBonus": true, "isPenalty": false },
+        { "id": "goku", "name": "Goku", "emoji": "🐉", "basePoints": -50, "isBonus": false, "isPenalty": true }
+      ]
+    },
+    "pianoTiles": {
+      "tileEmoji": "🐉"
+    },
+    "colorSwitch": {
+      "ballShape": "circle"
+    },
+    "wordle": {
+      "answerWords": [
+        "ANIME", "MANGA", "TITAN", "SHONE", "NARUT",
+        "LUFFY", "SANJI", "NAMI_", "ROBIN", "BROOK",
+        "ZORRO", "CHOPP", "RAMEN", "NINJA", "JUTSU",
+        "RASEN", "CHAK_", "HOKAG", "GAARA", "OROCH",
+        "BANKI", "SWORD", "FLAME", "POWER", "SUPER",
+        "BLAST", "PUNCH", "FIGHT", "ARENA", "RIVAL",
+        "GUILD", "QUEST", "DEMON", "GHOST", "TITAN",
+        "SQUAD", "BLADE", "CURSE", "ROUGE", "SAINT",
+        "STEEL", "STORM", "LIGHT", "CHAOS", "REALM",
+        "VIGOR", "CLASH", "CREST", "SENZU", "GOHAN"
+      ],
+      "extraValidGuesses": []
+    },
+    "hangman": {
+      "words": [
+        { "word": "KAMEHAMEHA", "category": "attacks", "hint": "goku's signature energy wave" },
+        { "word": "RASENGAN", "category": "attacks", "hint": "spinning chakra sphere" },
+        { "word": "SPIRIT BOMB", "category": "attacks", "hint": "gathers energy from all living things" },
+        { "word": "SHADOW CLONE JUTSU", "category": "attacks", "hint": "naruto's favorite technique" },
+        { "word": "FINAL FLASH", "category": "attacks", "hint": "vegeta's powerful beam attack" },
+        { "word": "GALICK GUN", "category": "attacks", "hint": "vegeta's first beam attack" },
+        { "word": "DETROIT SMASH", "category": "attacks", "hint": "all might's city-named punch" },
+        { "word": "DOMAIN EXPANSION", "category": "attacks", "hint": "jujutsu sorcerer's ultimate move" },
+        { "word": "THUNDER BREATHING", "category": "attacks", "hint": "zenitsu's demon slaying style" },
+        { "word": "WATER BREATHING", "category": "attacks", "hint": "tanjiro's first combat style" },
+        { "word": "GUM GUM PISTOL", "category": "attacks", "hint": "luffy's stretchy punch" },
+        { "word": "CHIDORI", "category": "attacks", "hint": "sasuke's lightning blade technique" },
+        { "word": "STAR PLATINUM", "category": "attacks", "hint": "jotaro's stand name" },
+        { "word": "PLUS ULTRA", "category": "attacks", "hint": "hero academia battle cry" },
+        { "word": "BANKAI", "category": "attacks", "hint": "bleach sword final release" },
+        { "word": "ORA ORA ORA", "category": "attacks", "hint": "jotaro's battle cry" },
+        { "word": "SON GOKU", "category": "characters", "hint": "saiyan raised on earth" },
+        { "word": "NARUTO UZUMAKI", "category": "characters", "hint": "hidden leaf ninja who becomes hokage" },
+        { "word": "MONKEY D LUFFY", "category": "characters", "hint": "rubber pirate who wants to be king" },
+        { "word": "JOTARO KUJO", "category": "characters", "hint": "stand user who defeats dio" },
+        { "word": "SAITAMA", "category": "characters", "hint": "bald hero who defeats everyone in one punch" },
+        { "word": "TANJIRO KAMADO", "category": "characters", "hint": "demon slayer with a checkered haori" },
+        { "word": "SATORU GOJO", "category": "characters", "hint": "strongest jujutsu sorcerer" },
+        { "word": "EREN YEAGER", "category": "characters", "hint": "attack titan shifter" },
+        { "word": "VEGETA", "category": "characters", "hint": "prince of all saiyans" },
+        { "word": "RORONOA ZORO", "category": "characters", "hint": "three sword style swordsman" },
+        { "word": "IZUKU MIDORIYA", "category": "characters", "hint": "inherited one for all" },
+        { "word": "FRIEZA", "category": "characters", "hint": "galactic tyrant who destroyed planet vegeta" },
+        { "word": "SASUKE UCHIHA", "category": "characters", "hint": "naruto's rival with sharingan" },
+        { "word": "LIGHT YAGAMI", "category": "characters", "hint": "found a notebook that kills" },
+        { "word": "ICHIGO KUROSAKI", "category": "characters", "hint": "substitute soul reaper" },
+        { "word": "ALL MIGHT", "category": "characters", "hint": "symbol of peace in hero academia" },
+        { "word": "HIDDEN LEAF VILLAGE", "category": "locations", "hint": "konoha, naruto's home" },
+        { "word": "PLANET NAMEK", "category": "locations", "hint": "where the dragon balls turned green" },
+        { "word": "GRAND LINE", "category": "locations", "hint": "dangerous ocean route to one piece" },
+        { "word": "SOUL SOCIETY", "category": "locations", "hint": "where bleach soul reapers live" },
+        { "word": "WALL MARIA", "category": "locations", "hint": "outermost wall in attack on titan" },
+        { "word": "HYPERBOLIC TIME CHAMBER", "category": "locations", "hint": "one day outside equals one year inside" },
+        { "word": "MORIOH", "category": "locations", "hint": "jojo part 4 town" },
+        { "word": "UA HIGH SCHOOL", "category": "locations", "hint": "hero academia training academy" },
+        { "word": "WANO COUNTRY", "category": "locations", "hint": "samurai island in one piece" },
+        { "word": "HUECO MUNDO", "category": "locations", "hint": "hollow dimension in bleach" },
+        { "word": "DRAGON BALL", "category": "series", "hint": "seven orbs that summon shenron" },
+        { "word": "ONE PIECE", "category": "series", "hint": "pirate treasure everyone seeks" },
+        { "word": "NARUTO SHIPPUDEN", "category": "series", "hint": "the sequel to naruto" },
+        { "word": "ATTACK ON TITAN", "category": "series", "hint": "humanity fights giant humanoids" },
+        { "word": "DEMON SLAYER", "category": "series", "hint": "tanjiro hunts demons for his sister" },
+        { "word": "MY HERO ACADEMIA", "category": "series", "hint": "world where everyone has quirks" },
+        { "word": "JUJUTSU KAISEN", "category": "series", "hint": "sorcerers fight cursed spirits" },
+        { "word": "ONE PUNCH MAN", "category": "series", "hint": "hero too strong for his own good" },
+        { "word": "DEATH NOTE", "category": "series", "hint": "supernatural notebook thriller" },
+        { "word": "FULLMETAL ALCHEMIST", "category": "series", "hint": "brothers seek the philosopher's stone" },
+        { "word": "HUNTER X HUNTER", "category": "series", "hint": "gon searches for his father" },
+        { "word": "BLEACH", "category": "series", "hint": "ichigo fights hollows and soul reapers" },
+        { "word": "DRAGON BALL Z", "category": "series", "hint": "goku fights aliens and androids" },
+        { "word": "SHARINGAN", "category": "items", "hint": "uchiha clan's red eye power" },
+        { "word": "DEATH NOTE", "category": "items", "hint": "write a name and they die" },
+        { "word": "ZANPAKUTO", "category": "items", "hint": "soul reaper's sword" },
+        { "word": "DEVIL FRUIT", "category": "items", "hint": "grants powers but you can't swim" },
+        { "word": "SENZU BEAN", "category": "items", "hint": "instantly heals all wounds" },
+        { "word": "THUNDER SPEAR", "category": "items", "hint": "anti-titan weapon" },
+        { "word": "POWER POLE", "category": "items", "hint": "goku's extending staff" },
+        { "word": "ONE FOR ALL", "category": "items", "hint": "quirk passed from hero to hero" },
+        { "word": "CURSED ENERGY", "category": "items", "hint": "fuel for jujutsu techniques" },
+        { "word": "MANGEKYOU SHARINGAN", "category": "items", "hint": "evolved uchiha eye power" },
+        { "word": "GOING MERRY", "category": "items", "hint": "straw hat pirates first ship" },
+        { "word": "FLYING NIMBUS", "category": "items", "hint": "goku's golden cloud" },
+        { "word": "STRAW HAT", "category": "items", "hint": "luffy's treasure from shanks" },
+        { "word": "NINE TAILS FOX", "category": "characters", "hint": "kurama sealed inside naruto" },
+        { "word": "SUPER SAIYAN", "category": "attacks", "hint": "legendary golden transformation" },
+        { "word": "ULTRA INSTINCT", "category": "attacks", "hint": "body moves on its own" },
+        { "word": "GEAR FIFTH", "category": "attacks", "hint": "luffy's most ridiculous power up" },
+        { "word": "INFINITE TSUKUYOMI", "category": "attacks", "hint": "moon-powered genjutsu on the world" },
+        { "word": "THREE SWORD STYLE", "category": "attacks", "hint": "zoro holds one in his mouth" },
+        { "word": "SERIOUS PUNCH", "category": "attacks", "hint": "saitama actually trying" },
+        { "word": "MUZAN KIBUTSUJI", "category": "characters", "hint": "first and strongest demon" },
+        { "word": "SUKUNA", "category": "characters", "hint": "king of curses in jujutsu kaisen" },
+        { "word": "DIO BRANDO", "category": "characters", "hint": "jojo's vampire nemesis" },
+        { "word": "KONOHA", "category": "locations", "hint": "another name for hidden leaf" },
+        { "word": "SAGE MODE", "category": "attacks", "hint": "natural energy transformation" }
+      ]
+    },
+    "trivia": {
+      "questions": [
+        { "question": "What is Goku's Saiyan birth name?", "answers": ["Kakarot", "Bardock", "Raditz", "Broly"], "correct": 0, "difficulty": 1, "category": "characters" },
+        { "question": "What is Luffy's Devil Fruit power?", "answers": ["Fire", "Rubber", "Lightning", "Ice"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "What village is Naruto from?", "answers": ["Sand Village", "Mist Village", "Hidden Leaf Village", "Cloud Village"], "correct": 2, "difficulty": 1, "category": "locations" },
+        { "question": "What is Jotaro's Stand called?", "answers": ["The World", "Star Platinum", "Crazy Diamond", "Gold Experience"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "How many Dragon Balls are there?", "answers": ["5", "6", "7", "9"], "correct": 2, "difficulty": 1, "category": "items" },
+        { "question": "What does Saitama train with to become strong?", "answers": ["100 push-ups, sit-ups, squats and 10km run", "Weighted clothing", "Spirit training", "A special diet"], "correct": 0, "difficulty": 1, "category": "characters" },
+        { "question": "What anime features Titans attacking humanity?", "answers": ["One Piece", "Naruto", "Attack on Titan", "Bleach"], "correct": 2, "difficulty": 1, "category": "series" },
+        { "question": "What is the name of Naruto's signature jutsu?", "answers": ["Chidori", "Rasengan", "Fireball Jutsu", "Shadow Clone Jutsu"], "correct": 3, "difficulty": 1, "category": "attacks" },
+        { "question": "What is Vegeta's royal title?", "answers": ["King of Saiyans", "Prince of all Saiyans", "Emperor of Saiyans", "Lord Saiyan"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "Who wrote Death Note the manga?", "answers": ["Eiichiro Oda", "Tsugumi Ohba", "Masashi Kishimoto", "Akira Toriyama"], "correct": 1, "difficulty": 2, "category": "series" },
+        { "question": "What is the One Piece world's most dangerous sea route?", "answers": ["East Blue", "The Grand Line", "North Blue", "Calm Belt"], "correct": 1, "difficulty": 1, "category": "locations" },
+        { "question": "What does Tanjiro use to fight demons?", "answers": ["Guns", "Nichirin Sword", "Magic spells", "Bare fists"], "correct": 1, "difficulty": 1, "category": "items" },
+        { "question": "What is Gojo's Infinity technique based on?", "answers": ["Speed", "Convergent mathematical series", "Brute force", "Time manipulation"], "correct": 1, "difficulty": 3, "category": "attacks" },
+        { "question": "Which anime character has the catchphrase 'Plus Ultra'?", "answers": ["Goku", "Naruto", "All Might", "Luffy"], "correct": 2, "difficulty": 1, "category": "characters" },
+        { "question": "What race is Goku?", "answers": ["Human", "Namekian", "Saiyan", "Android"], "correct": 2, "difficulty": 1, "category": "characters" },
+        { "question": "What is the name of Luffy's pirate crew?", "answers": ["Red Hair Pirates", "Straw Hat Pirates", "Heart Pirates", "Blackbeard Pirates"], "correct": 1, "difficulty": 1, "category": "series" },
+        { "question": "Who is known as the 'Copy Ninja'?", "answers": ["Naruto", "Sasuke", "Kakashi", "Itachi"], "correct": 2, "difficulty": 2, "category": "characters" },
+        { "question": "What transformation turns a Saiyan's hair golden?", "answers": ["Kaioken", "Ultra Instinct", "Super Saiyan", "Great Ape"], "correct": 2, "difficulty": 1, "category": "attacks" },
+        { "question": "In Bleach, what are the enemy spirits called?", "answers": ["Titans", "Demons", "Hollows", "Curses"], "correct": 2, "difficulty": 1, "category": "series" },
+        { "question": "What is Eren Yeager's Titan form called?", "answers": ["Colossal Titan", "Armored Titan", "Attack Titan", "Beast Titan"], "correct": 2, "difficulty": 2, "category": "characters" },
+        { "question": "What does 'Nakama' mean in anime culture?", "answers": ["Enemy", "Teacher", "Comrade/friend", "Power"], "correct": 2, "difficulty": 2, "category": "series" },
+        { "question": "Which character says 'Omae wa mou shindeiru'?", "answers": ["Goku", "Kenshiro", "Jotaro", "Vegeta"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "How many swords does Zoro use?", "answers": ["1", "2", "3", "4"], "correct": 2, "difficulty": 1, "category": "characters" },
+        { "question": "What is Deku's real name?", "answers": ["Katsuki Bakugo", "Shoto Todoroki", "Izuku Midoriya", "Tenya Iida"], "correct": 2, "difficulty": 1, "category": "characters" },
+        { "question": "Which anime is set in a world where Quirks are superpowers?", "answers": ["One Piece", "Dragon Ball", "My Hero Academia", "Naruto"], "correct": 2, "difficulty": 1, "category": "series" },
+        { "question": "What is the Hyperbolic Time Chamber?", "answers": ["A cooking device", "A place where 1 day = 1 year of training", "A prison", "A teleporter"], "correct": 1, "difficulty": 2, "category": "locations" },
+        { "question": "Who is the main villain in Jujutsu Kaisen?", "answers": ["Mahito", "Sukuna", "Geto", "Kenjaku"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "What breathing style does Tanjiro primarily use?", "answers": ["Flame Breathing", "Water Breathing", "Thunder Breathing", "Wind Breathing"], "correct": 1, "difficulty": 2, "category": "attacks" },
+        { "question": "What is Zoro's dream?", "answers": ["Find One Piece", "Become Pirate King", "Become the World's Greatest Swordsman", "Find All Blue"], "correct": 2, "difficulty": 2, "category": "characters" },
+        { "question": "What is a Zanpakuto?", "answers": ["A demon", "A soul reaper's sword", "A type of ramen", "A martial art"], "correct": 1, "difficulty": 2, "category": "items" },
+        { "question": "Which Straw Hat crew member is the cook?", "answers": ["Zoro", "Usopp", "Sanji", "Franky"], "correct": 2, "difficulty": 1, "category": "characters" },
+        { "question": "What does the Sharingan eye do?", "answers": ["Grants super strength", "Copies techniques and sees through illusions", "Controls time", "Heals wounds"], "correct": 1, "difficulty": 2, "category": "items" },
+        { "question": "Who created Dragon Ball?", "answers": ["Eiichiro Oda", "Masashi Kishimoto", "Akira Toriyama", "Hajime Isayama"], "correct": 2, "difficulty": 1, "category": "series" },
+        { "question": "What is the strongest form Goku achieves in Dragon Ball Super?", "answers": ["Super Saiyan 4", "Super Saiyan Blue", "Ultra Instinct", "Kaioken x20"], "correct": 2, "difficulty": 2, "category": "attacks" },
+        { "question": "What organization does Itachi belong to?", "answers": ["Anbu", "Akatsuki", "Root", "Sound Five"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "In One Piece, what is the name of the legendary treasure?", "answers": ["Grand Prize", "World Gold", "One Piece", "Pirate's Dream"], "correct": 2, "difficulty": 1, "category": "items" },
+        { "question": "What type of demon is Nezuko?", "answers": ["Upper Moon", "Lower Moon", "She resists becoming evil", "She controls others"], "correct": 2, "difficulty": 2, "category": "characters" },
+        { "question": "What is Gojo's Domain Expansion called?", "answers": ["Infinite Void", "Malevolent Shrine", "Chimera Shadow Garden", "Coffin of the Iron Mountain"], "correct": 0, "difficulty": 3, "category": "attacks" },
+        { "question": "What planet was Goku born on?", "answers": ["Earth", "Namek", "Planet Vegeta", "Planet Sadala"], "correct": 2, "difficulty": 2, "category": "locations" },
+        { "question": "Who taught Naruto the Rasengan?", "answers": ["Kakashi", "Iruka", "Jiraiya", "Minato"], "correct": 2, "difficulty": 2, "category": "characters" },
+        { "question": "What is the name of the demon sealed inside Naruto?", "answers": ["Shukaku", "Kurama", "Matatabi", "Gyuki"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "Which anime features alchemy and a Philosopher's Stone?", "answers": ["Bleach", "Fullmetal Alchemist", "Soul Eater", "Black Clover"], "correct": 1, "difficulty": 1, "category": "series" },
+        { "question": "What is the name of the Colossal Titan's human form?", "answers": ["Reiner Braun", "Bertholdt Hoover", "Annie Leonhart", "Zeke Yeager"], "correct": 1, "difficulty": 3, "category": "characters" },
+        { "question": "In JoJo, what is DIO's Stand called?", "answers": ["Star Platinum", "The World", "Killer Queen", "King Crimson"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "What is the highest rank a ninja can achieve in Naruto?", "answers": ["Jonin", "Anbu", "Hokage", "Sannin"], "correct": 2, "difficulty": 2, "category": "series" },
+        { "question": "What fruit did Luffy eat?", "answers": ["Flame Flame Fruit", "Gum Gum Fruit", "Dark Dark Fruit", "Chop Chop Fruit"], "correct": 1, "difficulty": 1, "category": "items" },
+        { "question": "Who is the protagonist of Death Note?", "answers": ["L", "Light Yagami", "Ryuk", "Misa Amane"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "What is Sukuna's Domain Expansion?", "answers": ["Infinite Void", "Chimera Shadow Garden", "Malevolent Shrine", "Horizon of the Captivating Skandha"], "correct": 2, "difficulty": 3, "category": "attacks" },
+        { "question": "Which wall fell first in Attack on Titan?", "answers": ["Wall Rose", "Wall Sina", "Wall Maria", "Wall Sheena"], "correct": 2, "difficulty": 2, "category": "locations" },
+        { "question": "How many Hokage were there before Naruto became Hokage?", "answers": ["5", "6", "7", "4"], "correct": 1, "difficulty": 3, "category": "series" },
+        { "question": "What does Kaioken multiply?", "answers": ["Speed only", "Fighting power", "Intelligence", "Defense"], "correct": 1, "difficulty": 2, "category": "attacks" },
+        { "question": "What is the name of Ichigo's Bankai?", "answers": ["Senbonzakura Kageyoshi", "Tensa Zangetsu", "Daiguren Hyorinmaru", "Konjiki Ashisogi Jizo"], "correct": 1, "difficulty": 3, "category": "attacks" },
+        { "question": "Who are the Hashira in Demon Slayer?", "answers": ["Demon lords", "Top ranked demon slayers", "Village elders", "Spirit guides"], "correct": 1, "difficulty": 2, "category": "series" },
+        { "question": "What is Gear Fifth in One Piece?", "answers": ["A ship upgrade", "Luffy's awakened Devil Fruit form", "A weapon", "A new crew member"], "correct": 1, "difficulty": 2, "category": "attacks" },
+        { "question": "Who killed Goku's father Bardock?", "answers": ["Cell", "Vegeta", "Frieza", "Buu"], "correct": 2, "difficulty": 2, "category": "characters" },
+        { "question": "What is the name of Naruto's son?", "answers": ["Minato", "Boruto", "Konohamaru", "Shinki"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "In Hunter x Hunter, what is Nen?", "answers": ["A weapon", "Life energy technique", "A monster", "A country"], "correct": 1, "difficulty": 2, "category": "series" },
+        { "question": "What anime has the quote 'It's over 9000!'?", "answers": ["One Piece", "Naruto", "Dragon Ball Z", "Bleach"], "correct": 2, "difficulty": 1, "category": "series" },
+        { "question": "Who is the strongest hero in One Punch Man?", "answers": ["Genos", "Blast", "Saitama", "King"], "correct": 2, "difficulty": 1, "category": "characters" },
+        { "question": "What does 'Shonen' mean?", "answers": ["Girl", "Boy", "Warrior", "Ghost"], "correct": 1, "difficulty": 2, "category": "series" }
+      ]
+    }
+  }
+}

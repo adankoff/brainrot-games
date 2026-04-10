@@ -1,0 +1,448 @@
+/**
+ * BRAINROT TRIVIA -- Question Bank (auto-generated)
+ */
+
+export const questions = [
+  {
+    question: "What does 'sigma' refer to in brainrot culture?",
+    answers: ["A math symbol", "A lone wolf grindset male", "A type of food", "A video game"],
+    correct: 1,
+    difficulty: 1,
+    category: "brainrot",
+  },
+  {
+    question: "What is 'Fanum Tax'?",
+    answers: ["An actual tax", "Taking a bite of someone's food", "A Fortnite skin", "A type of dance"],
+    correct: 1,
+    difficulty: 1,
+    category: "brainrot",
+  },
+  {
+    question: "What comes out of a Skibidi Toilet?",
+    answers: ["Water", "A head singing", "Slime", "Nothing"],
+    correct: 1,
+    difficulty: 1,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'rizz' mean?",
+    answers: ["A type of rice", "Charisma and charm", "A sneeze sound", "A dance move"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What state is known for 'only in ___' memes?",
+    answers: ["Texas", "Florida", "Ohio", "California"],
+    correct: 2,
+    difficulty: 1,
+    category: "memes",
+  },
+  {
+    question: "What does 'no cap' mean?",
+    answers: ["No hat", "No lying", "No limit", "No stopping"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is 'mewing'?",
+    answers: ["Cat sounds", "Tongue posture technique", "A dance", "A game"],
+    correct: 1,
+    difficulty: 1,
+    category: "brainrot",
+  },
+  {
+    question: "What does NPC stand for?",
+    answers: ["New Player Character", "Non-Player Character", "Not Particularly Cool", "National Park Center"],
+    correct: 1,
+    difficulty: 1,
+    category: "gaming",
+  },
+  {
+    question: "Who is Kai Cenat?",
+    answers: ["A rapper", "A Twitch streamer", "An athlete", "A politician"],
+    correct: 1,
+    difficulty: 1,
+    category: "internet",
+  },
+  {
+    question: "What does 'bussin' mean?",
+    answers: ["Taking the bus", "Really good", "Breaking something", "Running fast"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is 'looksmaxxing'?",
+    answers: ["Shopping for clothes", "Optimizing your physical appearance", "Taking selfies", "Using filters"],
+    correct: 1,
+    difficulty: 1,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'ratio' mean on social media?",
+    answers: ["A math term", "When a reply gets more likes than the original", "Sharing equally", "A filter type"],
+    correct: 1,
+    difficulty: 1,
+    category: "internet",
+  },
+  {
+    question: "What does 'gyatt' express?",
+    answers: ["Anger", "Surprise or admiration", "Sadness", "Confusion"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What platform made Skibidi Toilet famous?",
+    answers: ["TikTok", "YouTube", "Instagram", "Twitter"],
+    correct: 1,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'caught in 4K' mean?",
+    answers: ["High resolution camera", "Caught red-handed with evidence", "Watching 4K TV", "A basketball term"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is a 'beta male' in brainrot lore?",
+    answers: ["A software tester", "A submissive follower type", "A fish species", "A second-place finisher"],
+    correct: 1,
+    difficulty: 1,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'touch grass' mean?",
+    answers: ["Garden tips", "Go outside and touch real grass", "A football term", "A Minecraft command"],
+    correct: 1,
+    difficulty: 1,
+    category: "internet",
+  },
+  {
+    question: "What engine is Skibidi Toilet animated in?",
+    answers: ["Unreal Engine", "Unity", "Source Filmmaker", "Blender"],
+    correct: 2,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "Who created the Skibidi Toilet series?",
+    answers: ["MrBeast", "DaFuq!?Boom!", "PewDiePie", "Dream"],
+    correct: 1,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'W' mean in internet slang?",
+    answers: ["Wait", "Win", "Wow", "Wish"],
+    correct: 1,
+    difficulty: 1,
+    category: "internet",
+  },
+  {
+    question: "What does 'L' mean in internet slang?",
+    answers: ["Love", "Loss/Loser", "Later", "Lucky"],
+    correct: 1,
+    difficulty: 1,
+    category: "internet",
+  },
+  {
+    question: "What is the Cameraman in Skibidi lore?",
+    answers: ["A filmmaker", "An alliance hero fighting toilets", "A security guard", "A news reporter"],
+    correct: 1,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'slay' mean in Gen Z slang?",
+    answers: ["To kill", "To do something amazingly well", "To sleep", "To run"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is 'copium'?",
+    answers: ["A real medicine", "A fictional coping drug meme", "A video game item", "A music genre"],
+    correct: 1,
+    difficulty: 2,
+    category: "internet",
+  },
+  {
+    question: "What does 'based' mean in internet culture?",
+    answers: ["Simple", "Unapologetically holding an opinion", "Located somewhere", "Basic"],
+    correct: 1,
+    difficulty: 2,
+    category: "internet",
+  },
+  {
+    question: "What is 'aura' in brainrot context?",
+    answers: ["A spiritual energy field", "Your personal vibe score", "A perfume brand", "A Wi-Fi network"],
+    correct: 1,
+    difficulty: 1,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'delulu' mean?",
+    answers: ["Delicious", "Delusional", "Deleted", "Delayed"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is a 'low taper fade'?",
+    answers: ["A lighting effect", "A popular haircut style", "A music technique", "A skateboard trick"],
+    correct: 1,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'goated' mean?",
+    answers: ["Turned into a goat", "Greatest of all time", "Failed badly", "Ran away"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is 'mogging'?",
+    answers: ["Drinking from a mug", "Outshining someone in appearance", "Jogging slowly", "Blogging about movies"],
+    correct: 1,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'rent free' mean?",
+    answers: ["Free housing", "Living in someone's thoughts constantly", "No cost", "A promotion"],
+    correct: 1,
+    difficulty: 2,
+    category: "internet",
+  },
+  {
+    question: "What is Baby Gronk known for?",
+    answers: ["Being an actual baby", "Being a young football prodigy meme", "A cartoon character", "A food brand"],
+    correct: 1,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'its giving' mean?",
+    answers: ["Being generous", "It has the energy/vibe of", "A gift exchange", "Donating"],
+    correct: 1,
+    difficulty: 2,
+    category: "slang",
+  },
+  {
+    question: "What does 'mid' mean?",
+    answers: ["Middle position", "Average or mediocre", "A musical note", "Midnight"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is 'bonesmashing'?",
+    answers: ["A video game move", "An extreme looksmaxxing technique", "Breaking bones", "A drum technique"],
+    correct: 1,
+    difficulty: 3,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'glaze' mean in internet slang?",
+    answers: ["Apply icing", "Excessively praise someone", "Stare blankly", "Clean windows"],
+    correct: 1,
+    difficulty: 2,
+    category: "slang",
+  },
+  {
+    question: "Who is Duke Dennis?",
+    answers: ["A duke in England", "A gaming content creator", "A chef", "A cartoon character"],
+    correct: 1,
+    difficulty: 2,
+    category: "internet",
+  },
+  {
+    question: "What does 'cooked' mean in slang?",
+    answers: ["Prepared food", "Done for or finished", "Tanned", "Angry"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is 'unspoken rizz'?",
+    answers: ["Silent treatment", "Charisma without saying a word", "A secret language", "A meditation technique"],
+    correct: 1,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'sussy baka' combine?",
+    answers: ["Sushi and bakery", "Suspicious (Among Us) and fool (Japanese)", "Susan and baker", "Sassy and basic"],
+    correct: 1,
+    difficulty: 2,
+    category: "memes",
+  },
+  {
+    question: "What does 'main character energy' mean?",
+    answers: ["Being the lead actor", "Acting like the world revolves around you", "Playing a video game", "Being famous"],
+    correct: 1,
+    difficulty: 2,
+    category: "slang",
+  },
+  {
+    question: "What is the G-Man Toilet?",
+    answers: ["A government toilet", "The most powerful Skibidi Toilet", "A janitor", "A plumbing brand"],
+    correct: 1,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'hitting different' mean?",
+    answers: ["Punching incorrectly", "Something feels especially good", "Being unique", "Missing a target"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is 'phantom taxing'?",
+    answers: ["Ghost accounting", "Secretly taking someones food Fanum style", "Tax evasion", "A Fortnite move"],
+    correct: 1,
+    difficulty: 3,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'tweaking' mean in slang?",
+    answers: ["Adjusting settings", "Acting wild or crazy", "Dancing", "Fixing code"],
+    correct: 1,
+    difficulty: 2,
+    category: "slang",
+  },
+  {
+    question: "What is a 'big back'?",
+    answers: ["A large backpack", "Someone who eats excessively", "A wrestling move", "A tall person"],
+    correct: 1,
+    difficulty: 2,
+    category: "slang",
+  },
+  {
+    question: "What does 'lock in' mean?",
+    answers: ["Lock a door", "Focus intensely and get serious", "Get imprisoned", "Sign a contract"],
+    correct: 1,
+    difficulty: 1,
+    category: "gaming",
+  },
+  {
+    question: "What is 'Hawk Tuah'?",
+    answers: ["A martial art", "A viral interview sound/meme", "A bird species", "A food dish"],
+    correct: 1,
+    difficulty: 2,
+    category: "brainrot",
+  },
+  {
+    question: "What does 'zesty' mean in Gen Z slang?",
+    answers: ["Lemony flavor", "Extra flamboyant energy", "Spicy food", "Being lazy"],
+    correct: 1,
+    difficulty: 2,
+    category: "slang",
+  },
+  {
+    question: "What does 'crash out' mean?",
+    answers: ["Fall asleep", "Completely lose your composure", "A car accident", "A computer error"],
+    correct: 1,
+    difficulty: 2,
+    category: "slang",
+  },
+  {
+    question: "What is PRIME?",
+    answers: ["A math concept", "A hydration drink by Logan Paul and KSI", "A streaming service", "A delivery service"],
+    correct: 1,
+    difficulty: 2,
+    category: "internet",
+  },
+  {
+    question: "What does 'on god' mean?",
+    answers: ["Religious prayer", "Swearing something is true", "A church visit", "Being holy"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is the 'griddy'?",
+    answers: ["A cooking tool", "A viral touchdown celebration dance", "A board game", "A type of grill"],
+    correct: 1,
+    difficulty: 2,
+    category: "memes",
+  },
+  {
+    question: "What does 'ick' mean?",
+    answers: ["Being sick", "Something that turns you off about someone", "A bug", "A sound effect"],
+    correct: 1,
+    difficulty: 1,
+    category: "slang",
+  },
+  {
+    question: "What is a 'situationship'?",
+    answers: ["A boat", "An undefined romantic relationship", "A job position", "A gaming setup"],
+    correct: 1,
+    difficulty: 2,
+    category: "slang",
+  },
+  {
+    question: "What does 'seethe' mean in internet slang?",
+    answers: ["Breathe calmly", "Be extremely angry", "See things", "Shake gently"],
+    correct: 1,
+    difficulty: 2,
+    category: "internet",
+  },
+  {
+    question: "What is 'mald'?",
+    answers: ["A type of malt", "Being so mad you go bald", "A German city", "A shopping mall"],
+    correct: 1,
+    difficulty: 3,
+    category: "internet",
+  },
+  {
+    question: "What does 'we are so back' express?",
+    answers: ["Returning from vacation", "Hopeful recovery after a setback", "A reunion", "Going backwards"],
+    correct: 1,
+    difficulty: 2,
+    category: "memes",
+  },
+  {
+    question: "What does 'its over' express in meme culture?",
+    answers: ["An event ending", "Blackpill hopeless acceptance", "A breakup", "A game ending"],
+    correct: 1,
+    difficulty: 3,
+    category: "memes",
+  },
+  {
+    question: "What is IShowSpeed known for?",
+    answers: ["Track and field", "Energetic and chaotic streaming", "Speed running games", "Racing cars"],
+    correct: 1,
+    difficulty: 2,
+    category: "internet",
+  },
+];
+
+/**
+ * Fisher-Yates shuffle.
+ */
+export function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/**
+ * Build a question queue ordered by difficulty (easy first).
+ */
+export function buildQuestionQueue() {
+  const easy = shuffle(questions.filter(q => q.difficulty === 1));
+  const med = shuffle(questions.filter(q => q.difficulty === 2));
+  const hard = shuffle(questions.filter(q => q.difficulty === 3));
+  return [...easy, ...med, ...hard];
+}

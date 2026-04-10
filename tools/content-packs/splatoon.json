@@ -1,0 +1,347 @@
+{
+  "id": "splatoon",
+  "name": "SPLATOON",
+  "tagline": "stay fresh",
+  "bodyTheme": "splatoon",
+  "shareUrl": "https://brainrotgames.com/packs/splatoon/",
+
+  "characters": {
+    "protagonist": {
+      "name": "Agent 3 / Inkling",
+      "shortName": "Agent 3",
+      "emoji": "🦑",
+      "drawFn": "drawInkling"
+    },
+    "antagonist": {
+      "name": "DJ Octavio",
+      "shortName": "Octavio",
+      "emoji": "🐙",
+      "drawFn": "drawDJOctavio"
+    },
+    "supporting": [
+      { "name": "Callie", "shortName": "Callie", "emoji": "🎤", "drawFn": "drawCallie", "tier": 1 },
+      { "name": "Marie", "shortName": "Marie", "emoji": "🎶", "drawFn": "drawMarie", "tier": 1 },
+      { "name": "Pearl", "shortName": "Pearl", "emoji": "👑", "drawFn": "drawPearl", "tier": 1 },
+      { "name": "Marina", "shortName": "Marina", "emoji": "🎧", "drawFn": "drawMarina", "tier": 1 },
+      { "name": "Shiver", "shortName": "Shiver", "emoji": "❄️", "drawFn": "drawShiver", "tier": 2 },
+      { "name": "Frye", "shortName": "Frye", "emoji": "🔥", "drawFn": "drawFrye", "tier": 2 },
+      { "name": "Big Man", "shortName": "Big Man", "emoji": "🐡", "drawFn": "drawBigMan", "tier": 2 },
+      { "name": "Judd", "shortName": "Judd", "emoji": "🐱", "drawFn": "drawJudd", "tier": 2 },
+      { "name": "Captain Cuttlefish", "shortName": "Cap'n", "emoji": "🦴", "drawFn": "drawCuttlefish", "tier": 3 },
+      { "name": "Sheldon", "shortName": "Sheldon", "emoji": "🐚", "drawFn": "drawSheldon", "tier": 3 }
+    ]
+  },
+
+  "items": {
+    "collectible": { "name": "Power Egg", "emoji": "🥚", "drawFn": "drawPowerEgg" },
+    "collectibles": [
+      { "name": "Splat Bomb", "emoji": "💣", "drawFn": "drawSplatBomb" },
+      { "name": "Ink Tank", "emoji": "🫙", "drawFn": "drawInkTank" },
+      { "name": "Super Clam", "emoji": "🐚", "drawFn": "drawSuperClam" },
+      { "name": "Golden Egg", "emoji": "🥇", "drawFn": "drawGoldenEgg" },
+      { "name": "Sardinium", "emoji": "🐟", "drawFn": "drawSardinium" }
+    ],
+    "obstacles": [
+      { "name": "Octoling", "emoji": "🐙", "drawFn": "drawOctoling" },
+      { "name": "Ink Mine", "emoji": "💥", "drawFn": "drawInkMine" },
+      { "name": "Flooder", "emoji": "🤖", "drawFn": "drawFlooder" }
+    ],
+    "projectile": { "name": "Splat Bomb", "emoji": "💣", "drawFn": "drawSplatBombProjectile" },
+    "target": { "name": "Ink Bucket", "emoji": "🪣", "drawFn": "drawInkBucket" }
+  },
+
+  "palette": {
+    "primary": "#FF4081",
+    "secondary": "#00E676",
+    "bgTop": "#1a0028",
+    "bgBottom": "#0a0014",
+    "surface": "rgba(255, 64, 129, 0.08)",
+    "surfaceBorder": "rgba(255, 64, 129, 0.2)",
+    "text": "#f0f0f0",
+    "textSecondary": "#c070a0",
+    "textTertiary": "#804070",
+    "glow": "rgba(255, 64, 129, 0.3)",
+    "colorSwitchSegments": ["#FF4081", "#00E676", "#FF9100", "#536DFE"],
+    "colorSwitchNames": ["pink", "green", "orange", "blue"],
+    "blockColors": ["#FF4081", "#00E676", "#FF9100", "#536DFE", "#FFEA00"],
+    "tileColors": [
+      "#2a1830", "#3a2040", "#4a2850", "#5a3060",
+      "#6a3870", "#8a4090", "#aa48b0", "#cc50d0",
+      "#e858e0", "#ff60f0", "#FF4081"
+    ],
+    "sky": "#1a0028",
+    "skyGradient": "#0a0014",
+    "ground": "#2a1040",
+    "groundAccent": "#FF4081",
+    "groundLine": "#8a3070",
+    "gridColor": "rgba(255, 64, 129, 0.06)",
+    "floorColor": "#1a0820",
+    "wallColor": "#0d0410"
+  },
+
+  "copy": {
+    "scoreLabel": "score",
+    "currencyName": "INK POINTS",
+    "currencyShort": "INK",
+    "prestigeName": "FRESH TOKENS",
+    "prestigeAction": "Go Splatfest",
+    "deathMessages": [
+      "splatted!",
+      "you got inked",
+      "wiped out by the splat zone",
+      "octolings got the best of you",
+      "ran out of ink at the worst time",
+      "DJ Octavio sends his regards",
+      "your turf has been claimed",
+      "not so fresh anymore"
+    ],
+    "winMessages": [
+      "stay fresh!",
+      "booyah! total domination",
+      "team squid wins the splatfest",
+      "inkopolis plaza is cheering for you"
+    ],
+    "comboMessages": [
+      { "threshold": 3, "text": "nice!" },
+      { "threshold": 5, "text": "BOOYAH!" },
+      { "threshold": 10, "text": "INK STORM" },
+      { "threshold": 20, "text": "SPLAT ZONE SECURED" },
+      { "threshold": 35, "text": "TOWER CONTROL" },
+      { "threshold": 50, "text": "KNOCKOUT WIN" }
+    ],
+    "catchphrases": [
+      "booyah!",
+      "this way!",
+      "ouch!",
+      "stay fresh!",
+      "don't get cooked"
+    ],
+    "floatingSymbols": ["🦑", "🐙", "💣", "🥚", "🎨"]
+  },
+
+  "sounds": {
+    "tap": { "notes": [{ "type": "sine", "frequency": 700, "endFrequency": 900, "duration": 0.04, "gain": 0.12 }] },
+    "death": { "notes": [{ "type": "sawtooth", "frequency": 400, "endFrequency": 100, "duration": 0.25, "gain": 0.2 }] },
+    "score": { "notes": [{ "type": "sine", "frequency": 880, "duration": 0.06, "gain": 0.15 }, { "type": "sine", "frequency": 1100, "duration": 0.06, "delay": 0.06, "gain": 0.15 }] },
+    "combo": { "notes": [{ "type": "triangle", "frequency": 523, "duration": 0.1, "gain": 0.2 }, { "type": "triangle", "frequency": 784, "duration": 0.1, "delay": 0.08, "gain": 0.2 }] }
+  },
+
+  "mechanics": {
+    "clicker": {
+      "upgrades": [
+        { "name": "Splattershot", "baseCost": 10, "baseProduction": 1 },
+        { "name": "Roller", "baseCost": 100, "baseProduction": 5 },
+        { "name": "Charger", "baseCost": 1000, "baseProduction": 25 },
+        { "name": "Slosher", "baseCost": 10000, "baseProduction": 100 },
+        { "name": "Splatana", "baseCost": 100000, "baseProduction": 500 }
+      ]
+    },
+    "tiles2048": {
+      "tiers": {
+        "2": { "name": "Recruit" },
+        "4": { "name": "Apprentice" },
+        "8": { "name": "Part-Timer" },
+        "16": { "name": "Go-Getter" },
+        "32": { "name": "Overachiever" },
+        "64": { "name": "Profreshional" },
+        "128": { "name": "Hazard Level" },
+        "256": { "name": "Splattershot" },
+        "512": { "name": "Hero Shot" },
+        "1024": { "name": "Octobrush" },
+        "2048": { "name": "GOLDEN TOOTHPICK" }
+      }
+    },
+    "memoryMatch": {
+      "pairs": [
+        { "emoji": "🦑", "label": "Inkling" },
+        { "emoji": "🐙", "label": "Octavio" },
+        { "emoji": "🎤", "label": "Callie" },
+        { "emoji": "🎶", "label": "Marie" },
+        { "emoji": "👑", "label": "Pearl" },
+        { "emoji": "🎧", "label": "Marina" },
+        { "emoji": "❄️", "label": "Shiver" },
+        { "emoji": "🐱", "label": "Judd" }
+      ],
+      "cardBackSymbol": "🦑"
+    },
+    "whack": {
+      "roster": [
+        { "id": "callie", "name": "Callie", "emoji": "🎤", "basePoints": 10, "isBonus": false, "isPenalty": false },
+        { "id": "marie", "name": "Marie", "emoji": "🎶", "basePoints": 10, "isBonus": false, "isPenalty": false },
+        { "id": "pearl", "name": "Pearl", "emoji": "👑", "basePoints": 15, "isBonus": false, "isPenalty": false },
+        { "id": "marina", "name": "Marina", "emoji": "🎧", "basePoints": 15, "isBonus": false, "isPenalty": false },
+        { "id": "octavio", "name": "DJ Octavio", "emoji": "🐙", "basePoints": 100, "isBonus": true, "isPenalty": false },
+        { "id": "inkling", "name": "Agent 3", "emoji": "🦑", "basePoints": -50, "isBonus": false, "isPenalty": true }
+      ]
+    },
+    "pianoTiles": {
+      "tileEmoji": "🦑"
+    },
+    "colorSwitch": {
+      "ballShape": "circle"
+    },
+    "wordle": {
+      "answerWords": [
+        "SQUID", "FRESH", "SPLAT", "INKLE", "TURFS",
+        "OCTOS", "PAINT", "SPRAY", "BOMBS", "BOOYA",
+        "CLASH", "MATCH", "GRIND", "RANKS", "ZONES",
+        "TOWER", "CLAMS", "WAVES", "SHIFT", "BURST",
+        "BLAST", "STORM", "CHARR", "SUPER", "ULTRA",
+        "POWER", "BRUSH", "SNIPE", "CRUSH", "RIDER",
+        "BLITZ", "DRAIN", "STAIN", "SLOSH", "SURGE",
+        "FLICK", "CORAL", "REEFS", "SPAWN", "PLAZA",
+        "LOBBY", "SALSA", "MANTA", "KRAKE", "SHARK",
+        "SHIVR", "PEARL", "FRYES", "JUICY", "WOOMY"
+      ],
+      "extraValidGuesses": []
+    },
+    "hangman": {
+      "words": [
+        { "word": "SPLATTERSHOT", "category": "weapons", "hint": "the standard shooter weapon" },
+        { "word": "ROLLER", "category": "weapons", "hint": "paints the ground as you walk" },
+        { "word": "CHARGER", "category": "weapons", "hint": "long range sniper weapon" },
+        { "word": "SLOSHER", "category": "weapons", "hint": "bucket that flings ink" },
+        { "word": "SPLATANA", "category": "weapons", "hint": "blade weapon added in splatoon 3" },
+        { "word": "BRELLA", "category": "weapons", "hint": "umbrella shield weapon" },
+        { "word": "DUALIES", "category": "weapons", "hint": "dual wielded pistols" },
+        { "word": "BLASTER", "category": "weapons", "hint": "shoots exploding ink shots" },
+        { "word": "OCTOBRUSH", "category": "weapons", "hint": "fast slashing paint brush" },
+        { "word": "STRINGER", "category": "weapons", "hint": "bow weapon added in splatoon 3" },
+        { "word": "TRI STRINGER", "category": "weapons", "hint": "fires three strings of ink" },
+        { "word": "SPLATLING", "category": "weapons", "hint": "heavy gatling gun style weapon" },
+        { "word": "BAMBOOZLER", "category": "weapons", "hint": "quick charging bamboo charger" },
+        { "word": "AEROSPRAY", "category": "weapons", "hint": "rapid fire short range shooter" },
+        { "word": "INKBRUSH", "category": "weapons", "hint": "fast brush you can run with" },
+        { "word": "CALLIE", "category": "characters", "hint": "pink squid sister who loves to perform" },
+        { "word": "MARIE", "category": "characters", "hint": "green squid sister with dry humor" },
+        { "word": "PEARL", "category": "characters", "hint": "short rapper from off the hook" },
+        { "word": "MARINA", "category": "characters", "hint": "octoling DJ from off the hook" },
+        { "word": "SHIVER", "category": "characters", "hint": "deep cut member with shark companion" },
+        { "word": "FRYE", "category": "characters", "hint": "deep cut member with eel companion" },
+        { "word": "BIG MAN", "category": "characters", "hint": "manta ray from deep cut" },
+        { "word": "JUDD", "category": "characters", "hint": "cat who judges turf war results" },
+        { "word": "CAPTAIN CUTTLEFISH", "category": "characters", "hint": "elderly leader of the new squidbeak splatoon" },
+        { "word": "SHELDON", "category": "characters", "hint": "horseshoe crab who runs the weapon shop" },
+        { "word": "DJ OCTAVIO", "category": "characters", "hint": "octarian king and final boss" },
+        { "word": "AGENT THREE", "category": "characters", "hint": "playable hero in the first game" },
+        { "word": "AGENT EIGHT", "category": "characters", "hint": "playable octoling in the expansion" },
+        { "word": "MURCH", "category": "characters", "hint": "sea urchin who modifies gear" },
+        { "word": "SPYKE", "category": "characters", "hint": "shady sea urchin in the first game" },
+        { "word": "INKOPOLIS", "category": "stages", "hint": "main city hub in splatoon 1" },
+        { "word": "INKOPOLIS SQUARE", "category": "stages", "hint": "the hub area in splatoon 2" },
+        { "word": "SPLATSVILLE", "category": "stages", "hint": "city of chaos in splatoon 3" },
+        { "word": "MORAY TOWERS", "category": "stages", "hint": "tall stage with lots of vertical play" },
+        { "word": "STARFISH MAINSTAGE", "category": "stages", "hint": "concert venue stage" },
+        { "word": "PORT MACKEREL", "category": "stages", "hint": "shipping container stage" },
+        { "word": "WALLEYE WAREHOUSE", "category": "stages", "hint": "simple indoor stage" },
+        { "word": "BLACKBELLY SKATEPARK", "category": "stages", "hint": "skatepark with ramps and halfpipes" },
+        { "word": "SALTSPRAY RIG", "category": "stages", "hint": "ocean oil rig stage" },
+        { "word": "AROWANA MALL", "category": "stages", "hint": "shopping mall stage" },
+        { "word": "KELP DOME", "category": "stages", "hint": "greenhouse with grated walkways" },
+        { "word": "MUSEUM D ALFONSINO", "category": "stages", "hint": "art museum with rotating platforms" },
+        { "word": "MAHI MAHI RESORT", "category": "stages", "hint": "resort with rising water level" },
+        { "word": "TURF WAR", "category": "modes", "hint": "paint the most ground to win" },
+        { "word": "SPLAT ZONES", "category": "modes", "hint": "control a zone by inking it" },
+        { "word": "TOWER CONTROL", "category": "modes", "hint": "ride the tower to the enemy base" },
+        { "word": "RAINMAKER", "category": "modes", "hint": "carry the weapon to the enemy pedestal" },
+        { "word": "CLAM BLITZ", "category": "modes", "hint": "collect clams and dunk them" },
+        { "word": "SALMON RUN", "category": "modes", "hint": "co op mode against salmonids" },
+        { "word": "SPLATFEST", "category": "modes", "hint": "team vs team popularity battle" },
+        { "word": "RANKED BATTLE", "category": "modes", "hint": "competitive mode with letter ranks" },
+        { "word": "TABLETURF BATTLE", "category": "modes", "hint": "card game mode in splatoon 3" },
+        { "word": "ANARCHY BATTLE", "category": "modes", "hint": "renamed ranked mode in splatoon 3" },
+        { "word": "HEADGEAR", "category": "gear", "hint": "equipment worn on the head" },
+        { "word": "CLOTHING", "category": "gear", "hint": "equipment worn on the body" },
+        { "word": "SHOES", "category": "gear", "hint": "equipment worn on the feet" },
+        { "word": "AMIIBO", "category": "gear", "hint": "figures that unlock special gear" },
+        { "word": "INK RESISTANCE UP", "category": "gear", "hint": "ability to move through enemy ink" },
+        { "word": "SWIM SPEED UP", "category": "gear", "hint": "ability to swim faster in ink" },
+        { "word": "INK SAVER", "category": "gear", "hint": "ability that uses less ink" },
+        { "word": "NINJA SQUID", "category": "gear", "hint": "hides ripples when swimming" },
+        { "word": "SPECIAL CHARGE UP", "category": "gear", "hint": "fills special gauge faster" },
+        { "word": "QUICK RESPAWN", "category": "gear", "hint": "come back faster after being splatted" },
+        { "word": "SUPER JUMP", "category": "gear", "hint": "launch to a teammate on the map" },
+        { "word": "INKZOOKA", "category": "weapons", "hint": "special that shoots a tornado of ink" },
+        { "word": "KRAKEN", "category": "weapons", "hint": "special that turns you invincible" },
+        { "word": "KILLER WAIL", "category": "weapons", "hint": "special that shoots a sonic blast" },
+        { "word": "SPLAT BOMB", "category": "weapons", "hint": "triangle shaped bomb" },
+        { "word": "SUCTION BOMB", "category": "weapons", "hint": "bomb that sticks to surfaces" },
+        { "word": "BURST BOMB", "category": "weapons", "hint": "bomb that explodes on impact" },
+        { "word": "INK MINE", "category": "weapons", "hint": "trap placed on the ground" },
+        { "word": "SPRINKLER", "category": "weapons", "hint": "device that sprays ink around it" },
+        { "word": "BOOYAH BOMB", "category": "weapons", "hint": "special powered by teammate booyahs" },
+        { "word": "INK STORM", "category": "weapons", "hint": "special that creates a rain cloud" },
+        { "word": "TRIZOOKA", "category": "weapons", "hint": "special that fires three shots at once" },
+        { "word": "WAVE BREAKER", "category": "weapons", "hint": "special that sends out shockwaves" },
+        { "word": "ZIPCASTER", "category": "weapons", "hint": "special that lets you zip around" },
+        { "word": "TACTICOOLER", "category": "weapons", "hint": "special that drops drinks for the team" },
+        { "word": "POWER EGGS", "category": "modes", "hint": "collectible in salmon run" },
+        { "word": "GOLDEN EGGS", "category": "modes", "hint": "boss drops in salmon run" }
+      ]
+    },
+    "trivia": {
+      "questions": [
+        { "question": "What is the main objective of Turf War?", "answers": ["Splat the most enemies", "Cover the most ground in ink", "Capture the flag", "Survive the longest"], "correct": 1, "difficulty": 1, "category": "modes" },
+        { "question": "Who are the hosts of Splatoon 1's Inkopolis News?", "answers": ["Pearl and Marina", "Callie and Marie", "Shiver and Frye", "Big Man and Judd"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "What species is DJ Octavio?", "answers": ["Squid", "Octopus", "Jellyfish", "Crab"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "What is the name of the co-op mode where you fight Salmonids?", "answers": ["Turf War", "Tower Control", "Salmon Run", "Clam Blitz"], "correct": 2, "difficulty": 1, "category": "modes" },
+        { "question": "What do Inklings transform into when swimming through ink?", "answers": ["Fish", "Squid", "Octopus", "Jellyfish"], "correct": 1, "difficulty": 1, "category": "lore" },
+        { "question": "What color are the Squid Sisters' respective ink colors?", "answers": ["Red and Blue", "Pink and Green", "Orange and Purple", "Yellow and Cyan"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "What animal is Judd?", "answers": ["Dog", "Cat", "Bird", "Fish"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "What is the hub city called in Splatoon 3?", "answers": ["Inkopolis", "Inkopolis Square", "Splatsville", "Calamari County"], "correct": 2, "difficulty": 1, "category": "lore" },
+        { "question": "Which weapon type lets you paint the ground while walking?", "answers": ["Charger", "Blaster", "Roller", "Splatling"], "correct": 2, "difficulty": 1, "category": "weapons" },
+        { "question": "What is the name of the weapon shop owner?", "answers": ["Sheldon", "Murch", "Spyke", "Crusty Sean"], "correct": 0, "difficulty": 1, "category": "characters" },
+        { "question": "How many main Splatoon games have been released (as of Splatoon 3)?", "answers": ["2", "3", "4", "5"], "correct": 1, "difficulty": 1, "category": "lore" },
+        { "question": "What is the maximum team size in a standard Turf War match?", "answers": ["3", "4", "5", "6"], "correct": 1, "difficulty": 1, "category": "modes" },
+        { "question": "What are Splatfests?", "answers": ["Single player missions", "Team vs team themed events", "DLC expansions", "Speed run challenges"], "correct": 1, "difficulty": 1, "category": "modes" },
+        { "question": "Which Splatoon 2 duo consists of Pearl and Marina?", "answers": ["Squid Sisters", "Off the Hook", "Deep Cut", "Chirpy Chips"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "What console was the original Splatoon released on?", "answers": ["Nintendo Switch", "Nintendo 3DS", "Wii U", "GameCube"], "correct": 2, "difficulty": 1, "category": "lore" },
+        { "question": "What is the name of the idol group in Splatoon 3?", "answers": ["Squid Sisters", "Off the Hook", "Deep Cut", "Bottom Feeders"], "correct": 2, "difficulty": 2, "category": "characters" },
+        { "question": "Which ranked mode requires you to ride a moving platform to the enemy base?", "answers": ["Splat Zones", "Tower Control", "Rainmaker", "Clam Blitz"], "correct": 1, "difficulty": 2, "category": "modes" },
+        { "question": "What does the Ninja Squid ability do?", "answers": ["Increases damage", "Hides ink ripples while swimming", "Speeds up respawn", "Boosts special gauge"], "correct": 1, "difficulty": 2, "category": "gear" },
+        { "question": "Which species are the Octolings?", "answers": ["Squids", "Octopuses", "Jellyfish", "Crabs"], "correct": 1, "difficulty": 1, "category": "lore" },
+        { "question": "What is the Rainmaker?", "answers": ["A weather machine", "A powerful weapon you carry to the goal", "A type of special", "A boss in Salmon Run"], "correct": 1, "difficulty": 2, "category": "modes" },
+        { "question": "Which member of Deep Cut is a manta ray?", "answers": ["Shiver", "Frye", "Big Man", "Small Fry"], "correct": 2, "difficulty": 2, "category": "characters" },
+        { "question": "What are Power Eggs used for in Salmon Run?", "answers": ["Buying weapons", "Scoring points", "Upgrading gear", "Healing teammates"], "correct": 1, "difficulty": 2, "category": "modes" },
+        { "question": "Which Splatoon stage is set in a shopping mall?", "answers": ["Moray Towers", "Arowana Mall", "Port Mackerel", "Kelp Dome"], "correct": 1, "difficulty": 2, "category": "stages" },
+        { "question": "What weapon class does the Bamboozler belong to?", "answers": ["Shooter", "Charger", "Roller", "Slosher"], "correct": 1, "difficulty": 2, "category": "weapons" },
+        { "question": "What happens when your ink tank runs empty?", "answers": ["You respawn", "You can't shoot until it refills", "You lose points", "The match ends"], "correct": 1, "difficulty": 1, "category": "weapons" },
+        { "question": "What is Tableturf Battle?", "answers": ["A board game mode", "A card game mode", "A racing mode", "A battle royale"], "correct": 1, "difficulty": 2, "category": "modes" },
+        { "question": "What animal companion does Shiver have?", "answers": ["Eel", "Shark", "Dolphin", "Whale"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "What is the Booyah Bomb powered by?", "answers": ["Ink usage", "Teammate booyahs", "Enemy splats", "Time elapsed"], "correct": 1, "difficulty": 2, "category": "weapons" },
+        { "question": "Which Splatoon expansion features the Octo Expansion?", "answers": ["Splatoon 1", "Splatoon 2", "Splatoon 3", "All of them"], "correct": 1, "difficulty": 2, "category": "lore" },
+        { "question": "What is the final reward for completing the Octo Expansion?", "answers": ["A golden weapon", "Playable Octoling", "A new stage", "A special hat"], "correct": 1, "difficulty": 2, "category": "lore" },
+        { "question": "What are the three gear slots in Splatoon?", "answers": ["Head, Body, Shoes", "Hat, Shirt, Pants", "Helmet, Armor, Boots", "Head, Arms, Legs"], "correct": 0, "difficulty": 2, "category": "gear" },
+        { "question": "Which character says 'Stay Fresh!' at the end of news broadcasts?", "answers": ["Pearl", "Marina", "Callie and Marie", "Shiver"], "correct": 2, "difficulty": 2, "category": "characters" },
+        { "question": "In Clam Blitz, how many clams make a Super Clam?", "answers": ["5", "8", "10", "15"], "correct": 2, "difficulty": 3, "category": "modes" },
+        { "question": "What sea creature is Sheldon?", "answers": ["Snail", "Horseshoe Crab", "Shrimp", "Lobster"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "What is the name of the single player campaign in Splatoon 3?", "answers": ["Hero Mode", "Octo Canyon", "Return of the Mammalians", "Agent Files"], "correct": 2, "difficulty": 2, "category": "lore" },
+        { "question": "Which special weapon creates a rain cloud of ink?", "answers": ["Booyah Bomb", "Ink Storm", "Trizooka", "Ultra Stamp"], "correct": 1, "difficulty": 2, "category": "weapons" },
+        { "question": "What is the highest rank letter in Splatoon's ranked mode?", "answers": ["A+", "S+", "X", "Z"], "correct": 2, "difficulty": 3, "category": "modes" },
+        { "question": "What year was the original Splatoon released?", "answers": ["2013", "2014", "2015", "2016"], "correct": 2, "difficulty": 2, "category": "lore" },
+        { "question": "Which boss drops Golden Eggs in Salmon Run?", "answers": ["Regular Salmonids", "Boss Salmonids", "King Salmonid", "Cohozuna"], "correct": 1, "difficulty": 2, "category": "modes" },
+        { "question": "What is the name of the food truck operator who makes drinks?", "answers": ["Sheldon", "Murch", "Crusty Sean", "Harmony"], "correct": 2, "difficulty": 3, "category": "characters" },
+        { "question": "What does the Tacticooler special do?", "answers": ["Shoots ink in all directions", "Drops drink cans for the team", "Creates a force field", "Launches a missile"], "correct": 1, "difficulty": 3, "category": "weapons" },
+        { "question": "What species is Marina from Off the Hook?", "answers": ["Inkling", "Octoling", "Jellyfish", "Anemone"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "Which weapon sub type sticks to surfaces before exploding?", "answers": ["Splat Bomb", "Suction Bomb", "Burst Bomb", "Curling Bomb"], "correct": 1, "difficulty": 3, "category": "weapons" },
+        { "question": "How many players are on each team in Salmon Run?", "answers": ["2", "3", "4", "5"], "correct": 2, "difficulty": 2, "category": "modes" },
+        { "question": "What is the name of the fuzzy enemy in Splatoon 3's story mode?", "answers": ["Octarians", "Fuzzy Ooze", "Mammalians", "Salmonids"], "correct": 1, "difficulty": 3, "category": "lore" },
+        { "question": "Which stage features rising water levels during the match?", "answers": ["Moray Towers", "Mahi-Mahi Resort", "Starfish Mainstage", "Kelp Dome"], "correct": 1, "difficulty": 3, "category": "stages" },
+        { "question": "What is the Zipcaster special?", "answers": ["A long range sniper", "An ink zipline launcher", "A grappling hook ability", "A teleportation device"], "correct": 2, "difficulty": 3, "category": "weapons" },
+        { "question": "What do you call the act of quickly hiding in ink and popping out to splat?", "answers": ["Ink diving", "Sharking", "Squid bagging", "Sub strafing"], "correct": 1, "difficulty": 3, "category": "lore" },
+        { "question": "Which Splatoon game introduced the Dualies weapon class?", "answers": ["Splatoon 1", "Splatoon 2", "Splatoon 3", "Octo Expansion"], "correct": 1, "difficulty": 3, "category": "weapons" },
+        { "question": "What is Little Buddy in Splatoon 3?", "answers": ["A pet fish", "A small Salmonid companion", "A mini Octoling", "A drone"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "What is the term for rapidly crouching in squid form as a taunt?", "answers": ["Tea-bagging", "Squid bagging", "Ink dipping", "Squid partying"], "correct": 3, "difficulty": 3, "category": "lore" },
+        { "question": "Which stage is known for its extremely tall vertical layout?", "answers": ["Moray Towers", "Port Mackerel", "Blackbelly Skatepark", "Walleye Warehouse"], "correct": 0, "difficulty": 2, "category": "stages" },
+        { "question": "What color is Marie's associated ink?", "answers": ["Pink", "Green", "Purple", "Yellow"], "correct": 1, "difficulty": 2, "category": "characters" },
+        { "question": "What extinct creatures are Inklings evolved from?", "answers": ["Fish", "Squids", "Sea snails", "Humans are the extinct ones"], "correct": 3, "difficulty": 3, "category": "lore" },
+        { "question": "What is the maximum number of ability slots on a piece of gear?", "answers": ["2", "3", "4", "5"], "correct": 2, "difficulty": 3, "category": "gear" },
+        { "question": "Which Splatoon game introduced the Stringer weapon class?", "answers": ["Splatoon 1", "Splatoon 2", "Splatoon 3", "None"], "correct": 2, "difficulty": 2, "category": "weapons" },
+        { "question": "What is the name of the ancient technology discovered in Splatoon 3?", "answers": ["Zapfish", "Sardinium", "Alterna", "Deep Sea Scrolls"], "correct": 2, "difficulty": 3, "category": "lore" },
+        { "question": "How many waves are there in a standard Salmon Run shift?", "answers": ["2", "3", "4", "5"], "correct": 1, "difficulty": 2, "category": "modes" },
+        { "question": "What is Crusty Sean's business in Splatoon 2?", "answers": ["Weapon shop", "Gear shop", "Food truck", "Arcade"], "correct": 2, "difficulty": 3, "category": "characters" },
+        { "question": "What item powers the Great Zapfish?", "answers": ["Power Eggs", "Sardinium", "Electricity", "Ink"], "correct": 2, "difficulty": 3, "category": "lore" }
+      ]
+    }
+  }
+}

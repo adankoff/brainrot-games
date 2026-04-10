@@ -1,0 +1,109 @@
+{
+  "packId": "splatoon",
+  "packName": "SPLATOON",
+  "startGame": 65,
+  "games": [
+    {
+      "number": 65,
+      "folder": "game-65",
+      "name": "SPLATOON FLAPPY BIRD",
+      "mechanic": "Flappy Bird"
+    },
+    {
+      "number": 66,
+      "folder": "game-66",
+      "name": "SPLATOON WHACK-A-MOLE",
+      "mechanic": "Whack-a-Mole"
+    },
+    {
+      "number": 67,
+      "folder": "game-67",
+      "name": "SPLATOON IDLE CLICKER",
+      "mechanic": "Idle Clicker"
+    },
+    {
+      "number": 68,
+      "folder": "game-68",
+      "name": "SPLATOON ENDLESS RUNNER",
+      "mechanic": "Endless Runner"
+    },
+    {
+      "number": 69,
+      "folder": "game-69",
+      "name": "SPLATOON STACK",
+      "mechanic": "Stack"
+    },
+    {
+      "number": 70,
+      "folder": "game-70",
+      "name": "SPLATOON SNAKE",
+      "mechanic": "Snake"
+    },
+    {
+      "number": 71,
+      "folder": "game-71",
+      "name": "SPLATOON 2048",
+      "mechanic": "2048"
+    },
+    {
+      "number": 72,
+      "folder": "game-72",
+      "name": "SPLATOON FRUIT NINJA",
+      "mechanic": "Fruit Ninja"
+    },
+    {
+      "number": 73,
+      "folder": "game-73",
+      "name": "SPLATOON BREAKOUT",
+      "mechanic": "Breakout"
+    },
+    {
+      "number": 74,
+      "folder": "game-74",
+      "name": "SPLATOON GEOMETRY DASH",
+      "mechanic": "Geometry Dash"
+    },
+    {
+      "number": 75,
+      "folder": "game-75",
+      "name": "SPLATOON PIANO TILES",
+      "mechanic": "Piano Tiles"
+    },
+    {
+      "number": 76,
+      "folder": "game-76",
+      "name": "SPLATOON COLOR SWITCH",
+      "mechanic": "Color Switch"
+    },
+    {
+      "number": 77,
+      "folder": "game-77",
+      "name": "SPLATOON WORDLE",
+      "mechanic": "Wordle"
+    },
+    {
+      "number": 78,
+      "folder": "game-78",
+      "name": "SPLATOON MEMORY MATCH",
+      "mechanic": "Memory Match"
+    },
+    {
+      "number": 79,
+      "folder": "game-79",
+      "name": "SPLATOON HANGMAN",
+      "mechanic": "Hangman"
+    },
+    {
+      "number": 80,
+      "folder": "game-80",
+      "name": "SPLATOON PAPER TOSS",
+      "mechanic": "Paper Toss"
+    },
+    {
+      "number": 81,
+      "folder": "game-81",
+      "name": "SPLATOON TRIVIA QUIZ",
+      "mechanic": "Trivia Quiz"
+    }
+  ]
+}

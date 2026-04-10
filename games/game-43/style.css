@@ -1,0 +1,8 @@
+/* Brainrotle -- Game-specific styles */
+
+/* Prevent any text selection or callout on mobile */
+.game-container {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

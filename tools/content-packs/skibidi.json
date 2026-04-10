@@ -1,0 +1,231 @@
+{
+  "id": "skibidi",
+  "name": "SKIBIDI TOILET",
+  "tagline": "bop bop bop yes yes",
+  "bodyTheme": "skibidi",
+  "shareUrl": "https://brainrotgames.com/packs/skibidi/",
+
+  "characters": {
+    "protagonist": {
+      "name": "Cameraman",
+      "shortName": "Cam",
+      "emoji": "📷",
+      "drawFn": "drawCameraman"
+    },
+    "antagonist": {
+      "name": "Skibidi Toilet",
+      "shortName": "Skibidi",
+      "emoji": "🚽",
+      "drawFn": "drawSkibidiToilet"
+    },
+    "supporting": [
+      { "name": "TV Man", "shortName": "TV", "emoji": "📺", "drawFn": "drawTVMan", "tier": 1 },
+      { "name": "Speaker Man", "shortName": "Speaker", "emoji": "🔊", "drawFn": "drawSpeakerMan", "tier": 1 },
+      { "name": "Plunger Man", "shortName": "Plunger", "emoji": "🪠", "drawFn": "drawPlungerMan", "tier": 1 },
+      { "name": "Titan Cameraman", "shortName": "Titan Cam", "emoji": "🤖", "drawFn": "drawTitanCameraman", "tier": 2 },
+      { "name": "Titan TV Man", "shortName": "Titan TV", "emoji": "💻", "drawFn": "drawTitanTVMan", "tier": 2 },
+      { "name": "G-Man Toilet", "shortName": "G-Man", "emoji": "🎩", "drawFn": "drawGManToilet", "tier": 2 },
+      { "name": "Scientist Toilet", "shortName": "Scientist", "emoji": "🧪", "drawFn": "drawScientistToilet", "tier": 3 },
+      { "name": "Astro Toilet", "shortName": "Astro", "emoji": "🚀", "drawFn": "drawAstroToilet", "tier": 3 },
+      { "name": "Buzzsaw Man", "shortName": "Buzzsaw", "emoji": "🪚", "drawFn": "drawBuzzsawMan", "tier": 3 },
+      { "name": "Titan Speaker Man", "shortName": "Titan Spk", "emoji": "📡", "drawFn": "drawTitanSpeakerMan", "tier": 3 }
+    ]
+  },
+
+  "items": {
+    "collectible": { "name": "Camera Lens", "emoji": "🔵", "drawFn": "drawLens" },
+    "collectibles": [
+      { "name": "Battery", "emoji": "🔋", "drawFn": "drawBattery" },
+      { "name": "Antenna", "emoji": "📡", "drawFn": "drawAntenna" },
+      { "name": "Circuit Board", "emoji": "💾", "drawFn": "drawCircuit" },
+      { "name": "Upgrade Core", "emoji": "⚡", "drawFn": "drawCore" },
+      { "name": "Signal Boost", "emoji": "📶", "drawFn": "drawSignal" }
+    ],
+    "obstacles": [
+      { "name": "Toilet Swarm", "emoji": "🚽", "drawFn": "drawToiletSwarm" },
+      { "name": "Plunger Trap", "emoji": "🪠", "drawFn": "drawPlungerTrap" },
+      { "name": "Flush Wave", "emoji": "🌊", "drawFn": "drawFlushWave" }
+    ],
+    "projectile": { "name": "Toilet Paper Roll", "emoji": "🧻", "drawFn": "drawTPRoll" },
+    "target": { "name": "Toilet Bowl", "emoji": "🚽", "drawFn": "drawToiletBowl" }
+  },
+
+  "palette": {
+    "primary": "#b44dff",
+    "secondary": "#00e5ff",
+    "bgTop": "#1a0a2e",
+    "bgBottom": "#0d0015",
+    "surface": "rgba(180, 77, 255, 0.08)",
+    "surfaceBorder": "rgba(180, 77, 255, 0.2)",
+    "text": "#f0f0f0",
+    "textSecondary": "#9070b0",
+    "textTertiary": "#604080",
+    "glow": "rgba(180, 77, 255, 0.3)",
+    "colorSwitchSegments": ["#b44dff", "#00e5ff", "#ff6b6b", "#c8ff00"],
+    "colorSwitchNames": ["purple", "cyan", "red", "lime"],
+    "blockColors": ["#b44dff", "#00e5ff", "#ff6b6b", "#c8ff00", "#ff69b4"],
+    "tileColors": [
+      "#3a2040", "#4a2850", "#5a3060", "#6a3870",
+      "#7a4080", "#8a4890", "#9a50a0", "#aa58b0",
+      "#ba60c0", "#ca68d0", "#b44dff"
+    ],
+    "sky": "#1a0a2e",
+    "skyGradient": "#0d0015",
+    "ground": "#2a1040",
+    "groundAccent": "#b44dff",
+    "groundLine": "#6a3890",
+    "gridColor": "rgba(180, 77, 255, 0.06)",
+    "floorColor": "#1a0a20",
+    "wallColor": "#0d0010"
+  },
+
+  "copy": {
+    "scoreLabel": "score",
+    "currencyName": "SIGNAL POWER",
+    "currencyShort": "SIG",
+    "prestigeName": "TITAN CORES",
+    "prestigeAction": "Ascend to Titan",
+    "deathMessages": [
+      "got flushed",
+      "the skibidi won",
+      "bop bop bop... no no no",
+      "cameraman down",
+      "should have upgraded your antenna",
+      "the toilet was stronger",
+      "signal lost permanently",
+      "flushed your whole career"
+    ],
+    "winMessages": [
+      "the alliance is saved",
+      "titan-tier signal detected",
+      "skibidi defeated... for now",
+      "bop bop bop YES YES YES"
+    ],
+    "comboMessages": [
+      { "threshold": 3, "text": "bop bop" },
+      { "threshold": 5, "text": "BOP BOP BOP" },
+      { "threshold": 10, "text": "YES YES YES" },
+      { "threshold": 20, "text": "TITAN MODE" },
+      { "threshold": 35, "text": "UPGRADED" },
+      { "threshold": 50, "text": "SIGMA SKIBIDI" }
+    ],
+    "catchphrases": [
+      "bop bop bop",
+      "yes yes yes",
+      "signal acquired",
+      "flush denied",
+      "camera angle: perfect"
+    ],
+    "floatingSymbols": ["📷", "🚽", "📺", "🔊", "⚡"]
+  },
+
+  "sounds": {
+    "tap": { "notes": [{ "type": "sine", "frequency": 600, "endFrequency": 800, "duration": 0.05, "gain": 0.12 }] },
+    "death": { "notes": [{ "type": "sawtooth", "frequency": 300, "endFrequency": 80, "duration": 0.3, "gain": 0.2 }] }
+  },
+
+  "mechanics": {
+    "clicker": {
+      "upgrades": [
+        { "name": "Camera Tap", "baseCost": 10, "baseProduction": 1 },
+        { "name": "TV Signal Boost", "baseCost": 100, "baseProduction": 5 },
+        { "name": "Speaker Array", "baseCost": 1000, "baseProduction": 25 },
+        { "name": "Titan Upgrade", "baseCost": 10000, "baseProduction": 100 },
+        { "name": "Alliance HQ", "baseCost": 100000, "baseProduction": 500 }
+      ]
+    },
+    "tiles2048": {
+      "tiers": {
+        "2": { "name": "Plunger" },
+        "4": { "name": "Speaker" },
+        "8": { "name": "TV Man" },
+        "16": { "name": "Cameraman" },
+        "32": { "name": "Buzzsaw" },
+        "64": { "name": "Scientist" },
+        "128": { "name": "G-Man" },
+        "256": { "name": "Astro" },
+        "512": { "name": "Titan Cam" },
+        "1024": { "name": "Titan TV" },
+        "2048": { "name": "TITAN SPEAKER" }
+      }
+    },
+    "memoryMatch": {
+      "pairs": [
+        { "emoji": "📷", "label": "Cameraman" },
+        { "emoji": "🚽", "label": "Skibidi" },
+        { "emoji": "📺", "label": "TV Man" },
+        { "emoji": "🔊", "label": "Speaker" },
+        { "emoji": "🤖", "label": "Titan Cam" },
+        { "emoji": "🎩", "label": "G-Man" },
+        { "emoji": "🪠", "label": "Plunger" },
+        { "emoji": "🚀", "label": "Astro" }
+      ],
+      "cardBackSymbol": "🚽"
+    },
+    "whack": {
+      "roster": [
+        { "id": "tvman", "name": "TV Man", "emoji": "📺", "basePoints": 10, "isBonus": false, "isPenalty": false },
+        { "id": "speaker", "name": "Speaker Man", "emoji": "🔊", "basePoints": 10, "isBonus": false, "isPenalty": false },
+        { "id": "plunger", "name": "Plunger Man", "emoji": "🪠", "basePoints": 15, "isBonus": false, "isPenalty": false },
+        { "id": "titan", "name": "Titan Cameraman", "emoji": "🤖", "basePoints": 100, "isBonus": true, "isPenalty": false },
+        { "id": "skibidi", "name": "Skibidi Toilet", "emoji": "🚽", "basePoints": -50, "isBonus": false, "isPenalty": true },
+        { "id": "gman", "name": "G-Man Toilet", "emoji": "🎩", "basePoints": 20, "isBonus": false, "isPenalty": false }
+      ]
+    },
+    "pianoTiles": {
+      "tileEmoji": "🚽"
+    },
+    "colorSwitch": {
+      "ballShape": "toilet"
+    },
+    "wordle": {
+      "answerWords": [
+        "FLUSH", "TITAN", "SWIRL", "PLUMB", "DRAIN",
+        "VALVE", "WASTE", "SEWER", "PIPES", "WATER",
+        "SWAMP", "SPRAY", "RINSE", "SCRUB", "CLEAN",
+        "TOWEL", "BASIN", "SPOUT", "LEVER", "FLOAT",
+        "CRANE", "ROBOT", "METAL", "STEEL", "POWER",
+        "LIGHT", "FLASH", "BURST", "SHOCK", "SPARK",
+        "FLAME", "BLAZE", "SURGE", "BOOST", "FORCE",
+        "GUARD", "WATCH", "SCOUT", "ALERT", "TRACK",
+        "CHASE", "FIGHT", "CLASH", "SIEGE", "STORM",
+        "TOWER", "BUILD", "CRAFT", "FORGE", "ARMOR"
+      ],
+      "extraValidGuesses": []
+    },
+    "hangman": {
+      "words": [
+        { "word": "SKIBIDI TOILET", "category": "character", "hint": "the original brainrot antagonist" },
+        { "word": "CAMERAMAN", "category": "character", "hint": "the alliance's frontline soldier" },
+        { "word": "TV MAN", "category": "character", "hint": "has a screen for a head" },
+        { "word": "SPEAKER MAN", "category": "character", "hint": "attacks with sound waves" },
+        { "word": "TITAN CAMERAMAN", "category": "character", "hint": "the biggest alliance hero" },
+        { "word": "G MAN TOILET", "category": "character", "hint": "the most powerful skibidi" },
+        { "word": "BOP BOP BOP", "category": "catchphrase", "hint": "the skibidi soundtrack" },
+        { "word": "YES YES YES", "category": "catchphrase", "hint": "the response to bop" },
+        { "word": "PLUNGER MAN", "category": "character", "hint": "melee fighter with a plunger" },
+        { "word": "BUZZSAW MAN", "category": "character", "hint": "cuts through toilets" },
+        { "word": "SCIENTIST TOILET", "category": "character", "hint": "creates mutations" },
+        { "word": "ASTRO TOILET", "category": "character", "hint": "attacks from space" },
+        { "word": "TITAN TV MAN", "category": "character", "hint": "teleports the alliance" },
+        { "word": "SIGNAL LOST", "category": "event", "hint": "when cameraman goes dark" },
+        { "word": "FLUSHED", "category": "event", "hint": "what happens when you lose" },
+        { "word": "UPGRADE CORE", "category": "item", "hint": "powers up the alliance" },
+        { "word": "ALLIANCE", "category": "faction", "hint": "the good guys" },
+        { "word": "INFECTION", "category": "event", "hint": "how toilets recruit" },
+        { "word": "PARASITE", "category": "character", "hint": "small toilet that takes over" },
+        { "word": "MULTIVERSE", "category": "concept", "hint": "where skibidi spreads" }
+      ]
+    },
+    "trivia": {
+      "questions": [
+        { "question": "Who created the Skibidi Toilet series?", "answers": ["Alexey Gerasimov", "DaFuq!?Boom!", "MrBeast", "PewDiePie"], "correct": 1, "difficulty": 1, "category": "history" },
+        { "question": "What engine is Skibidi Toilet made in?", "answers": ["Unreal Engine", "Unity", "Source Filmmaker", "Blender"], "correct": 2, "difficulty": 2, "category": "history" },
+        { "question": "What does the Cameraman have for a head?", "answers": ["TV", "Camera", "Speaker", "Satellite"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "What is the Titan Cameraman's main weapon?", "answers": ["Laser eyes", "Camera flash", "Sound waves", "Teleportation"], "correct": 0, "difficulty": 2, "category": "characters" },
+        { "question": "What does G-Man Toilet wear?", "answers": ["Crown", "Top hat", "Glasses", "Tie"], "correct": 1, "difficulty": 1, "category": "characters" },
+        { "question": "What platform was Skibidi Toilet first posted on?", "answers": ["TikTok", "YouTube", "Instagram", "Twitter"], "correct": 1, "difficulty": 1, "category": "history" }
+      ]
+    }
+  }
+}

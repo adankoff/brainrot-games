@@ -1,0 +1,448 @@
+/**
+ * SPLATOON TRIVIA -- Question Bank (auto-generated)
+ */
+
+export const questions = [
+  {
+    question: "What is the main objective of Turf War?",
+    answers: ["Splat the most enemies", "Cover the most ground in ink", "Capture the flag", "Survive the longest"],
+    correct: 1,
+    difficulty: 1,
+    category: "modes",
+  },
+  {
+    question: "Who are the hosts of Splatoon 1's Inkopolis News?",
+    answers: ["Pearl and Marina", "Callie and Marie", "Shiver and Frye", "Big Man and Judd"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What species is DJ Octavio?",
+    answers: ["Squid", "Octopus", "Jellyfish", "Crab"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What is the name of the co-op mode where you fight Salmonids?",
+    answers: ["Turf War", "Tower Control", "Salmon Run", "Clam Blitz"],
+    correct: 2,
+    difficulty: 1,
+    category: "modes",
+  },
+  {
+    question: "What do Inklings transform into when swimming through ink?",
+    answers: ["Fish", "Squid", "Octopus", "Jellyfish"],
+    correct: 1,
+    difficulty: 1,
+    category: "lore",
+  },
+  {
+    question: "What color are the Squid Sisters' respective ink colors?",
+    answers: ["Red and Blue", "Pink and Green", "Orange and Purple", "Yellow and Cyan"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What animal is Judd?",
+    answers: ["Dog", "Cat", "Bird", "Fish"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What is the hub city called in Splatoon 3?",
+    answers: ["Inkopolis", "Inkopolis Square", "Splatsville", "Calamari County"],
+    correct: 2,
+    difficulty: 1,
+    category: "lore",
+  },
+  {
+    question: "Which weapon type lets you paint the ground while walking?",
+    answers: ["Charger", "Blaster", "Roller", "Splatling"],
+    correct: 2,
+    difficulty: 1,
+    category: "weapons",
+  },
+  {
+    question: "What is the name of the weapon shop owner?",
+    answers: ["Sheldon", "Murch", "Spyke", "Crusty Sean"],
+    correct: 0,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "How many main Splatoon games have been released (as of Splatoon 3)?",
+    answers: ["2", "3", "4", "5"],
+    correct: 1,
+    difficulty: 1,
+    category: "lore",
+  },
+  {
+    question: "What is the maximum team size in a standard Turf War match?",
+    answers: ["3", "4", "5", "6"],
+    correct: 1,
+    difficulty: 1,
+    category: "modes",
+  },
+  {
+    question: "What are Splatfests?",
+    answers: ["Single player missions", "Team vs team themed events", "DLC expansions", "Speed run challenges"],
+    correct: 1,
+    difficulty: 1,
+    category: "modes",
+  },
+  {
+    question: "Which Splatoon 2 duo consists of Pearl and Marina?",
+    answers: ["Squid Sisters", "Off the Hook", "Deep Cut", "Chirpy Chips"],
+    correct: 1,
+    difficulty: 1,
+    category: "characters",
+  },
+  {
+    question: "What console was the original Splatoon released on?",
+    answers: ["Nintendo Switch", "Nintendo 3DS", "Wii U", "GameCube"],
+    correct: 2,
+    difficulty: 1,
+    category: "lore",
+  },
+  {
+    question: "What is the name of the idol group in Splatoon 3?",
+    answers: ["Squid Sisters", "Off the Hook", "Deep Cut", "Bottom Feeders"],
+    correct: 2,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "Which ranked mode requires you to ride a moving platform to the enemy base?",
+    answers: ["Splat Zones", "Tower Control", "Rainmaker", "Clam Blitz"],
+    correct: 1,
+    difficulty: 2,
+    category: "modes",
+  },
+  {
+    question: "What does the Ninja Squid ability do?",
+    answers: ["Increases damage", "Hides ink ripples while swimming", "Speeds up respawn", "Boosts special gauge"],
+    correct: 1,
+    difficulty: 2,
+    category: "gear",
+  },
+  {
+    question: "Which species are the Octolings?",
+    answers: ["Squids", "Octopuses", "Jellyfish", "Crabs"],
+    correct: 1,
+    difficulty: 1,
+    category: "lore",
+  },
+  {
+    question: "What is the Rainmaker?",
+    answers: ["A weather machine", "A powerful weapon you carry to the goal", "A type of special", "A boss in Salmon Run"],
+    correct: 1,
+    difficulty: 2,
+    category: "modes",
+  },
+  {
+    question: "Which member of Deep Cut is a manta ray?",
+    answers: ["Shiver", "Frye", "Big Man", "Small Fry"],
+    correct: 2,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What are Power Eggs used for in Salmon Run?",
+    answers: ["Buying weapons", "Scoring points", "Upgrading gear", "Healing teammates"],
+    correct: 1,
+    difficulty: 2,
+    category: "modes",
+  },
+  {
+    question: "Which Splatoon stage is set in a shopping mall?",
+    answers: ["Moray Towers", "Arowana Mall", "Port Mackerel", "Kelp Dome"],
+    correct: 1,
+    difficulty: 2,
+    category: "stages",
+  },
+  {
+    question: "What weapon class does the Bamboozler belong to?",
+    answers: ["Shooter", "Charger", "Roller", "Slosher"],
+    correct: 1,
+    difficulty: 2,
+    category: "weapons",
+  },
+  {
+    question: "What happens when your ink tank runs empty?",
+    answers: ["You respawn", "You can't shoot until it refills", "You lose points", "The match ends"],
+    correct: 1,
+    difficulty: 1,
+    category: "weapons",
+  },
+  {
+    question: "What is Tableturf Battle?",
+    answers: ["A board game mode", "A card game mode", "A racing mode", "A battle royale"],
+    correct: 1,
+    difficulty: 2,
+    category: "modes",
+  },
+  {
+    question: "What animal companion does Shiver have?",
+    answers: ["Eel", "Shark", "Dolphin", "Whale"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What is the Booyah Bomb powered by?",
+    answers: ["Ink usage", "Teammate booyahs", "Enemy splats", "Time elapsed"],
+    correct: 1,
+    difficulty: 2,
+    category: "weapons",
+  },
+  {
+    question: "Which Splatoon expansion features the Octo Expansion?",
+    answers: ["Splatoon 1", "Splatoon 2", "Splatoon 3", "All of them"],
+    correct: 1,
+    difficulty: 2,
+    category: "lore",
+  },
+  {
+    question: "What is the final reward for completing the Octo Expansion?",
+    answers: ["A golden weapon", "Playable Octoling", "A new stage", "A special hat"],
+    correct: 1,
+    difficulty: 2,
+    category: "lore",
+  },
+  {
+    question: "What are the three gear slots in Splatoon?",
+    answers: ["Head, Body, Shoes", "Hat, Shirt, Pants", "Helmet, Armor, Boots", "Head, Arms, Legs"],
+    correct: 0,
+    difficulty: 2,
+    category: "gear",
+  },
+  {
+    question: "Which character says 'Stay Fresh!' at the end of news broadcasts?",
+    answers: ["Pearl", "Marina", "Callie and Marie", "Shiver"],
+    correct: 2,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "In Clam Blitz, how many clams make a Super Clam?",
+    answers: ["5", "8", "10", "15"],
+    correct: 2,
+    difficulty: 3,
+    category: "modes",
+  },
+  {
+    question: "What sea creature is Sheldon?",
+    answers: ["Snail", "Horseshoe Crab", "Shrimp", "Lobster"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What is the name of the single player campaign in Splatoon 3?",
+    answers: ["Hero Mode", "Octo Canyon", "Return of the Mammalians", "Agent Files"],
+    correct: 2,
+    difficulty: 2,
+    category: "lore",
+  },
+  {
+    question: "Which special weapon creates a rain cloud of ink?",
+    answers: ["Booyah Bomb", "Ink Storm", "Trizooka", "Ultra Stamp"],
+    correct: 1,
+    difficulty: 2,
+    category: "weapons",
+  },
+  {
+    question: "What is the highest rank letter in Splatoon's ranked mode?",
+    answers: ["A+", "S+", "X", "Z"],
+    correct: 2,
+    difficulty: 3,
+    category: "modes",
+  },
+  {
+    question: "What year was the original Splatoon released?",
+    answers: ["2013", "2014", "2015", "2016"],
+    correct: 2,
+    difficulty: 2,
+    category: "lore",
+  },
+  {
+    question: "Which boss drops Golden Eggs in Salmon Run?",
+    answers: ["Regular Salmonids", "Boss Salmonids", "King Salmonid", "Cohozuna"],
+    correct: 1,
+    difficulty: 2,
+    category: "modes",
+  },
+  {
+    question: "What is the name of the food truck operator who makes drinks?",
+    answers: ["Sheldon", "Murch", "Crusty Sean", "Harmony"],
+    correct: 2,
+    difficulty: 3,
+    category: "characters",
+  },
+  {
+    question: "What does the Tacticooler special do?",
+    answers: ["Shoots ink in all directions", "Drops drink cans for the team", "Creates a force field", "Launches a missile"],
+    correct: 1,
+    difficulty: 3,
+    category: "weapons",
+  },
+  {
+    question: "What species is Marina from Off the Hook?",
+    answers: ["Inkling", "Octoling", "Jellyfish", "Anemone"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "Which weapon sub type sticks to surfaces before exploding?",
+    answers: ["Splat Bomb", "Suction Bomb", "Burst Bomb", "Curling Bomb"],
+    correct: 1,
+    difficulty: 3,
+    category: "weapons",
+  },
+  {
+    question: "How many players are on each team in Salmon Run?",
+    answers: ["2", "3", "4", "5"],
+    correct: 2,
+    difficulty: 2,
+    category: "modes",
+  },
+  {
+    question: "What is the name of the fuzzy enemy in Splatoon 3's story mode?",
+    answers: ["Octarians", "Fuzzy Ooze", "Mammalians", "Salmonids"],
+    correct: 1,
+    difficulty: 3,
+    category: "lore",
+  },
+  {
+    question: "Which stage features rising water levels during the match?",
+    answers: ["Moray Towers", "Mahi-Mahi Resort", "Starfish Mainstage", "Kelp Dome"],
+    correct: 1,
+    difficulty: 3,
+    category: "stages",
+  },
+  {
+    question: "What is the Zipcaster special?",
+    answers: ["A long range sniper", "An ink zipline launcher", "A grappling hook ability", "A teleportation device"],
+    correct: 2,
+    difficulty: 3,
+    category: "weapons",
+  },
+  {
+    question: "What do you call the act of quickly hiding in ink and popping out to splat?",
+    answers: ["Ink diving", "Sharking", "Squid bagging", "Sub strafing"],
+    correct: 1,
+    difficulty: 3,
+    category: "lore",
+  },
+  {
+    question: "Which Splatoon game introduced the Dualies weapon class?",
+    answers: ["Splatoon 1", "Splatoon 2", "Splatoon 3", "Octo Expansion"],
+    correct: 1,
+    difficulty: 3,
+    category: "weapons",
+  },
+  {
+    question: "What is Little Buddy in Splatoon 3?",
+    answers: ["A pet fish", "A small Salmonid companion", "A mini Octoling", "A drone"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What is the term for rapidly crouching in squid form as a taunt?",
+    answers: ["Tea-bagging", "Squid bagging", "Ink dipping", "Squid partying"],
+    correct: 3,
+    difficulty: 3,
+    category: "lore",
+  },
+  {
+    question: "Which stage is known for its extremely tall vertical layout?",
+    answers: ["Moray Towers", "Port Mackerel", "Blackbelly Skatepark", "Walleye Warehouse"],
+    correct: 0,
+    difficulty: 2,
+    category: "stages",
+  },
+  {
+    question: "What color is Marie's associated ink?",
+    answers: ["Pink", "Green", "Purple", "Yellow"],
+    correct: 1,
+    difficulty: 2,
+    category: "characters",
+  },
+  {
+    question: "What extinct creatures are Inklings evolved from?",
+    answers: ["Fish", "Squids", "Sea snails", "Humans are the extinct ones"],
+    correct: 3,
+    difficulty: 3,
+    category: "lore",
+  },
+  {
+    question: "What is the maximum number of ability slots on a piece of gear?",
+    answers: ["2", "3", "4", "5"],
+    correct: 2,
+    difficulty: 3,
+    category: "gear",
+  },
+  {
+    question: "Which Splatoon game introduced the Stringer weapon class?",
+    answers: ["Splatoon 1", "Splatoon 2", "Splatoon 3", "None"],
+    correct: 2,
+    difficulty: 2,
+    category: "weapons",
+  },
+  {
+    question: "What is the name of the ancient technology discovered in Splatoon 3?",
+    answers: ["Zapfish", "Sardinium", "Alterna", "Deep Sea Scrolls"],
+    correct: 2,
+    difficulty: 3,
+    category: "lore",
+  },
+  {
+    question: "How many waves are there in a standard Salmon Run shift?",
+    answers: ["2", "3", "4", "5"],
+    correct: 1,
+    difficulty: 2,
+    category: "modes",
+  },
+  {
+    question: "What is Crusty Sean's business in Splatoon 2?",
+    answers: ["Weapon shop", "Gear shop", "Food truck", "Arcade"],
+    correct: 2,
+    difficulty: 3,
+    category: "characters",
+  },
+  {
+    question: "What item powers the Great Zapfish?",
+    answers: ["Power Eggs", "Sardinium", "Electricity", "Ink"],
+    correct: 2,
+    difficulty: 3,
+    category: "lore",
+  },
+];
+
+/**
+ * Fisher-Yates shuffle.
+ */
+export function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/**
+ * Build a question queue ordered by difficulty (easy first).
+ */
+export function buildQuestionQueue() {
+  const easy = shuffle(questions.filter(q => q.difficulty === 1));
+  const med = shuffle(questions.filter(q => q.difficulty === 2));
+  const hard = shuffle(questions.filter(q => q.difficulty === 3));
+  return [...easy, ...med, ...hard];
+}

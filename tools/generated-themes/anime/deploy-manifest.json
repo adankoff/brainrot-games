@@ -1,0 +1,109 @@
+{
+  "packId": "anime",
+  "packName": "ANIME",
+  "startGame": 48,
+  "games": [
+    {
+      "number": 48,
+      "folder": "game-48",
+      "name": "ANIME FLAPPY BIRD",
+      "mechanic": "Flappy Bird"
+    },
+    {
+      "number": 49,
+      "folder": "game-49",
+      "name": "ANIME WHACK-A-MOLE",
+      "mechanic": "Whack-a-Mole"
+    },
+    {
+      "number": 50,
+      "folder": "game-50",
+      "name": "ANIME IDLE CLICKER",
+      "mechanic": "Idle Clicker"
+    },
+    {
+      "number": 51,
+      "folder": "game-51",
+      "name": "ANIME ENDLESS RUNNER",
+      "mechanic": "Endless Runner"
+    },
+    {
+      "number": 52,
+      "folder": "game-52",
+      "name": "ANIME STACK",
+      "mechanic": "Stack"
+    },
+    {
+      "number": 53,
+      "folder": "game-53",
+      "name": "ANIME SNAKE",
+      "mechanic": "Snake"
+    },
+    {
+      "number": 54,
+      "folder": "game-54",
+      "name": "ANIME 2048",
+      "mechanic": "2048"
+    },
+    {
+      "number": 55,
+      "folder": "game-55",
+      "name": "ANIME FRUIT NINJA",
+      "mechanic": "Fruit Ninja"
+    },
+    {
+      "number": 56,
+      "folder": "game-56",
+      "name": "ANIME BREAKOUT",
+      "mechanic": "Breakout"
+    },
+    {
+      "number": 57,
+      "folder": "game-57",
+      "name": "ANIME GEOMETRY DASH",
+      "mechanic": "Geometry Dash"
+    },
+    {
+      "number": 58,
+      "folder": "game-58",
+      "name": "ANIME PIANO TILES",
+      "mechanic": "Piano Tiles"
+    },
+    {
+      "number": 59,
+      "folder": "game-59",
+      "name": "ANIME COLOR SWITCH",
+      "mechanic": "Color Switch"
+    },
+    {
+      "number": 60,
+      "folder": "game-60",
+      "name": "ANIME WORDLE",
+      "mechanic": "Wordle"
+    },
+    {
+      "number": 61,
+      "folder": "game-61",
+      "name": "ANIME MEMORY MATCH",
+      "mechanic": "Memory Match"
+    },
+    {
+      "number": 62,
+      "folder": "game-62",
+      "name": "ANIME HANGMAN",
+      "mechanic": "Hangman"
+    },
+    {
+      "number": 63,
+      "folder": "game-63",
+      "name": "ANIME PAPER TOSS",
+      "mechanic": "Paper Toss"
+    },
+    {
+      "number": 64,
+      "folder": "game-64",
+      "name": "ANIME TRIVIA QUIZ",
+      "mechanic": "Trivia Quiz"
+    }
+  ]
+}

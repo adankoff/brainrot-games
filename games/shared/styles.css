@@ -46,11 +46,6 @@ body {
   touch-action: manipulation;
 }
 
-#menu-overlay[style*="display: none"] ~ #game-canvas,
-#menu-overlay[hidden] ~ #game-canvas {
-  pointer-events: auto;
-}
-
 /* ---- Game-Over Overlay ---- */
 #gameover-overlay {
   touch-action: manipulation;

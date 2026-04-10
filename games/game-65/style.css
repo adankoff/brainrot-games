@@ -1,0 +1,65 @@
+/* ==========================================================================
+   FLAPPY TRALALERO -- Game-Specific Styles
+   Minimal overrides on top of shared/styles.css + design-system.css.
+   Theme: data-theme="italian-brainrot" (set on body)
+   ========================================================================== */
+
+/* ---- Game container positions overlays relative to canvas ---- */
+.game-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Character Select Row (in menu secondary actions) ---- */
+.character-select {
+  display: flex;
+  gap: var(--space-xs);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--space-xs) 0;
+}
+
+.character-select__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-text-tertiary);
+  background-color: var(--color-surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  overflow: hidden;
+  position: relative;
+}
+
+.character-select__icon:hover {
+  transform: scale(1.1);
+}
+
+.character-select__icon--selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary-glow);
+}
+
+.character-select__icon--locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.character-select__icon--locked:hover {
+  transform: none;
+}
+
+/* ---- Unlock notification on game-over ---- */
+.unlock-notification {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  color: var(--color-mint-aura);
+  animation: scaleIn var(--transition-base) both;
+  text-align: center;
+  padding: var(--space-xs) 0;
+}
