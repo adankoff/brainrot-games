@@ -1,0 +1,6 @@
+/* MEME JUMP -- Game-specific styles */
+
+[data-theme="jump"] {
+  --accent: #44ff44;
+  --accent-dim: #22aa22;
+}

@@ -1,0 +1,21 @@
+/* MEME ASTEROIDS -- Game-specific styles */
+
+[data-theme="asteroids"] {
+  --color-bg: #000000;
+  --color-surface: #0a0a1a;
+  --color-text: #ffffff;
+  --color-accent: #00ff88;
+  --color-secondary: #888888;
+}
+
+body[data-theme="asteroids"] {
+  background: #000000;
+}
+
+.game-container {
+  background: #000000;
+}
+
+#game-canvas {
+  background: #000000;
+}

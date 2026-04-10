@@ -1,0 +1,11 @@
+/* HIGHER LOWER -- Game-specific styles */
+
+body[data-theme="highlow"] {
+  --accent: #c8ff00;
+  --accent-dim: #8ab300;
+  background: #1a1a2e;
+}
+
+.game-container {
+  background: #16213e;
+}

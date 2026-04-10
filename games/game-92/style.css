@@ -1,0 +1,19 @@
+/* MEME INVADERS -- Game-Specific Styles */
+
+[data-theme="invaders"] {
+  --accent: #00ff41;
+  --accent-dim: #00cc33;
+  --bg-game: #0a0a1a;
+}
+
+body[data-theme="invaders"] {
+  background: var(--bg-game);
+}
+
+.game-container {
+  background: var(--bg-game);
+}
+
+#game-canvas {
+  background: #000;
+}

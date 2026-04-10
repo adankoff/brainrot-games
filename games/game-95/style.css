@@ -1,0 +1,16 @@
+/* MEME CROSS -- Game-specific styles */
+
+[data-theme="crossy"] {
+  --accent: #5dde3b;
+  --accent-dim: #3a8c24;
+  --bg-game: #1a1a2e;
+}
+
+.game-container {
+  background: var(--bg-game, #1a1a2e);
+}
+
+#game-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}

@@ -1,0 +1,57 @@
+/* MEME TETRIS -- Game-specific styles */
+
+[data-theme="tetris"] {
+  --accent: #00f0f0;
+  --accent-glow: rgba(0, 240, 240, 0.3);
+}
+
+.game-container {
+  position: relative;
+}
+
+/* Touch controls overlay */
+.touch-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  justify-content: space-between;
+  padding: 8px 12px 12px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@media (pointer: coarse) {
+  .touch-controls {
+    display: flex;
+  }
+}
+
+.touch-btn {
+  pointer-events: auto;
+  width: 52px;
+  height: 52px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.touch-btn:active {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.touch-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

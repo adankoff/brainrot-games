@@ -474,6 +474,11 @@
   background: rgba(103, 232, 249, 0.1);
 }
 
+.cat-tag--arcade {
+  color: #fb923c;
+  background: rgba(251, 146, 60, 0.1);
+}
+
 /* Difficulty badges */
 .diff {
   font-size: var(--text-xs);

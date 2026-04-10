@@ -1,0 +1,11 @@
+/* MEME BLACKJACK -- Game-specific styles */
+
+body[data-theme="blackjack"] {
+  --accent: #00e676;
+  --accent-dim: #00a152;
+  background: #0a3d0a;
+}
+
+.game-container {
+  background: #0d4f0d;
+}

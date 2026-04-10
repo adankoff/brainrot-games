@@ -1,0 +1,38 @@
+/* CONNECT FOUR -- Game-specific styles */
+
+body[data-theme="connect4"] {
+  background: #0a0a2e;
+}
+
+/* Difficulty selector in menu */
+.difficulty-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.difficulty-btn {
+  padding: 6px 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.difficulty-btn:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.difficulty-btn.active {
+  border-color: #ffeb3b;
+  color: #ffeb3b;
+  background: rgba(255, 235, 59, 0.1);
+}
