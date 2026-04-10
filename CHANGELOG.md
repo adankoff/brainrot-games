@@ -119,26 +119,99 @@
 
 ---
 
-## TODO — Next Sessions
+## Session 2b — April 10, 2026 (continued)
+
+### Content Pack Pipeline
+- Built universal content pack schema (tools/content-pack-schema.js)
+- Built validator (tools/validate-pack.js), generator (tools/generate-from-pack.js), deployer (tools/deploy-pack.js)
+- Created 4 content packs: skibidi, brainrot, anime, splatoon
+- Generated + deployed 51 themed game variants (games 31-81) from packs
+
+### Batch 6: Games 82-89 — Procedural Puzzles
+- Game 82: Sudoku (backtracking generator, unique solutions)
+- Game 83: Minesweeper (first-click-safe, flood-fill reveal)
+- Game 84: Nonogram/Picross (line-logic solvable)
+- Game 85: Sliding Puzzle (3x3/4x4/5x5)
+- Game 86: Maze Runner (recursive backtracker, fog of war)
+- Game 87: Word Search (80+ word bank, 8-direction)
+- Game 88: Lights Out (toggle puzzles, progressive)
+- Game 89: Pipe Connect (spanning tree, rotation puzzles)
+
+### Batch 7: Games 90-99 — Classic Arcade + Cards
+- Game 90: Tetris (SRS rotation, bag randomizer, hold, ghost)
+- Game 91: Pong (vs AI, 3 difficulty levels)
+- Game 92: Space Invaders (5x8 grid, waves, UFO bonus)
+- Game 93: Simon Says (4-color sequence memory)
+- Game 94: Doodle Jump (4 platform types, infinite)
+- Game 95: Crossy Road (traffic, rivers, trains, procedural)
+- Game 96: Asteroids (thrust physics, splitting, wrap)
+- Game 97: Blackjack (52-card deck, chip betting)
+- Game 98: Higher or Lower (card streak scoring)
+- Game 99: Connect Four (minimax AI, alpha-beta pruning)
+
+### Infrastructure
+- Landing page redesigned as sortable/filterable table catalog
+- Fixed menu overlay positioning (position: fixed) for all games
+- Added arcade category filter
+
+### Stats
+- 99 playable HTML5 games
+- 35 unique game mechanics
+- 4 content packs (skibidi, brainrot, anime, splatoon)
+
+---
+
+## TODO — Next Session (Resume Here)
+
+### Remaining 40 games to build (2 at a time)
+Pick up at game-100. Build order:
+
+| #   | Game # | Mechanic          | Category | Complexity | Procedural |
+|-----|--------|-------------------|----------|------------|------------|
+| 11  | 100    | Reversi / Othello | strategy | 2          | YES        |
+| 12  | 101    | Tic-Tac-Toe       | strategy | 1          | YES        |
+| 13  | 102    | Mastermind        | puzzle   | 1          | YES        |
+| 14  | 103    | Ball Sort         | puzzle   | 1          | YES        |
+| 15  | 104    | Tower of Hanoi    | puzzle   | 1          | NO         |
+| 16  | 105    | Sokoban           | puzzle   | 2          | YES        |
+| 17  | 106    | Tangram           | puzzle   | 2          | NO         |
+| 18  | 107    | Peg Solitaire     | puzzle   | 1          | NO         |
+| 19  | 108    | Flow Free         | puzzle   | 2          | YES        |
+| 20  | 109    | Flood Fill        | puzzle   | 1          | YES        |
+| 21  | 110    | Threes            | puzzle   | 2          | YES        |
+| 22  | 111    | Spelling Bee      | word     | 1          | YES        |
+| 23  | 112    | Anagram           | word     | 1          | YES        |
+| 24  | 113    | Boggle            | word     | 2          | YES        |
+| 25  | 114    | Crossword Mini    | word     | 3          | YES        |
+| 26  | 115    | Typing Speed      | word     | 1          | YES        |
+| 27  | 116    | Bubble Shooter    | arcade   | 1          | YES        |
+| 28  | 117    | Missile Command   | action   | 1          | YES        |
+| 29  | 118    | Galaga            | action   | 2          | YES        |
+| 30  | 119    | Frogger           | action   | 1          | YES        |
+| 31  | 120    | Pac-Man Mini      | arcade   | 2          | YES        |
+| 32  | 121    | Helicopter Cave   | reflex   | 1          | YES        |
+| 33  | 122    | Reaction Time     | reflex   | 1          | YES        |
+| 34  | 123    | Stroop Color Tap  | reflex   | 1          | YES        |
+| 35  | 124    | Aim Trainer       | reflex   | 1          | YES        |
+| 36  | 125    | Catch the Falling | action   | 1          | YES        |
+| 37  | 126    | Knife Hit         | reflex   | 1          | YES        |
+| 38  | 127    | Bouncing Ball     | reflex   | 1          | YES        |
+| 39  | 128    | Rhythm Tap        | reflex   | 2          | YES        |
+| 40  | 129    | Checkers          | strategy | 2          | NO         |
+| 41  | 130    | Mancala           | strategy | 2          | NO         |
+| 42  | 131    | KenKen            | puzzle   | 2          | YES        |
+| 43  | 132    | Kakuro            | puzzle   | 3          | YES        |
+| 44  | 133    | Number Link       | puzzle   | 2          | YES        |
+| 45  | 134    | Angry Birds       | action   | 2          | YES        |
+| 46  | 135    | Cut the Rope      | puzzle   | 3          | NO         |
+| 47  | 136    | Balance Tower     | arcade   | 2          | YES        |
+| 48  | 137    | Hex Match         | puzzle   | 2          | YES        |
+| 49  | 138    | Match-3 Bejeweled | puzzle   | 2          | YES        |
+| 50  | 139    | Solitaire         | strategy | 2          | YES        |
 
 ### High Priority
-- [ ] **Playtest all 30 games** — open each in browser, verify they load and play correctly
-- [ ] **Fix broken games** — some cloned games may have import path or API issues
-- [ ] **Add real meme images** — replace Canvas-drawn shapes with actual image sprites (PNG/SVG)
-- [ ] **Add analytics** — Plausible or Google Analytics on all pages
-- [ ] **Add ad integration** — interstitial ads on death screens
-
-### New Game Mechanics to Build (Top 10 from research)
-- [x] Piano Tiles (score 18/20) — Game 24: Meme Piano
-- [x] Color Switch (score 17/20) — Game 25: Brainrot Color Switch
-- [x] Wordle Clone / "Brainrotle" (score 17/20) — Game 26: Brainrotle
-- [x] Memory Match (score 16/20) — Game 27: Meme Memory
-- [ ] Match-3 / Candy Crush style (score 16/20, 2 days)
-- [x] Hangman with meme vocabulary (score 15/20) — Game 28: Meme Hangman
-- [x] Paper Toss (score 15/20) — Game 29: YEET
-- [ ] Basketball Shot (score 15/20, 1 day)
-- [ ] Tetris / falling blocks (score 15/20, 2 days)
-- [x] Trivia Quiz — meme trivia (score 15/20) — Game 30: Meme IQ Test
+- [ ] **Playtest all 99 games** — open each in browser, verify they load and play correctly
+- [ ] **Fix broken games** — some deployed pack games may have import path issues
 
 ### Art & Assets
 - [ ] Source or generate meme character sprites (PNG with transparency)
